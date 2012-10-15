@@ -31,16 +31,8 @@
 class CPlayerObjHandle;
 class CObj;
 
-class CPartical;
-class CUIMainFrame;
-class CUIBaseFrame;
 class CPos;
-class COrdres;
-class CItemType;
-class CShipType;
-class CAstoroidType;
 class CWorld;
-class CLoadout;
 using namespace std;
 
 struct ConnectionStruct{
@@ -65,23 +57,13 @@ extern pthread_mutex_t lockInput;
 extern ConnectionStruct connection;
 extern uint32_t tTime;
 extern CPlayerObjHandle* playerObj;
-extern list<CPartical*> particals;
 extern map<uint32_t,GLuint> textures;
-extern map<uint32_t,CItemType*> itemlist;
-extern map<uint32_t, CShipType*> shipTypes;
-extern map<uint32_t, CAstoroidType*> astoroidTypes;
 extern CWorld* world;
 extern CObj* playerSels;
 extern list<CObj*> playerMultiSels;
-extern map<uint32_t,COrdres*> globalOrders;
-extern map<uint32_t,CLoadout*> globalLoadout;
 
 extern uint32_t playerId;
 extern map<uint32_t,uint8_t> teamlist;
-extern CUIMainFrame* mainFrame;
-extern CUIBaseFrame* selectedFrame;
-extern CUIBaseFrame* focusFrame;
-extern CUIBaseFrame* hoverFrame;
 extern CPos* viewPos;
 extern double viewZoom;
 extern double viewRZoom;

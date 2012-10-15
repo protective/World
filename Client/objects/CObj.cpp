@@ -22,8 +22,7 @@ CObj::CObj(uint32_t id, uint32_t playerId, CPos& pos) {
 
 	this->_lastUpdate = getTime();
 	this->_procedTime = getTime();
-	this->_fadetimer = 0;
-	this->_maxfadetimer = 0;
+
 }
 
 CPos& CObj::getPos(){
