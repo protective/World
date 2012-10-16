@@ -26,12 +26,7 @@
 using namespace std;
 class Client;
 class SWorld;
-class SSubType;
-class SItemType;
-class SShipType;
-class SAstoroidType;
-class SOrdres;
-class SLoadout;
+
 extern SWorld* world;
 extern list<Client*> clients;
 extern pthread_mutex_t lockNetInput;
@@ -39,12 +34,7 @@ extern pthread_mutex_t lockClientList;
 extern uint32_t freeIdCount;
 extern pthread_mutex_t lockFreeID;
 extern pthread_barrier_t  procesBar;
-extern map<uint32_t,SItemType*> itemlist;
 extern map<string,uint32_t> itemlistFileNames;
-extern map<uint32_t, SShipType*> shipTypes;
-extern map<uint32_t, SAstoroidType*> astoroidTypes;
-extern map<uint32_t,map<uint32_t,SOrdres*> > globalOrders;
-extern map<uint32_t,map<uint32_t,SLoadout*> > globalLoadout;
 extern map<uint32_t,uint8_t> teamlist;
 extern list<uint8_t> allteams;
 #endif	/* SGLOBALS_H */

@@ -9,13 +9,6 @@
 #define	SOBJ_H
 #include "../SFunctions.h"
 #include "SPos.h"
-
-class SShot;
-class SShip;
-class SAstoroid;
-class SSubAble;
-class STargetable;
-class SMovable;
 class SObj {
 public:
 	SObj(uint32_t id, SPos& pos, uint8_t team, uint32_t playerId);
@@ -29,14 +22,8 @@ public:
 	virtual void postProces(){};
 	virtual void announceRemovalOf(SObj* obj){};
 	virtual bool canBeRemoved(){return false;}
-	virtual SShip* isShip(){return NULL;}
-	virtual SAstoroid* isAstoroid(){return NULL;}
-	virtual SShot* isShot(){return NULL;}
-	virtual SMovable* isMovable(){return NULL;}
 	virtual uint8_t getTeam(){return _team;}
 	virtual uint32_t getPlayerId(){return _playerId;}
-	virtual SSubAble* getsubable(){return NULL;}
-	virtual STargetable* getTargetable(){return NULL;}
 	virtual void setUpdateCounter(uint32_t value){this->_updateCounter = value;}
 	virtual uint32_t getUpdateCounter(){return this->_updateCounter;}
 	virtual map<int8_t,Visibility::Enum>& getVisibleTo(){return this->_visibleTo;}

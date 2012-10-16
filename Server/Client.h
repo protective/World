@@ -8,7 +8,7 @@
 #ifndef CLIENT_H
 #define	CLIENT_H
 #include "SGlobals.h"
-#include "Sspacebjects/SObj.h"
+#include "objects/SObj.h"
 
 struct NetworkBuffer{
     uint32_t recived;

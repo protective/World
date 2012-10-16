@@ -8,8 +8,7 @@
 #ifndef SDATABASE_H
 #define	SDATABASE_H
 #include "SFunctions.h"
-#include "Sspacebjects/subsystems/SSubTypeWep.h"
-#include "SItems/SItemType.h"
+
 #include <dirent.h>
 class SDatabase {
 public:

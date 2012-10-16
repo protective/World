@@ -26,6 +26,8 @@
       <logicalFolder name="f4" displayName="objects" projectFiles="true">
         <itemPath>objects/SObj.cpp</itemPath>
         <itemPath>objects/SObj.h</itemPath>
+        <itemPath>objects/SPos.cpp</itemPath>
+        <itemPath>objects/SPos.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="World" projectFiles="true">
         <itemPath>World/SGrid.cpp</itemPath>

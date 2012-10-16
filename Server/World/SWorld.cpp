@@ -54,8 +54,8 @@ void SWorld::proces(uint32_t thead_id){
 	}
 	while(true){
 		if (it != this->objInWorld.end()){
-			if (it->second->isMovable())
-				it->second->isMovable()->Move(0);
+			//if (it->second->isMovable())
+			//	it->second->isMovable()->Move(0);
 		}else
 			break;
 
@@ -98,8 +98,8 @@ void SWorld::proces(uint32_t thead_id){
 	}
 	while(true){
 		if (it != this->objInWorld.end()){
-			if (it->second->isShot())
-				it->second->isShot()->TestHit();
+			//if (it->second->isShot())
+			//	it->second->isShot()->TestHit();
 		}else
 			break;
 
@@ -113,8 +113,8 @@ void SWorld::proces(uint32_t thead_id){
 
 	if(thead_id == 0){
 		for (SGridI it = this->grids.begin(); it != this->grids.end();it++){
-			it->second->Proces(thead_id);
-			it->second->SendObjInfoToClients();
+			//it->second->Proces(thead_id);
+			//it->second->SendObjInfoToClients();
 		}
 	}
 	pthread_barrier_wait(&procesBar);

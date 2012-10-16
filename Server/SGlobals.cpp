@@ -17,11 +17,5 @@ uint32_t freeIdCount = 1;
 SWorld* world = new SWorld();
 pthread_barrier_t  procesBar;
 
-map<uint32_t,SItemType*> itemlist;
-map<string,uint32_t> itemlistFileNames;
-map<uint32_t, SShipType*> shipTypes;
-map<uint32_t, SAstoroidType*> astoroidTypes;
-map<uint32_t,map<uint32_t,SOrdres*> > globalOrders;
-map<uint32_t,map<uint32_t,SLoadout*> > globalLoadout;
 map<uint32_t,uint8_t> teamlist;
 list<uint8_t> allteams;

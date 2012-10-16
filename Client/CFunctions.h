@@ -10,7 +10,7 @@
 #include "../GShare/GFunctions.h"
 #include "CGlobals.h"
 #include "../Network/Serialize.h"
-#include "CPlayerObjHandle.h"
+#include "CPlayerObjHandle.h"		
 
 void* Connect(string ip, uint32_t playerid, uint32_t pass);
 void* Disconnect();
