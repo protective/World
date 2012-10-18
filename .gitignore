@@ -1,2 +1,7 @@
-dist/
-
+Server/build/
+Server/dist/
+Client/build/
+Client/dist
+gltest/build/
+gltest/dist
+/AI/nbproject/private/
