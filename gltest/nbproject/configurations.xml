@@ -20,6 +20,8 @@
       <itemPath>C_X_ReaderBase.h</itemPath>
       <itemPath>C_X_ReaderMesh.cpp</itemPath>
       <itemPath>C_X_ReaderMesh.h</itemPath>
+      <itemPath>C_X_ReaderNormals.cpp</itemPath>
+      <itemPath>C_X_ReaderNormals.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"

@@ -38,6 +38,8 @@
 #include "GL/gl.h"
 #include "GL/glu.h"
 #include <algorithm> 
+#include <cmath>
+
 #include <functional> 
 #include <cctype>
 #include <locale>
@@ -62,8 +64,21 @@ static inline std::string &trim(std::string &s) {
         return ltrim(rtrim(s));
 }
 
+static inline GLfloat strTofloat(string str) {
+	GLfloat intReturn;
 
+	intReturn = atof(str.c_str());
 
+	return (intReturn);
+}
+
+static inline int strToInt(string str) {
+	int intReturn;
+
+	intReturn = atoi(str.c_str());
+
+	return (intReturn);
+}
 
 
 

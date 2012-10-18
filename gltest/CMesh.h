@@ -14,18 +14,20 @@ public:
 	CMesh();
 	void Render();
 	
-	void SetVertexArray(uint32_t noVertix, u_int32_t* VArray,uint32_t noFace, u_int32_t* FArray){
+	void SetVertexArray(uint32_t noVertix, GLfloat* VArray,uint32_t noFace, u_int8_t* FArray, GLfloat* NArray){
 		_noVertix = noVertix;
 		_vertixArray = VArray;
+		_normalArray = NArray;
 		_noFace = noFace;
 		_faceArray = FArray;
 	}
 	virtual ~CMesh();
 private:
 	uint32_t _noVertix;
-	uint32_t* _vertixArray;
+	GLfloat* _vertixArray;
+	GLfloat* _normalArray;
 	uint32_t _noFace;
-	uint32_t* _faceArray;
+	uint8_t* _faceArray;
 };
 
 #endif	/* CMESH_H */

@@ -4,7 +4,7 @@
 #include "C_X_ReaderMesh.h"
 
 CMesh* Lload(string file){
-	CMesh* mesh = new CMesh();
+	CMesh* mesh = NULL;
 	list<C_X_ReaderBase*> nowReading;
 	ifstream reader(file.c_str());
 	string line;
@@ -23,21 +23,34 @@ CMesh* Lload(string file){
 			
 			if(line == "Mesh"){
 				nowReading.push_back(new C_X_ReaderMesh());
-			}
+			}else if (line =="MeshNormals"){
+				C_X_ReaderNormals* temp = new C_X_ReaderNormals();
+				nowReading.back()->SetReaderNormal(temp);
+				nowReading.push_back(temp);
+			}else
+				nowReading.push_back(NULL);
+			
 			continue;
 		}
 		if(line.find("}") != string::npos){
-			cerr<<"-"<<nowReading.back()->Name()<<endl;
-			delete nowReading.back();
+			if(nowReading.back() && !nowReading.empty()){
+				cerr<<"-"<<nowReading.back()->Name()<<endl;
+				if(nowReading.back()->Name() == "Mesh")
+					mesh = nowReading.back()->getMesh();
+				//delete nowReading.back();
+			}
+			
 			nowReading.pop_back();
 			continue;
 		}
 		
-		if(nowReading.back() != NULL)
+		
+		if(nowReading.back() != NULL && !nowReading.empty()){
 			nowReading.back()->ReadLine(line);
 		}
+	}
 
-	return NULL;
+	return mesh;
 }
 
 

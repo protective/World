@@ -37,6 +37,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/C_X_ReaderBase.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/CMesh.o \
+	${OBJECTDIR}/C_X_ReaderNormals.o \
 	${OBJECTDIR}/C_X_ReaderMesh.o \
 	${OBJECTDIR}/C_X_Loader.o
 
@@ -79,6 +80,11 @@ ${OBJECTDIR}/CMesh.o: CMesh.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/CMesh.o CMesh.cpp
+
+${OBJECTDIR}/C_X_ReaderNormals.o: C_X_ReaderNormals.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/C_X_ReaderNormals.o C_X_ReaderNormals.cpp
 
 ${OBJECTDIR}/C_X_ReaderMesh.o: C_X_ReaderMesh.cpp 
 	${MKDIR} -p ${OBJECTDIR}
