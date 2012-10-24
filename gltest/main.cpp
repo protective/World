@@ -9,10 +9,12 @@
 #include <string.h>
 #include <cstdlib>
 #include <iostream>
+#include "GL/glew.h"
 #include "SDL/SDL.h"
-#include "SDL/SDL_opengl.h"
-#include "GL/gl.h"
-#include "GL/glu.h"
+//#include "SDL/SDL_opengl.h"
+//#include "GL/gl.h"
+//#include "GL/glu.h"
+
 #include "C_X_Loader.h"
 #include "CMesh.h"
 using namespace std;
@@ -22,6 +24,8 @@ using namespace std;
  */
 int main(int argc, char *argv[])
 {
+
+	
 	SDL_Init(SDL_INIT_VIDEO| SDL_INIT_TIMER);
 	SDL_Event event;
 	float theta = 0.0f;
@@ -32,6 +36,11 @@ int main(int argc, char *argv[])
 
 	SDL_SetVideoMode(600, 300, 0, SDL_OPENGL | SDL_HWSURFACE );
 
+	if (initiateShaders("test.vert","test.frag"))
+		cerr<<"ERROR init shaders"<<endl;
+
+	
+	
 	glViewport(0, 0, 600, 300);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClearDepth(1.0);

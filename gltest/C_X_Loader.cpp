@@ -52,5 +52,105 @@ CMesh* Lload(string file){
 
 	return mesh;
 }
+void printLog(GLuint obj)
+{
+	int infologLength = 0;
+	int maxLength;
+ 
+	if(glIsShader(obj))
+		glGetShaderiv(obj,GL_INFO_LOG_LENGTH,&maxLength);
+	else
+		glGetProgramiv(obj,GL_INFO_LOG_LENGTH,&maxLength);
+ 
+	char infoLog[maxLength];
+ 
+	if (glIsShader(obj))
+		glGetShaderInfoLog(obj, maxLength, &infologLength, infoLog);
+	else
+		glGetProgramInfoLog(obj, maxLength, &infologLength, infoLog);
+ 
+	if (infologLength > 0)
+		printf("%s\n",infoLog);
+}
+
+char *file2string(const char *path)
+{
+	FILE *fd;
+	long len,
+		 r;
+	char *str;
+ 
+	if (!(fd = fopen(path, "r")))
+	{
+		fprintf(stderr, "Can't open file '%s' for reading\n", path);
+		return NULL;
+	}
+ 
+	fseek(fd, 0, SEEK_END);
+	len = ftell(fd);
+ 
+	printf("File '%s' is %ld long\n", path, len);
+ 
+	fseek(fd, 0, SEEK_SET);
+ 
+	if (!(str = (char*)malloc(len * sizeof(char))))
+	{
+		fprintf(stderr, "Can't malloc space for '%s'\n", path);
+		return NULL;
+	}
+ 
+	r = fread(str, sizeof(char), len, fd);
+ 
+	str[r - 1] = '\0'; /* Shader sources have to term with null */
+ 
+	fclose(fd);
+ 
+	return str;
+}
 
 
+int initiateShaders(string vertexShader, string fragmentShader){
+	glewInit();
+	if (GLEW_VERSION_2_0)
+		fprintf(stderr, "INFO: OpenGL 2.0 supported, proceeding\n");
+	else
+	{
+		fprintf(stderr, "INFO: OpenGL 2.0 not supported. Exit\n");
+		return EXIT_FAILURE;
+	}
+	
+	
+		/* The vertex shader */
+	const GLchar *vsSource = file2string(vertexShader.c_str());
+	const GLchar *fsSource = file2string(fragmentShader.c_str());
+ 
+	/* Compile and load the program */
+ 
+	GLuint vs, /* Vertex Shader */
+		   fs, /* Fragment Shader */
+		   sp; /* Shader Program */
+ 
+ 
+	vs = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vs, 1, &vsSource, NULL);
+	glCompileShader(vs);
+	printLog(vs);
+ 
+	fs = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fs, 1, &fsSource, NULL);
+	glCompileShader(fs);
+	printLog(fs);
+ 
+	free((void*)vsSource);
+	free((void*)fsSource);
+ 
+	sp = glCreateProgram();
+	glAttachShader(sp, vs);
+	glAttachShader(sp, fs);
+	glLinkProgram(sp);
+	printLog(sp);
+ 
+	glUseProgram(sp);
+	
+	return EXIT_SUCCESS;
+}

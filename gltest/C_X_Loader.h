@@ -32,11 +32,13 @@
 #include <list>
 #include <map>
 
-
+#include "GL/glew.h"
 #include <SDL/SDL.h>
-#include "SDL/SDL_opengl.h"
-#include "GL/gl.h"
-#include "GL/glu.h"
+//#include "SDL/SDL_opengl.h"
+//#include "GL/gl.h"
+//#include "GL/glu.h"
+
+
 #include <algorithm> 
 #include <cmath>
 
@@ -44,7 +46,7 @@
 #include <cctype>
 #include <locale>
 
-#include "C_X_Loader.h"
+
 using namespace std;
 
 // trim from start
@@ -81,8 +83,9 @@ static inline int strToInt(string str) {
 }
 
 
-
-
+int initiateShaders(string vertexShader, string fragmentShader);
+void printLog(GLuint obj);
+char *file2string(const char *path);
 class CMesh;
 CMesh* Lload(string file);
 #endif	/* C_X_LOADER_H */

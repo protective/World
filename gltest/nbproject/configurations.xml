@@ -50,6 +50,7 @@
             <linkerLibLibItem>SDLmain</linkerLibLibItem>
             <linkerLibLibItem>GL</linkerLibLibItem>
             <linkerLibLibItem>GLU</linkerLibLibItem>
+            <linkerLibLibItem>GLEW</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
