@@ -8,20 +8,19 @@
 #include <stdint.h>
 
 #include "SObj.h"
-
-SObj::SObj(uint32_t id, SPos& pos, uint8_t team, uint32_t playerId) {
+#include "../World/SWorld.h"
+SObj::SObj(uint32_t id, SPos pos, uint8_t team, uint32_t playerId) {
 	this->_id = id;
 
 	this->_team = team;
 	this->_playerId = playerId;
-	this->_pos.x = pos.x;
-	this->_pos.y = pos.y;
-	this->_pos.d = pos.d;
-	this->_pos.grid = pos.grid;
-	this->_pos.z = 0;
+	this->_pos = pos;
+
 	this->_updateCounter = 0;
 	this->_size = 120000;
-	pthread_mutex_init(&this->lockUnit,NULL);
+	this->_commandAccessLocked = false;
+	pthread_mutex_init(&this->_lockCommandAccess,NULL);
+	pthread_mutex_init(&this->_lockCommands,NULL);
 }
 
 SPos& SObj::getPos(){
@@ -36,9 +35,48 @@ uint32_t SObj::getId(){
 	return this->_id;
 }
 
-SpaceTypes::Enum SObj::getmyType(){
-	return SpaceTypes::Invalid;
+SCommand* SObj::procesFirstReadyCommand(){
+
+	bool access = false;
+	
+	
+	pthread_mutex_lock(&this->_lockCommandAccess);
+	if(!_commandAccessLocked){
+		access = true;
+		_commandAccessLocked = true;
+	}
+	pthread_mutex_unlock(&this->_lockCommandAccess);
+	if(access){
+		SCommand* temp = NULL;	
+		
+		pthread_mutex_lock(&this->_lockCommands);
+		
+		if(_commands.size()){
+			if(_commands.front()->getTime() <= world->getprocesTime()){
+				temp = _commands.front();
+				_commands.pop_front();
+			}
+		}
+		pthread_mutex_unlock(&this->_lockCommands);
+		
+		return temp;
+	}
+	return NULL;
 }
+
+
+void SObj::releaseProcesCommand(){
+	pthread_mutex_lock(&this->_lockCommandAccess);
+	_commandAccessLocked = false;
+	pthread_mutex_unlock(&this->_lockCommandAccess);
+}
+
+uint32_t SObj::addCommand(SCommand* cmd){
+	pthread_mutex_lock(&this->_lockCommands);
+	_commands.push_back(cmd);
+	pthread_mutex_unlock(&this->_lockCommands);
+}
+
 
 SObj::~SObj() {
 }

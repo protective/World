@@ -59,14 +59,23 @@ int main(int argc, char** argv) {
 
 	SDatabase data;
 	
-	data.LoadAllItems();
-	cerr<<"done load data"<<endl;
+	//data.LoadAllItems();
+	//cerr<<"done load data"<<endl;
 
 	//WORLD
-	//world->addGrid(new SGrid(1,300000,300000));
 	
-	data.LoadGame();
-	cerr<<"done load game"<<endl;
+	
+	SGrid* g = new SGrid(1);
+	world->addGrid(g);
+	SPos p(0,0,0);
+	SObj* o = new SObj(1,p,0,0);
+	g->addObj(o);
+	for(uint32_t i = 0 ; i< 100; i++){
+		//cerr<<SDL_GetTicks()+(i*100)<<endl;
+		o->addCommand(new SCommand(SDL_GetTicks()+(i*1000)));
+	}
+	//data.LoadGame();
+	//cerr<<"done load game"<<endl;
 
 	SPos* temppos =  NULL;
 
@@ -125,6 +134,9 @@ int main(int argc, char** argv) {
 
 
 			threadsReady = 0;
+
+			world->setProcesTime(SDL_GetTicks());
+			cerr<<"world time"<<SDL_GetTicks()<<endl;
 			//cerr<<"done"<<endl;
 			pthread_mutex_lock(&lockClientList);
 			pthread_cond_broadcast(&procesConBegin);

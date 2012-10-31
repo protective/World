@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
+	${OBJECTDIR}/Command/SCommand.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/SFunctions.o \
 	${OBJECTDIR}/SGlobals.o \
@@ -95,6 +96,11 @@ ${OBJECTDIR}/World/SWorld.o: World/SWorld.cpp
 	${MKDIR} -p ${OBJECTDIR}/World
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/World/SWorld.o World/SWorld.cpp
+
+${OBJECTDIR}/Command/SCommand.o: Command/SCommand.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SCommand.o Command/SCommand.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761

@@ -18,7 +18,7 @@
 #include <map>
 //#include "Sspacebjects/subsystems/SSubType.h"
 
-#define NRTHREADS 1
+#define NRTHREADS 2
 
 
 #ifndef SGLOBALS_H

@@ -38,6 +38,28 @@ void SGrid::removeObj(SObj* obj){
 }
 
 
+void SGrid::Proces(uint32_t thead_id){
+	for (SObjI it = this->objToAdd.begin() ; it != this->objToAdd.end();it++){
+		it->second->getPos().grid = this;
+		this->objInGrid[it->second->getId()] = it->second;
+		world->getObjs()[it->second->getId()] = it->second;
+	}
+	this->objToAdd.clear();
+	//remove old objects
+	for (SObjI it = this->objInGrid.begin() ; it != this->objInGrid.end();){
+		if(it->second->canBeRemoved()){
+			SObjI oldid = it;
+			this->objInGrid.erase(it++);
+			world->getObjs().erase(oldid->second->getId());
+			for (SObjI it2 = this->objInGrid.begin() ; it2 != this->objInGrid.end();it2++){
+				it2->second->announceRemovalOf(oldid->second);
+			}
+			delete oldid->second;
+		}else
+			 it++;
+	}
+}
+
 SGrid::~SGrid() {
 }
 

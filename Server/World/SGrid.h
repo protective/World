@@ -19,10 +19,7 @@ public:
 	uint32_t _id;
 	map<uint32_t,SObj*>& getObjInGrid(){return objInGrid;}
 	void Proces(uint32_t thead_id);
-
-
 	void SendObjInfoToClients();
-
 	uint32_t getWight(){return this->_spaceWight;}
 	uint32_t getHight(){return this->_spaceHight;}
 	void setWight(uint32_t value){this->_spaceWight = value;}
