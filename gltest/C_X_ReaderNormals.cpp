@@ -17,12 +17,12 @@ C_X_ReaderNormals::C_X_ReaderNormals() {
 
 void C_X_ReaderNormals::ReadLine(string line){
 	line = trim(line);
-	cerr<<nowParsing<<endl;
-	cerr<<"READ line >>"<<line<<endl;
+	//cerr<<nowParsing<<endl;
+	//cerr<<"READ line >>"<<line<<endl;
 	if(nowParsing == "normalCount"){
 		
 		_noNormal = strToInt(line.substr(0,line.find(";")));
-		cerr<<"parse normalcount "<<_noNormal<<endl;
+		//cerr<<"parse normalcount "<<_noNormal<<endl;
 		nowParsing = "Normal";
 		return;
 	}
@@ -30,7 +30,7 @@ void C_X_ReaderNormals::ReadLine(string line){
 	if(nowParsing == "Normal"){
 		for(uint32_t i = 0 ; i < 3; i++){
 			GLfloat temp = strTofloat(line.substr(0,line.find(";")));
-			cerr<<"temp "<<temp<<endl;
+			//cerr<<"temp "<<temp<<endl;
 			_normalList[_normalCounter][i] = temp;
 			line = line.substr(line.find(";")+1);
 		}

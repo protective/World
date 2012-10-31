@@ -19,7 +19,7 @@ CMesh* Lload(string file){
 			line = trim(line);
 			line = line.substr(0,line.length()-1);
 			line = trim(line);
-			cerr<<"+"<<line<<endl;
+			//cerr<<"+"<<line<<endl;
 			
 			if(line == "Mesh"){
 				nowReading.push_back(new C_X_ReaderMesh());
@@ -34,7 +34,7 @@ CMesh* Lload(string file){
 		}
 		if(line.find("}") != string::npos){
 			if(nowReading.back() && !nowReading.empty()){
-				cerr<<"-"<<nowReading.back()->Name()<<endl;
+				//cerr<<"-"<<nowReading.back()->Name()<<endl;
 				if(nowReading.back()->Name() == "Mesh")
 					mesh = nowReading.back()->getMesh();
 				//delete nowReading.back();

@@ -10,6 +10,8 @@
 #include <cstdlib>
 #include <iostream>
 #include "GL/glew.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
 #include "SDL/SDL.h"
 //#include "SDL/SDL_opengl.h"
 //#include "GL/gl.h"
@@ -24,6 +26,30 @@ using namespace std;
  */
 int main(int argc, char *argv[])
 {
+	
+	glm::quat amatureRot(-0.698709, 0.715406, 0.000000, 0.000000);
+	glm::quat bone1Rot(0.000000,-0.000000,-0.707107, 0.707107);	
+	glm::quat bone2Rot(-1.000000,-0.400000, 0.000000,-0.000000);
+
+	cerr<<amatureRot.x<<endl;
+	cerr<<amatureRot.y<<endl;
+	cerr<<amatureRot.z<<endl;
+	cerr<<amatureRot.w<<endl;		
+	
+	glm::quat temp = amatureRot* bone1Rot* bone2Rot;
+	cerr<<temp.x<<endl;
+	cerr<<temp.y<<endl;
+	cerr<<temp.z<<endl;
+	cerr<<temp.w<<endl;
+	
+	//cerr<<temp[3]<<endl;
+	//glm::mat4 mat;
+
+	
+	
+	//glm::mat4_cast(temp);
+	//mat = glm::toMat4(temp);
+	return 0;
 
 	
 	SDL_Init(SDL_INIT_VIDEO| SDL_INIT_TIMER);
@@ -54,6 +80,8 @@ int main(int argc, char *argv[])
 	gluPerspective( 0.45f,  (GLfloat)600/(GLfloat)300,  100.0f,  10000.0f) ;
 	glMatrixMode(GL_MODELVIEW);
 
+	
+	
 
 	CMesh* mymesh =  Lload("amatureTest2.x");
 	int done;
@@ -68,7 +96,9 @@ int main(int argc, char *argv[])
 		//glRotatef(0.5, 0.0f, 1.0f, 0.0f);
 		glMatrixMode(GL_MODELVIEW);
 
-		
+		glLoadIdentity();
+		GLfloat lightpos[] = {0.0, 0.0, -100.0f, 1};
+	    glLightfv(GL_LIGHT0, GL_POSITION, lightpos);
 		
 		glLoadIdentity();
 		glTranslatef(0.0f,0.0f,-1800.0f);
