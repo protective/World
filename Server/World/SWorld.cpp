@@ -62,8 +62,9 @@ void SWorld::proces(uint32_t thead_id){
 			if (it != this->objInWorld.end()){
 				SCommand* command = it->second->procesFirstReadyCommand();
 				if (command){//DO The proces
-					command->execute();
-					delete command;
+					uint32_t ret = command->execute();
+					if(ret==0)
+						delete command;
 					foundOne = true;
 					
 				}

@@ -23,6 +23,7 @@
 #include "Client.h"
 
 #include "SDatabase.h"
+#include "Command/SC_Debuff.h"
 using namespace std;
 
 
@@ -68,12 +69,15 @@ int main(int argc, char** argv) {
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
 	SPos p(0,0,0);
-	SObj* o = new SObj(1,p,0,0);
-	g->addObj(o);
-	for(uint32_t i = 0 ; i< 100; i++){
-		//cerr<<SDL_GetTicks()+(i*100)<<endl;
-		o->addCommand(new SCommand(SDL_GetTicks()+(i*1000)));
+	for(uint32_t j = 0 ; j < 1; j++){
+		SObj* o = new SObj(getFreeID(),p,0,0);
+		g->addObj(o);
+		for(uint32_t i = 0 ; i< 1; i++){
+			//cerr<<SDL_GetTicks()+(i*100)<<endl;
+			o->addCommand(new SC_Debuff(SDL_GetTicks()+(i*1000)+(j*10),o));
+		}
 	}
+	
 	//data.LoadGame();
 	//cerr<<"done load game"<<endl;
 
