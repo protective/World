@@ -8,13 +8,16 @@
 #ifndef SC_APPLYTICKSPELLDAMAGE_H
 #define	SC_APPLYTICKSPELLDAMAGE_H
 
-class SC_ApplyTickSpellDamage {
+#include "SCommand.h"
+
+
+class SC_ApplyTickSpellDamage : public SCommand {
 public:
-	SC_ApplyTickSpellDamage();
-	SC_ApplyTickSpellDamage(const SC_ApplyTickSpellDamage& orig);
+	SC_ApplyTickSpellDamage(uint32_t time, SObj* unit,uint32_t damage);
+	virtual uint32_t execute();
 	virtual ~SC_ApplyTickSpellDamage();
 private:
-
+	uint32_t _damage;
 };
 
 #endif	/* SC_APPLYTICKSPELLDAMAGE_H */

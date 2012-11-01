@@ -7,10 +7,14 @@
 
 #include "SC_ApplyTickSpellDamage.h"
 
-SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage() {
+SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(uint32_t time, SObj* unit,uint32_t damage):
+SCommand(time,unit){
+	_damage = damage;
 }
 
-SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(const SC_ApplyTickSpellDamage& orig) {
+uint32_t SC_ApplyTickSpellDamage::execute(){
+	cerr<<"DAMAGE >>"<<_damage<<endl;
+	return 0;
 }
 
 SC_ApplyTickSpellDamage::~SC_ApplyTickSpellDamage() {

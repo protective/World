@@ -73,7 +73,22 @@ void SObj::releaseProcesCommand(){
 
 uint32_t SObj::addCommand(SCommand* cmd){
 	pthread_mutex_lock(&this->_lockCommands);
-	_commands.push_back(cmd);
+	list<SCommand*>::iterator it = _commands.begin();
+	while (true){
+		if(it != _commands.end()){
+			if (cmd->getTime() <= (*it)->getTime()){
+				_commands.insert(it,cmd);
+				break;
+			}else{
+				it++;
+			}
+		}else{
+			_commands.push_back(cmd);
+			break;
+		}
+	}
+		
+	
 	pthread_mutex_unlock(&this->_lockCommands);
 }
 

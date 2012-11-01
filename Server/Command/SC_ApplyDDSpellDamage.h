@@ -11,7 +11,6 @@
 class SC_ApplyDDSpellDamage {
 public:
 	SC_ApplyDDSpellDamage();
-	SC_ApplyDDSpellDamage(const SC_ApplyDDSpellDamage& orig);
 	virtual ~SC_ApplyDDSpellDamage();
 private:
 

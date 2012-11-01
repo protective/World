@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 		g->addObj(o);
 		for(uint32_t i = 0 ; i< 1; i++){
 			//cerr<<SDL_GetTicks()+(i*100)<<endl;
-			o->addCommand(new SC_Debuff(SDL_GetTicks()+(i*1000)+(j*10),o));
+			o->addCommand(new SC_Debuff(SDL_GetTicks()+(i*1000)+(j*10),o,5,11));
 		}
 	}
 	
@@ -140,7 +140,7 @@ int main(int argc, char** argv) {
 			threadsReady = 0;
 
 			world->setProcesTime(SDL_GetTicks());
-			cerr<<"world time"<<SDL_GetTicks()<<endl;
+			//cerr<<"world time"<<SDL_GetTicks()<<endl;
 			//cerr<<"done"<<endl;
 			pthread_mutex_lock(&lockClientList);
 			pthread_cond_broadcast(&procesConBegin);

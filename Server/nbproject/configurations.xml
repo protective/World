@@ -14,6 +14,10 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f5" displayName="Commands" projectFiles="true">
+        <itemPath>Command/SC_ApplyDDSpellDamage.cpp</itemPath>
+        <itemPath>Command/SC_ApplyDDSpellDamage.h</itemPath>
+        <itemPath>Command/SC_ApplyTickSpellDamage.cpp</itemPath>
+        <itemPath>Command/SC_ApplyTickSpellDamage.h</itemPath>
         <itemPath>Command/SC_Debuff.cpp</itemPath>
         <itemPath>Command/SC_Debuff.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>

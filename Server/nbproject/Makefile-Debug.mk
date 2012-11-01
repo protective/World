@@ -35,6 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
+	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
+	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/Client.o \
@@ -77,6 +79,16 @@ ${OBJECTDIR}/SDatabase.o: SDatabase.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/SDatabase.o SDatabase.cpp
+
+${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o Command/SC_ApplyTickSpellDamage.cpp
+
+${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o: Command/SC_ApplyDDSpellDamage.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o Command/SC_ApplyDDSpellDamage.cpp
 
 ${OBJECTDIR}/mainServer.o: mainServer.cpp 
 	${MKDIR} -p ${OBJECTDIR}

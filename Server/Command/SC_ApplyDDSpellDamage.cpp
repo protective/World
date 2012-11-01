@@ -10,9 +10,6 @@
 SC_ApplyDDSpellDamage::SC_ApplyDDSpellDamage() {
 }
 
-SC_ApplyDDSpellDamage::SC_ApplyDDSpellDamage(const SC_ApplyDDSpellDamage& orig) {
-}
-
 SC_ApplyDDSpellDamage::~SC_ApplyDDSpellDamage() {
 }
 
