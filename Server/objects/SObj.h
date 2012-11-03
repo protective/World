@@ -10,6 +10,7 @@
 #include "../SFunctions.h"
 #include "../Command/SCommand.h"
 #include "SPos.h"
+class SCreature;
 class SObj {
 public:
 	SObj(uint32_t id, SPos pos, uint8_t team, uint32_t playerId);
@@ -23,6 +24,7 @@ public:
 	virtual uint32_t getPlayerId(){return _playerId;}
 	virtual void setUpdateCounter(uint32_t value){this->_updateCounter = value;}
 	virtual uint32_t getUpdateCounter(){return this->_updateCounter;}
+	virtual SCreature* getCreature(){return NULL;}
 	uint32_t addCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();
 	void releaseProcesCommand();

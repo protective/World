@@ -24,6 +24,8 @@
 
 #include "SDatabase.h"
 #include "Command/SC_Debuff.h"
+#include "objects/SCreature.h"
+#include "Powers/SPowerTypeSpellDebuff.h"
 using namespace std;
 
 
@@ -65,10 +67,23 @@ int main(int argc, char** argv) {
 
 	//WORLD
 	
+	SPower* po = new SPower(1,new SPowerTypeSpellDebuff() );
 	
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
 	SPos p(0,0,0);
+	
+	SObj* o = new SCreature(getFreeID(),p,0,0);
+	g->addObj(o);
+	o->getCreature()->addPower(po);
+			
+	SObj* t = new SCreature(getFreeID(),p,0,0);
+	g->addObj(t);
+	
+	
+	
+	o->getCreature()->getPower(1)->activate(SDL_GetTicks()+2000,o,t);
+	/*
 	for(uint32_t j = 0 ; j < 1; j++){
 		SObj* o = new SObj(getFreeID(),p,0,0);
 		g->addObj(o);
@@ -77,7 +92,7 @@ int main(int argc, char** argv) {
 			o->addCommand(new SC_Debuff(SDL_GetTicks()+(i*1000)+(j*10),o,5,11));
 		}
 	}
-	
+	*/
 	//data.LoadGame();
 	//cerr<<"done load game"<<endl;
 
@@ -140,7 +155,7 @@ int main(int argc, char** argv) {
 			threadsReady = 0;
 
 			world->setProcesTime(SDL_GetTicks());
-			//cerr<<"world time"<<SDL_GetTicks()<<endl;
+			cerr<<"world time"<<SDL_GetTicks()<<endl;
 			//cerr<<"done"<<endl;
 			pthread_mutex_lock(&lockClientList);
 			pthread_cond_broadcast(&procesConBegin);

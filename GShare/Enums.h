@@ -50,26 +50,20 @@ namespace SubKeyWord{
 	};
 }
 
-namespace BonusTypes{
+namespace ModTypes{
 	enum Enum{
 		Invalid = 0,
-		Armor = 1,
-		Deflector = 2,
-		ShieldStr = 3,
-		Hull = 9,
-		ERecharge = 10,
-		Energy = 11,
-		ScanRange = 12,
-		ScanPRange = 13,
-		SpeedThruster = 14,
-		ManuvereThruster = 15,
-		TurretRes = 16,
-		BeamDmgBonus = 17,
-		MissileDmgBonus = 18,
-		ProjectileDmgBonus = 19,
-		
+		ArmorAmount = 1,
+		ArmorP = 2,
 	};
+}
 
+namespace EffectTypes{
+	enum Enum{
+		Invalid = 0,
+		ArmorAmount = 1,
+		ArmorP = 2,
+	};
 }
 
 namespace OrdreConditionsStat{

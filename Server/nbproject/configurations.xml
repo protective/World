@@ -18,6 +18,8 @@
         <itemPath>Command/SC_ApplyDDSpellDamage.h</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.cpp</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.h</itemPath>
+        <itemPath>Command/SC_CastSTarget.cpp</itemPath>
+        <itemPath>Command/SC_CastSTarget.h</itemPath>
         <itemPath>Command/SC_Debuff.cpp</itemPath>
         <itemPath>Command/SC_Debuff.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>
@@ -34,10 +36,22 @@
         <itemPath>../Network/Serialize.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="Objects" projectFiles="true">
+        <itemPath>objects/SCreature.cpp</itemPath>
+        <itemPath>objects/SCreature.h</itemPath>
         <itemPath>objects/SObj.cpp</itemPath>
         <itemPath>objects/SObj.h</itemPath>
         <itemPath>objects/SPos.cpp</itemPath>
         <itemPath>objects/SPos.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f6" displayName="Powers" projectFiles="true">
+        <itemPath>Powers/SPower.cpp</itemPath>
+        <itemPath>Powers/SPower.h</itemPath>
+        <itemPath>Powers/SPowerHandler.cpp</itemPath>
+        <itemPath>Powers/SPowerHandler.h</itemPath>
+        <itemPath>Powers/SPowerType.cpp</itemPath>
+        <itemPath>Powers/SPowerType.h</itemPath>
+        <itemPath>Powers/SPowerTypeSpellDebuff.cpp</itemPath>
+        <itemPath>Powers/SPowerTypeSpellDebuff.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="World" projectFiles="true">
         <itemPath>World/SGrid.cpp</itemPath>
