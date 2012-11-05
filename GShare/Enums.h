@@ -50,19 +50,12 @@ namespace SubKeyWord{
 	};
 }
 
-namespace ModTypes{
-	enum Enum{
-		Invalid = 0,
-		ArmorAmount = 1,
-		ArmorP = 2,
-	};
-}
-
 namespace EffectTypes{
 	enum Enum{
 		Invalid = 0,
 		ArmorAmount = 1,
 		ArmorP = 2,
+		FireDmg = 3,
 	};
 }
 

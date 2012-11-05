@@ -12,7 +12,7 @@
 class SObj;
 struct ticksEffects{
 	uint32_t _delay;
-	ModTypes::Enum _effect;
+	EffectTypes::Enum _effect;
 	uint32_t _value;
 };
 
@@ -21,9 +21,13 @@ public:
 	SPowerTypeSpellDebuff();
 	virtual uint32_t activate(uint32_t time, SObj* unit, SObj* target);
 	virtual ~SPowerTypeSpellDebuff();
+	map<EffectTypes::Enum,int32_t>& getfullMods(){return _fullMods;} 
+	list<ticksEffects>& gettickEffects(){return _ticks;} 
+	uint32_t getTotalDamage(){return _totalDamage;}
 private:
-	map<ModTypes::Enum,int32_t> _fullMods;
+	map<EffectTypes::Enum,int32_t> _fullMods;
 	list<ticksEffects> _ticks;
+	uint32_t _totalDamage;
 };
 
 #endif	/* SPOWERTYPESPELLDEBUFF_H */

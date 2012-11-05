@@ -7,13 +7,30 @@
 
 #include "SPowerTypeSpellDebuff.h"
 #include "../objects/SObj.h"
-#include "../Command/SC_ApplyTickSpellDamage.h"
+#include "../Command/SC_Debuff.h"
 SPowerTypeSpellDebuff::SPowerTypeSpellDebuff() {
+	ticksEffects t;
+	t._delay = 500;
+	t._effect = EffectTypes::FireDmg;
+	
+	t._value = 25;
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	t._value = 50;
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	t._value = 100;
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	_ticks.push_back(t);
+	_totalDamage = 2111;
 }
 
 uint32_t SPowerTypeSpellDebuff::activate(uint32_t time, SObj* unit, SObj* target) {
 	cerr<<"activate type"<<endl;
-	SC_ApplyTickSpellDamage* c = new SC_ApplyTickSpellDamage(time, target, 10);
+	SC_Debuff* c = new SC_Debuff(time+_ticks.front()._delay,target,this);
 	target->addCommand(c);
 }
 

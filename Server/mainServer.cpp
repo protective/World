@@ -155,7 +155,7 @@ int main(int argc, char** argv) {
 			threadsReady = 0;
 
 			world->setProcesTime(SDL_GetTicks());
-			cerr<<"world time"<<SDL_GetTicks()<<endl;
+			//cerr<<"world time"<<SDL_GetTicks()<<endl;
 			//cerr<<"done"<<endl;
 			pthread_mutex_lock(&lockClientList);
 			pthread_cond_broadcast(&procesConBegin);

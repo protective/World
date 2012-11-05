@@ -9,15 +9,18 @@
 #define	SC_DEBUFF_H
 
 #include "SCommand.h"
+#include "../Powers/SPowerTypeSpellDebuff.h"
 
 
 class SC_Debuff : public SCommand {
 public:
-	SC_Debuff(uint32_t time, SObj* unit, uint32_t tick, uint32_t damageRemaning);
+	SC_Debuff(uint32_t time, SObj* unit, SPowerTypeSpellDebuff* power);
 	virtual uint32_t execute();
 	virtual ~SC_Debuff();
 private:
-	uint32_t _tick;
+	SPowerTypeSpellDebuff* _power;
+	float_t _tick;
+	uint32_t _tickCount;
 	uint32_t _damageRemaing;
 };
 
