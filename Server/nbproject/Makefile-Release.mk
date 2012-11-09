@@ -35,11 +35,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
+	${OBJECTDIR}/Powers/SPowerTypeSpellDD.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
+	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
 	${OBJECTDIR}/objects/SCreature.o \
@@ -86,6 +88,11 @@ ${OBJECTDIR}/SDatabase.o: SDatabase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/SDatabase.o SDatabase.cpp
 
+${OBJECTDIR}/Powers/SPowerTypeSpellDD.o: Powers/SPowerTypeSpellDD.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o Powers/SPowerTypeSpellDD.cpp
+
 ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
@@ -110,6 +117,11 @@ ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
+
+${OBJECTDIR}/Powers/SPowerTypeLoader.o: Powers/SPowerTypeLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeLoader.o Powers/SPowerTypeLoader.cpp
 
 ${OBJECTDIR}/Client.o: Client.cpp 
 	${MKDIR} -p ${OBJECTDIR}

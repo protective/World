@@ -26,6 +26,7 @@
 #include "Command/SC_Debuff.h"
 #include "objects/SCreature.h"
 #include "Powers/SPowerTypeSpellDebuff.h"
+#include "Powers/SPowerTypeLoader.h"
 using namespace std;
 
 
@@ -42,7 +43,6 @@ int main(int argc, char** argv) {
 		MySin[i] = sin(vector);
 		MyCos[i] = cos(vector);
 	}
-
 	teamlist[1] = 1;
 	teamlist[2] = 2;
 	teamlist[3] = 3;
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 	//cerr<<"done load data"<<endl;
 
 	//WORLD
-	
+	SPowerTypeLoader* pt =  new SPowerTypeLoader();
 	SPower* po = new SPower(1,new SPowerTypeSpellDebuff() );
 	
 	SGrid* g = new SGrid(1);

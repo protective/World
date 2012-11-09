@@ -50,6 +50,10 @@
         <itemPath>Powers/SPowerHandler.h</itemPath>
         <itemPath>Powers/SPowerType.cpp</itemPath>
         <itemPath>Powers/SPowerType.h</itemPath>
+        <itemPath>Powers/SPowerTypeLoader.cpp</itemPath>
+        <itemPath>Powers/SPowerTypeLoader.h</itemPath>
+        <itemPath>Powers/SPowerTypeSpellDD.cpp</itemPath>
+        <itemPath>Powers/SPowerTypeSpellDD.h</itemPath>
         <itemPath>Powers/SPowerTypeSpellDebuff.cpp</itemPath>
         <itemPath>Powers/SPowerTypeSpellDebuff.h</itemPath>
       </logicalFolder>
@@ -94,6 +98,7 @@
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>
             <linkerLibLibItem>SDLmain</linkerLibLibItem>
             <linkerLibLibItem>SDL</linkerLibLibItem>
+            <linkerLibLibItem>pqxx</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
