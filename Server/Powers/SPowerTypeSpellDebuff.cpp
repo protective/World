@@ -28,9 +28,9 @@ SPowerTypeSpellDebuff::SPowerTypeSpellDebuff() {
 	_totalDamage = 2111;
 }
 
-uint32_t SPowerTypeSpellDebuff::activate(uint32_t time, SObj* unit, SObj* target) {
+uint32_t SPowerTypeSpellDebuff::activate(uint32_t time, SObj* caster, SObj* target) {
 	cerr<<"activate type"<<endl;
-	SC_Debuff* c = new SC_Debuff(time+_ticks.front()._delay,target,this);
+	SC_Debuff* c = new SC_Debuff(time+_ticks.front()._delay,caster,target,this);
 	target->addCommand(c);
 }
 

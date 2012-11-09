@@ -34,19 +34,13 @@ namespace MoveBitF
   const uint32_t SOME_VALUE2 = 0x04;
   const uint32_t SOME_VALUE3 = 0x08;
 }
-namespace SubKeyWord{
+namespace EResults{
 	enum Enum{
 		Invalid = 0,
-		Laser = 1,
-		Beam = 2,
-		Fusion = 3,
-		Ion = 4,
-		Projectile = 5,
-		Guided = 6,
-		Plasma = 7,
-		Turret = 8,
-		Bay = 9,
-		Mining = 10,
+		SMiss = 1,
+		SResist = 2,
+		SHit = 3,
+		SCrit = 4,
 	};
 }
 

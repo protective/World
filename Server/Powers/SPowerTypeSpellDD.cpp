@@ -6,12 +6,31 @@
  */
 
 #include "SPowerTypeSpellDD.h"
-
-SPowerTypeSpellDD::SPowerTypeSpellDD() {
+#include "../Command/SC_ApplyDDSpellDamage.h"
+#include "../objects/SObj.h"
+SPowerTypeSpellDD::SPowerTypeSpellDD(uint32_t damage) {
+	_damage = damage;
 }
 
-SPowerTypeSpellDD::SPowerTypeSpellDD(const SPowerTypeSpellDD& orig) {
+uint32_t SPowerTypeSpellDD::activate(uint32_t time, SObj* caster, SObj* target){
+	target->addCommand(new SC_ApplyDDSpellDamage(time,caster,target,_damage,this));
 }
+
+void SPowerTypeSpellDD::addResultPowerType(EResults::Enum event, SPowerType* power){
+	_resultsList[event].push_back(power);
+}
+
+void SPowerTypeSpellDD::callBackResult(uint32_t time, SObj* caster, SObj* target,EResults::Enum result, uint32_t value){
+	map<EResults::Enum, list<SPowerType*> >::iterator it = _resultsList.find(result);
+	if(it != _resultsList.end()){	
+		for(list<SPowerType*>::iterator it2 = it->second.begin(); it2 != it->second.end();it2++){
+			(*it2)->activate(time,caster,target);
+		}
+	}
+}
+
+
+
 
 SPowerTypeSpellDD::~SPowerTypeSpellDD() {
 }

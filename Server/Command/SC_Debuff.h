@@ -14,7 +14,7 @@
 
 class SC_Debuff : public SCommand {
 public:
-	SC_Debuff(uint32_t time, SObj* unit, SPowerTypeSpellDebuff* power);
+	SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellDebuff* power);
 	virtual uint32_t execute();
 	virtual ~SC_Debuff();
 private:

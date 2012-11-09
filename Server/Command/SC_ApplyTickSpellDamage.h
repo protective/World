@@ -13,7 +13,7 @@
 
 class SC_ApplyTickSpellDamage : public SCommand {
 public:
-	SC_ApplyTickSpellDamage(uint32_t time, SObj* unit,uint32_t damage);
+	SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage);
 	virtual uint32_t execute();
 	virtual ~SC_ApplyTickSpellDamage();
 private:

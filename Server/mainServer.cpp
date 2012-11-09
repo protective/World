@@ -16,6 +16,8 @@
 #include <pthread.h>
 #include <cstdlib>
 
+#include "Powers/SPowerTypeSpellDD.h"
+
 #include <math.h>
 
 #include "SFunctions.h"
@@ -67,7 +69,12 @@ int main(int argc, char** argv) {
 
 	//WORLD
 	SPowerTypeLoader* pt =  new SPowerTypeLoader();
-	SPower* po = new SPower(1,new SPowerTypeSpellDebuff() );
+	SPowerTypeSpellDebuff* tsd = new SPowerTypeSpellDebuff();
+	SPower* po = new SPower(1,tsd);
+	
+	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(42);
+	tdd->addResultPowerType(EResults::SCrit, tsd);
+	SPower* pdd = new SPower(2, tdd);
 	
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
@@ -76,13 +83,14 @@ int main(int argc, char** argv) {
 	SObj* o = new SCreature(getFreeID(),p,0,0);
 	g->addObj(o);
 	o->getCreature()->addPower(po);
-			
+	o->getCreature()->addPower(pdd);
+	
 	SObj* t = new SCreature(getFreeID(),p,0,0);
 	g->addObj(t);
 	
 	
 	
-	o->getCreature()->getPower(1)->activate(SDL_GetTicks()+2000,o,t);
+	o->getCreature()->getPower(2)->activate(SDL_GetTicks()+2000,o,t);
 	/*
 	for(uint32_t j = 0 ; j < 1; j++){
 		SObj* o = new SObj(getFreeID(),p,0,0);

@@ -10,8 +10,8 @@
 #include "SC_Debuff.h"
 #include "../objects/SObj.h"
 #include "SC_ApplyTickSpellDamage.h"
-SC_Debuff::SC_Debuff(uint32_t time, SObj* unit, SPowerTypeSpellDebuff* power) 
-:SCommand(time,unit){
+SC_Debuff::SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellDebuff* power) 
+:SCommand(time,caster,target){
 	_power = power;
 	_tick = 0;
 	_tickCount = _power->gettickEffects().size();
@@ -32,12 +32,12 @@ uint32_t SC_Debuff::execute(){
 	//cerr<<(_tick * ((float_t)it->_value/100))<<endl;
 	uint32_t a = floor((float_t)_damageRemaing/_tick * ((float_t)it->_value/100));
 	_damageRemaing -=a;
-	_unit->addCommand(new SC_ApplyTickSpellDamage(_time,_unit,a));
+	_target->addCommand(new SC_ApplyTickSpellDamage(_time,_caster,_target,a));
 	_tick -= (float_t)it->_value/100;
 	_tickCount--;
 	if(_tick > 0){
 		_time += it->_delay;
-		_unit->addCommand(this);
+		_target->addCommand(this);
 
 		return 1;
 	}

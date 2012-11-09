@@ -19,7 +19,7 @@ struct ticksEffects{
 class SPowerTypeSpellDebuff : public SPowerType {
 public:
 	SPowerTypeSpellDebuff();
-	virtual uint32_t activate(uint32_t time, SObj* unit, SObj* target);
+	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
 	virtual ~SPowerTypeSpellDebuff();
 	map<EffectTypes::Enum,int32_t>& getfullMods(){return _fullMods;} 
 	list<ticksEffects>& gettickEffects(){return _ticks;} 

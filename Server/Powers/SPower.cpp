@@ -12,9 +12,9 @@ SPower::SPower(uint32_t id, SPowerType* powertype) {
 	_id = id;
 }
 
-uint32_t SPower::activate(uint32_t time, SObj* unit,SObj* target){
+uint32_t SPower::activate(uint32_t time, SObj* caster,SObj* target){
 	cerr<<"activate power "<<endl;
-	 _powertype->activate(time,unit,target);
+	 _powertype->activate(time,caster,target);
 }
 
 

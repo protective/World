@@ -11,13 +11,14 @@
 class SObj;
 class SCommand {
 public:
-	SCommand(uint32_t time, SObj* unit);
+	SCommand(uint32_t time, SObj* caster, SObj* target);
 	virtual uint32_t execute(){cerr<<"EXE command"<<_time<<endl; return 0;};
 	uint32_t getTime(){return _time;}
 	virtual ~SCommand();
 protected:
 	uint32_t _time;
-	SObj* _unit;
+	SObj* _caster;
+	SObj* _target;
 };
 
 #endif	/* SCOMMAND_H */

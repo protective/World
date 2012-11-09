@@ -7,15 +7,17 @@
 
 #include "SC_CastSTarget.h"
 #include "../objects/SCreature.h"
-SC_CastSTarget::SC_CastSTarget(uint32_t time, SObj* unit, SPower* power, SCreature* target):
-SCommand(time,unit){
+SC_CastSTarget::SC_CastSTarget(uint32_t time, SObj* caster, SObj* target, SPower* power):
+SCommand(time,caster,target){
 	_power = power;
+	_caster = caster;
 	_target = target;
+	
 }
 
 
 uint32_t SC_CastSTarget::execute(){
-	if(!_unit->getCreature()){
+	if(!_target->getCreature()){
 		cerr<<"WARNING SC_CastSTarget execute not creature"<<endl;
 		return 0;
 	}
@@ -23,7 +25,7 @@ uint32_t SC_CastSTarget::execute(){
 	//TODO check ra nge
 	SPower* p = _power; 
 	if(p){
-		p->activate(_time, _unit, _target);
+		p->activate(_time, _caster, _target);
 	}
 }
 

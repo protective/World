@@ -7,9 +7,10 @@
 
 #include "SCommand.h"
 #include "../objects/SObj.h"
-SCommand::SCommand(uint32_t time, SObj* unit) {
+SCommand::SCommand(uint32_t time, SObj* caster, SObj* target) {
 	_time = time;
-	_unit = unit;
+	_caster = caster;
+	_target = target;
 }
 
 

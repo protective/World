@@ -12,7 +12,7 @@ SPowerTypeLoader::SPowerTypeLoader() {
 }
 
 SPowerType* SPowerTypeLoader::loadPower(uint32_t id){
-	work worker(c);
+	work worker(*con);
 
 	pqxx::result r = worker.exec(
 	"SELECT id "
