@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
 	${OBJECTDIR}/Powers/SPowerTypeSpellDD.o \
+	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
 	${OBJECTDIR}/mainServer.o \
@@ -92,6 +93,11 @@ ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o: Powers/SPowerTypeSpellDD.cpp
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o Powers/SPowerTypeSpellDD.cpp
+
+${OBJECTDIR}/Powers/SPowerSpellType.o: Powers/SPowerSpellType.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerSpellType.o Powers/SPowerSpellType.cpp
 
 ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command

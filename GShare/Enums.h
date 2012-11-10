@@ -53,15 +53,27 @@ namespace EffectTypes{
 	};
 }
 
-namespace OrdreConditionsStat{
+namespace Attributes{
 	enum Enum{
 		Invalid = 0,
-		CargoLessThen = 1,
-		CargoGreaterThen = 2,
-		CargoEqualTo = 3,
-		CargoPLessThen = 4,
-		CargoPGreaterThen = 5,
-		CargoPEqualTo = 6,
+		Level = 1,
+		AttackPower = 2,
+		SpellPower = 3,
+		HealingPower = 4,
+		Hit = 5,
+		SpellHit = 6,
+		parry = 7,
+		Dodge = 8,
+		Block = 9,
+		BlockS = 10,
+		Armor = 11,
+		Crit = 12,
+		SpellCrit = 13,
+		ResistFire = 14,
+		ResistFrost = 15,
+		ResistNature = 17,
+		ResistShadow = 18,
+		ResistArcane = 19,
 	};
 }
 

@@ -18,6 +18,7 @@ public:
 	virtual void addPower(SPower* power);
 private:
 	map<uint32_t,SPower*> _powerList;
+	map<Attributes::Enum , uint32_t> _attribute;
 };
 
 #endif	/* SCREATURE_H */

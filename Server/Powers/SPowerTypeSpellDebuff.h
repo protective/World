@@ -8,7 +8,7 @@
 #ifndef SPOWERTYPESPELLDEBUFF_H
 #define	SPOWERTYPESPELLDEBUFF_H
 
-#include "SPowerType.h"
+#include "SPowerSpellType.h"
 class SObj;
 struct ticksEffects{
 	uint32_t _delay;
@@ -16,7 +16,7 @@ struct ticksEffects{
 	uint32_t _value;
 };
 
-class SPowerTypeSpellDebuff : public SPowerType {
+class SPowerTypeSpellDebuff : public SPowerSpellType {
 public:
 	SPowerTypeSpellDebuff();
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
