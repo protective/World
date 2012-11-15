@@ -17,8 +17,10 @@ namespace SerialType{
 		  */
 		Invalid = 0,
                 SerialTime= 1,
-                SerialReqJoin = 5
-
+                SerialReqJoin = 2,
+				SerialTakeDmgHeal = 3,
+				SerialBeginCast = 4,
+				SerialCast = 5,
 	};
 }
 
@@ -39,10 +41,31 @@ struct SerialTime : public SerialData{ //id = 1
     uint32_t _local;
 };
 
-struct SerialReqJoin : public SerialData{ //id = 5
+struct SerialReqJoin : public SerialData{ //id = 2
     uint32_t _unitId;
     uint32_t _pass;
 };
+
+struct SerialTakeDmgHeal : public SerialData{ //id = 3
+    uint32_t _unitId;
+	uint32_t _casterId;
+    int32_t _value;
+	uint32_t _newvalue;
+	uint32_t _powerid;
+};
+
+
+struct SerialBeginCast : public SerialData{ //id = 4
+    uint32_t _unitId;
+	uint32_t _powerid;
+};
+
+struct SerialCast : public SerialData{ //id = 5
+    uint32_t _unitId;
+	uint32_t _targetId;
+	uint32_t _powerid;
+};
+
 
 #endif	/* SERIALIZE_H */
 

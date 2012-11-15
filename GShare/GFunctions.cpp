@@ -145,13 +145,3 @@ int32_t dirDiff(uint32_t d1, uint32_t d2){
 		return dd;
 }
 
-string getTargetGroupstring(TargetGroup::Enum en){
-		switch(en){
-			case TargetGroup::Primary:{return "Primary";}
-			case TargetGroup::Heavy:{return "Heavy";}
-			case TargetGroup::Medium:{return "Medium";}
-			case TargetGroup::Light:{return "Light";}
-			case TargetGroup::Special:{return "Special";}
-			default:{return "invalid";}
-		}
-	}

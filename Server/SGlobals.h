@@ -19,7 +19,9 @@
 //#include "Sspacebjects/subsystems/SSubType.h"
 
 #define NRTHREADS 2
-
+#define PBaseSpellMiss 5
+#define PBaseSpellCritBonus 1.5
+#define PBaseSpellResist 5
 
 #ifndef SGLOBALS_H
 #define	SGLOBALS_H

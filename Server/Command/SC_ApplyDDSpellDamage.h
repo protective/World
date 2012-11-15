@@ -11,12 +11,16 @@
 #include "SCommand.h"
 class SC_ApplyDDSpellDamage :public SCommand {
 public:
-	SC_ApplyDDSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, SPowerTypeSpellDD* power);
+	SC_ApplyDDSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t min, uint32_t max, uint32_t hit, uint32_t crit, DamageTypes::Enum dmgType, SPowerTypeSpellDD* power);
 	virtual uint32_t execute();
 	virtual ~SC_ApplyDDSpellDamage();
 private:
 	SPowerTypeSpellDD* _power;
-	uint32_t _damage;
+	uint32_t _min;
+	uint32_t _max;
+	uint32_t _hit;
+	uint32_t _crit;
+	DamageTypes::Enum _dmgType;
 };
 
 #endif	/* SC_APPLYDDSPELLDAMAGE_H */

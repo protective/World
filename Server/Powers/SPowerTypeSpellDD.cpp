@@ -8,12 +8,15 @@
 #include "SPowerTypeSpellDD.h"
 #include "../Command/SC_ApplyDDSpellDamage.h"
 #include "../objects/SObj.h"
-SPowerTypeSpellDD::SPowerTypeSpellDD(uint32_t damage) {
-	_damage = damage;
+#include "../objects/SCreature.h"
+SPowerTypeSpellDD::SPowerTypeSpellDD(uint32_t min, uint32_t max,  DamageTypes::Enum dmgType) {
+	_min = min;
+	_max = max;
+	_dmgType = dmgType;
 }
 
 uint32_t SPowerTypeSpellDD::activate(uint32_t time, SObj* caster, SObj* target){
-	target->addCommand(new SC_ApplyDDSpellDamage(time,caster,target,_damage,this));
+	target->addCommand(new SC_ApplyDDSpellDamage(time,caster,target,_min,_max,caster->getCreature()->getAttibute()[Attributes::Hit],caster->getCreature()->getAttibute()[Attributes::Crit] ,_dmgType,this));
 }
 
 void SPowerTypeSpellDD::addResultPowerType(EResults::Enum event, SPowerType* power){

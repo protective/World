@@ -16,6 +16,7 @@ public:
 	virtual SCreature* getCreature(){return this;}
 	SPower* getPower(uint32_t id){if(_powerList.find(id) != _powerList.end())return _powerList[id];else return NULL;}
 	virtual void addPower(SPower* power);
+	map<Attributes::Enum , uint32_t>& getAttibute(){return _attribute;}
 private:
 	map<uint32_t,SPower*> _powerList;
 	map<Attributes::Enum , uint32_t> _attribute;

@@ -12,6 +12,8 @@
 class SPowerSpellType : public SPowerType {
 public:
 	SPowerSpellType();
+	uint32_t getSpellLevel(){return _spellLevel;}
+	uint32_t getCd(){return _cd;}
 	virtual ~SPowerSpellType();
 protected:
 	uint32_t _spellLevel;

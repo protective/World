@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
 	SPowerTypeSpellDebuff* tsd = new SPowerTypeSpellDebuff();
 	SPower* po = new SPower(1,tsd);
 	
-	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(42);
+	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(42,50,DamageTypes::Fire);
 	tdd->addResultPowerType(EResults::SCrit, tsd);
 	SPower* pdd = new SPower(2, tdd);
 	

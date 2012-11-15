@@ -25,6 +25,7 @@ public:
 	virtual void setUpdateCounter(uint32_t value){this->_updateCounter = value;}
 	virtual uint32_t getUpdateCounter(){return this->_updateCounter;}
 	virtual SCreature* getCreature(){return NULL;}
+	list<Client*>& getSubscribers(){return _subscribers;}
 	uint32_t addCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();
 	void releaseProcesCommand();
@@ -41,6 +42,7 @@ protected:
 	pthread_mutex_t _lockCommandAccess;
 	bool _commandAccessLocked;
 	list<SCommand*> _commands;
+	list<Client*> _subscribers;
 };
 typedef map<uint32_t,SObj*>::iterator SObjI;
 #endif	/* SOBJ_H */
