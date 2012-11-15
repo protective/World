@@ -46,9 +46,10 @@ OBJECTFILES= \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
 	${OBJECTDIR}/objects/SCreature.o \
-	${OBJECTDIR}/Command/SC_Debuff.o \
 	${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o \
+	${OBJECTDIR}/Command/SC_Debuff.o \
 	${OBJECTDIR}/Command/SCommand.o \
+	${OBJECTDIR}/Command/SC_ApplyDamage.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Powers/SPower.o \
 	${OBJECTDIR}/SFunctions.o \
@@ -144,20 +145,25 @@ ${OBJECTDIR}/objects/SCreature.o: objects/SCreature.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/SCreature.o objects/SCreature.cpp
 
-${OBJECTDIR}/Command/SC_Debuff.o: Command/SC_Debuff.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Command
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_Debuff.o Command/SC_Debuff.cpp
-
 ${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o: Powers/SPowerTypeSpellDebuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o Powers/SPowerTypeSpellDebuff.cpp
 
+${OBJECTDIR}/Command/SC_Debuff.o: Command/SC_Debuff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_Debuff.o Command/SC_Debuff.cpp
+
 ${OBJECTDIR}/Command/SCommand.o: Command/SCommand.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SCommand.o Command/SCommand.cpp
+
+${OBJECTDIR}/Command/SC_ApplyDamage.o: Command/SC_ApplyDamage.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDamage.o Command/SC_ApplyDamage.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761

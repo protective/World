@@ -6,7 +6,7 @@
  */
 
 #include "SC_ApplyDamage.h"
-
+#include "../objects/SCreature.h"
 SC_ApplyDamage::SC_ApplyDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerType* power):
 SCommand(time,caster,target){
 	_damage = damage;
@@ -18,7 +18,7 @@ SCommand(time,caster,target){
 
 uint32_t SC_ApplyDamage::execute(){
 
-	_target->getCreature()->getAttibute()[Attributes::Hp] -= damage;
+	_target->getCreature()->getAttibute()[Attributes::Hp] -= _damage;
 	
 	return 0;
 }

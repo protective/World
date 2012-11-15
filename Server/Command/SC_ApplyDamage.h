@@ -8,13 +8,16 @@
 #ifndef SC_APPLYDAMAGE_H
 #define	SC_APPLYDAMAGE_H
 
-class SC_ApplyDamage {
+#include "SCommand.h"
+
+
+class SC_ApplyDamage : public SCommand {
 public:
 	SC_ApplyDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerType* power);
 	virtual uint32_t execute();
 	virtual ~SC_ApplyDamage();
 private:
-	SPowerTypeSpellDD* _power;
+	SPowerType* _power;
 	uint32_t _damage;
 	DamageTypes::Enum _dmgType;
 };

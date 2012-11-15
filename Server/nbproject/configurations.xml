@@ -16,6 +16,8 @@
       <logicalFolder name="f5" displayName="Commands" projectFiles="true">
         <itemPath>Command/SC_ApplyDDSpellDamage.cpp</itemPath>
         <itemPath>Command/SC_ApplyDDSpellDamage.h</itemPath>
+        <itemPath>Command/SC_ApplyDamage.cpp</itemPath>
+        <itemPath>Command/SC_ApplyDamage.h</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.cpp</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.h</itemPath>
         <itemPath>Command/SC_CastSTarget.cpp</itemPath>

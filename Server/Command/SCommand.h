@@ -8,6 +8,10 @@
 #ifndef SCOMMAND_H
 #define	SCOMMAND_H
 #include "../SFunctions.h"
+#include "../Powers/SPowerType.h"
+#include "../Powers/SPowerTypeSpellDD.h"
+#include "../Powers/SPowerTypeSpellDebuff.h"
+#include "../Powers/SPowerSpellType.h"
 class SObj;
 class SCommand {
 public:
