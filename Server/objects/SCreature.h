@@ -9,6 +9,7 @@
 #define	SCREATURE_H
 #include "SObj.h"
 #include "../Powers/SPower.h"
+#include "Buffs/SBuff.h"
 class SCreature : public SObj {
 public:
 	SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId);
@@ -17,9 +18,12 @@ public:
 	SPower* getPower(uint32_t id){if(_powerList.find(id) != _powerList.end())return _powerList[id];else return NULL;}
 	virtual void addPower(SPower* power);
 	map<Attributes::Enum , uint32_t>& getAttibute(){return _attribute;}
+	map<uint32_t,SBuff*>& getBuffList(){return _bufflist;}
+	uint32_t addBuff(SBuff* buff);
 private:
 	map<uint32_t,SPower*> _powerList;
 	map<Attributes::Enum , uint32_t> _attribute;
+	map<uint32_t,SBuff*> _bufflist;
 };
 
 #endif	/* SCREATURE_H */

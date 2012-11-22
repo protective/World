@@ -22,6 +22,7 @@ private:
 	float_t _tick;
 	uint32_t _tickCount;
 	uint32_t _damageRemaing;
+	uint32_t _buffIndex;
 };
 
 #endif	/* SC_DEBUFF_H */

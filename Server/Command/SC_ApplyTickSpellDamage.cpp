@@ -6,14 +6,19 @@
  */
 
 #include "SC_ApplyTickSpellDamage.h"
-
-SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage):
+#include "SC_ApplyDamage.h"
+#include "../objects/SCreature.h"
+SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerTypeSpellDD* power):
 SCommand(time,caster,target){
 	_damage = damage;
+	_power = power;
+	_dmgType = dmgType;
 }
 
 uint32_t SC_ApplyTickSpellDamage::execute(){
-	cerr<<"TIC DAMAGE >>"<<_damage<<endl;
+	
+	
+	_target->addCommand(new SC_ApplyDamage(_time,_caster,_target,_damage,_dmgType,_power));
 	return 0;
 }
 

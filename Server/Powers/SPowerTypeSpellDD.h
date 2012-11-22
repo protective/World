@@ -12,7 +12,7 @@
 
 class SPowerTypeSpellDD : public SPowerSpellType {
 public:
-	SPowerTypeSpellDD(uint32_t min, uint32_t max,  DamageTypes::Enum dmgType);
+	SPowerTypeSpellDD(uint32_t id,uint32_t min, uint32_t max,  DamageTypes::Enum dmgType);
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
 
 	void callBackResult(uint32_t time,SObj* caster, SObj* target,EResults::Enum result, uint32_t value);

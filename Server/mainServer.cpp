@@ -69,10 +69,10 @@ int main(int argc, char** argv) {
 
 	//WORLD
 	SPowerTypeLoader* pt =  new SPowerTypeLoader();
-	SPowerTypeSpellDebuff* tsd = new SPowerTypeSpellDebuff();
+	SPowerTypeSpellDebuff* tsd = new SPowerTypeSpellDebuff(1);
 	SPower* po = new SPower(1,tsd);
 	
-	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(42,50,DamageTypes::Fire);
+	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(2,42,50,DamageTypes::Fire);
 	tdd->addResultPowerType(EResults::SCrit, tsd);
 	SPower* pdd = new SPower(2, tdd);
 	

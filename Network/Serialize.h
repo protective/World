@@ -21,6 +21,7 @@ namespace SerialType{
 				SerialTakeDmgHeal = 3,
 				SerialBeginCast = 4,
 				SerialCast = 5,
+				SerialKillUnit = 6,
 	};
 }
 
@@ -66,6 +67,9 @@ struct SerialCast : public SerialData{ //id = 5
 	uint32_t _powerid;
 };
 
+struct SerialKillUnit : public SerialData{ //id = 6
+    uint32_t _unitId;
+};
 
 #endif	/* SERIALIZE_H */
 

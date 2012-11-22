@@ -22,7 +22,8 @@ SC_Debuff::SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellD
 }
 
 uint32_t SC_Debuff::execute(){
-	
+	if(_tickCount == _tick)
+		_buffIndex = _target->getCreature()->addBuff(new SBuffDot());
 	list<ticksEffects>::iterator it =  _power->gettickEffects().begin();
 	for(int i = 0; i < _power->gettickEffects().size() - _tickCount;i++){
 		it++;
@@ -32,7 +33,7 @@ uint32_t SC_Debuff::execute(){
 	//cerr<<(_tick * ((float_t)it->_value/100))<<endl;
 	uint32_t a = floor((float_t)_damageRemaing/_tick * ((float_t)it->_value/100));
 	_damageRemaing -=a;
-	_target->addCommand(new SC_ApplyTickSpellDamage(_time,_caster,_target,a));
+	_target->addCommand(new SC_ApplyTickSpellDamage(_time,_caster,_target,a,_power));
 	_tick -= (float_t)it->_value/100;
 	_tickCount--;
 	if(_tick > 0){

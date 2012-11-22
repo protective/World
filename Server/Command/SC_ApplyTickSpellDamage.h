@@ -13,11 +13,13 @@
 
 class SC_ApplyTickSpellDamage : public SCommand {
 public:
-	SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage);
+	SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerTypeSpellDD* power);
 	virtual uint32_t execute();
 	virtual ~SC_ApplyTickSpellDamage();
 private:
 	uint32_t _damage;
+	SPowerTypeSpellDD* _power;
+	DamageTypes::Enum _dmgType;
 };
 
 #endif	/* SC_APPLYTICKSPELLDAMAGE_H */

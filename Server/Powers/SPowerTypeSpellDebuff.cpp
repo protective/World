@@ -8,7 +8,8 @@
 #include "SPowerTypeSpellDebuff.h"
 #include "../objects/SObj.h"
 #include "../Command/SC_Debuff.h"
-SPowerTypeSpellDebuff::SPowerTypeSpellDebuff() {
+SPowerTypeSpellDebuff::SPowerTypeSpellDebuff(uint32_t id):
+SPowerSpellType(id){
 	ticksEffects t;
 	t._delay = 500;
 	t._effect = EffectTypes::FireDmg;

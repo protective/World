@@ -39,9 +39,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
-	${OBJECTDIR}/mainServer.o \
+	${OBJECTDIR}/objects/Buffs/SBuffDot.o \
 	${OBJECTDIR}/objects/SPos.o \
+	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
+	${OBJECTDIR}/objects/Buffs/SBuff.o \
 	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
@@ -53,8 +55,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Powers/SPower.o \
 	${OBJECTDIR}/SFunctions.o \
-	${OBJECTDIR}/SGlobals.o \
+	${OBJECTDIR}/Command/SC_KillUnit.o \
 	${OBJECTDIR}/Powers/SPowerHandler.o \
+	${OBJECTDIR}/SGlobals.o \
 	${OBJECTDIR}/World/SGrid.o \
 	${OBJECTDIR}/objects/SObj.o \
 	${OBJECTDIR}/Powers/SPowerType.o \
@@ -110,20 +113,30 @@ ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o: Command/SC_ApplyDDSpellDamage.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o Command/SC_ApplyDDSpellDamage.cpp
 
-${OBJECTDIR}/mainServer.o: mainServer.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/objects/Buffs/SBuffDot.o: objects/Buffs/SBuffDot.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/mainServer.o mainServer.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuffDot.o objects/Buffs/SBuffDot.cpp
 
 ${OBJECTDIR}/objects/SPos.o: objects/SPos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/SPos.o objects/SPos.cpp
 
+${OBJECTDIR}/mainServer.o: mainServer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/mainServer.o mainServer.cpp
+
 ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
+
+${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuff.o objects/Buffs/SBuff.cpp
 
 ${OBJECTDIR}/Powers/SPowerTypeLoader.o: Powers/SPowerTypeLoader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
@@ -180,15 +193,20 @@ ${OBJECTDIR}/SFunctions.o: SFunctions.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/SFunctions.o SFunctions.cpp
 
-${OBJECTDIR}/SGlobals.o: SGlobals.cpp 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/Command/SC_KillUnit.o: Command/SC_KillUnit.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/SGlobals.o SGlobals.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_KillUnit.o Command/SC_KillUnit.cpp
 
 ${OBJECTDIR}/Powers/SPowerHandler.o: Powers/SPowerHandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerHandler.o Powers/SPowerHandler.cpp
+
+${OBJECTDIR}/SGlobals.o: SGlobals.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/SGlobals.o SGlobals.cpp
 
 ${OBJECTDIR}/World/SGrid.o: World/SGrid.cpp 
 	${MKDIR} -p ${OBJECTDIR}/World

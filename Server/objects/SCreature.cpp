@@ -16,6 +16,16 @@ void SCreature::addPower(SPower* power){
 	_powerList[power->getId()] = power;
 }
 
+uint32_t SCreature::addBuff(SBuff* buff){
+	for(int i = 0; ;i++){
+		if(_bufflist.find(i) == _bufflist.end()){
+			_bufflist[i] = buff;
+			return i;
+		}
+			
+	}
+}
+
 SCreature::~SCreature() {
 }
 

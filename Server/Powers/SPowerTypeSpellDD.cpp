@@ -9,7 +9,8 @@
 #include "../Command/SC_ApplyDDSpellDamage.h"
 #include "../objects/SObj.h"
 #include "../objects/SCreature.h"
-SPowerTypeSpellDD::SPowerTypeSpellDD(uint32_t min, uint32_t max,  DamageTypes::Enum dmgType) {
+SPowerTypeSpellDD::SPowerTypeSpellDD(uint32_t id, uint32_t min, uint32_t max,  DamageTypes::Enum dmgType):
+SPowerSpellType(id) {
 	_min = min;
 	_max = max;
 	_dmgType = dmgType;

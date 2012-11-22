@@ -7,7 +7,8 @@
 
 #include "SPowerType.h"
 
-SPowerType::SPowerType() {
+SPowerType::SPowerType(uint32_t id) {
+	_id = id;
 }
 
 

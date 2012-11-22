@@ -24,6 +24,8 @@
         <itemPath>Command/SC_CastSTarget.h</itemPath>
         <itemPath>Command/SC_Debuff.cpp</itemPath>
         <itemPath>Command/SC_Debuff.h</itemPath>
+        <itemPath>Command/SC_KillUnit.cpp</itemPath>
+        <itemPath>Command/SC_KillUnit.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>
         <itemPath>Command/SCommand.h</itemPath>
       </logicalFolder>
@@ -38,6 +40,12 @@
         <itemPath>../Network/Serialize.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="Objects" projectFiles="true">
+        <logicalFolder name="f1" displayName="Buffs" projectFiles="true">
+          <itemPath>objects/Buffs/SBuff.cpp</itemPath>
+          <itemPath>objects/Buffs/SBuff.h</itemPath>
+          <itemPath>objects/Buffs/SBuffDot.cpp</itemPath>
+          <itemPath>objects/Buffs/SBuffDot.h</itemPath>
+        </logicalFolder>
         <itemPath>objects/SCreature.cpp</itemPath>
         <itemPath>objects/SCreature.h</itemPath>
         <itemPath>objects/SObj.cpp</itemPath>

@@ -7,7 +7,8 @@
 
 #include "SPowerSpellType.h"
 
-SPowerSpellType::SPowerSpellType() {
+SPowerSpellType::SPowerSpellType(uint32_t id):
+SPowerType(id){
 }
 
 

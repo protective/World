@@ -11,11 +11,12 @@
 class SObj;
 class SPowerType {
 public:
-	SPowerType();
+	SPowerType(uint32_t id);
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target){}
+	uint32_t getId(){return _id;}
 	virtual ~SPowerType();
 private:
-
+	uint32_t _id;
 };
 
 #endif	/* SPOWERTYPE_H */
