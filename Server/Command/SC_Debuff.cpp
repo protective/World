@@ -10,19 +10,24 @@
 #include "SC_Debuff.h"
 #include "../objects/SObj.h"
 #include "SC_ApplyTickSpellDamage.h"
+#include "../objects/Buffs/SBuffBase.h"
+#include "../objects/Buffs/SBuffDot.h"
 SC_Debuff::SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellDebuff* power) 
 :SCommand(time,caster,target){
 	_power = power;
-	_tickCount = _power->gettickEffects().size();
+	_tickCount = _power->getTickCounts();
 
 	
 }
 
 uint32_t SC_Debuff::execute(){
 	if(_tickCount == _power->gettickEffects().size()){
-		SBuffBase* b = new SBuffDot();
-		_target->getCreature()->addBuff(b);
-		_buffeffectlist.push_back(b);
+		
+		//_power->
+		SBuffBase* sb = new SBuffDot();
+		SBuff* buff = new SBuff();
+		_target->getCreature()->addBuff(buff);
+		_buffeffectlist.push_back(buff);
 	}
 	_tickCount--;
 	

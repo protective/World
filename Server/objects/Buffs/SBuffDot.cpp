@@ -6,14 +6,17 @@
  */
 
 #include "SBuffDot.h"
-
+#include "../../objects/SObj.h"
+#include "../../Command/SC_ApplyTickSpellDamage.h"
 SBuffDot::SBuffDot(SC_Debuff* command, SPowerTypeSpellDebuff* power) {
 	_command = command;
 	_power = power;
 	for(list<ticksEffects>::iterator it = _power->gettickEffects().begin(); it != _power->gettickEffects().end();it++){
 		_tick+= (float_t)it->_value/100;
 	}
-	_damageRemaing = _power->getTotalDamage();
+	_damageRemaining = _power->getTotalDamage();
+	//_damageType = _power->
+	
 }
 
 uint32_t SBuffDot::proces(uint32_t tickCount) {
@@ -24,7 +27,7 @@ uint32_t SBuffDot::proces(uint32_t tickCount) {
 	}
 	uint32_t a = floor((float_t)_damageRemaining/_tick * ((float_t)it->_value/100));
 	_damageRemaining -=a;
-	_command->getTarget()->addCommand(new SC_ApplyTickSpellDamage(_command->getTime(),_command->getCaster(),_command->getTarget(),a,_power));
+	_command->getTarget()->addCommand(new SC_ApplyTickSpellDamage(_command->getTime(),_command->getCaster(),_command->getTarget(),a,_damageType, _power));
 	_tick -= (float_t)it->_value/100;
 	
 }

@@ -10,25 +10,18 @@
 
 #include "SPowerSpellType.h"
 class SObj;
-struct ticksEffects{
-	uint32_t _delay;
-	EffectTypes::Enum _effect;
-	uint32_t _value;
-};
+
 
 class SPowerTypeSpellDebuff : public SPowerSpellType {
 public:
 	SPowerTypeSpellDebuff(uint32_t id);
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
 	virtual ~SPowerTypeSpellDebuff();
-	map<EffectTypes::Enum,int32_t>& getfullMods(){return _fullMods;} 
-	list<ticksEffects>& gettickEffects(){return _ticks;} 
-	uint32_t getTotalDamage(){return _totalDamage;}
 	uint32_t getTickDelay(){return _tickDelay;}
+	uint32_t getTickCounts(){return _tickCounts;}
 private:
-	map<EffectTypes::Enum,int32_t> _fullMods;
-	list<ticksEffects> _ticks;
-	uint32_t _totalDamage;
+	
+	uint32_t _tickCounts;
 	uint32_t _tickDelay;
 };
 

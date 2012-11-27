@@ -8,7 +8,7 @@
 #include "SC_ApplyTickSpellDamage.h"
 #include "SC_ApplyDamage.h"
 #include "../objects/SCreature.h"
-SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerTypeSpellDD* power):
+SC_ApplyTickSpellDamage::SC_ApplyTickSpellDamage(uint32_t time, SObj* caster, SObj* target, uint32_t damage, DamageTypes::Enum dmgType, SPowerType* power):
 SCommand(time,caster,target){
 	_damage = damage;
 	_power = power;

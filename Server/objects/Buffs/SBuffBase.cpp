@@ -10,8 +10,6 @@
 SBuffBase::SBuffBase() {
 }
 
-SBuffBase::SBuffBase(const SBuffBase& orig) {
-}
 
 SBuffBase::~SBuffBase() {
 }

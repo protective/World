@@ -11,7 +11,7 @@
 #include "SCommand.h"
 #include "../Powers/SPowerTypeSpellDebuff.h"
 
-
+class SBuffBase;
 class SC_Debuff : public SCommand {
 public:
 	SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellDebuff* power);

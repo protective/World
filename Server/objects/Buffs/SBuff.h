@@ -14,6 +14,7 @@
 class SBuff {
 public:
 	SBuff();
+	list<SBuffBase*>& getEffects(){return _effects;} 
 	virtual ~SBuff();
 private:
 	list<SBuffBase*> _effects;

@@ -14,9 +14,11 @@ public:
 	SPowerType(uint32_t id);
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target){}
 	uint32_t getId(){return _id;}
+	list<SPowerType*> getSubComponents(){return _subComponents;}
 	virtual ~SPowerType();
 private:
 	uint32_t _id;
+	list<SPowerType*> _subComponents;
 };
 
 #endif	/* SPOWERTYPE_H */

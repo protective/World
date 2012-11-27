@@ -10,7 +10,7 @@
 
 
 #include "SBuffBase.h"
-
+#include "../../Command/SC_Debuff.h"
 class SBuffDot : public SBuffBase {
 public:
 	SBuffDot(SC_Debuff* command, SPowerTypeSpellDebuff* power);
@@ -21,6 +21,7 @@ private:
 	SPowerTypeSpellDebuff* _power;
 	float_t _tick;
 	uint32_t _damageRemaining;
+	DamageTypes::Enum _damageType;
 };
 
 #endif	/* SBUFFDOT_H */

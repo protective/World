@@ -8,9 +8,12 @@
 #ifndef SPOWERTYPEDOT_H
 #define	SPOWERTYPEDOT_H
 
-class SPowerTypeDot {
+#include "SPowerType.h"
+
+
+class SPowerTypeDot : public SPowerType{
 public:
-	SPowerTypeDot();
+	SPowerTypeDot(uint32_t id, uint32_t min, uint32_t max,  DamageTypes::Enum dmgType);
 	virtual ~SPowerTypeDot();
 private:
 
