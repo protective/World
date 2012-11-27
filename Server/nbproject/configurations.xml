@@ -43,8 +43,12 @@
         <logicalFolder name="f1" displayName="Buffs" projectFiles="true">
           <itemPath>objects/Buffs/SBuff.cpp</itemPath>
           <itemPath>objects/Buffs/SBuff.h</itemPath>
+          <itemPath>objects/Buffs/SBuffBase.cpp</itemPath>
+          <itemPath>objects/Buffs/SBuffBase.h</itemPath>
           <itemPath>objects/Buffs/SBuffDot.cpp</itemPath>
           <itemPath>objects/Buffs/SBuffDot.h</itemPath>
+          <itemPath>objects/Buffs/SBuffStat.cpp</itemPath>
+          <itemPath>objects/Buffs/SBuffStat.h</itemPath>
         </logicalFolder>
         <itemPath>objects/SCreature.cpp</itemPath>
         <itemPath>objects/SCreature.h</itemPath>
@@ -62,12 +66,16 @@
         <itemPath>Powers/SPowerSpellType.h</itemPath>
         <itemPath>Powers/SPowerType.cpp</itemPath>
         <itemPath>Powers/SPowerType.h</itemPath>
+        <itemPath>Powers/SPowerTypeDot.cpp</itemPath>
+        <itemPath>Powers/SPowerTypeDot.h</itemPath>
         <itemPath>Powers/SPowerTypeLoader.cpp</itemPath>
         <itemPath>Powers/SPowerTypeLoader.h</itemPath>
         <itemPath>Powers/SPowerTypeSpellDD.cpp</itemPath>
         <itemPath>Powers/SPowerTypeSpellDD.h</itemPath>
         <itemPath>Powers/SPowerTypeSpellDebuff.cpp</itemPath>
         <itemPath>Powers/SPowerTypeSpellDebuff.h</itemPath>
+        <itemPath>Powers/SPowerTypeStatBonus.cpp</itemPath>
+        <itemPath>Powers/SPowerTypeStatBonus.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="World" projectFiles="true">
         <itemPath>World/SGrid.cpp</itemPath>

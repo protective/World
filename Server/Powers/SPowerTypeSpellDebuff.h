@@ -24,10 +24,12 @@ public:
 	map<EffectTypes::Enum,int32_t>& getfullMods(){return _fullMods;} 
 	list<ticksEffects>& gettickEffects(){return _ticks;} 
 	uint32_t getTotalDamage(){return _totalDamage;}
+	uint32_t getTickDelay(){return _tickDelay;}
 private:
 	map<EffectTypes::Enum,int32_t> _fullMods;
 	list<ticksEffects> _ticks;
 	uint32_t _totalDamage;
+	uint32_t _tickDelay;
 };
 
 #endif	/* SPOWERTYPESPELLDEBUFF_H */

@@ -13,31 +13,25 @@
 SC_Debuff::SC_Debuff(uint32_t time, SObj* caster, SObj* target, SPowerTypeSpellDebuff* power) 
 :SCommand(time,caster,target){
 	_power = power;
-	_tick = 0;
 	_tickCount = _power->gettickEffects().size();
-	for(list<ticksEffects>::iterator it = _power->gettickEffects().begin(); it != _power->gettickEffects().end();it++){
-		_tick+= (float_t)it->_value/100;
-	}
-	_damageRemaing = _power->getTotalDamage();
+
+	
 }
 
 uint32_t SC_Debuff::execute(){
-	if(_tickCount == _tick)
-		_buffIndex = _target->getCreature()->addBuff(new SBuffDot());
-	list<ticksEffects>::iterator it =  _power->gettickEffects().begin();
-	for(int i = 0; i < _power->gettickEffects().size() - _tickCount;i++){
-		it++;
+	if(_tickCount == _power->gettickEffects().size()){
+		SBuffBase* b = new SBuffDot();
+		_target->getCreature()->addBuff(b);
+		_buffeffectlist.push_back(b);
+	}
+	_tickCount--;
+	
+	for(list<SBuffBase*>::iterator it = _buffeffectlist.begin(); it != _buffeffectlist.end(); it++){
+		(*it)->proces(_tickCount);
 	}
 	
-	cerr<<"debuff"<<endl;
-	//cerr<<(_tick * ((float_t)it->_value/100))<<endl;
-	uint32_t a = floor((float_t)_damageRemaing/_tick * ((float_t)it->_value/100));
-	_damageRemaing -=a;
-	_target->addCommand(new SC_ApplyTickSpellDamage(_time,_caster,_target,a,_power));
-	_tick -= (float_t)it->_value/100;
-	_tickCount--;
-	if(_tick > 0){
-		_time += it->_delay;
+	if(_tickCount > 0){
+		_time += _power->getTickDelay();
 		_target->addCommand(this);
 
 		return 1;

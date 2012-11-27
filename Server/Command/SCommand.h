@@ -18,6 +18,8 @@ public:
 	SCommand(uint32_t time, SObj* caster, SObj* target);
 	virtual uint32_t execute(){cerr<<"EXE command"<<_time<<endl; return 0;};
 	uint32_t getTime(){return _time;}
+	SObj getTarget(){return _target;}
+	SObj getCaster(){return _caster;}
 	virtual ~SCommand();
 protected:
 	uint32_t _time;

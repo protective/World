@@ -35,14 +35,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
+	${OBJECTDIR}/objects/Buffs/SBuffBase.o \
 	${OBJECTDIR}/Powers/SPowerTypeSpellDD.o \
 	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
 	${OBJECTDIR}/objects/Buffs/SBuffDot.o \
 	${OBJECTDIR}/objects/SPos.o \
+	${OBJECTDIR}/Powers/SPowerTypeStatBonus.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
+	${OBJECTDIR}/Powers/SPowerTypeDot.o \
 	${OBJECTDIR}/objects/Buffs/SBuff.o \
 	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/Client.o \
@@ -51,10 +54,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o \
 	${OBJECTDIR}/Command/SC_Debuff.o \
 	${OBJECTDIR}/Command/SCommand.o \
-	${OBJECTDIR}/Command/SC_ApplyDamage.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
+	${OBJECTDIR}/Command/SC_ApplyDamage.o \
 	${OBJECTDIR}/Powers/SPower.o \
 	${OBJECTDIR}/SFunctions.o \
+	${OBJECTDIR}/objects/Buffs/SBuffStat.o \
 	${OBJECTDIR}/Command/SC_KillUnit.o \
 	${OBJECTDIR}/Powers/SPowerHandler.o \
 	${OBJECTDIR}/SGlobals.o \
@@ -93,6 +97,11 @@ ${OBJECTDIR}/SDatabase.o: SDatabase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/SDatabase.o SDatabase.cpp
 
+${OBJECTDIR}/objects/Buffs/SBuffBase.o: objects/Buffs/SBuffBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuffBase.o objects/Buffs/SBuffBase.cpp
+
 ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o: Powers/SPowerTypeSpellDD.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -123,6 +132,11 @@ ${OBJECTDIR}/objects/SPos.o: objects/SPos.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/SPos.o objects/SPos.cpp
 
+${OBJECTDIR}/Powers/SPowerTypeStatBonus.o: Powers/SPowerTypeStatBonus.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeStatBonus.o Powers/SPowerTypeStatBonus.cpp
+
 ${OBJECTDIR}/mainServer.o: mainServer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -132,6 +146,11 @@ ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
+
+${OBJECTDIR}/Powers/SPowerTypeDot.o: Powers/SPowerTypeDot.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeDot.o Powers/SPowerTypeDot.cpp
 
 ${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
@@ -173,15 +192,15 @@ ${OBJECTDIR}/Command/SCommand.o: Command/SCommand.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SCommand.o Command/SCommand.cpp
 
-${OBJECTDIR}/Command/SC_ApplyDamage.o: Command/SC_ApplyDamage.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Command
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDamage.o Command/SC_ApplyDamage.cpp
-
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GGlobals.o ../GShare/GGlobals.cpp
+
+${OBJECTDIR}/Command/SC_ApplyDamage.o: Command/SC_ApplyDamage.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDamage.o Command/SC_ApplyDamage.cpp
 
 ${OBJECTDIR}/Powers/SPower.o: Powers/SPower.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
@@ -192,6 +211,11 @@ ${OBJECTDIR}/SFunctions.o: SFunctions.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/SFunctions.o SFunctions.cpp
+
+${OBJECTDIR}/objects/Buffs/SBuffStat.o: objects/Buffs/SBuffStat.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuffStat.o objects/Buffs/SBuffStat.cpp
 
 ${OBJECTDIR}/Command/SC_KillUnit.o: Command/SC_KillUnit.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command

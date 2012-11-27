@@ -8,12 +8,15 @@
 #ifndef SBUFF_H
 #define	SBUFF_H
 
+#include "SBuffBase.h"
+
+
 class SBuff {
 public:
 	SBuff();
 	virtual ~SBuff();
 private:
-
+	list<SBuffBase*> _effects;
 };
 
 #endif	/* SBUFF_H */
