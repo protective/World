@@ -10,7 +10,15 @@
 SC_BuffProces::SC_BuffProces() {
 }
 
-SC_BuffProces::SC_BuffProces(const SC_BuffProces& orig) {
+uint32_t SC_BuffProces::execute(){
+	
+	_buff->procesTick();
+	if(_buff->getTickCount()> 0){
+		_time += _buff->getTickTime();
+		_target->addCommand(this);
+		return 1;
+	}else
+		return 0;
 }
 
 SC_BuffProces::~SC_BuffProces() {

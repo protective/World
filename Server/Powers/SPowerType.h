@@ -8,17 +8,18 @@
 #ifndef SPOWERTYPE_H
 #define	SPOWERTYPE_H
 #include "../SFunctions.h"
+#include "SEffectType.h"
 class SObj;
 class SPowerType {
 public:
 	SPowerType(uint32_t id);
-	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target){}
+	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
 	uint32_t getId(){return _id;}
-	list<SPowerType*> getSubComponents(){return _subComponents;}
+	map<EResults::Enum, list<SEffectType*> > getSubComponents(){return _subComponents;}
 	virtual ~SPowerType();
 private:
 	uint32_t _id;
-	list<SPowerType*> _subComponents;
+	map<EResults::Enum, list<SEffectType*> >_subComponents;
 };
 
 #endif	/* SPOWERTYPE_H */

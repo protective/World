@@ -20,6 +20,8 @@
         <itemPath>Command/SC_ApplyDamage.h</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.cpp</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.h</itemPath>
+        <itemPath>Command/SC_BuffProces.cpp</itemPath>
+        <itemPath>Command/SC_BuffProces.h</itemPath>
         <itemPath>Command/SC_CastSTarget.cpp</itemPath>
         <itemPath>Command/SC_CastSTarget.h</itemPath>
         <itemPath>Command/SC_Debuff.cpp</itemPath>
@@ -58,6 +60,12 @@
         <itemPath>objects/SPos.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f6" displayName="Powers" projectFiles="true">
+        <itemPath>Powers/SEffectType.cpp</itemPath>
+        <itemPath>Powers/SEffectType.h</itemPath>
+        <itemPath>Powers/SEffectTypeAddBuff.cpp</itemPath>
+        <itemPath>Powers/SEffectTypeAddBuff.h</itemPath>
+        <itemPath>Powers/SEffectTypeDD.cpp</itemPath>
+        <itemPath>Powers/SEffectTypeDD.h</itemPath>
         <itemPath>Powers/SPower.cpp</itemPath>
         <itemPath>Powers/SPower.h</itemPath>
         <itemPath>Powers/SPowerHandler.cpp</itemPath>

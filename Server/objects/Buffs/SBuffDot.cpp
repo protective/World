@@ -8,8 +8,10 @@
 #include "SBuffDot.h"
 #include "../../objects/SObj.h"
 #include "../../Command/SC_ApplyTickSpellDamage.h"
-SBuffDot::SBuffDot(SC_Debuff* command, SPowerTypeSpellDebuff* power) {
-	_command = command;
+#include "SBuff.h"
+SBuffDot::SBuffDot(uint32_t maxTick, uint32_t tickTime, SEffectTypeAddBuff* power):
+SBuff(maxTick,tickTime) {
+	_command = NULL;
 	_power = power;
 	for(list<ticksEffects>::iterator it = _power->gettickEffects().begin(); it != _power->gettickEffects().end();it++){
 		_tick+= (float_t)it->_value/100;

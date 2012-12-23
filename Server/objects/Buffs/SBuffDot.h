@@ -13,12 +13,11 @@
 #include "../../Command/SC_Debuff.h"
 class SBuffDot : public SBuffBase {
 public:
-	SBuffDot(SC_Debuff* command, SPowerTypeSpellDebuff* power);
+	SBuffDot(SEffectTypeAddBuff* power);
 	virtual uint32_t proces(uint32_t tickCount);
 	virtual ~SBuffDot();
 private:
-	SC_Debuff* _command;
-	SPowerTypeSpellDebuff* _power;
+	SEffectTypeAddBuff* _power;
 	float_t _tick;
 	uint32_t _damageRemaining;
 	DamageTypes::Enum _damageType;

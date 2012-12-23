@@ -28,7 +28,7 @@ namespace EResults{
 	};
 }
 
-namespace EffectTypes{
+namespace StatsMods{
 	enum Enum{
 		Invalid = 0,
 		ArmorAmount = 1,
@@ -77,6 +77,7 @@ namespace DamageTypes{
 		holy = 8,
 	};
 }
+
 
 
 namespace Textures{

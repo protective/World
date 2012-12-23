@@ -37,9 +37,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
 	${OBJECTDIR}/objects/Buffs/SBuffBase.o \
 	${OBJECTDIR}/Powers/SPowerTypeSpellDD.o \
+	${OBJECTDIR}/Powers/SEffectTypeAddBuff.o \
 	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
+	${OBJECTDIR}/Powers/SEffectType.o \
 	${OBJECTDIR}/objects/Buffs/SBuffDot.o \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/Powers/SPowerTypeStatBonus.o \
@@ -65,7 +67,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/World/SGrid.o \
 	${OBJECTDIR}/objects/SObj.o \
 	${OBJECTDIR}/Powers/SPowerType.o \
-	${OBJECTDIR}/_ext/2098112761/GFunctions.o
+	${OBJECTDIR}/Command/SC_BuffProces.o \
+	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
+	${OBJECTDIR}/Powers/SEffectTypeDD.o
 
 
 # C Compiler Flags
@@ -107,6 +111,11 @@ ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o: Powers/SPowerTypeSpellDD.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o Powers/SPowerTypeSpellDD.cpp
 
+${OBJECTDIR}/Powers/SEffectTypeAddBuff.o: Powers/SEffectTypeAddBuff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SEffectTypeAddBuff.o Powers/SEffectTypeAddBuff.cpp
+
 ${OBJECTDIR}/Powers/SPowerSpellType.o: Powers/SPowerSpellType.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -121,6 +130,11 @@ ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o: Command/SC_ApplyDDSpellDamage.cpp
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o Command/SC_ApplyDDSpellDamage.cpp
+
+${OBJECTDIR}/Powers/SEffectType.o: Powers/SEffectType.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SEffectType.o Powers/SEffectType.cpp
 
 ${OBJECTDIR}/objects/Buffs/SBuffDot.o: objects/Buffs/SBuffDot.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
@@ -247,10 +261,20 @@ ${OBJECTDIR}/Powers/SPowerType.o: Powers/SPowerType.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerType.o Powers/SPowerType.cpp
 
+${OBJECTDIR}/Command/SC_BuffProces.o: Command/SC_BuffProces.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_BuffProces.o Command/SC_BuffProces.cpp
+
 ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GFunctions.o ../GShare/GFunctions.cpp
+
+${OBJECTDIR}/Powers/SEffectTypeDD.o: Powers/SEffectTypeDD.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SEffectTypeDD.o Powers/SEffectTypeDD.cpp
 
 # Subprojects
 .build-subprojects:

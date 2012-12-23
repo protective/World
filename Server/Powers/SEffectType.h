@@ -11,7 +11,7 @@
 class SEffectType {
 public:
 	SEffectType();
-	virtual void apply(SCreature* caster, SCreature* target){}
+	virtual void apply(uint32_t time, SCreature* caster, SCreature* target){}
 	virtual ~SEffectType();
 private:
 

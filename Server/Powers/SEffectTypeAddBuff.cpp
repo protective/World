@@ -10,8 +10,11 @@
 SEffectTypeAddBuff::SEffectTypeAddBuff() {
 }
 
-void SEffectTypeAddBuff::apply(SCreature* caster, SCreature* target){
-
+void SEffectTypeAddBuff::apply(uint32_t time, SCreature* caster, SCreature* target){
+	
+	SBuffDot* buffDotToAdd = new SBuffDot(this);
+	SC_BuffProces* command = new SC_BuffProces(time,caster,target,buffDotToAdd);
+	target->addCommand(command);
 }
 
 
