@@ -10,7 +10,8 @@
 
 #include "SCommand.h"
 
-
+class SObj;
+class SBuff;
 class SC_BuffProces : public SCommand {
 public:
 	SC_BuffProces(uint32_t time, SObj* caster, SObj* target, SBuff* buff);

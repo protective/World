@@ -12,6 +12,9 @@
 #include "../objects/SCreature.h"
 
 struct ticksEffects{
+	ticksEffects(int32_t value){
+	_value = value;
+	}
 	int32_t _value;
 	
 };
@@ -22,11 +25,16 @@ public:
 	virtual void apply(uint32_t time, SCreature* caster, SCreature* target);
 	list<ticksEffects>& gettickEffects(){return _tickEffects;}
 	uint32_t getTotalDamage(){return _totalDamage;}
+	
+	void setTotalDamage(int32_t damage){_totalDamage = damage;}
+	void setTickTime(uint32_t time){_tickTime = time;}
+	
 	virtual ~SEffectTypeAddBuff();
 private:
 
 	map< StatsMods::Enum, int32_t> _statsMods;
 	list<ticksEffects> _tickEffects;
+	uint32_t _tickTime;
 	uint32_t _totalDamage;
 };
 

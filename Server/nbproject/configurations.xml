@@ -14,8 +14,6 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f5" displayName="Commands" projectFiles="true">
-        <itemPath>Command/SC_ApplyDDSpellDamage.cpp</itemPath>
-        <itemPath>Command/SC_ApplyDDSpellDamage.h</itemPath>
         <itemPath>Command/SC_ApplyDamage.cpp</itemPath>
         <itemPath>Command/SC_ApplyDamage.h</itemPath>
         <itemPath>Command/SC_ApplyTickSpellDamage.cpp</itemPath>
@@ -24,8 +22,6 @@
         <itemPath>Command/SC_BuffProces.h</itemPath>
         <itemPath>Command/SC_CastSTarget.cpp</itemPath>
         <itemPath>Command/SC_CastSTarget.h</itemPath>
-        <itemPath>Command/SC_Debuff.cpp</itemPath>
-        <itemPath>Command/SC_Debuff.h</itemPath>
         <itemPath>Command/SC_KillUnit.cpp</itemPath>
         <itemPath>Command/SC_KillUnit.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>
@@ -74,16 +70,8 @@
         <itemPath>Powers/SPowerSpellType.h</itemPath>
         <itemPath>Powers/SPowerType.cpp</itemPath>
         <itemPath>Powers/SPowerType.h</itemPath>
-        <itemPath>Powers/SPowerTypeDot.cpp</itemPath>
-        <itemPath>Powers/SPowerTypeDot.h</itemPath>
         <itemPath>Powers/SPowerTypeLoader.cpp</itemPath>
         <itemPath>Powers/SPowerTypeLoader.h</itemPath>
-        <itemPath>Powers/SPowerTypeSpellDD.cpp</itemPath>
-        <itemPath>Powers/SPowerTypeSpellDD.h</itemPath>
-        <itemPath>Powers/SPowerTypeSpellDebuff.cpp</itemPath>
-        <itemPath>Powers/SPowerTypeSpellDebuff.h</itemPath>
-        <itemPath>Powers/SPowerTypeStatBonus.cpp</itemPath>
-        <itemPath>Powers/SPowerTypeStatBonus.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="World" projectFiles="true">
         <itemPath>World/SGrid.cpp</itemPath>

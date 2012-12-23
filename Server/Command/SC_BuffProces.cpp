@@ -6,8 +6,11 @@
  */
 
 #include "SC_BuffProces.h"
-
-SC_BuffProces::SC_BuffProces() {
+#include "../objects/Buffs/SBuff.h"
+#include "../objects/SObj.h"
+SC_BuffProces::SC_BuffProces(uint32_t time, SObj* caster, SObj* target, SBuff* buff):
+SCommand(time,caster,target){
+	_buff = buff;
 }
 
 uint32_t SC_BuffProces::execute(){

@@ -15,7 +15,7 @@ public:
 	SPowerType(uint32_t id);
 	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
 	uint32_t getId(){return _id;}
-	map<EResults::Enum, list<SEffectType*> > getSubComponents(){return _subComponents;}
+	map<EResults::Enum, list<SEffectType*> >& getSubComponents(){return _subComponents;}
 	virtual ~SPowerType();
 private:
 	uint32_t _id;

@@ -10,8 +10,6 @@
 SBuffStat::SBuffStat() {
 }
 
-SBuffStat::SBuffStat(const SBuffStat& orig) {
-}
 
 SBuffStat::~SBuffStat() {
 }

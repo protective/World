@@ -6,7 +6,7 @@
  */
 
 #include "SC_KillUnit.h"
-
+#include "../objects/SObj.h"
 SC_KillUnit::SC_KillUnit(uint32_t time, SObj* caster, SObj* target):
 SCommand(time,caster,target) {
 	
@@ -17,7 +17,7 @@ uint32_t SC_KillUnit::execute(){
 
 	char message[sizeof(SerialKillUnit)];
 	memset(message,0,sizeof(SerialKillUnit));
-	SerialTakeDmgHeal* data = (SerialKillUnit*)(message);
+	SerialKillUnit* data = (SerialKillUnit*)(message);
 	data->_type = SerialType::SerialKillUnit;
 	data->_size = sizeof(SerialKillUnit);
 	data->_unitId = _target->getId();

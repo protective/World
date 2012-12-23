@@ -36,25 +36,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
 	${OBJECTDIR}/objects/Buffs/SBuffBase.o \
-	${OBJECTDIR}/Powers/SPowerTypeSpellDD.o \
 	${OBJECTDIR}/Powers/SEffectTypeAddBuff.o \
 	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
-	${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o \
 	${OBJECTDIR}/Powers/SEffectType.o \
 	${OBJECTDIR}/objects/Buffs/SBuffDot.o \
 	${OBJECTDIR}/objects/SPos.o \
-	${OBJECTDIR}/Powers/SPowerTypeStatBonus.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
-	${OBJECTDIR}/Powers/SPowerTypeDot.o \
 	${OBJECTDIR}/objects/Buffs/SBuff.o \
 	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
 	${OBJECTDIR}/objects/SCreature.o \
-	${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o \
-	${OBJECTDIR}/Command/SC_Debuff.o \
 	${OBJECTDIR}/Command/SCommand.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Command/SC_ApplyDamage.o \
@@ -67,8 +61,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/World/SGrid.o \
 	${OBJECTDIR}/objects/SObj.o \
 	${OBJECTDIR}/Powers/SPowerType.o \
-	${OBJECTDIR}/Command/SC_BuffProces.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
+	${OBJECTDIR}/Command/SC_BuffProces.o \
 	${OBJECTDIR}/Powers/SEffectTypeDD.o
 
 
@@ -106,11 +100,6 @@ ${OBJECTDIR}/objects/Buffs/SBuffBase.o: objects/Buffs/SBuffBase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuffBase.o objects/Buffs/SBuffBase.cpp
 
-${OBJECTDIR}/Powers/SPowerTypeSpellDD.o: Powers/SPowerTypeSpellDD.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDD.o Powers/SPowerTypeSpellDD.cpp
-
 ${OBJECTDIR}/Powers/SEffectTypeAddBuff.o: Powers/SEffectTypeAddBuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -125,11 +114,6 @@ ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o Command/SC_ApplyTickSpellDamage.cpp
-
-${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o: Command/SC_ApplyDDSpellDamage.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Command
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyDDSpellDamage.o Command/SC_ApplyDDSpellDamage.cpp
 
 ${OBJECTDIR}/Powers/SEffectType.o: Powers/SEffectType.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
@@ -146,11 +130,6 @@ ${OBJECTDIR}/objects/SPos.o: objects/SPos.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/SPos.o objects/SPos.cpp
 
-${OBJECTDIR}/Powers/SPowerTypeStatBonus.o: Powers/SPowerTypeStatBonus.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeStatBonus.o Powers/SPowerTypeStatBonus.cpp
-
 ${OBJECTDIR}/mainServer.o: mainServer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -160,11 +139,6 @@ ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
-
-${OBJECTDIR}/Powers/SPowerTypeDot.o: Powers/SPowerTypeDot.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeDot.o Powers/SPowerTypeDot.cpp
 
 ${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
@@ -190,16 +164,6 @@ ${OBJECTDIR}/objects/SCreature.o: objects/SCreature.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/SCreature.o objects/SCreature.cpp
-
-${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o: Powers/SPowerTypeSpellDebuff.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeSpellDebuff.o Powers/SPowerTypeSpellDebuff.cpp
-
-${OBJECTDIR}/Command/SC_Debuff.o: Command/SC_Debuff.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Command
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_Debuff.o Command/SC_Debuff.cpp
 
 ${OBJECTDIR}/Command/SCommand.o: Command/SCommand.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command
@@ -261,15 +225,15 @@ ${OBJECTDIR}/Powers/SPowerType.o: Powers/SPowerType.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerType.o Powers/SPowerType.cpp
 
-${OBJECTDIR}/Command/SC_BuffProces.o: Command/SC_BuffProces.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Command
-	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_BuffProces.o Command/SC_BuffProces.cpp
-
 ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GFunctions.o ../GShare/GFunctions.cpp
+
+${OBJECTDIR}/Command/SC_BuffProces.o: Command/SC_BuffProces.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_BuffProces.o Command/SC_BuffProces.cpp
 
 ${OBJECTDIR}/Powers/SEffectTypeDD.o: Powers/SEffectTypeDD.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers

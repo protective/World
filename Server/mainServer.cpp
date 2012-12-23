@@ -29,6 +29,7 @@
 #include "objects/SCreature.h"
 #include "Powers/SPowerTypeSpellDebuff.h"
 #include "Powers/SPowerTypeLoader.h"
+#include "Powers/SEffectTypeAddBuff.h"
 using namespace std;
 
 
@@ -69,12 +70,14 @@ int main(int argc, char** argv) {
 
 	//WORLD
 	SPowerTypeLoader* pt =  new SPowerTypeLoader();
-	SPowerTypeSpellDebuff* tsd = new SPowerTypeSpellDebuff(1);
-	SPower* po = new SPower(1,tsd);
-	
-	SPowerTypeSpellDD* tdd = new SPowerTypeSpellDD(2,42,50,DamageTypes::Fire);
-	tdd->addResultPowerType(EResults::SCrit, tsd);
-	SPower* pdd = new SPower(2, tdd);
+	SPowerType* powert = new SPowerType(1);
+	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
+	buff->setTotalDamage(100);
+	buff->setTickTime(100);
+	buff->gettickEffects().push_back(ticksEffects(25));
+	buff->gettickEffects().push_back(ticksEffects(50));
+	buff->gettickEffects().push_back(ticksEffects(100));
+	powert->getSubComponents()[EResults::SHit].push_back(buff);
 	
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
@@ -82,15 +85,16 @@ int main(int argc, char** argv) {
 	
 	SObj* o = new SCreature(getFreeID(),p,0,0);
 	g->addObj(o);
+	SPower* po = new SPower(1,powert);
 	o->getCreature()->addPower(po);
-	o->getCreature()->addPower(pdd);
+//	o->getCreature()->addPower(pdd);
 	
 	SObj* t = new SCreature(getFreeID(),p,0,0);
 	g->addObj(t);
 	
 	
 	
-	o->getCreature()->getPower(2)->activate(SDL_GetTicks()+2000,o,t);
+	o->getCreature()->getPower(1)->activate(SDL_GetTicks()+2000,o,t);
 	/*
 	for(uint32_t j = 0 ; j < 1; j++){
 		SObj* o = new SObj(getFreeID(),p,0,0);
