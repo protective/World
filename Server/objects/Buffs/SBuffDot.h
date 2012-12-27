@@ -13,8 +13,8 @@
 #include "../../Powers/SEffectTypeAddBuff.h"
 class SBuffDot : public SBuffBase {
 public:
-	SBuffDot(SCreature* owner, SEffectTypeAddBuff* power);
-	virtual uint32_t proces(uint32_t tickCount);
+	SBuffDot(SBuff* buff, SCreature* owner, SEffectTypeAddBuff* power);
+	virtual uint32_t proces(SC_BuffProces* cmd, uint32_t tickCount);
 	virtual ~SBuffDot();
 private:
 	SCreature* _owner;

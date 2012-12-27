@@ -13,13 +13,15 @@ class SObj;
 class SPowerType {
 public:
 	SPowerType(uint32_t id);
-	virtual uint32_t activate(uint32_t time, SObj* caster, SObj* target);
+	uint32_t activate(uint32_t time, SObj* caster, SObj* target, map<PowerProjectileMods::Enum,int32_t> values);
 	uint32_t getId(){return _id;}
 	map<EResults::Enum, list<SEffectType*> >& getSubComponents(){return _subComponents;}
+	map<PowerTypeStats::Enum, int32_t>& getStats(){return _stats;}
 	virtual ~SPowerType();
 private:
 	uint32_t _id;
 	map<EResults::Enum, list<SEffectType*> >_subComponents;
+	map<PowerTypeStats::Enum, int32_t> _stats;
 };
 
 #endif	/* SPOWERTYPE_H */

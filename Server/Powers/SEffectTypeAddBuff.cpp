@@ -13,13 +13,15 @@ SEffectTypeAddBuff::SEffectTypeAddBuff() {
 	_totalDamage = 0;
 }
 
-void SEffectTypeAddBuff::apply(uint32_t time, SCreature* caster, SCreature* target){
+void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values){
 	cerr<<"apply buff"<<endl;
-	SBuff* buffToAdd = new SBuff(_tickEffects.size(),_tickTime);
+	SBuff* buffToAdd = new SBuff(type,_tickEffects.size(),_tickTime);
 	
-	SBuffDot* buffsEffects = new SBuffDot(target,this);
+	target->addBuff(buffToAdd);
+	SBuffDot* buffsEffects = new SBuffDot(buffToAdd,target,this);
 	
 	buffToAdd->getEffects().push_back(buffsEffects);
+
 	SC_BuffProces* command = new SC_BuffProces(time,caster,target,buffToAdd);
 	target->addCommand(command);
 }

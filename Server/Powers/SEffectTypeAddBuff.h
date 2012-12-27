@@ -22,11 +22,14 @@ struct ticksEffects{
 class SEffectTypeAddBuff : public SEffectType {
 public:
 	SEffectTypeAddBuff();
-	virtual void apply(uint32_t time, SCreature* caster, SCreature* target);
+	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values);
 	list<ticksEffects>& gettickEffects(){return _tickEffects;}
-	uint32_t getTotalDamage(){return _totalDamage;}
-	
+	uint32_t getTotalDamage(){return _totalDamage;}	
 	void setTotalDamage(int32_t damage){_totalDamage = damage;}
+	
+	DamageTypes::Enum getDamageType(){return _damageType;}	
+	void setDamageType(DamageTypes::Enum type){_damageType = type;}
+		
 	void setTickTime(uint32_t time){_tickTime = time;}
 	
 	virtual ~SEffectTypeAddBuff();
@@ -36,6 +39,8 @@ private:
 	list<ticksEffects> _tickEffects;
 	uint32_t _tickTime;
 	uint32_t _totalDamage;
+	DamageTypes::Enum _damageType;
+	
 };
 
 #endif	/* SEFFECTTYPEADDBUFF_H */

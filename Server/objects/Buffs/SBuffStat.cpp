@@ -7,7 +7,8 @@
 
 #include "SBuffStat.h"
 
-SBuffStat::SBuffStat() {
+SBuffStat::SBuffStat(SBuff* buff):
+SBuffBase(buff){
 }
 
 

@@ -26,6 +26,15 @@ uint32_t SCreature::addBuff(SBuff* buff){
 	}
 }
 
+uint32_t SCreature::removeBuff(SBuff* buff){
+	for(map<uint32_t,SBuff*>::iterator it = _bufflist.begin(); it != _bufflist.end();it++){
+		if(it->second == buff){
+			_bufflist.erase(it);
+			return it->first;
+		}
+	}
+}
+
 SCreature::~SCreature() {
 }
 

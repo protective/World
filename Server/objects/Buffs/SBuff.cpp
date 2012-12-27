@@ -7,16 +7,17 @@
 
 #include "SBuff.h"
 
-SBuff::SBuff(uint32_t maxTick, uint32_t tickTime) {
+SBuff::SBuff(SPowerType* type,uint32_t maxTick, uint32_t tickTime) {
 	_maxtickCount = maxTick;
 	_tickCount = maxTick;
 	_tickTime = tickTime;
+	_type = type;
 }
 
-uint32_t SBuff::procesTick(){
+uint32_t SBuff::procesTick(SC_BuffProces* cmd){
 	
 	for (list<SBuffBase*>::iterator it = _effects.begin(); it != _effects.end();it++){
-		(*it)->proces(_tickCount);
+		(*it)->proces(cmd,_tickCount);
 	}
 	_tickCount--;
 }

@@ -30,6 +30,7 @@
 #include "Powers/SPowerTypeSpellDebuff.h"
 #include "Powers/SPowerTypeLoader.h"
 #include "Powers/SEffectTypeAddBuff.h"
+#include "Powers/SEffectTypeDD.h"
 using namespace std;
 
 
@@ -73,12 +74,19 @@ int main(int argc, char** argv) {
 	SPowerType* powert = new SPowerType(1);
 	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
 	buff->setTotalDamage(100);
-	buff->setTickTime(100);
+	buff->setDamageType(DamageTypes::arcane);
+	buff->setTickTime(2000);
 	buff->gettickEffects().push_back(ticksEffects(25));
 	buff->gettickEffects().push_back(ticksEffects(50));
 	buff->gettickEffects().push_back(ticksEffects(100));
-	powert->getSubComponents()[EResults::SHit].push_back(buff);
 	
+	SEffectTypeDD* DD = new SEffectTypeDD();
+	DD->setCritMod(150);
+	DD->setMinDamage(50);
+	DD->setMaxDamage(60);
+	DD->setDamageType(DamageTypes::Fire);
+	powert->getSubComponents()[EResults::SHit].push_back(buff);
+	powert->getSubComponents()[EResults::SCrit].push_back(DD);
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
 	SPos p(0,0,0);
@@ -93,8 +101,10 @@ int main(int argc, char** argv) {
 	g->addObj(t);
 	
 	
-	
-	o->getCreature()->getPower(1)->activate(SDL_GetTicks()+2000,o,t);
+	for(int i = 1 ; i< 20 ; i++){
+		o->getCreature()->getPower(1)->activate(SDL_GetTicks()+(2000*i),o,t);
+	}
+
 	/*
 	for(uint32_t j = 0 ; j < 1; j++){
 		SObj* o = new SObj(getFreeID(),p,0,0);

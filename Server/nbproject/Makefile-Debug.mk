@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Powers/SEffectTypeAddBuff.o \
 	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
+	${OBJECTDIR}/Command/SC_FirePower.o \
 	${OBJECTDIR}/Powers/SEffectType.o \
 	${OBJECTDIR}/objects/Buffs/SBuffDot.o \
 	${OBJECTDIR}/objects/SPos.o \
@@ -62,6 +63,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/objects/SObj.o \
 	${OBJECTDIR}/Powers/SPowerType.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
+	${OBJECTDIR}/Command/SC_HitPower.o \
 	${OBJECTDIR}/Command/SC_BuffProces.o \
 	${OBJECTDIR}/Powers/SEffectTypeDD.o
 
@@ -114,6 +116,11 @@ ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.
 	${MKDIR} -p ${OBJECTDIR}/Command
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o Command/SC_ApplyTickSpellDamage.cpp
+
+${OBJECTDIR}/Command/SC_FirePower.o: Command/SC_FirePower.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_FirePower.o Command/SC_FirePower.cpp
 
 ${OBJECTDIR}/Powers/SEffectType.o: Powers/SEffectType.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
@@ -229,6 +236,11 @@ ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GFunctions.o ../GShare/GFunctions.cpp
+
+${OBJECTDIR}/Command/SC_HitPower.o: Command/SC_HitPower.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_HitPower.o Command/SC_HitPower.cpp
 
 ${OBJECTDIR}/Command/SC_BuffProces.o: Command/SC_BuffProces.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command

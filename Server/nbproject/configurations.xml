@@ -22,6 +22,10 @@
         <itemPath>Command/SC_BuffProces.h</itemPath>
         <itemPath>Command/SC_CastSTarget.cpp</itemPath>
         <itemPath>Command/SC_CastSTarget.h</itemPath>
+        <itemPath>Command/SC_FirePower.cpp</itemPath>
+        <itemPath>Command/SC_FirePower.h</itemPath>
+        <itemPath>Command/SC_HitPower.cpp</itemPath>
+        <itemPath>Command/SC_HitPower.h</itemPath>
         <itemPath>Command/SC_KillUnit.cpp</itemPath>
         <itemPath>Command/SC_KillUnit.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>

@@ -8,11 +8,12 @@
 #ifndef SEFFECTTYPE_H
 #define	SEFFECTTYPE_H
 #include "../SFunctions.h"
+class SPowerType;
 class SCreature;
 class SEffectType {
 public:
 	SEffectType();
-	virtual void apply(uint32_t time, SCreature* caster, SCreature* target){cerr<<"ERROR empty effectType"<<endl;}
+	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values){cerr<<"ERROR empty effectType"<<endl;}
 	virtual ~SEffectType();
 private:
 

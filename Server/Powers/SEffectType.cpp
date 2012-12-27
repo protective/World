@@ -6,7 +6,7 @@
  */
 
 #include "SEffectType.h"
-
+#include "SPowerType.h"
 SEffectType::SEffectType() {
 }
 

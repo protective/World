@@ -13,7 +13,7 @@
 
 class SBuffStat : public SBuffBase {
 public:
-	SBuffStat();
+	SBuffStat(SBuff* buff);
 	virtual ~SBuffStat();
 private:
 

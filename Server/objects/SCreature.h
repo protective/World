@@ -20,6 +20,7 @@ public:
 	map<Attributes::Enum , uint32_t>& getAttibute(){return _attribute;}
 	map<uint32_t,SBuff*>& getBuffList(){return _bufflist;}
 	uint32_t addBuff(SBuff* buff);
+	uint32_t removeBuff(SBuff* buff);
 private:
 	map<uint32_t,SPower*> _powerList;
 	map<Attributes::Enum , uint32_t> _attribute;

@@ -20,7 +20,7 @@ SCommand(time,caster,target){
 uint32_t SC_ApplyDamage::execute(){
 
 	_target->getCreature()->getAttibute()[Attributes::Hp] -= _damage;
-	
+	cerr<<"damge "<<_damage<<" type "<<_dmgType<<endl;
 	char message[sizeof(SerialTakeDmgHeal)];
 	memset(message,0,sizeof(SerialTakeDmgHeal));
 	SerialTakeDmgHeal* data = (SerialTakeDmgHeal*)(message);

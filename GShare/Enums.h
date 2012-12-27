@@ -37,6 +37,18 @@ namespace StatsMods{
 	};
 }
 
+namespace PowerProjectileMods{
+	enum Enum{
+		Invalid = 0,
+		Shit,
+		Scrit,
+		Spower,
+		SpowerBonus,
+		SpowerBonusBuff,
+		ALevel,
+	};
+}
+
 namespace Attributes{
 	enum Enum{
 		Invalid = 0,
@@ -78,8 +90,20 @@ namespace DamageTypes{
 	};
 }
 
-
-
+namespace PowerTypeStats{
+	enum Enum{
+		Invalid = 0,
+		ManaCost = 1,
+		EnergyCost = 2,
+		CastTime = 3,
+		CD = 4,
+		projectileSpeed = 5,
+		SpellLevel = 6,
+		ResistDmgType = 7,
+		BonusHit = 8,
+		BonusCrit = 9,
+	};
+}
 namespace Textures{
 	enum Enum{
 		Invalid = 0,

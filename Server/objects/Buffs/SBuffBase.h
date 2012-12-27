@@ -8,14 +8,15 @@
 #ifndef SBUFFBASE_H
 #define	SBUFFBASE_H
 #include "../../SFunctions.h"
-
+#include "../../Command/SC_BuffProces.h"
+class SBuff;
 class SBuffBase {
 public:
-	SBuffBase();
-	virtual uint32_t proces(uint32_t tickCount){}
+	SBuffBase(SBuff* buff);
+	virtual uint32_t proces(SC_BuffProces* cmd, uint32_t tickCount){}
 	virtual ~SBuffBase();
-private:
-
+protected:
+	SBuff* _buff;
 };
 
 #endif	/* SBUFFBASE_H */
