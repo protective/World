@@ -13,10 +13,14 @@
 
 class SBuffStat : public SBuffBase {
 public:
-	SBuffStat(SBuff* buff);
+	SBuffStat(SBuff* buff, StatsMods::Enum stat, int32_t value);
+	virtual SBuffStat* getBuffStat(){return this;}
+	StatsMods::Enum getStat(){return _stat;}
+	int32_t getValue(){return _value;}
 	virtual ~SBuffStat();
 private:
-
+	StatsMods::Enum _stat;
+	int32_t _value;
 };
 
 #endif	/* SBUFFSTAT_H */

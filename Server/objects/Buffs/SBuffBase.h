@@ -9,11 +9,14 @@
 #define	SBUFFBASE_H
 #include "../../SFunctions.h"
 #include "../../Command/SC_BuffProces.h"
+
 class SBuff;
+class SBuffStat;
 class SBuffBase {
 public:
 	SBuffBase(SBuff* buff);
 	virtual uint32_t proces(SC_BuffProces* cmd, uint32_t tickCount){}
+	virtual SBuffStat* getBuffStat(){return NULL;}
 	virtual ~SBuffBase();
 protected:
 	SBuff* _buff;

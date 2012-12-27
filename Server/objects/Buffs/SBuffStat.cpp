@@ -7,8 +7,11 @@
 
 #include "SBuffStat.h"
 
-SBuffStat::SBuffStat(SBuff* buff):
+SBuffStat::SBuffStat(SBuff* buff, StatsMods::Enum stat, int32_t value):
 SBuffBase(buff){
+	
+	_stat = stat;
+	_value = value;
 }
 
 

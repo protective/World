@@ -24,6 +24,8 @@ public:
 	SEffectTypeAddBuff();
 	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values);
 	list<ticksEffects>& gettickEffects(){return _tickEffects;}
+	map< StatsMods::Enum, int32_t>& getStatsMods(){return _statsMods;}
+	
 	uint32_t getTotalDamage(){return _totalDamage;}	
 	void setTotalDamage(int32_t damage){_totalDamage = damage;}
 	

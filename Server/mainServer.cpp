@@ -17,6 +17,7 @@
 #include <cstdlib>
 
 #include "Powers/SPowerTypeSpellDD.h"
+#include "Command/SC_CastSTarget.h"
 
 #include <math.h>
 
@@ -73,12 +74,13 @@ int main(int argc, char** argv) {
 	SPowerTypeLoader* pt =  new SPowerTypeLoader();
 	SPowerType* powert = new SPowerType(1);
 	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
-	buff->setTotalDamage(100);
+	buff->setTotalDamage(0);
 	buff->setDamageType(DamageTypes::arcane);
-	buff->setTickTime(2000);
+	buff->setTickTime(20000);
 	buff->gettickEffects().push_back(ticksEffects(25));
 	buff->gettickEffects().push_back(ticksEffects(50));
 	buff->gettickEffects().push_back(ticksEffects(100));
+	buff->getStatsMods()[StatsMods::SpellCrit] = 100;
 	
 	SEffectTypeDD* DD = new SEffectTypeDD();
 	DD->setCritMod(150);
@@ -93,7 +95,7 @@ int main(int argc, char** argv) {
 	
 	SObj* o = new SCreature(getFreeID(),p,0,0);
 	g->addObj(o);
-	SPower* po = new SPower(1,powert);
+	SPower* po = new SPower(1,o,powert);
 	o->getCreature()->addPower(po);
 //	o->getCreature()->addPower(pdd);
 	
@@ -102,7 +104,7 @@ int main(int argc, char** argv) {
 	
 	
 	for(int i = 1 ; i< 20 ; i++){
-		o->getCreature()->getPower(1)->activate(SDL_GetTicks()+(2000*i),o,t);
+		o->addCommand(new SC_CastSTarget(SDL_GetTicks()+(2000*i),o,o,o->getCreature()->getPower(1)));
 	}
 
 	/*

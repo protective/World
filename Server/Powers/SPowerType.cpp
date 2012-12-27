@@ -10,14 +10,14 @@
 SPowerType::SPowerType(uint32_t id) {
 	_id = id;
 	_stats[PowerTypeStats::CD]  = 10000;
-	_stats[PowerTypeStats::CastTime] = 1000;
+	_stats[PowerTypeStats::CastTime] = 10000;
 	_stats[PowerTypeStats::EnergyCost] = 0;
 	_stats[PowerTypeStats::projectileSpeed] = 100000;
 	_stats[PowerTypeStats::SpellLevel] = 4;
 	_stats[PowerTypeStats::ResistDmgType] = 2;
 	_stats[PowerTypeStats::ManaCost] = 0;
 	_stats[PowerTypeStats::BonusHit] = 0;
-	_stats[PowerTypeStats::BonusCrit] = 50;
+	_stats[PowerTypeStats::BonusCrit] = 0;
 	
 }
 
@@ -54,7 +54,7 @@ uint32_t SPowerType::activate(uint32_t time, SObj* caster, SObj* target, map<Pow
 	crit *= 100;
 	uint32_t hit = 10000;
 	
-
+	cerr<<"crit "<<crit<<endl;
 	
 	EResults::Enum hitResult;
 	

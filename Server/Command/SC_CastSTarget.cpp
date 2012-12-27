@@ -21,12 +21,18 @@ uint32_t SC_CastSTarget::execute(){
 		cerr<<"WARNING SC_CastSTarget execute not creature"<<endl;
 		return 0;
 	}
-	cerr<<"cast target"<<endl;
+	
 	//TODO check ra nge
 	SPower* p = _power; 
-	if(p){
+	if(p && _caster->readyCast()){
+		if(_caster->getCreature())
+			_caster->getCreature()->setCasting(_power);
+		cerr<<"cast target"<<endl;
 		p->activate(_time, _caster, _target);
+	}else{
+		//cerr<<"cast target Fail"<<endl;
 	}
+	return 0;
 }
 
 

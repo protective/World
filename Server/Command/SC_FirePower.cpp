@@ -16,6 +16,7 @@ SCommand(time,caster,target){
 
 uint32_t SC_FirePower::execute(){
 //TODO projectile speed
+	cerr<<"fire power"<<endl;
 	uint32_t range = 10000;
 	
 	uint32_t spellDelay = 0;
@@ -31,7 +32,23 @@ uint32_t SC_FirePower::execute(){
 	hit->getValues()[PowerProjectileMods::SpowerBonus] = 0;
 	hit->getValues()[PowerProjectileMods::SpowerBonusBuff] = 0;
 	hit->getValues()[PowerProjectileMods::ALevel] = _caster->getCreature()->getAttibute()[Attributes::Level];
+	
+	char message[sizeof(SerialCast)];
+	memset(message,0,sizeof(SerialCast));
+	SerialCast* data = (SerialCast*)(message);
+	data->_type = SerialType::SerialCast;
+	data->_size = sizeof(SerialCast);
+	data->_unitId = this->_caster->getId();
+	data->_powerid = this->_power->getId();
+	data->_targetId = _target->getId();
+	for(list<Client*>::iterator it = this->_caster->getSubscribers().begin(); it != this->_caster->getSubscribers().end(); it++){
+		sendtoC(*it,message,sizeof(SerialBeginCast));
+	}
+	
 	_target->addCommand(hit);
+	
+	if (_caster->getCreature())
+		_caster->getCreature()->setCasting(NULL);
 	return 0;
 }
 

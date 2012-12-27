@@ -70,8 +70,6 @@
         <itemPath>Powers/SPower.h</itemPath>
         <itemPath>Powers/SPowerHandler.cpp</itemPath>
         <itemPath>Powers/SPowerHandler.h</itemPath>
-        <itemPath>Powers/SPowerSpellType.cpp</itemPath>
-        <itemPath>Powers/SPowerSpellType.h</itemPath>
         <itemPath>Powers/SPowerType.cpp</itemPath>
         <itemPath>Powers/SPowerType.h</itemPath>
         <itemPath>Powers/SPowerTypeLoader.cpp</itemPath>

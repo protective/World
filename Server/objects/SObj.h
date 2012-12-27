@@ -25,6 +25,7 @@ public:
 	virtual void setUpdateCounter(uint32_t value){this->_updateCounter = value;}
 	virtual uint32_t getUpdateCounter(){return this->_updateCounter;}
 	virtual SCreature* getCreature(){return NULL;}
+	virtual bool readyCast(){return true;}
 	list<Client*>& getSubscribers(){return _subscribers;}
 	uint32_t addCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();

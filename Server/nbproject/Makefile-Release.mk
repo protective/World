@@ -37,7 +37,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
 	${OBJECTDIR}/objects/Buffs/SBuffBase.o \
 	${OBJECTDIR}/Powers/SEffectTypeAddBuff.o \
-	${OBJECTDIR}/Powers/SPowerSpellType.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_FirePower.o \
 	${OBJECTDIR}/Powers/SEffectType.o \
@@ -106,11 +105,6 @@ ${OBJECTDIR}/Powers/SEffectTypeAddBuff.o: Powers/SEffectTypeAddBuff.cpp
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SEffectTypeAddBuff.o Powers/SEffectTypeAddBuff.cpp
-
-${OBJECTDIR}/Powers/SPowerSpellType.o: Powers/SPowerSpellType.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerSpellType.o Powers/SPowerSpellType.cpp
 
 ${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o: Command/SC_ApplyTickSpellDamage.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Command

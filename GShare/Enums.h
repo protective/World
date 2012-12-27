@@ -34,6 +34,9 @@ namespace StatsMods{
 		ArmorAmount = 1,
 		ArmorP = 2,
 		FireDmg = 3,
+		SpellHit = 4,
+		SpellCrit = 5,
+		SpellPower = 6,
 	};
 }
 
