@@ -41,7 +41,34 @@ void printBuffer(char* buffer, uint32_t len){
 						cerr<<"****************************"<<endl;
 						break;
 					}
-					
+					case SerialType::SerialBeginCast:{
+						SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
+						cerr<<"Recived SerialBeginCast*************"<<endl
+						<<"\tpowerid "<<st->_powerid<<endl
+						<<"\tunitid "<<st->_unitId<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialCast:{
+						SerialCast* st = (SerialCast*)(buffer+offset);
+						cerr<<"Recived SerialCast*************"<<endl
+						<<"\tpowerid "<<st->_powerid<<endl
+						<<"\tpowerid "<<st->_powerid<<endl
+						<<"\ttargetid "<<st->_targetId<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialTakeDmgHeal:{
+						SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
+						cerr<<"Recived SerialTakeDmgHeal*************"<<endl
+						<<"\tpowerid "<<st->_powerid<<endl
+						<<"\tunitid "<<st->_unitId<<endl
+						<<"\tcasterid "<<st->_casterId<<endl
+						<<"\tvalue "<<st->_value<<endl
+						<<"\tnewvalue "<<st->_newvalue<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
 					default:{
 						cerr<<"error recived unknown packate in GLobal"<<endl;
 						offset = len;

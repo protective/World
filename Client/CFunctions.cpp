@@ -136,7 +136,7 @@ void* thread_Recive(){
 
 uint32_t parseBuffer(char* buffer, uint32_t len){
 	uint32_t offset = 0;
-	//printBuffer(buffer,len);
+	printBuffer(buffer,len);
 	while (offset < len){
 		SerialData* meta = (SerialData*)(buffer + offset);
 
@@ -161,8 +161,18 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 					break;
 
 				}
-				
-
+				case SerialType::SerialBeginCast:{
+					SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
+					break;
+				}				
+				case SerialType::SerialCast:{
+					SerialCast* st = (SerialCast*)(buffer+offset);
+					break;
+				}
+				case SerialType::SerialTakeDmgHeal:{
+					SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
+					break;
+				}
 				default:{
 					cerr<<"ERROR PARSING debug recived = "<<(uint32_t) *(buffer+offset)<<endl;
 

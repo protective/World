@@ -25,8 +25,8 @@
 
 #include "CFunctions.h"
 
-#define Basewidth 1366
-#define Basehight 768
+#define Basewidth 400
+#define Basehight 300
 
 #define BPP 4
 #define DEPTH 32

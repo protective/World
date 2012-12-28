@@ -42,7 +42,7 @@ uint32_t SC_FirePower::execute(){
 	data->_powerid = this->_power->getId();
 	data->_targetId = _target->getId();
 	for(list<Client*>::iterator it = this->_caster->getSubscribers().begin(); it != this->_caster->getSubscribers().end(); it++){
-		sendtoC(*it,message,sizeof(SerialBeginCast));
+		sendtoC(*it,message,sizeof(SerialCast));
 	}
 	
 	_target->addCommand(hit);
