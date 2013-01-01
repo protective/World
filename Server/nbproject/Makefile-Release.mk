@@ -44,8 +44,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
-	${OBJECTDIR}/objects/Buffs/SBuff.o \
 	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
+	${OBJECTDIR}/objects/Buffs/SBuff.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
 	${OBJECTDIR}/objects/SCreature.o \
@@ -141,15 +141,15 @@ ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
 
-${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
-	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuff.o objects/Buffs/SBuff.cpp
-
 ${OBJECTDIR}/Powers/SPowerTypeLoader.o: Powers/SPowerTypeLoader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeLoader.o Powers/SPowerTypeLoader.cpp
+
+${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuff.o objects/Buffs/SBuff.cpp
 
 ${OBJECTDIR}/Client.o: Client.cpp 
 	${MKDIR} -p ${OBJECTDIR}

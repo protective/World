@@ -59,6 +59,7 @@ struct SerialTakeDmgHeal : public SerialData{ //id = 3
 struct SerialBeginCast : public SerialData{ //id = 4
     uint32_t _unitId;
 	uint32_t _powerid;
+	uint32_t _castTime;
 };
 
 struct SerialCast : public SerialData{ //id = 5

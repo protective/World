@@ -26,6 +26,7 @@ uint32_t SC_ApplyDamage::execute(){
 	SerialTakeDmgHeal* data = (SerialTakeDmgHeal*)(message);
 	data->_type = SerialType::SerialTakeDmgHeal;
 	data->_size = sizeof(SerialTakeDmgHeal);
+	data->_time = _time;
 	data->_value = 0 - _damage;
 	data->_newvalue = _target->getCreature()->getAttibute()[Attributes::Hp];
 	data->_unitId = _target->getId();

@@ -34,19 +34,24 @@ using namespace std;
 
 void DrawScreen(SDL_Surface* screen)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glLoadIdentity();
 
+// draw quad in screen coodinates
+	glBegin(GL_QUADS);
+		glColor3f(1.0f, 1.0f, 1.0f);
+		glVertex2i(10, 10);
+		glVertex2i(10, 80);
+		glVertex2i(80, 80);
+		glVertex2i(80, 10);
+	glEnd (); 
 
 	//mainFrame->Draw();
 
 	//for (CobjI it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 	//	it->second->Draw();
 	//}
-
-
-
- 
 
 	SDL_GL_SwapBuffers();
 
@@ -112,27 +117,24 @@ void DrawScreen(SDL_Surface* screen)
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ); // *new*
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 
-	SDL_Surface* screen = SDL_SetVideoMode(Basewidth, Basehight, 24, SDL_OPENGL); // *changed*
+	SDL_Surface* screen = SDL_SetVideoMode(Basewidth, Basehight, 24, SDL_OPENGL | SDL_HWSURFACE); // *changed*
 	if(!screen){
 		cerr<<"ERROR init SDL >"<<SDL_GetError()<<endl;
 		exit(1);
 	}
-	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND); //Enable blending.
-	glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-	
-	//glEnable(GL_ALPHA_TEST);
-	//glAlphaFunc(GL_GREATER, 0.5);
-	glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-	glViewport( 0, 0, Basewidth, Basehight );
-	glClear( GL_COLOR_BUFFER_BIT );
-	glMatrixMode( GL_PROJECTION );
+	glViewport(0, 0, Basewidth, Basehight);
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearDepth(1.0);
+	glDepthFunc(GL_LESS);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	glShadeModel(GL_SMOOTH);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0.0f, Basewidth, Basehight, 0.0f, -1.0f, 1.0f);
-	glMatrixMode( GL_MODELVIEW );
-	glLoadIdentity();
-
+	//gluPerspective( 0.45f,  (GLfloat)600/(GLfloat)300,  100.0f,  10000.0f);
+	glOrtho(0, Basewidth-1, 0, Basehight-1, -1, 1);
+	glMatrixMode(GL_MODELVIEW);
 	
 	Connect(argip,argteam, 42);
 	uint32_t deltaTime = 0;

@@ -21,8 +21,8 @@ void printBuffer(char* buffer, uint32_t len){
 				SerialData* st = (SerialData*)(buffer+offset);
 				cerr<<"Recived ********************"<<endl
 						<<"\ttype "<<st->_type <<endl
-						<<"\tsize "<<st->_size<<endl;
-
+						<<"\tsize "<<st->_size<<endl
+						<<"\ttime "<<st->_time<<endl;	
 				switch(temp->_type)
 				{
 					case SerialType::SerialTime:{
@@ -45,7 +45,8 @@ void printBuffer(char* buffer, uint32_t len){
 						SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
 						cerr<<"Recived SerialBeginCast*************"<<endl
 						<<"\tpowerid "<<st->_powerid<<endl
-						<<"\tunitid "<<st->_unitId<<endl;
+						<<"\tunitid "<<st->_unitId<<endl
+						<<"\tcastTime "<<st->_castTime<<endl;
 						cerr<<"****************************"<<endl;
 						break;
 					}

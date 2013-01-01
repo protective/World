@@ -25,12 +25,20 @@
         <itemPath>../Network/Serialize.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="objects" projectFiles="true">
+        <itemPath>objects/CCreature.cpp</itemPath>
+        <itemPath>objects/CCreature.h</itemPath>
         <itemPath>objects/CObj.cpp</itemPath>
         <itemPath>objects/CObj.h</itemPath>
         <itemPath>objects/CPos.cpp</itemPath>
         <itemPath>objects/CPos.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f5" displayName="UI" projectFiles="true">
+        <itemPath>UI/UIBaseFrame.cpp</itemPath>
+        <itemPath>UI/UIBaseFrame.h</itemPath>
+        <itemPath>UI/UICastBar.cpp</itemPath>
+        <itemPath>UI/UICastBar.h</itemPath>
+        <itemPath>UI/UIMainFrame.cpp</itemPath>
+        <itemPath>UI/UIMainFrame.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="world" projectFiles="true">
         <itemPath>world/CGrid.cpp</itemPath>

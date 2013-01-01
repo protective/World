@@ -38,6 +38,7 @@ uint32_t SC_FirePower::execute(){
 	SerialCast* data = (SerialCast*)(message);
 	data->_type = SerialType::SerialCast;
 	data->_size = sizeof(SerialCast);
+	data->_time = _time;
 	data->_unitId = this->_caster->getId();
 	data->_powerid = this->_power->getId();
 	data->_targetId = _target->getId();

@@ -35,13 +35,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/world/CGrid.o \
+	${OBJECTDIR}/UI/UICastBar.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/CGlobals.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/world/CWorld.o \
+	${OBJECTDIR}/UI/UIMainFrame.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
 	${OBJECTDIR}/CDatabase.o \
+	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
+	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o
@@ -76,6 +80,11 @@ ${OBJECTDIR}/world/CGrid.o: world/CGrid.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CGrid.o world/CGrid.cpp
 
+${OBJECTDIR}/UI/UICastBar.o: UI/UICastBar.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UICastBar.o UI/UICastBar.cpp
+
 ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
@@ -96,6 +105,11 @@ ${OBJECTDIR}/world/CWorld.o: world/CWorld.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CWorld.o world/CWorld.cpp
 
+${OBJECTDIR}/UI/UIMainFrame.o: UI/UIMainFrame.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIMainFrame.o UI/UIMainFrame.cpp
+
 ${OBJECTDIR}/CPlayerObjHandle.o: CPlayerObjHandle.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -106,10 +120,20 @@ ${OBJECTDIR}/CDatabase.o: CDatabase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CDatabase.o CDatabase.cpp
 
+${OBJECTDIR}/UI/UIBaseFrame.o: UI/UIBaseFrame.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIBaseFrame.o UI/UIBaseFrame.cpp
+
 ${OBJECTDIR}/CFunctions.o: CFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
+
+${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CCreature.o objects/CCreature.cpp
 
 ${OBJECTDIR}/mainClient.o: mainClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}
