@@ -30,7 +30,6 @@ void printBuffer(char* buffer, uint32_t len){
 						cerr<<"Recived RegTime*************"<<endl
 						<<"\tTime "<<st->_sendtime<<endl;
 						cerr<<"****************************"<<endl;
-
 						break;
 					}
 					case SerialType::SerialReqJoin:{
@@ -54,7 +53,7 @@ void printBuffer(char* buffer, uint32_t len){
 						SerialCast* st = (SerialCast*)(buffer+offset);
 						cerr<<"Recived SerialCast*************"<<endl
 						<<"\tpowerid "<<st->_powerid<<endl
-						<<"\tpowerid "<<st->_powerid<<endl
+						<<"\tunitid "<<st->_unitId<<endl
 						<<"\ttargetid "<<st->_targetId<<endl;
 						cerr<<"****************************"<<endl;
 						break;
@@ -67,6 +66,44 @@ void printBuffer(char* buffer, uint32_t len){
 						<<"\tcasterid "<<st->_casterId<<endl
 						<<"\tvalue "<<st->_value<<endl
 						<<"\tnewvalue "<<st->_newvalue<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialCreature:{
+						SerialCreature* st = (SerialCreature*)(buffer+offset);
+						cerr<<"Recived SerialCreature*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tplayerId "<<st->_playerId<<endl
+						<<"\thpp "<<st->_hpp<<endl
+						<<"\tmpp "<<st->_mpp<<endl
+						<<"\tepp "<<st->_epp<<endl
+						<<"\tx "<<st->_x<<endl
+						<<"\ty "<<st->_y<<endl
+						<<"\tz "<<st->_z<<endl
+						<<"\td "<<st->_d<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialPower:{
+						SerialPower* st = (SerialPower*)(buffer+offset);
+						cerr<<"Recived SerialPower*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tpowerId "<<st->_powerId<<endl
+						<<"\ticonId "<<st->_iconId<<endl
+						<<"\tcd "<<st->_cd<<endl
+						<<"\tcastTime "<<st->_castTime<<endl
+						<<"\thpCost "<<st->_hpCost<<endl
+						<<"\tmanaCost "<<st->_manaCost<<endl
+						<<"\tenergyCost"<<st->_energyCost<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialReqActivatePowerT:{
+						SerialReqActivatePowerT* st = (SerialReqActivatePowerT*)(buffer+offset);
+						cerr<<"Recived SerialPower*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tpowerId "<<st->_powerId<<endl
+						<<"\ttargetId"<<st->_targetId<<endl;
 						cerr<<"****************************"<<endl;
 						break;
 					}

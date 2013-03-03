@@ -14,6 +14,20 @@ SPower::SPower(uint32_t id, SObj* owner, SPowerType* powertype) {
 	_owner = owner;
 }
 
+void SPower::sendToClient(Client* cli){
+	char message[sizeof(SerialPower)];
+	memset(message,0,sizeof(SerialPower));
+	SerialPower* data = (SerialPower*)(message);
+	data->_type = SerialType::SerialPower;
+	data->_size = sizeof(SerialPower);
+	data->_unitId = this->_owner->getId();
+	data->_powerId = this->_id;
+	data->_iconId = this->_powertype->getIconId();
+	data->_cd = this->_cd;
+	
+	sendtoC(cli,message,sizeof(SerialPower));
+}
+
 uint32_t SPower::activate(uint32_t time, SObj* caster,SObj* target){
 	cerr<<"activate power "<<endl; //CHECK MANA ENERGY and regent costs
 	

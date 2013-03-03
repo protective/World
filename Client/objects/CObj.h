@@ -10,10 +10,10 @@
 #include "../CFunctions.h"
 #include "CPos.h"
 
-
+class CCreature;
 class CObj {
 public:
-	CObj(uint32_t id, uint32_t playerId, CPos& pos);
+	CObj(uint32_t id, uint32_t playerId, CPos pos);
 	virtual CPos& getPos();
 	virtual CPos& getActualPos(){return _actualPos;}
 	void MovePos(int32_t x, int32_t y);
@@ -26,7 +26,8 @@ public:
 	virtual bool isDead(){return false;}
 	virtual uint8_t getTeam(){return _team;}
 	virtual uint32_t getPlayerId(){return _playerId;}
-
+	virtual CCreature* getCreature(){return NULL;}
+        virtual void Draw(){}
 	virtual ~CObj();
 protected:
 	uint32_t _id;

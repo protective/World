@@ -9,6 +9,7 @@
 
 #include "Client.h"
 #include "World/SWorld.h"
+#include "objects/SCreature.h"
 //#include "Sspacebjects/subsystems/SShipTypeSlotData.h"
 
 Client::Client(int socket) {
@@ -41,6 +42,8 @@ Client::Client(int socket) {
 void Client::initTransfere(){
 	for (map<uint32_t,SObj*>::iterator it = world->getGrids()[1]->getObjInGrid().begin(); it != world->getGrids()[1]->getObjInGrid().end(); it++){
 		it->second->getSubscribers().push_back(this);
+		if(it->second->getCreature())
+			it->second->getCreature()->sendToClient(this);		
 	}
 			
 	cerr<<"data sendt"<<endl;

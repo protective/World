@@ -15,7 +15,6 @@
 #include <fstream>
 #include <pthread.h>
 #include <cstdlib>
-
 #include "Powers/SPowerTypeSpellDD.h"
 #include "Command/SC_CastSTarget.h"
 
@@ -72,7 +71,9 @@ int main(int argc, char** argv) {
 
 	//WORLD
 	SPowerTypeLoader* pt =  new SPowerTypeLoader();
-	SPowerType* powert = new SPowerType(1);
+	
+	
+	//EFFECTS
 	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
 	buff->setTotalDamage(0);
 	buff->setDamageType(DamageTypes::arcane);
@@ -87,48 +88,45 @@ int main(int argc, char** argv) {
 	DD->setMinDamage(50);
 	DD->setMaxDamage(60);
 	DD->setDamageType(DamageTypes::Fire);
+	
+	
+	//powerTypes
+	SPowerType* powert = new SPowerType(1,1);
 	powert->getSubComponents()[EResults::SHit].push_back(buff);
-	powert->getSubComponents()[EResults::SCrit].push_back(DD);
+	powert->getSubComponents()[EResults::SCrit].push_back(buff);
+	
+	SPowerType* powert2 = new SPowerType(2,2);
+	powert->getSubComponents()[EResults::SHit].push_back(DD);
+	powert->getSubComponents()[EResults::SCrit].push_back(DD);	
+	
+	//WORLD
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
-	SPos p(0,0,0);
+	SPos p1(10000,10000,0);
 	
-	SObj* o = new SCreature(getFreeID(),p,0,0);
+	SObj* o = new SCreature(getFreeID(),p1,0,0);
 	g->addObj(o);
 	SPower* po = new SPower(1,o,powert);
 	o->getCreature()->addPower(po);
+	po = new SPower(2,o,powert2);
+	o->getCreature()->addPower(po);
 //	o->getCreature()->addPower(pdd);
 	
-	SObj* t = new SCreature(getFreeID(),p,0,0);
+	SPos p2(3500,7000,0);
+	SObj* t = new SCreature(getFreeID(),p2,0,0);
 	g->addObj(t);
 	
 	
-	for(int i = 1 ; i< 20 ; i++){
-		o->addCommand(new SC_CastSTarget(SDL_GetTicks()+(2000*i),o,o,o->getCreature()->getPower(1)));
-	}
+	//for(int i = 1 ; i< 20 ; i++){
+	//	o->addCommand(new SC_CastSTarget(SDL_GetTicks()+(2000*i),o,o,o->getCreature()->getPower(1)));
+	//}
 
-	/*
-	for(uint32_t j = 0 ; j < 1; j++){
-		SObj* o = new SObj(getFreeID(),p,0,0);
-		g->addObj(o);
-		for(uint32_t i = 0 ; i< 1; i++){
-			//cerr<<SDL_GetTicks()+(i*100)<<endl;
-			o->addCommand(new SC_Debuff(SDL_GetTicks()+(i*1000)+(j*10),o,5,11));
-		}
-	}
-	*/
 	//data.LoadGame();
 	//cerr<<"done load game"<<endl;
 
 	SPos* temppos =  NULL;
 
 
-	//temppos =  new SPos(-40000,-90000,0);
-	//temppos->grid = world->getGrids()[1];
-	//SAstoroidBelt* astob = new SAstoroidBelt(getFreeID(), *temppos);
-	//world->getGrids()[1]->addObj(astob);
-	//astob->AddRoid(astoroidTypes[8],220);
-	//astob->AddRoid(astoroidTypes[8],220);
 	cerr<<"done init"<<endl;
 	//INIT GAME
 
@@ -136,7 +134,7 @@ int main(int argc, char** argv) {
 
 	pthread_barrier_init(&procesBar,NULL,NRTHREADS);
 
-	for (int i = 0 ; i< NRTHREADS; i++){
+	for (uint64_t i = 0 ; i< NRTHREADS; i++){
 		pthread_create(&procesThreads[i], NULL, (void*(*)(void*))procesworldThread, (void*)i);
 	}
 	//GAME LOOP************************

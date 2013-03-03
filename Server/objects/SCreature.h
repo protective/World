@@ -23,6 +23,7 @@ public:
 	uint32_t removeBuff(SBuff* buff);
 	virtual bool readyCast(){if (_casting) return false;return true;}
 	void setCasting(SPower* casting){_casting = casting;}
+	void sendToClient(Client* cli);
 	void updateAttribute();
 private:
 	map<uint32_t,SPower*> _powerList;

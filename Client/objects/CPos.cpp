@@ -12,9 +12,10 @@ CPos::CPos() {
 }
 
 
-CPos::CPos(int32_t x, int32_t y, int32_t d) {
+CPos::CPos(int32_t x, int32_t y, int32_t z, int32_t d) {
 	this->x = x;
 	this->y = y;
+	this->z = z;
 	this->d = d;
 	this->grid = NULL;
 }
@@ -32,6 +33,7 @@ void CPos::turn(int32_t deg){
 CPos::CPos(CPos& pos) {
 	this->x = pos.x;
 	this->y = pos.y;
+	this->z = pos.z;
 	this->d = pos.d;
 	this->grid = pos.grid;
 }

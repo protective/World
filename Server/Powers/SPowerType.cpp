@@ -7,8 +7,9 @@
 
 #include "SPowerType.h"
 #include "../objects/SCreature.h"
-SPowerType::SPowerType(uint32_t id) {
+SPowerType::SPowerType(uint32_t id, uint32_t iconId) {
 	_id = id;
+	_iconId = iconId;
 	_stats[PowerTypeStats::CD]  = 10000;
 	_stats[PowerTypeStats::CastTime] = 10000;
 	_stats[PowerTypeStats::EnergyCost] = 0;

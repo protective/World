@@ -13,8 +13,34 @@ SObj(id,pos,team,playerId){
 	
 	
 }
+
+void SCreature::sendToClient(Client* cli){
+	char message[sizeof(SerialCreature)];
+	memset(message,0,sizeof(SerialCreature));
+	SerialCreature* data = (SerialCreature*)(message);
+	data->_type = SerialType::SerialCreature;
+	data->_size = sizeof(SerialCreature);
+	data->_unitId = this->_id;
+	data->_playerId = this->_playerId;
+	data->_x = this->_pos.x;
+	data->_y = this->_pos.y;
+	data->_z = this->_pos.z;
+	data->_d = this->_pos.d;
+	//TODO implemented sendt rest
+	sendtoC(cli,message,sizeof(SerialCreature));
+	
+	for(map<uint32_t,SPower*>::iterator it = _powerList.begin(); it != _powerList.end(); it++){
+		it->second->sendToClient(cli);
+	}
+	
+}
+
 void SCreature::addPower(SPower* power){
 	_powerList[power->getId()] = power;
+	
+	for(list<Client*>::iterator it = _subscribers.begin(); it != _subscribers.end(); it++){
+		power->sendToClient(*it);
+	}
 }
 
 uint32_t SCreature::addBuff(SBuff* buff){

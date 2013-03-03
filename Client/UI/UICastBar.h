@@ -13,7 +13,7 @@
 class CCreature;
 class UICastBar : public UIBaseFrame {
 public:
-	UICastBar(UIBaseFrame* parrent, uint32_t x, uint32_t y, uint32_t wight, uint32_t height,CCreature* creature);
+	UICastBar(UIBaseFrame* parrent, uint32_t x, uint32_t y, uint32_t wight, uint32_t height, CCreature* creature);
 	virtual void draw();
 	virtual ~UICastBar();
 private:

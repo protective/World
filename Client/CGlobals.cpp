@@ -9,6 +9,8 @@
 #include "CPlayerObjHandle.h"
 
 #include "world/CWorld.h"
+#include "UI/UIMainFrame.h"
+#include "objects/CObj.h"
 ConnectionStruct connection;
 uint32_t tTime = 0;
 pthread_mutex_t lockInput= PTHREAD_MUTEX_INITIALIZER;
@@ -20,5 +22,12 @@ uint32_t playerId;
 map<uint32_t,uint8_t> teamlist;
 
 FTGLPixmapFont font("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");
+UIMainFrame* mainFrame = new UIMainFrame();
+
+CObj* playerSels = NULL;
+CObj* playerTarget = NULL;
 
 
+CPos* viewPos = new CPos(0,0,0,0);
+double viewZoom = 1;
+double viewRZoom = 1;

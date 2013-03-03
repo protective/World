@@ -27,10 +27,11 @@
 #include <cstdlib>
 #include "../GShare/GFunctions.h"
 
+
 #include <FTGL/ftgl.h>
 class CPlayerObjHandle;
 class CObj;
-
+class UIMainFrame;
 class CPos;
 class CWorld;
 using namespace std;
@@ -60,6 +61,7 @@ extern CPlayerObjHandle* playerObj;
 extern map<uint32_t,GLuint> textures;
 extern CWorld* world;
 extern CObj* playerSels;
+extern CObj* playerTarget;
 extern list<CObj*> playerMultiSels;
 
 extern uint32_t playerId;
@@ -69,5 +71,6 @@ extern double viewZoom;
 extern double viewRZoom;
 extern FTGLPixmapFont font;
 extern map<uint32_t, CPlayercolour> playercolour;
+extern UIMainFrame* mainFrame;
 #endif	/* CGLOBALS_H */
 

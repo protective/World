@@ -36,19 +36,23 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/world/CGrid.o \
 	${OBJECTDIR}/UI/UICastBar.o \
+	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/CGlobals.o \
+	${OBJECTDIR}/UI/UIAbilityBox.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
+	${OBJECTDIR}/Grafic/Grafic.o \
 	${OBJECTDIR}/world/CWorld.o \
-	${OBJECTDIR}/UI/UIMainFrame.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
+	${OBJECTDIR}/UI/UIMainFrame.o \
 	${OBJECTDIR}/CDatabase.o \
-	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
+	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
-	${OBJECTDIR}/_ext/2098112761/GFunctions.o
+	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
+	${OBJECTDIR}/UI/UISocket.o
 
 
 # C Compiler Flags
@@ -85,6 +89,11 @@ ${OBJECTDIR}/UI/UICastBar.o: UI/UICastBar.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UICastBar.o UI/UICastBar.cpp
 
+${OBJECTDIR}/Powers/CPower.o: Powers/CPower.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/CPower.o Powers/CPower.cpp
+
 ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
@@ -95,40 +104,50 @@ ${OBJECTDIR}/CGlobals.o: CGlobals.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CGlobals.o CGlobals.cpp
 
+${OBJECTDIR}/UI/UIAbilityBox.o: UI/UIAbilityBox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIAbilityBox.o UI/UIAbilityBox.cpp
+
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GGlobals.o ../GShare/GGlobals.cpp
+
+${OBJECTDIR}/Grafic/Grafic.o: Grafic/Grafic.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Grafic.o Grafic/Grafic.cpp
 
 ${OBJECTDIR}/world/CWorld.o: world/CWorld.cpp 
 	${MKDIR} -p ${OBJECTDIR}/world
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CWorld.o world/CWorld.cpp
 
-${OBJECTDIR}/UI/UIMainFrame.o: UI/UIMainFrame.cpp 
-	${MKDIR} -p ${OBJECTDIR}/UI
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIMainFrame.o UI/UIMainFrame.cpp
-
 ${OBJECTDIR}/CPlayerObjHandle.o: CPlayerObjHandle.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CPlayerObjHandle.o CPlayerObjHandle.cpp
+
+${OBJECTDIR}/UI/UIMainFrame.o: UI/UIMainFrame.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIMainFrame.o UI/UIMainFrame.cpp
 
 ${OBJECTDIR}/CDatabase.o: CDatabase.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CDatabase.o CDatabase.cpp
 
-${OBJECTDIR}/UI/UIBaseFrame.o: UI/UIBaseFrame.cpp 
-	${MKDIR} -p ${OBJECTDIR}/UI
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIBaseFrame.o UI/UIBaseFrame.cpp
-
 ${OBJECTDIR}/CFunctions.o: CFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
+
+${OBJECTDIR}/UI/UIBaseFrame.o: UI/UIBaseFrame.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIBaseFrame.o UI/UIBaseFrame.cpp
 
 ${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
@@ -149,6 +168,11 @@ ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GFunctions.o ../GShare/GFunctions.cpp
+
+${OBJECTDIR}/UI/UISocket.o: UI/UISocket.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UISocket.o UI/UISocket.cpp
 
 # Subprojects
 .build-subprojects:

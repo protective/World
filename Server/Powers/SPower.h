@@ -16,6 +16,7 @@ public:
 	virtual uint32_t activate(uint32_t time, SObj* unit,SObj* target);
 	virtual ~SPower();
 	SPowerType* getPowerType(){return _powertype;}
+	void sendToClient(Client* cli);
 	uint32_t getId() {return _id;}
 protected:
 	SPowerType* _powertype;

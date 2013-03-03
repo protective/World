@@ -1,0 +1,12 @@
+case 1:{
+	glBindTexture( GL_TEXTURE_2D, textures[Textures::Icons1]);
+	uvx1 = 0;
+	uvy1 = 0;
+	break;
+}
+case 2:{
+	glBindTexture( GL_TEXTURE_2D, textures[Textures::Icons1]);
+	uvx1 = 40;
+	uvy1 = 0;
+	break;
+}

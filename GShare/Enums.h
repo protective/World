@@ -18,6 +18,14 @@ namespace MoveBitF
   const uint32_t SOME_VALUE2 = 0x04;
   const uint32_t SOME_VALUE3 = 0x08;
 }
+
+namespace Textures{
+	enum Enum{
+		Invalid = 0,
+		Icons1 = 1,
+	};
+}
+
 namespace EResults{
 	enum Enum{
 		Invalid = 0,
@@ -107,24 +115,6 @@ namespace PowerTypeStats{
 		BonusCrit = 9,
 	};
 }
-namespace Textures{
-	enum Enum{
-		Invalid = 0,
-        test = 1,
-		BC1 = 2,
-		Shot_Laser_I = 3,
-		EffectSheet = 4,
-		SlotSheet = 5,
-		ShotSheet = 6,
-		ItemSheet = 7,
-		SubItemSheet = 8,
-		ObjSheet = 9,
-		OwObjSheet = 10,
-		EffectSheet2 = 11,
-		IconSheet = 12,
-	};
-}
-
 namespace ParticalTex{
 	enum Enum{
 		Invalid = 0,

@@ -13,6 +13,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Grafic" projectFiles="true">
+        <itemPath>Grafic/Grafic.cpp</itemPath>
+        <itemPath>Grafic/Grafic.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Gshare" projectFiles="true">
         <itemPath>../GShare/Enums.h</itemPath>
@@ -32,13 +34,21 @@
         <itemPath>objects/CPos.cpp</itemPath>
         <itemPath>objects/CPos.h</itemPath>
       </logicalFolder>
+      <logicalFolder name="f6" displayName="Powers" projectFiles="true">
+        <itemPath>Powers/CPower.cpp</itemPath>
+        <itemPath>Powers/CPower.h</itemPath>
+      </logicalFolder>
       <logicalFolder name="f5" displayName="UI" projectFiles="true">
+        <itemPath>UI/UIAbilityBox.cpp</itemPath>
+        <itemPath>UI/UIAbilityBox.h</itemPath>
         <itemPath>UI/UIBaseFrame.cpp</itemPath>
         <itemPath>UI/UIBaseFrame.h</itemPath>
         <itemPath>UI/UICastBar.cpp</itemPath>
         <itemPath>UI/UICastBar.h</itemPath>
         <itemPath>UI/UIMainFrame.cpp</itemPath>
         <itemPath>UI/UIMainFrame.h</itemPath>
+        <itemPath>UI/UISocket.cpp</itemPath>
+        <itemPath>UI/UISocket.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="world" projectFiles="true">
         <itemPath>world/CGrid.cpp</itemPath>

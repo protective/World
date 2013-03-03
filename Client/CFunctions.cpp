@@ -163,14 +163,30 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 				}
 				case SerialType::SerialBeginCast:{
 					SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
+					playerObj->recBeginCast(st);
 					break;
 				}				
 				case SerialType::SerialCast:{
 					SerialCast* st = (SerialCast*)(buffer+offset);
+					playerObj->recCast(st);
 					break;
 				}
 				case SerialType::SerialTakeDmgHeal:{
 					SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
+					break;
+				}
+				case SerialType::SerialPower:{
+					SerialPower* st = (SerialPower*)(buffer+offset);
+					playerObj->recPower(st);
+					break;
+				}
+				case SerialType::SerialPowerType:{
+					SerialPower* st = (SerialPower*)(buffer+offset);
+					break;
+				}
+				case SerialType::SerialCreature:{
+					SerialCreature* st = (SerialCreature*)(buffer+offset);
+					playerObj->recCreature(st);
 					break;
 				}
 				default:{

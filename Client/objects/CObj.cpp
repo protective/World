@@ -9,7 +9,7 @@
 
 #include "CObj.h"
 
-CObj::CObj(uint32_t id, uint32_t playerId, CPos& pos) {
+CObj::CObj(uint32_t id, uint32_t playerId, CPos pos) {
 	this->_id = id;
 	this->_team = teamlist[playerId];
 	this->_playerId = playerId;

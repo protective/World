@@ -111,6 +111,9 @@
         <compilerSet>GNU|GNU</compilerSet>
       </toolsSet>
       <compileType>
+        <ccTool>
+          <commandlineTool>g++</commandlineTool>
+        </ccTool>
         <linkerTool>
           <linkerLibItems>
             <linkerLibStdlibItem>PosixThreads</linkerLibStdlibItem>

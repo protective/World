@@ -13,9 +13,10 @@ class CPos {
 public:
 	CPos();
 	CPos(CPos& pos);
-	CPos(int32_t x, int32_t y, int32_t d);
+	CPos(int32_t x, int32_t y, int32_t z, int32_t d);
 	int32_t x;
 	int32_t y;
+	int32_t z;
 	int32_t d;
 	CGrid* grid;
 

@@ -21,12 +21,11 @@
 #include "GL/gl.h"
 #include <pthread.h>
 #include <cstdlib>
-
-
+#include "Grafic/Grafic.h"
+#include "UI/UIMainFrame.h"
 #include "CFunctions.h"
+#include "objects/CCreature.h"
 
-#define Basewidth 400
-#define Basehight 300
 
 #define BPP 4
 #define DEPTH 32
@@ -39,19 +38,14 @@ void DrawScreen(SDL_Surface* screen)
 	glLoadIdentity();
 
 // draw quad in screen coodinates
-	glBegin(GL_QUADS);
-		glColor3f(1.0f, 1.0f, 1.0f);
-		glVertex2i(10, 10);
-		glVertex2i(10, 80);
-		glVertex2i(80, 80);
-		glVertex2i(80, 10);
-	glEnd (); 
 
-	//mainFrame->Draw();
 
-	//for (CobjI it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
-	//	it->second->Draw();
-	//}
+	mainFrame->updateUI();
+	mainFrame->draw();
+
+	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
+		it->second->Draw();
+	}
 
 	SDL_GL_SwapBuffers();
 
@@ -95,8 +89,8 @@ void DrawScreen(SDL_Surface* screen)
 
 
 	//loadGData();
-		TTF_Init();
-	  atexit(TTF_Quit);
+	TTF_Init();
+	atexit(TTF_Quit);
 	  /*fronts
 	  for (int i = 16; i < 31; i++ ){
 	  	front1.insert(pair<uint32_t, TTF_Font* >(i, TTF_OpenFont("/usr/share/fonts/truetype/freefont/FreeSans.ttf",i)));
@@ -127,14 +121,17 @@ void DrawScreen(SDL_Surface* screen)
 	glClearDepth(1.0);
 	glDepthFunc(GL_LESS);
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
 	glShadeModel(GL_SMOOTH);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//gluPerspective( 0.45f,  (GLfloat)600/(GLfloat)300,  100.0f,  10000.0f);
-	glOrtho(0, Basewidth-1, 0, Basehight-1, -1, 1);
+	glOrtho(0, Basewidth-1, Basehight-1, 0, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
+	
+	textures[Textures::Icons1] = loadTexture(Textures::Icons1);
+	
 	
 	Connect(argip,argteam, 42);
 	uint32_t deltaTime = 0;
@@ -154,9 +151,7 @@ void DrawScreen(SDL_Surface* screen)
 		lastTime = SDL_GetTicks();
 		pthread_mutex_lock(&lockInput);
 
-		
 		DrawScreen(screen);
-		
 		pthread_mutex_unlock(&lockInput);
 		
 		//end main loop
@@ -169,7 +164,10 @@ void DrawScreen(SDL_Surface* screen)
 				case SDL_QUIT:
 					keypress = 1;
 					break;
-				
+				case SDL_MOUSEBUTTONDOWN:
+					if (mainFrame->click(event.button.x,event.button.y) == 0)
+						playerObj->selectObject(event.button.x,event.button.y);
+					break;
 					//if (event.key.keysym.sym == SDLK_s)
 					
 
