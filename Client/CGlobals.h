@@ -72,5 +72,6 @@ extern double viewRZoom;
 extern FTGLPixmapFont font;
 extern map<uint32_t, CPlayercolour> playercolour;
 extern UIMainFrame* mainFrame;
+extern map<SDLKey,bool> keydown;
 #endif	/* CGLOBALS_H */
 

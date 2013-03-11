@@ -107,6 +107,28 @@ void printBuffer(char* buffer, uint32_t len){
 						cerr<<"****************************"<<endl;
 						break;
 					}
+					case SerialType::SerialReqMove:{
+						SerialReqMove* st = (SerialReqMove*)(buffer+offset);
+						cerr<<"Recived SerialReqMove*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\t\tposX "<<st->_pos.x<<endl
+						<<"\t\tposY"<<st->_pos.y<<endl
+						<<"\t\tposZ"<<st->_pos.z<<endl
+						<<"\t\tposD"<<st->_pos.d<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialConfMove:{
+						SerialConfMove* st = (SerialConfMove*)(buffer+offset);
+						cerr<<"Recived SerialConfMove*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\t\tposX "<<st->_pos.x<<endl
+						<<"\t\tposY"<<st->_pos.y<<endl
+						<<"\t\tposZ"<<st->_pos.z<<endl
+						<<"\t\tposD"<<st->_pos.d<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
 					default:{
 						cerr<<"error recived unknown packate in GLobal"<<endl;
 						offset = len;

@@ -9,6 +9,8 @@
 #include "Client.h"
 #include "../Network/Serialize.h"
 #include "World/SWorld.h"
+#include "Command/SC_CastSTarget.h"
+#include "objects/SCreature.h"
 void sendtoC(Client* cli, char* buffer, uint32_t len){
 	pthread_mutex_lock(&cli->networkSendLock);
 		if (cli->networkSendLockBool)
@@ -179,7 +181,7 @@ void* ReadBuffer(Client* client){
 uint32_t parseBuffer(Client* client, uint32_t len){
 	char* buffer = client->outputnetworkBuf->networkBuf;
 	uint32_t offset = 0;
-	//printBuffer(buffer,len);
+	printBuffer(buffer,len);
 	while (offset < len){
 		SerialData* temp = (SerialData*)(buffer + offset);
 		if (len - offset >= sizeof(uint32_t)*2 && temp->_size <= len - offset){
@@ -210,10 +212,27 @@ uint32_t parseBuffer(Client* client, uint32_t len){
 
 					break;
 				}
-				
+				case SerialType::SerialReqActivatePowerT:{
+					SerialReqActivatePowerT* st = (SerialReqActivatePowerT*)(buffer+offset);
+					map<uint32_t,SObj*>::iterator unit =world->getObjs().find(st->_unitId);
+					map<uint32_t,SObj*>::iterator target =world->getObjs().find(st->_targetId);
+					
+					if (unit == world->getObjs().end() || target == world->getObjs().end())
+						break;
+					if(!unit->second->getCreature())
+						break;
+					SPower* power = unit->second->getCreature()->getPower(st->_powerId);
+					if(!power)
+						break;
+					
+					SC_CastSTarget* cmd = new SC_CastSTarget(SDL_GetTicks(),unit->second,target->second,power);
+					unit->second->addCommand(cmd);
+					
+					break;
+				}				
 				default:{
 					cerr<<"error no packet parse function defined"<<endl;
-					offset = len;
+					//offset = len;
 					break;
 				}
 			}

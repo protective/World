@@ -27,6 +27,8 @@ namespace SerialType{
 				SerialPowerType = 9,
 				SerialPlayerStats = 10,
                                 SerialReqActivatePowerT = 11,
+                                SerialReqMove = 12,
+                                SerialConfMove = 13,
 	};
 }
 
@@ -41,6 +43,12 @@ struct SerialData{
     uint32_t _time;
 }__attribute__((__packed__));
 
+struct SerialPos{
+    int32_t x;
+    int32_t y;
+    int32_t z;
+    int32_t d;
+};
 
 struct SerialTime : public SerialData{ //id = 1
     uint32_t _sendtime;
@@ -117,6 +125,15 @@ struct SerialReqActivatePowerT : public SerialData{ //id = 10
     uint32_t _unitId;
     uint32_t _targetId;
     uint32_t _powerId;
+};
+
+struct SerialReqMove : public SerialData{ //id = 12
+    uint32_t _unitId;
+    SerialPos _pos;
+};
+struct SerialConfMove : public SerialData{ //id = 13
+    uint32_t _unitId;
+    SerialPos _pos;
 };
 
 #endif	/* SERIALIZE_H */

@@ -11,6 +11,7 @@
 #include "objects/CCreature.h"
 #include "Powers/CPower.h"
 CPlayerObjHandle::CPlayerObjHandle() {
+	_moveCounter = 0;
 }
 
 map<uint32_t,CObj*>& CPlayerObjHandle::getObjs(){
@@ -127,3 +128,46 @@ void CPlayerObjHandle::ServerReqActivatePower(CPower* power, CObj* target){
 }
 
 
+void CPlayerObjHandle::ServerReqMove(CObj* obj){
+	if(obj == NULL){
+		cerr<<"WARNING CPlayerObjHandle::ServerReqMove null values"<<endl;
+		return;
+	}
+	char message[sizeof(SerialReqMove)];
+	memset(message,0,sizeof(SerialReqMove));
+
+	SerialReqMove* data = (SerialReqMove*)(message);
+	data->_type = SerialType::SerialReqMove;
+	data->_size = sizeof(SerialReqMove);
+	data->_time = getTime();
+	data->_unitId = obj->getId();
+	data->_pos.x = obj->getPos().x;
+	data->_pos.y = obj->getPos().y;
+	data->_pos.z = obj->getPos().z;
+	data->_pos.d = obj->getPos().d;
+	cerr<<"req move"<<endl;
+	
+	send(connection.SocketFD,message,sizeof(SerialReqMove),0);
+}
+
+void CPlayerObjHandle::procesPlayerUnit(uint32_t deltaTime){
+	
+	_moveCounter += deltaTime;
+	if (_moveCounter > 25)
+		_moveCounter = 0;
+	if(!_player)
+		return;
+	
+	if (keydown[SDLK_w]){
+		_player->getPos().moveFw(deltaTime);
+	}
+	if (keydown[SDLK_s]){
+		_player->getPos().moveBw(deltaTime);
+	}
+	if (keydown[SDLK_a]){
+		_player->getPos().TurnL(deltaTime);
+	}
+	if (keydown[SDLK_d]){
+		_player->getPos().TurnR(deltaTime);
+	}
+}

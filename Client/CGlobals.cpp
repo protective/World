@@ -31,3 +31,5 @@ CObj* playerTarget = NULL;
 CPos* viewPos = new CPos(0,0,0,0);
 double viewZoom = 1;
 double viewRZoom = 1;
+map<SDLKey,bool> keydown;
+

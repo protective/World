@@ -22,12 +22,15 @@ public:
         void recBeginCast(SerialBeginCast* st);
         void recCast(SerialCast* st);
         void ServerReqActivatePower(CPower* power, CObj* target);
+        void ServerReqMove(CObj* obj);
         CObj* selectObject(int32_t x, int32_t y);
+        void procesPlayerUnit(uint32_t deltaTime);
         CCreature* player(){return _player;}
 	map<uint32_t,CObj*>& getObjs();
 private:
 	map<uint32_t,CObj*> _objs;
         CCreature* _player;
+        uint32_t _moveCounter;
 };
 
 #endif	/* CPLAYEROBJHANDLE_H */

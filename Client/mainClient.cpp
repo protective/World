@@ -153,7 +153,11 @@ void DrawScreen(SDL_Surface* screen)
 
 		DrawScreen(screen);
 		pthread_mutex_unlock(&lockInput);
-		
+		playerObj->procesPlayerUnit(deltaTime);
+		for(map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it!= playerObj->getObjs().end(); it++ ){
+			it->second->Proces(deltaTime);
+			
+		}
 		//end main loop
 		// begin input
 
@@ -167,6 +171,16 @@ void DrawScreen(SDL_Surface* screen)
 				case SDL_MOUSEBUTTONDOWN:
 					if (mainFrame->click(event.button.x,event.button.y) == 0)
 						playerObj->selectObject(event.button.x,event.button.y);
+					break;
+				case SDL_KEYDOWN:
+					cerr<<"down "<<event.key.keysym.sym<<endl;
+					keydown[event.key.keysym.sym] = true;
+					
+					break;
+				case SDL_KEYUP:
+					cerr<<"up "<<event.key.keysym.sym<<endl;
+					keydown[event.key.keysym.sym] = false;
+					
 					break;
 					//if (event.key.keysym.sym == SDLK_s)
 					
