@@ -24,13 +24,18 @@ uint32_t SC_FirePower::execute(){
 		spellDelay = range / _power->getPowerType()->getStats()[PowerTypeStats::projectileSpeed];
 	
 	
+	int32_t a = _caster->getCreature()->getAttibute()[Attributes::Mana];
+	
+	cerr<<"cost "<<_power->getPowerType()->getStats()[PowerTypeStats::ManaCost]<<endl;
+	
+	_caster->getCreature()->SetAttributes(Attributes::Mana, a - _power->getPowerType()->getStats()[PowerTypeStats::ManaCost]);
 	//TODO check if more need to be send with projectile
 	SC_HitPower* hit = new SC_HitPower(_time + spellDelay, _caster,_target,_power);
 	hit->getValues()[PowerProjectileMods::Shit] = _caster->getCreature()->getAttibute()[Attributes::SpellHit] + _power->getPowerType()->getStats()[PowerTypeStats::BonusHit];
 	hit->getValues()[PowerProjectileMods::Scrit] = _caster->getCreature()->getAttibute()[Attributes::SpellCrit] + _power->getPowerType()->getStats()[PowerTypeStats::BonusCrit];
 	hit->getValues()[PowerProjectileMods::Spower] = _caster->getCreature()->getAttibute()[Attributes::SpellPower];
-	hit->getValues()[PowerProjectileMods::SpowerBonus] = 0;
-	hit->getValues()[PowerProjectileMods::SpowerBonusBuff] = 0;
+	hit->getValues()[PowerProjectileMods::SpowerBonus] = 100 +  _caster->getCreature()->getAttibute()[Attributes::SpellPowerBonus];
+	hit->getValues()[PowerProjectileMods::SpowerBonusBuff] = 100 + _caster->getCreature()->getAttibute()[Attributes::SpellPowerBonusBuff];
 	hit->getValues()[PowerProjectileMods::ALevel] = _caster->getCreature()->getAttibute()[Attributes::Level];
 	
 	char message[sizeof(SerialCast)];

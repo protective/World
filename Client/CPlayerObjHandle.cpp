@@ -69,6 +69,95 @@ void CPlayerObjHandle::recCast(SerialCast* st){
 	creature->setCastTime(0);	
 }
 
+void CPlayerObjHandle::recStatsAbs(SerialStatsAbs* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;}
+	
+	creature->getAttibute()[Attributes::Hp] = st->_hp;
+	creature->getAttibute()[Attributes::Mana] = st->_mana;
+	creature->getAttibute()[Attributes::Focus] = st->_focus;
+	creature->getAttibute()[Attributes::HpMax] = st->_maxhp;
+	creature->getAttibute()[Attributes::ManaMax] = st->_maxmana;
+	creature->getAttibute()[Attributes::FocusMax] = st->_maxfocus;
+}
+
+
+
+void CPlayerObjHandle::recTakeDmgHeal(SerialTakeDmgHeal* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;}
+	
+	if(st->_flags & SerialTakeDmgHealBitF::ValueP)
+		creature->getAttibute()[Attributes::HpP] = st->_newvalue;
+	else
+		creature->getAttibute()[Attributes::Hp] = st->_newvalue;
+
+	
+}
+
+
+
+void CPlayerObjHandle::recAttribute(SerialAttribute* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
+		return;}
+	
+
+	creature->getAttibute()[st->_attribute] = st->_value;
+
+	
+}
+
+
+
+void CPlayerObjHandle::recStatsRel(SerialStatsRel* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recStatsRel not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recStatsRel not creature"<<endl;
+		return;}
+	
+	creature->getAttibute()[Attributes::HpP] = st->_hpP;
+	creature->getAttibute()[Attributes::ManaP] = st->_manaP;
+	creature->getAttibute()[Attributes::FocusP] = st->_focusP;
+
+}
 
 void CPlayerObjHandle::recCreature(SerialCreature* st){
 
@@ -93,9 +182,8 @@ void CPlayerObjHandle::recCreature(SerialCreature* st){
 }
 
 CObj* CPlayerObjHandle::selectObject(int32_t x, int32_t y){
-	cerr<<x<<" "<<y<<endl;
 	for(map<uint32_t,CObj*>::iterator it = _objs.begin(); it != _objs.end();it++){
-		cerr<<( Rangeobj((it->second->getPos().x-viewPos->x)*viewZoom, (it->second->getPos().y-viewPos->y)*viewZoom,x*100,y*100) <= 20*viewZoom/2)<<endl;
+		//cerr<<( Rangeobj((it->second->getPos().x-viewPos->x)*viewZoom, (it->second->getPos().y-viewPos->y)*viewZoom,x*100,y*100) <= 20*viewZoom/2)<<endl;
 		if( Rangeobj((it->second->getPos().x-viewPos->x)*viewZoom, (it->second->getPos().y-viewPos->y)*viewZoom,x*100,y*100) <= 20*viewZoom/2){
 			playerTarget = it->second;
 			cerr<<"sel "<<it->second->getId()<<endl;
@@ -145,7 +233,6 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 	data->_pos.y = obj->getPos().y;
 	data->_pos.z = obj->getPos().z;
 	data->_pos.d = obj->getPos().d;
-	cerr<<"req move"<<endl;
 	
 	send(connection.SocketFD,message,sizeof(SerialReqMove),0);
 }
@@ -153,8 +240,10 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 void CPlayerObjHandle::procesPlayerUnit(uint32_t deltaTime){
 	
 	_moveCounter += deltaTime;
-	if (_moveCounter > 25)
+	if (_moveCounter > 250){
 		_moveCounter = 0;
+		ServerReqMove(_player);
+	}
 	if(!_player)
 		return;
 	

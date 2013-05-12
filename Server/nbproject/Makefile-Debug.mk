@@ -61,6 +61,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/World/SGrid.o \
 	${OBJECTDIR}/objects/SObj.o \
 	${OBJECTDIR}/Powers/SPowerType.o \
+	${OBJECTDIR}/Command/SC_MoveObj.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
 	${OBJECTDIR}/Command/SC_HitPower.o \
 	${OBJECTDIR}/Command/SC_BuffProces.o \
@@ -225,6 +226,11 @@ ${OBJECTDIR}/Powers/SPowerType.o: Powers/SPowerType.cpp
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerType.o Powers/SPowerType.cpp
+
+${OBJECTDIR}/Command/SC_MoveObj.o: Command/SC_MoveObj.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_MoveObj.o Command/SC_MoveObj.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761

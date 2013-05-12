@@ -73,5 +73,6 @@ extern FTGLPixmapFont font;
 extern map<uint32_t, CPlayercolour> playercolour;
 extern UIMainFrame* mainFrame;
 extern map<SDLKey,bool> keydown;
+extern bool CPrintBuff;
 #endif	/* CGLOBALS_H */
 

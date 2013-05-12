@@ -17,7 +17,9 @@ public:
 	virtual SCreature* getCreature(){return this;}
 	SPower* getPower(uint32_t id){if(_powerList.find(id) != _powerList.end())return _powerList[id];else return NULL;}
 	virtual void addPower(SPower* power);
-	map<Attributes::Enum , uint32_t>& getAttibute(){return _attribute;}
+	map<Attributes::Enum , int32_t>& getAttibute(){return _attribute;}
+	void SetAttributes(Attributes::Enum attri,int32_t value);
+	void transmitAttribute(Attributes::Enum attri);
 	map<uint32_t,SBuff*>& getBuffList(){return _bufflist;}
 	uint32_t addBuff(SBuff* buff);
 	uint32_t removeBuff(SBuff* buff);
@@ -27,8 +29,8 @@ public:
 	void updateAttribute();
 private:
 	map<uint32_t,SPower*> _powerList;
-	map<Attributes::Enum , uint32_t> _attribute;
-	map<Attributes::Enum , uint32_t> _BaseAttribute;
+	map<Attributes::Enum , int32_t> _attribute;
+	map<Attributes::Enum , int32_t> _BaseAttribute;
 	map<uint32_t,SBuff*> _bufflist;
 	SPower* _casting;
 };

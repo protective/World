@@ -7,10 +7,11 @@
 
 #include "SCreature.h"
 #include "Buffs/SBuffStat.h"
+#include "../Client.h"
 
 SCreature::SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId):
 SObj(id,pos,team,playerId){
-	
+
 	
 }
 
@@ -26,13 +27,90 @@ void SCreature::sendToClient(Client* cli){
 	data->_y = this->_pos.y;
 	data->_z = this->_pos.z;
 	data->_d = this->_pos.d;
-	//TODO implemented sendt rest
 	sendtoC(cli,message,sizeof(SerialCreature));
+
+	for(map<Attributes::Enum , int32_t>::iterator it = _attribute.begin(); it != _attribute.end(); it++){
+		if(it->second)
+			this->transmitAttribute(it->first);
+	}
 	
 	for(map<uint32_t,SPower*>::iterator it = _powerList.begin(); it != _powerList.end(); it++){
 		it->second->sendToClient(cli);
 	}
 	
+}
+
+void SCreature::SetAttributes(Attributes::Enum attri,int32_t value){
+	
+	if (attri == Attributes::HpP || attri == Attributes::ManaP || attri == Attributes::FocusP){
+		cerr<<"WARNING SCreature::SetAttributes do not set P"<<endl;
+		return;
+	}
+	
+	this->_attribute[attri] = value;
+	this->transmitAttribute(attri);
+}
+
+
+void SCreature::transmitAttribute(Attributes::Enum attri){
+	
+	
+	char message[sizeof(SerialAttribute)];
+	memset(message,0,sizeof(SerialAttribute));
+	SerialAttribute* data = (SerialAttribute*)(message);
+	data->_type = SerialType::SerialAttribute;
+	data->_size = sizeof(SerialAttribute);
+	data->_time = 0;
+	data->_unitId = this->getId();
+	data->_attribute = attri;
+	data->_value = _attribute[attri];
+	
+	for(list<Client*>::iterator it = this->getSubscribers().begin(); it != this->getSubscribers().end(); it++){
+		if ((*it)->getTeamId() == this->getTeam())
+			sendtoC(*it,message,sizeof(SerialAttribute));
+	}	
+	
+	if(attri == Attributes::Hp || attri == Attributes::Mana || attri == Attributes::Focus ||
+	attri == Attributes::HpMax || attri == Attributes::ManaMax || attri == Attributes::FocusMax){
+		Attributes::Enum temp;
+		int32_t tempP = 0;
+		switch(attri){
+			case Attributes::Hp:
+			case Attributes::HpMax:
+				temp = Attributes::HpP;
+				if(_attribute[Attributes::HpMax])
+					tempP = (_attribute[Attributes::Hp]* 100) / _attribute[Attributes::HpMax];
+				break;
+			case Attributes::Mana:
+			case Attributes::ManaMax:
+				temp = Attributes::ManaP;
+				if(_attribute[Attributes::ManaMax])
+					tempP = (_attribute[Attributes::Mana]* 100) / _attribute[Attributes::ManaMax];
+				break;
+			case Attributes::Focus:
+			case Attributes::FocusMax:
+				temp = Attributes::FocusP;
+				if(_attribute[Attributes::FocusMax])
+					tempP = (_attribute[Attributes::Focus]* 100) / _attribute[Attributes::FocusMax];
+				break;
+		}
+		
+		char message2[sizeof(SerialAttribute)];
+		memset(message2,0,sizeof(SerialAttribute));
+		SerialAttribute* data2 = (SerialAttribute*)(message2);
+		data2->_type = SerialType::SerialAttribute;
+		data2->_size = sizeof(SerialAttribute);
+		data2->_time = 0;
+		data2->_unitId = this->getId();
+		data2->_attribute = temp;
+		data2->_value = tempP;
+
+
+		for(list<Client*>::iterator it = this->getSubscribers().begin(); it != this->getSubscribers().end(); it++){
+			if ((*it)->getTeamId() != this->getTeam())
+				sendtoC(*it,message,sizeof(SerialAttribute));
+		}
+	}
 }
 
 void SCreature::addPower(SPower* power){
@@ -65,8 +143,8 @@ uint32_t SCreature::removeBuff(SBuff* buff){
 }
 
 void SCreature::updateAttribute(){
-	_attribute.clear();
-	for (map<Attributes::Enum, uint32_t>::iterator it = _BaseAttribute.begin(); it != _BaseAttribute.end();it++){
+	//_attribute.clear();
+	for (map<Attributes::Enum, int32_t>::iterator it = _BaseAttribute.begin(); it != _BaseAttribute.end();it++){
 		_attribute[it->first] = it->second;
 	}
 	

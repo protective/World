@@ -11,10 +11,10 @@
 
 
 
-namespace MoveBitF
+namespace SerialTakeDmgHealBitF
 {
-  const uint32_t TargetPosLock = 0x01;
-  const uint32_t SOME_VALUE1 = 0x02;
+  const uint32_t ValueP = 0x01;
+  const uint32_t Critical = 0x02;
   const uint32_t SOME_VALUE2 = 0x04;
   const uint32_t SOME_VALUE3 = 0x08;
 }
@@ -85,6 +85,14 @@ namespace Attributes{
 		Hp = 20,
 		Mana = 21,
 		Focus = 22,
+		HpMax = 23,
+		ManaMax = 24,
+		FocusMax = 25,
+		HpP = 26,
+		ManaP = 27,
+		FocusP = 28,
+		SpellPowerBonus = 29,
+		SpellPowerBonusBuff= 30,
 	};
 }
 namespace DamageTypes{

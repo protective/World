@@ -64,8 +64,18 @@ void printBuffer(char* buffer, uint32_t len){
 						<<"\tpowerid "<<st->_powerid<<endl
 						<<"\tunitid "<<st->_unitId<<endl
 						<<"\tcasterid "<<st->_casterId<<endl
+						<<"\tflags "<<st->_flags<<endl
 						<<"\tvalue "<<st->_value<<endl
 						<<"\tnewvalue "<<st->_newvalue<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialAttribute:{
+						SerialAttribute* st = (SerialAttribute*)(buffer+offset);
+						cerr<<"Recived SerialAttribute*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tattribute "<<st->_attribute<<endl
+						<<"\tvalue "<<st->_value<<endl;
 						cerr<<"****************************"<<endl;
 						break;
 					}
@@ -129,6 +139,29 @@ void printBuffer(char* buffer, uint32_t len){
 						cerr<<"****************************"<<endl;
 						break;
 					}
+					case SerialType::SerialStatsAbs:{
+						SerialStatsAbs* st = (SerialStatsAbs*)(buffer+offset);
+						cerr<<"Recived SerialStatsAbs*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\t\thp "<<st->_hp<<endl
+						<<"\t\tmana "<<st->_mana<<endl
+						<<"\t\tfocus "<<st->_focus<<endl
+						<<"\t\tmaxhp "<<st->_maxhp<<endl
+						<<"\t\tmaxmana "<<st->_maxmana<<endl
+						<<"\t\tmaxfocus "<<st->_maxfocus<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}
+					case SerialType::SerialStatsRel:{
+						SerialStatsRel* st = (SerialStatsRel*)(buffer+offset);
+						cerr<<"Recived SerialStatsRel*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\t\thpP "<<st->_hpP<<endl
+						<<"\t\tmanaP "<<st->_manaP<<endl
+						<<"\t\tfocusP "<<st->_focusP<<endl;
+						cerr<<"****************************"<<endl;
+						break;
+					}	
 					default:{
 						cerr<<"error recived unknown packate in GLobal"<<endl;
 						offset = len;

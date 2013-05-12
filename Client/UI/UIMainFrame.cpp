@@ -6,6 +6,7 @@
  */
 
 #include "UIMainFrame.h"
+#include "UIUnitBox.h"
 #include "../Grafic/Grafic.h"
 #include "../objects/CCreature.h"
 
@@ -18,6 +19,10 @@ void UIMainFrame::updateUI(){
 	if(!_castbar && playerObj->player()){
 		_castbar = new UICastBar(this,20,20,100,20,playerObj->player());
 		_childs.push_back(_castbar);
+	}
+	if(!_playerBox && playerObj->player()){
+		_playerBox = new UIUnitBox(this,playerObj->player(),20,Basehight-80);
+		_childs.push_back(_playerBox);
 	}
 	if(playerObj->player()){
 		for (map<uint32_t, CPower*>::iterator it = playerObj->player()->getPowers().begin(); it != playerObj->player()->getPowers().end(); it++){

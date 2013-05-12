@@ -16,7 +16,7 @@ Client::Client(int socket) {
 
 	this->socket = socket;
 	playerID = 0;
-	_teamId = 2;
+	_teamId = 0;
 	this->parsingoutput = false;
 	this->active_buffer = 1;
 	this->networkBuf1.recived = 0;

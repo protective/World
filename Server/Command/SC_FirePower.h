@@ -19,6 +19,6 @@ private:
 
 	SPower* _power;
 };
-
+ 
 #endif	/* SC_FIREPOWER_H */
 

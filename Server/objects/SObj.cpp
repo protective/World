@@ -9,6 +9,7 @@
 
 #include "SObj.h"
 #include "../World/SWorld.h"
+#include "../Command/SC_MoveObj.h"
 SObj::SObj(uint32_t id, SPos pos, uint8_t team, uint32_t playerId) {
 	this->_id = id;
 
@@ -34,6 +35,38 @@ SPos& SObj::getOldPos(){
 uint32_t SObj::getId(){
 	return this->_id;
 }
+
+uint32_t SObj::setPos(SPos pos){
+	uint32_t i = SDL_GetTicks();
+	_pos = pos;
+	_posUpdateTime = i;
+	return i;
+}
+
+uint32_t SObj::reqMove(SPos pos){
+	uint32_t delta = SDL_GetTicks() - _posUpdateTime;
+	bool found = false;
+	this->lockProcesCommand();
+	for (list<SCommand*>::iterator it =  _commands.begin(); it!= _commands.end();it++){
+		if((*it)->isMoveObj()){
+			(*it)->isMoveObj()->setPos(pos);
+			found = true;
+			break;
+		}
+	}
+	if(!found){
+		this->addCommand(new SC_MoveObj(SDL_GetTicks(),this,pos));
+	}
+	
+	this->releaseProcesCommand();
+}
+
+void SObj::MovePos(int32_t x, int32_t y){
+	cerr<<"x "<<x<<" y "<<y<<endl;
+	this->_pos.x+= x;
+	this->_pos.y+= y;
+}
+
 
 SCommand* SObj::procesFirstReadyCommand(){
 
@@ -70,6 +103,13 @@ void SObj::releaseProcesCommand(){
 	_commandAccessLocked = false;
 	pthread_mutex_unlock(&this->_lockCommandAccess);
 }
+
+void SObj::lockProcesCommand(){
+	pthread_mutex_lock(&this->_lockCommandAccess);
+	_commandAccessLocked = true;
+	pthread_mutex_unlock(&this->_lockCommandAccess);
+}
+
 
 uint32_t SObj::addCommand(SCommand* cmd){
 	pthread_mutex_lock(&this->_lockCommands);

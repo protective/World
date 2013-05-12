@@ -41,7 +41,15 @@ using namespace std;
 	int threadsReady;
 void* procesworldThread(uint32_t id);
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv){
+
+	for(int i = 0; i < argc;i++){
+		if ((string)argv[i]=="-p"){
+			i++;
+			SPrintBuff = true;
+			cerr<<"print "<<endl;
+		}
+	}
 	for(int i = 0 ; i< 360; i++){
 		double vector = (i*PI)/180;
 		MySin[i] = sin(vector);
@@ -75,9 +83,9 @@ int main(int argc, char** argv) {
 	
 	//EFFECTS
 	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
-	buff->setTotalDamage(0);
+	buff->setTotalDamage(100);
 	buff->setDamageType(DamageTypes::arcane);
-	buff->setTickTime(20000);
+	buff->setTickTime(2000);
 	buff->gettickEffects().push_back(ticksEffects(25));
 	buff->gettickEffects().push_back(ticksEffects(50));
 	buff->gettickEffects().push_back(ticksEffects(100));
@@ -94,17 +102,26 @@ int main(int argc, char** argv) {
 	SPowerType* powert = new SPowerType(1,1);
 	powert->getSubComponents()[EResults::SHit].push_back(buff);
 	powert->getSubComponents()[EResults::SCrit].push_back(buff);
+	powert->getStats()[PowerTypeStats::CastTime] = 5000;
+	powert->getStats()[PowerTypeStats::ManaCost] = 10;
+	
 	
 	SPowerType* powert2 = new SPowerType(2,2);
-	powert->getSubComponents()[EResults::SHit].push_back(DD);
-	powert->getSubComponents()[EResults::SCrit].push_back(DD);	
+	powert2->getSubComponents()[EResults::SHit].push_back(DD);
+	powert2->getSubComponents()[EResults::SCrit].push_back(DD);	
+	powert2->getStats()[PowerTypeStats::CastTime] = 1000;
+	powert2->getStats()[PowerTypeStats::ManaCost] = 50;
 	
 	//WORLD
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
 	SPos p1(10000,10000,0);
 	
-	SObj* o = new SCreature(getFreeID(),p1,0,0);
+	SCreature* o = new SCreature(getFreeID(),p1,0,0);
+	o->getAttibute()[Attributes::Hp] = 1000;
+	o->getAttibute()[Attributes::HpMax] = 1000;
+	o->getAttibute()[Attributes::Mana] = 1000;
+	o->getAttibute()[Attributes::ManaMax] = 1000;
 	g->addObj(o);
 	SPower* po = new SPower(1,o,powert);
 	o->getCreature()->addPower(po);
@@ -113,7 +130,11 @@ int main(int argc, char** argv) {
 //	o->getCreature()->addPower(pdd);
 	
 	SPos p2(3500,7000,0);
-	SObj* t = new SCreature(getFreeID(),p2,0,0);
+	SCreature* t = new SCreature(getFreeID(),p2,1,0);
+	t->getAttibute()[Attributes::Hp] = 1000;
+	t->getAttibute()[Attributes::HpMax] = 1000;
+	t->getAttibute()[Attributes::Mana] = 1000;
+	t->getAttibute()[Attributes::ManaMax] = 1000;
 	g->addObj(t);
 	
 	
@@ -165,7 +186,7 @@ int main(int argc, char** argv) {
 		//************
 		if ( SDL_GetTicks() > fpstimer +10000){
 			fpstimer = SDL_GetTicks();
-			cerr<<"fps "<<fpscounter/10<<endl;
+			//cerr<<"fps "<<fpscounter/10<<endl;
 			fpscounter = 0;
 		}
 

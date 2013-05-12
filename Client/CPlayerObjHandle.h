@@ -20,6 +20,10 @@ public:
 	void recPower(SerialPower* st);
 	void recCreature(SerialCreature* st);
         void recBeginCast(SerialBeginCast* st);
+		void recStatsAbs(SerialStatsAbs* st);
+		void recStatsRel(SerialStatsRel* st);
+		void recTakeDmgHeal(SerialTakeDmgHeal* st);
+		void recAttribute(SerialAttribute* st);
         void recCast(SerialCast* st);
         void ServerReqActivatePower(CPower* power, CObj* target);
         void ServerReqMove(CObj* obj);

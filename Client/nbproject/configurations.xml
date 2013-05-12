@@ -49,6 +49,8 @@
         <itemPath>UI/UIMainFrame.h</itemPath>
         <itemPath>UI/UISocket.cpp</itemPath>
         <itemPath>UI/UISocket.h</itemPath>
+        <itemPath>UI/UIUnitBox.cpp</itemPath>
+        <itemPath>UI/UIUnitBox.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f7" displayName="world" projectFiles="true">
         <itemPath>world/CGrid.cpp</itemPath>

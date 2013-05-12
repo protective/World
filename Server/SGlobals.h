@@ -39,5 +39,6 @@ extern pthread_barrier_t  procesBar;
 extern map<string,uint32_t> itemlistFileNames;
 extern map<uint32_t,uint8_t> teamlist;
 extern list<uint8_t> allteams;
+extern bool SPrintBuff;
 #endif	/* SGLOBALS_H */
 

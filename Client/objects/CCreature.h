@@ -19,10 +19,12 @@ public:
 	void setCastCompletionTime(uint32_t time){_castCompletionTime = time;}
 	virtual CCreature* getCreature(){return this;}
 	map<uint32_t,CPower*>& getPowers(){return this->_powerList;}
+	map<Attributes::Enum , int32_t>& getAttibute(){return _attribute;}
 	virtual void Draw();
-        virtual ~CCreature();
-private:
+	virtual ~CCreature();
+protected:
 	map<uint32_t,CPower*> _powerList;
+	map<Attributes::Enum , int32_t> _attribute;
 	uint32_t _castTime;
 	uint32_t _castCompletionTime;
 };

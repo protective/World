@@ -40,7 +40,7 @@ public:
     }
 	void setPlayerId(uint32_t id){this->playerID = id;this->_teamId = teamlist[id];}
 	uint32_t getPlayerId(){return this->playerID;}
-	uint8_t getTeamId(){return this->_teamId;}
+	uint32_t getTeamId(){return this->_teamId;}
 	bool parsingoutput;
     NetworkBuffer* inputnetworkBuf;
     NetworkBuffer* outputnetworkBuf;
@@ -60,7 +60,7 @@ private:
 	void sendTeams();
 	uint32_t procescounter;
 	uint32_t playerID;
-	uint8_t _teamId;
+	uint32_t _teamId;
 	int socket;
     uint16_t active_buffer;
     NetworkBuffer networkBuf1;

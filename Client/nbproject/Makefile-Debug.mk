@@ -42,15 +42,16 @@ OBJECTFILES= \
 	${OBJECTDIR}/UI/UIAbilityBox.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Grafic/Grafic.o \
-	${OBJECTDIR}/world/CWorld.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
+	${OBJECTDIR}/world/CWorld.o \
 	${OBJECTDIR}/UI/UIMainFrame.o \
 	${OBJECTDIR}/CDatabase.o \
-	${OBJECTDIR}/CFunctions.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
+	${OBJECTDIR}/CFunctions.o \
 	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
+	${OBJECTDIR}/UI/UIUnitBox.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
 	${OBJECTDIR}/UI/UISocket.o
 
@@ -119,15 +120,15 @@ ${OBJECTDIR}/Grafic/Grafic.o: Grafic/Grafic.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Grafic.o Grafic/Grafic.cpp
 
-${OBJECTDIR}/world/CWorld.o: world/CWorld.cpp 
-	${MKDIR} -p ${OBJECTDIR}/world
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CWorld.o world/CWorld.cpp
-
 ${OBJECTDIR}/CPlayerObjHandle.o: CPlayerObjHandle.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CPlayerObjHandle.o CPlayerObjHandle.cpp
+
+${OBJECTDIR}/world/CWorld.o: world/CWorld.cpp 
+	${MKDIR} -p ${OBJECTDIR}/world
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CWorld.o world/CWorld.cpp
 
 ${OBJECTDIR}/UI/UIMainFrame.o: UI/UIMainFrame.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
@@ -139,15 +140,15 @@ ${OBJECTDIR}/CDatabase.o: CDatabase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CDatabase.o CDatabase.cpp
 
-${OBJECTDIR}/CFunctions.o: CFunctions.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
-
 ${OBJECTDIR}/UI/UIBaseFrame.o: UI/UIBaseFrame.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIBaseFrame.o UI/UIBaseFrame.cpp
+
+${OBJECTDIR}/CFunctions.o: CFunctions.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
 
 ${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
@@ -163,6 +164,11 @@ ${OBJECTDIR}/objects/CObj.o: objects/CObj.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CObj.o objects/CObj.cpp
+
+${OBJECTDIR}/UI/UIUnitBox.o: UI/UIUnitBox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIUnitBox.o UI/UIUnitBox.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761

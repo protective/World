@@ -12,6 +12,7 @@
 #include "../Powers/SPowerTypeSpellDD.h"
 #include "../Powers/SPowerTypeSpellDebuff.h"
 #include "../Powers/SPowerSpellType.h"
+class SC_MoveObj;
 class SObj;
 class SCommand {
 public:
@@ -20,6 +21,7 @@ public:
 	uint32_t getTime(){return _time;}
 	SObj* getTarget(){return _target;}
 	SObj* getCaster(){return _caster;}
+        virtual SC_MoveObj* isMoveObj(){return NULL;}
 	virtual ~SCommand();
 protected:
 	uint32_t _time;

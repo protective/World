@@ -32,8 +32,6 @@ void CPos::turn(int32_t deg){
 
 void CPos::moveFw(uint32_t deltaTime){
 	uint32_t speed = 100;
-	cerr<<"d "<<d<<endl;
-	cerr<<"movex "<<(MyCos[d/100]*deltaTime * speed)/10<<endl;
 	this->x+= (MyCos[d/100]*deltaTime * speed)/10;
 	this->y+= (MySin[d/100]*deltaTime * speed)/10;
 }

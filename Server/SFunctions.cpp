@@ -181,11 +181,12 @@ void* ReadBuffer(Client* client){
 uint32_t parseBuffer(Client* client, uint32_t len){
 	char* buffer = client->outputnetworkBuf->networkBuf;
 	uint32_t offset = 0;
-	printBuffer(buffer,len);
+	if (SPrintBuff)
+		printBuffer(buffer,len);
 	while (offset < len){
 		SerialData* temp = (SerialData*)(buffer + offset);
 		if (len - offset >= sizeof(uint32_t)*2 && temp->_size <= len - offset){
-			//cerr<<"parse single "<<endl;
+
 
 			switch(temp->_type)
 			{
@@ -210,6 +211,22 @@ uint32_t parseBuffer(Client* client, uint32_t len){
 					client->setPlayerId(st->_unitId);
 					client->initTransfere();
 
+					break;
+				}
+				case SerialType::SerialReqMove:{
+					SerialReqMove* st = (SerialReqMove*)(buffer+offset);
+					map<uint32_t,SObj*>::iterator unit =world->getObjs().find(st->_unitId);
+					
+					if (unit == world->getObjs().end())
+						break;
+					
+					SPos pos;
+					pos.x = st->_pos.x;
+					pos.y = st->_pos.y;
+					pos.z = st->_pos.z;
+					pos.d = st->_pos.d;
+					unit->second->reqMove(pos);
+					
 					break;
 				}
 				case SerialType::SerialReqActivatePowerT:{

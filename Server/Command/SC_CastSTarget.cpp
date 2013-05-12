@@ -22,13 +22,15 @@ uint32_t SC_CastSTarget::execute(){
 		return 0;
 	}
 	
-	//TODO check ra nge
+	//TODO check range
 	SPower* p = _power; 
 	if(p && _caster->readyCast()){
-		if(_caster->getCreature())
-			_caster->getCreature()->setCasting(_power);
-		cerr<<"cast target"<<endl;
-		p->activate(_time, _caster, _target);
+		if(p->getPowerType()->getStats()[PowerTypeStats::ManaCost] <= _caster->getCreature()->getAttibute()[Attributes::Mana]){
+			if(_caster->getCreature())
+				_caster->getCreature()->setCasting(_power);
+			cerr<<"cast target"<<endl;
+			p->activate(_time, _caster, _target);
+		}
 	}else{
 		//cerr<<"cast target Fail"<<endl;
 	}

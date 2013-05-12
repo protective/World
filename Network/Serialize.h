@@ -26,9 +26,14 @@ namespace SerialType{
 				SerialPower = 8,
 				SerialPowerType = 9,
 				SerialPlayerStats = 10,
-                                SerialReqActivatePowerT = 11,
-                                SerialReqMove = 12,
-                                SerialConfMove = 13,
+				SerialReqActivatePowerT = 11,
+				SerialReqMove = 12,
+				SerialConfMove = 13,
+				SerialStatsAbs = 14,
+				SerialStatsRel = 15,
+				SerialStatsFullAbs = 16,
+				SerialAttribute = 17,
+			
 	};
 }
 
@@ -63,6 +68,7 @@ struct SerialReqJoin : public SerialData{ //id = 2
 struct SerialTakeDmgHeal : public SerialData{ //id = 3
     uint32_t _unitId;
     uint32_t _casterId;
+	uint32_t _flags;
     int32_t _value;
     uint32_t _newvalue;
     uint32_t _powerid;
@@ -134,6 +140,32 @@ struct SerialReqMove : public SerialData{ //id = 12
 struct SerialConfMove : public SerialData{ //id = 13
     uint32_t _unitId;
     SerialPos _pos;
+};
+
+struct SerialStatsAbs : public SerialData{ //id = 14
+	uint32_t _unitId;
+	int32_t _hp;
+	int32_t _mana;
+	int32_t _focus;
+	int32_t _maxhp;
+	int32_t _maxmana;
+	int32_t _maxfocus;
+};
+
+struct SerialStatsRel : public SerialData{ //id = 15
+	uint32_t _unitId;
+	int32_t _hpP;
+	int32_t _manaP;
+	int32_t _focusP;
+};
+struct SerialStatsFullAbs : public SerialData{ //id = 16
+	
+};
+
+struct SerialAttribute : public SerialData{ //id = 15
+	uint32_t _unitId;
+	Attributes::Enum _attribute;
+	int32_t _value;
 };
 
 #endif	/* SERIALIZE_H */

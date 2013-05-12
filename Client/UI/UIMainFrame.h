@@ -11,6 +11,7 @@
 #include "UIBaseFrame.h"
 #include "UICastBar.h"
 #include "UISocket.h"
+#include "UIUnitBox.h"
 
 
 class UIMainFrame : public UIBaseFrame {
@@ -23,6 +24,7 @@ public:
 private:
 
     UICastBar* _castbar;
+	UIUnitBox* _playerBox;
     map<uint32_t, UISocket* > _sockets;
 };
 

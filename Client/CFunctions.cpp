@@ -136,7 +136,8 @@ void* thread_Recive(){
 
 uint32_t parseBuffer(char* buffer, uint32_t len){
 	uint32_t offset = 0;
-	printBuffer(buffer,len);
+	if(CPrintBuff)
+		printBuffer(buffer,len);
 	while (offset < len){
 		SerialData* meta = (SerialData*)(buffer + offset);
 
@@ -173,6 +174,12 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 				}
 				case SerialType::SerialTakeDmgHeal:{
 					SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
+					playerObj->recTakeDmgHeal(st);
+					break;
+				}
+				case SerialType::SerialAttribute:{
+					SerialAttribute* st = (SerialAttribute*)(buffer+offset);
+					playerObj->recAttribute(st);
 					break;
 				}
 				case SerialType::SerialPower:{
@@ -182,6 +189,17 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 				}
 				case SerialType::SerialPowerType:{
 					SerialPower* st = (SerialPower*)(buffer+offset);
+					
+					break;
+				}
+				case SerialType::SerialStatsAbs:{
+					SerialStatsAbs* st = (SerialStatsAbs*)(buffer+offset);
+					playerObj->recStatsAbs(st);
+					break;
+				}
+				case SerialType::SerialStatsRel:{
+					SerialStatsRel* st = (SerialStatsRel*)(buffer+offset);
+					playerObj->recStatsRel(st);
 					break;
 				}
 				case SerialType::SerialCreature:{

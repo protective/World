@@ -21,6 +21,7 @@ uint32_t SC_ApplyDamage::execute(){
 
 	_target->getCreature()->getAttibute()[Attributes::Hp] -= _damage;
 	cerr<<"damge "<<_damage<<" type "<<_dmgType<<endl;
+	
 	char message[sizeof(SerialTakeDmgHeal)];
 	memset(message,0,sizeof(SerialTakeDmgHeal));
 	SerialTakeDmgHeal* data = (SerialTakeDmgHeal*)(message);
@@ -28,14 +29,31 @@ uint32_t SC_ApplyDamage::execute(){
 	data->_size = sizeof(SerialTakeDmgHeal);
 	data->_time = _time;
 	data->_value = 0 - _damage;
-	data->_newvalue = _target->getCreature()->getAttibute()[Attributes::Hp];
+	data->_flags = 0;
+	cerr<<"id "<<_target->getCreature()->getId()<<endl;
+	cerr<<"maxhp "<<_target->getCreature()->getAttibute()[Attributes::HpMax]<<endl;
 	data->_unitId = _target->getId();
 	data->_casterId = _caster->getId();
 	data->_powerid = _power->getId();
+	data->_newvalue = _target->getCreature()->getAttibute()[Attributes::Hp];
+	for(list<Client*>::iterator it = _target->getSubscribers().begin(); it != _target->getSubscribers().end(); it++){
+		cerr<<"temp "<<(*it)->getTeamId()<<" "<<_target->getTeam()<<endl;
+		if ((*it)->getTeamId() == _target->getTeam()){
+			cerr<<"send nromal"<<endl;
+			sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
+		}
+	}	
+	data->_newvalue = 0;
+	if(_target->getCreature()->getAttibute()[Attributes::HpMax]){
+		data->_newvalue = _target->getCreature()->getAttibute()[Attributes::Hp]*100 / _target->getCreature()->getAttibute()[Attributes::HpMax];
+		data->_flags |= SerialTakeDmgHealBitF::ValueP;
+	}
 	
 	for(list<Client*>::iterator it = _target->getSubscribers().begin(); it != _target->getSubscribers().end(); it++){
-		sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
-	}
+		if ((*it)->getTeamId() != _target->getTeam())
+			sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
+	}	
+	
 	return 0;
 }
 

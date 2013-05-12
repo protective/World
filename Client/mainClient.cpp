@@ -60,18 +60,24 @@ void DrawScreen(SDL_Surface* screen)
 		exit(1);
 	}
 
-	int argteam = 1;
+	int argteam = 0;
 	cerr<<"argc"<<argc<<endl;
 	string argip = "127.0.0.1";
-	if(argc >= 3){
-		argteam = atoi(argv[1]);
-			if(argteam == 0)
-				argteam = 1;
-		argip = string(argv[2]);
-	}else if(argc >= 2){
-		argteam = atoi(argv[1]);
-			if(argteam == 0)
-				argteam = 1;
+	
+	for(int i = 0; i < argc;i++){
+		if ((string)argv[i]=="-p"){
+			i++;
+			CPrintBuff = true;
+			cerr<<"print "<<endl;
+		}else if((string)argv[i]=="-t"){
+			i++;
+			argteam = atoi(argv[i]);
+			i++;
+		}else if((string)argv[i]=="-ip"){
+			i++;
+			argip = string(argv[i]);
+			i++;
+		}
 	}
 			
 	cerr<<"argip"<<argip<<endl;
@@ -173,12 +179,10 @@ void DrawScreen(SDL_Surface* screen)
 						playerObj->selectObject(event.button.x,event.button.y);
 					break;
 				case SDL_KEYDOWN:
-					cerr<<"down "<<event.key.keysym.sym<<endl;
 					keydown[event.key.keysym.sym] = true;
 					
 					break;
 				case SDL_KEYUP:
-					cerr<<"up "<<event.key.keysym.sym<<endl;
 					keydown[event.key.keysym.sym] = false;
 					
 					break;
