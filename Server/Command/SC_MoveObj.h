@@ -11,7 +11,7 @@
 #include "../objects/SObj.h"
 class SC_MoveObj : public SCommand{
 public:
-    SC_MoveObj(uint32_t time, SObj* caster, SPos pos);
+    SC_MoveObj(uint32_t time, SObj* procesUnit, SPos pos);
     virtual uint32_t execute();
     virtual SC_MoveObj* isMoveObj(){return this;}
     void setPos(SPos pos){_pos = pos;}

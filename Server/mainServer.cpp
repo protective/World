@@ -102,8 +102,8 @@ int main(int argc, char** argv){
 	SPowerType* powert = new SPowerType(1,1);
 	powert->getSubComponents()[EResults::SHit].push_back(buff);
 	powert->getSubComponents()[EResults::SCrit].push_back(buff);
-	powert->getStats()[PowerTypeStats::CastTime] = 5000;
-	powert->getStats()[PowerTypeStats::ManaCost] = 10;
+	powert->getStats()[PowerTypeStats::CastTime] = 3000;
+	powert->getStats()[PowerTypeStats::ManaCost] = 0;
 	
 	
 	SPowerType* powert2 = new SPowerType(2,2);
@@ -128,6 +128,8 @@ int main(int argc, char** argv){
 	po = new SPower(2,o,powert2);
 	o->getCreature()->addPower(po);
 //	o->getCreature()->addPower(pdd);
+	o->getAttibute()[Attributes::Spirit] = 10;
+	
 	
 	SPos p2(3500,7000,0);
 	SCreature* t = new SCreature(getFreeID(),p2,1,0);

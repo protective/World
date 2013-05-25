@@ -14,11 +14,13 @@ class SObj;
 class SBuff;
 class SC_BuffProces : public SCommand {
 public:
-	SC_BuffProces(uint32_t time, SObj* caster, SObj* target, SBuff* buff);
+	SC_BuffProces(uint32_t time, SObj* procesUnit, SObj* caster, SBuff* buff);
 	virtual uint32_t execute();
+	SObj* getCaster(){return _caster;}
 	virtual ~SC_BuffProces();
 private:
 	SBuff* _buff;
+	SObj* _caster;
 };
 
 #endif	/* SC_BUFFPROCES_H */

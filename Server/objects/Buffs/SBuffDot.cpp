@@ -32,7 +32,7 @@ uint32_t SBuffDot::proces(SC_BuffProces* cmd, uint32_t tickCount) {
 	uint32_t a = floor((float_t)_damageRemaining/_tick * ((float_t)it->_value/100));
 	_damageRemaining -=a;
 
-	cmd->getTarget()->addCommand(new SC_ApplyDamage(cmd->getTime(),cmd->getCaster(),cmd->getTarget(),a,_damageType, _buff->getPowerType()));
+	cmd->getProcesUnit()->addCommand(new SC_ApplyDamage(cmd->getTime(),cmd->getProcesUnit(),cmd->getCaster(),a,_damageType, _buff->getPowerType()));
 	_tick -= (float_t)it->_value/100;
 	return 0;
 }

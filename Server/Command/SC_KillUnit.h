@@ -11,11 +11,11 @@
 
 class SC_KillUnit : public SCommand {
 public:
-	SC_KillUnit(uint32_t time, SObj* caster, SObj* target);
+	SC_KillUnit(uint32_t time, SObj* procesUnit, SObj* caster);
 	virtual uint32_t execute();
 	virtual ~SC_KillUnit();
 private:
-
+	SObj* _caster;	
 };
 
 #endif	/* SC_KILLUNIT_H */

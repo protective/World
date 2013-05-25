@@ -7,10 +7,20 @@
 
 #include "SCommand.h"
 #include "../objects/SObj.h"
-SCommand::SCommand(uint32_t time, SObj* caster, SObj* target) {
+SCommand::SCommand(uint32_t time, SObj* procesUnit) {
 	_time = time;
-	_caster = caster;
-	_target = target;
+	_procesUnit = procesUnit;
+	
+}
+
+uint32_t SCommand::remove(){
+	this->_procesUnit->removeCommand(this);
+}
+
+uint32_t SCommand::resetTime(uint32_t newtime){
+	this->remove();
+	_time = newtime;
+	this->_procesUnit->addCommand(this);
 }
 
 

@@ -5,13 +5,24 @@
  * Created on 1. november 2012, 22:52
  */
 
+#include <sys/types.h>
+
 #include "SCreature.h"
 #include "Buffs/SBuffStat.h"
 #include "../Client.h"
 
 SCreature::SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId):
 SObj(id,pos,team,playerId){
-
+	
+	SC_ObjProcesTask::Enum task[4] = {SC_ObjProcesTask::Mana,SC_ObjProcesTask::Focus,SC_ObjProcesTask::ManaContinue,SC_ObjProcesTask::ManaPFS};
+	
+	for (uint32_t i = 0; i< 4; i++){
+		_procesTask[task[i]] = new SC_ObjProces(SDL_GetTicks(),this,task[i]);
+		this->addCommand(_procesTask[task[i]]);
+	}
+	//_procesTask[SC_ObjProcesTask::ManaContinue] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::ManaContinue);
+	//_procesTask[SC_ObjProcesTask::Mana] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::Mana);
+	//_procesTask[SC_ObjProcesTask::Mana] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::Mana);
 	
 }
 
@@ -49,6 +60,35 @@ void SCreature::SetAttributes(Attributes::Enum attri,int32_t value){
 	
 	this->_attribute[attri] = value;
 	this->transmitAttribute(attri);
+}
+
+void SCreature::setCasting(SPower* casting){
+	_casting = casting;
+	if (_procesTask[SC_ObjProcesTask::Mana]){
+		_procesTask[SC_ObjProcesTask::Mana]->resetTime(SDL_GetTicks()+5000);
+	}
+}
+
+int32_t SCreature::modMana(int32_t mana){
+	if (_attribute[Attributes::Mana] + mana <= _attribute[Attributes::ManaMax]){
+		SetAttributes(Attributes::Mana,_attribute[Attributes::Mana] + mana);
+		return mana;
+	}else{
+		int32_t diff = _attribute[Attributes::ManaMax] -_attribute[Attributes::Mana];
+		SetAttributes(Attributes::Mana,_attribute[Attributes::ManaMax]);
+		return diff;
+	}
+}
+
+int32_t SCreature::modFocus(int32_t focus){
+	if (_attribute[Attributes::Focus] + focus <= _attribute[Attributes::FocusMax]){
+		SetAttributes(Attributes::Focus,_attribute[Attributes::Focus] + focus);
+		return focus;
+	}else{
+		int32_t diff = _attribute[Attributes::FocusMax] -_attribute[Attributes::Focus];
+		SetAttributes(Attributes::Focus,_attribute[Attributes::FocusMax]);
+		return diff;
+	}
 }
 
 

@@ -10,6 +10,7 @@
 #include "SObj.h"
 #include "../Powers/SPower.h"
 #include "Buffs/SBuff.h"
+#include "../Command/SC_ObjProces.h"
 class SCreature : public SObj {
 public:
 	SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId);
@@ -24,8 +25,10 @@ public:
 	uint32_t addBuff(SBuff* buff);
 	uint32_t removeBuff(SBuff* buff);
 	virtual bool readyCast(){if (_casting) return false;return true;}
-	void setCasting(SPower* casting){_casting = casting;}
+	void setCasting(SPower* casting);
 	void sendToClient(Client* cli);
+	int32_t modMana(int32_t mana);
+	int32_t modFocus(int32_t focus);
 	void updateAttribute();
 private:
 	map<uint32_t,SPower*> _powerList;
@@ -33,6 +36,7 @@ private:
 	map<Attributes::Enum , int32_t> _BaseAttribute;
 	map<uint32_t,SBuff*> _bufflist;
 	SPower* _casting;
+	map<SC_ObjProcesTask::Enum,SC_ObjProces*> _procesTask;
 };
 
 #endif	/* SCREATURE_H */

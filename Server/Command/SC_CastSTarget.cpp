@@ -7,10 +7,9 @@
 
 #include "SC_CastSTarget.h"
 #include "../objects/SCreature.h"
-SC_CastSTarget::SC_CastSTarget(uint32_t time, SObj* caster, SObj* target, SPower* power):
-SCommand(time,caster,target){
+SC_CastSTarget::SC_CastSTarget(uint32_t time, SObj* procesUnit, SObj* target, SPower* power):
+SCommand(time,procesUnit){
 	_power = power;
-	_caster = caster;
 	_target = target;
 	
 }
@@ -24,12 +23,12 @@ uint32_t SC_CastSTarget::execute(){
 	
 	//TODO check range
 	SPower* p = _power; 
-	if(p && _caster->readyCast()){
-		if(p->getPowerType()->getStats()[PowerTypeStats::ManaCost] <= _caster->getCreature()->getAttibute()[Attributes::Mana]){
-			if(_caster->getCreature())
-				_caster->getCreature()->setCasting(_power);
+	if(p && _procesUnit->readyCast()){
+		if(p->getPowerType()->getStats()[PowerTypeStats::ManaCost] <= _procesUnit->getCreature()->getAttibute()[Attributes::Mana]){
+			if(_procesUnit->getCreature())
+				_procesUnit->getCreature()->setCasting(_power);
 			cerr<<"cast target"<<endl;
-			p->activate(_time, _caster, _target);
+			p->activate(_time, _procesUnit, _target);
 		}
 	}else{
 		//cerr<<"cast target Fail"<<endl;

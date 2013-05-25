@@ -93,6 +93,15 @@ namespace Attributes{
 		FocusP = 28,
 		SpellPowerBonus = 29,
 		SpellPowerBonusBuff= 30,
+		
+		Spirit = 31,
+		Strength = 32,
+		Dexterity = 33,
+		Constitution = 34,
+		Intelligence = 35,
+		RegenOFSRP = 36,
+		ManaPrF = 37,
+		
 	};
 }
 namespace DamageTypes{

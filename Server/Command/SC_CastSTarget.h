@@ -14,13 +14,12 @@ class SPower;
 class SCreature;
 class SC_CastSTarget : public SCommand {
 public:
-	SC_CastSTarget(uint32_t time, SObj* caster, SObj* target, SPower* power);
+	SC_CastSTarget(uint32_t time, SObj* procesUnit, SObj* target, SPower* power);
 	virtual uint32_t execute();
 
 	virtual ~SC_CastSTarget();
 private:
 	SPower* _power;
-	SObj* _caster;
 	SObj* _target;
 };
 

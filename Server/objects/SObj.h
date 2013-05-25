@@ -29,6 +29,7 @@ public:
 	virtual bool readyCast(){return true;}
 	list<Client*>& getSubscribers(){return _subscribers;}
 	uint32_t addCommand(SCommand* cmd);
+	uint32_t removeCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();
         uint32_t setPos(SPos pos);
         uint32_t reqMove(SPos);

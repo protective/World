@@ -30,6 +30,8 @@
         <itemPath>Command/SC_KillUnit.h</itemPath>
         <itemPath>Command/SC_MoveObj.cpp</itemPath>
         <itemPath>Command/SC_MoveObj.h</itemPath>
+        <itemPath>Command/SC_ObjProces.cpp</itemPath>
+        <itemPath>Command/SC_ObjProces.h</itemPath>
         <itemPath>Command/SCommand.cpp</itemPath>
         <itemPath>Command/SCommand.h</itemPath>
       </logicalFolder>

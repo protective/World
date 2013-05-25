@@ -48,9 +48,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/CDatabase.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
-	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
+	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/UI/UIUnitBox.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
 	${OBJECTDIR}/UI/UISocket.o
@@ -150,11 +150,6 @@ ${OBJECTDIR}/CFunctions.o: CFunctions.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
 
-${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp 
-	${MKDIR} -p ${OBJECTDIR}/objects
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CCreature.o objects/CCreature.cpp
-
 ${OBJECTDIR}/mainClient.o: mainClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -164,6 +159,11 @@ ${OBJECTDIR}/objects/CObj.o: objects/CObj.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CObj.o objects/CObj.cpp
+
+${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CCreature.o objects/CCreature.cpp
 
 ${OBJECTDIR}/UI/UIUnitBox.o: UI/UIUnitBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI

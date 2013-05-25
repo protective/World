@@ -7,13 +7,14 @@
 
 #include "SC_HitPower.h"
 #include "../Powers/SPower.h"
-SC_HitPower::SC_HitPower(uint32_t time, SObj* caster, SObj* target, SPower* power):
-SCommand(time,caster,target){
+SC_HitPower::SC_HitPower(uint32_t time, SObj* procesUnit, SObj* caster, SPower* power):
+SCommand(time,procesUnit){
 	_power = power;
+	_caster = caster;
 }
 
 uint32_t SC_HitPower::execute(){
-	_power->getPowerType()->activate(_time,_caster,_target,_values);
+	_power->getPowerType()->activate(_time,_caster,_procesUnit,_values);
 	return 0;
 }
 

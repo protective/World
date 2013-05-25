@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/SDatabase.o \
 	${OBJECTDIR}/objects/Buffs/SBuffBase.o \
+	${OBJECTDIR}/Command/SC_ObjProces.o \
 	${OBJECTDIR}/Powers/SEffectTypeAddBuff.o \
 	${OBJECTDIR}/Command/SC_ApplyTickSpellDamage.o \
 	${OBJECTDIR}/Command/SC_FirePower.o \
@@ -44,8 +45,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/objects/SPos.o \
 	${OBJECTDIR}/mainServer.o \
 	${OBJECTDIR}/Command/SC_CastSTarget.o \
-	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/objects/Buffs/SBuff.o \
+	${OBJECTDIR}/Powers/SPowerTypeLoader.o \
 	${OBJECTDIR}/Client.o \
 	${OBJECTDIR}/World/SWorld.o \
 	${OBJECTDIR}/objects/SCreature.o \
@@ -102,6 +103,11 @@ ${OBJECTDIR}/objects/Buffs/SBuffBase.o: objects/Buffs/SBuffBase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuffBase.o objects/Buffs/SBuffBase.cpp
 
+${OBJECTDIR}/Command/SC_ObjProces.o: Command/SC_ObjProces.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Command
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_ObjProces.o Command/SC_ObjProces.cpp
+
 ${OBJECTDIR}/Powers/SEffectTypeAddBuff.o: Powers/SEffectTypeAddBuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -142,15 +148,15 @@ ${OBJECTDIR}/Command/SC_CastSTarget.o: Command/SC_CastSTarget.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Command/SC_CastSTarget.o Command/SC_CastSTarget.cpp
 
-${OBJECTDIR}/Powers/SPowerTypeLoader.o: Powers/SPowerTypeLoader.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeLoader.o Powers/SPowerTypeLoader.cpp
-
 ${OBJECTDIR}/objects/Buffs/SBuff.o: objects/Buffs/SBuff.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/SBuff.o objects/Buffs/SBuff.cpp
+
+${OBJECTDIR}/Powers/SPowerTypeLoader.o: Powers/SPowerTypeLoader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/SPowerTypeLoader.o Powers/SPowerTypeLoader.cpp
 
 ${OBJECTDIR}/Client.o: Client.cpp 
 	${MKDIR} -p ${OBJECTDIR}

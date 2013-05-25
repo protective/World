@@ -127,9 +127,22 @@ uint32_t SObj::addCommand(SCommand* cmd){
 			break;
 		}
 	}
-		
-	
 	pthread_mutex_unlock(&this->_lockCommands);
+}
+
+uint32_t SObj::removeCommand(SCommand* cmd){
+	pthread_mutex_lock(&this->_lockCommands);
+	list<SCommand*>::iterator it = _commands.begin();
+	while(it != _commands.end()){
+		if(*it == cmd){
+			_commands.remove(cmd);
+			pthread_mutex_unlock(&this->_lockCommands);
+			return 1;
+		}
+		it++;
+	}
+	pthread_mutex_unlock(&this->_lockCommands);
+	return 0;
 }
 
 

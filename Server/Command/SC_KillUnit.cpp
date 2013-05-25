@@ -7,9 +7,9 @@
 
 #include "SC_KillUnit.h"
 #include "../objects/SObj.h"
-SC_KillUnit::SC_KillUnit(uint32_t time, SObj* caster, SObj* target):
-SCommand(time,caster,target) {
-	
+SC_KillUnit::SC_KillUnit(uint32_t time, SObj* procesUnit, SObj* caster):
+SCommand(time,procesUnit) {
+	_caster = caster;
 }
 
 
@@ -20,9 +20,9 @@ uint32_t SC_KillUnit::execute(){
 	SerialKillUnit* data = (SerialKillUnit*)(message);
 	data->_type = SerialType::SerialKillUnit;
 	data->_size = sizeof(SerialKillUnit);
-	data->_unitId = _target->getId();
+	data->_unitId = _procesUnit->getId();
 	
-	for(list<Client*>::iterator it = _target->getSubscribers().begin(); it != _target->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = _procesUnit->getSubscribers().begin(); it != _procesUnit->getSubscribers().end(); it++){
 		sendtoC(*it,message,sizeof(SerialKillUnit));
 	}
 	return 0;

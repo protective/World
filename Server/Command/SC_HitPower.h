@@ -13,7 +13,7 @@ class SPower;
 class SObj;
 class SC_HitPower : public SCommand {
 public:
-	SC_HitPower(uint32_t time, SObj* caster, SObj* target, SPower* power);
+	SC_HitPower(uint32_t time, SObj* procesUnit, SObj* caster, SPower* power);
 	virtual uint32_t execute();
 	map<PowerProjectileMods::Enum, int32_t>& getValues(){return _values;}
 
@@ -21,6 +21,7 @@ public:
 private:
 	map<PowerProjectileMods::Enum, int32_t> _values;
 	SPower* _power;
+	SObj* _caster;
 };
 
 #endif	/* SC_HITPOWER_H */
