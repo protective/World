@@ -13,7 +13,7 @@
 #include "../Command/SC_ObjProces.h"
 class SCreature : public SObj {
 public:
-	SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId);
+	SCreature(uint32_t id, SPos pos, uint32_t team, uint32_t playerId);
 	virtual ~SCreature();
 	virtual SCreature* getCreature(){return this;}
 	SPower* getPower(uint32_t id){if(_powerList.find(id) != _powerList.end())return _powerList[id];else return NULL;}

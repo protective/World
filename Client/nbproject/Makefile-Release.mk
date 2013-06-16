@@ -38,20 +38,25 @@ OBJECTFILES= \
 	${OBJECTDIR}/UI/UICastBar.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/objects/CPos.o \
-	${OBJECTDIR}/CGlobals.o \
+	${OBJECTDIR}/Grafic/Shader.o \
+	${OBJECTDIR}/GLutil.o \
 	${OBJECTDIR}/UI/UIAbilityBox.o \
+	${OBJECTDIR}/CGlobals.o \
+	${OBJECTDIR}/Grafic/CGraficObject.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Grafic/Grafic.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
 	${OBJECTDIR}/world/CWorld.o \
 	${OBJECTDIR}/UI/UIMainFrame.o \
 	${OBJECTDIR}/CDatabase.o \
+	${OBJECTDIR}/Grafic/ShaderProgram.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/objects/CCreature.o \
 	${OBJECTDIR}/UI/UIUnitBox.o \
+	${OBJECTDIR}/Grafic/Model.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
 	${OBJECTDIR}/UI/UISocket.o
 
@@ -100,15 +105,30 @@ ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CPos.o objects/CPos.cpp
 
-${OBJECTDIR}/CGlobals.o: CGlobals.cpp 
+${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shader.o Grafic/Shader.cpp
+
+${OBJECTDIR}/GLutil.o: GLutil.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CGlobals.o CGlobals.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/GLutil.o GLutil.cpp
 
 ${OBJECTDIR}/UI/UIAbilityBox.o: UI/UIAbilityBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIAbilityBox.o UI/UIAbilityBox.cpp
+
+${OBJECTDIR}/CGlobals.o: CGlobals.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CGlobals.o CGlobals.cpp
+
+${OBJECTDIR}/Grafic/CGraficObject.o: Grafic/CGraficObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/CGraficObject.o Grafic/CGraficObject.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
@@ -140,6 +160,11 @@ ${OBJECTDIR}/CDatabase.o: CDatabase.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CDatabase.o CDatabase.cpp
 
+${OBJECTDIR}/Grafic/ShaderProgram.o: Grafic/ShaderProgram.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ShaderProgram.o Grafic/ShaderProgram.cpp
+
 ${OBJECTDIR}/UI/UIBaseFrame.o: UI/UIBaseFrame.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
@@ -169,6 +194,11 @@ ${OBJECTDIR}/UI/UIUnitBox.o: UI/UIUnitBox.cpp
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIUnitBox.o UI/UIUnitBox.cpp
+
+${OBJECTDIR}/Grafic/Model.o: Grafic/Model.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Model.o Grafic/Model.cpp
 
 ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761

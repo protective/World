@@ -40,5 +40,15 @@ bool LinePointIntersect(int32_t p1x,  int32_t p1y, int32_t p2x,int32_t p2y, int3
 //double range(int32_t x1, int32_t y1, int32_t x2, int32_t y2){
 //	return sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2);
 //}
+
+
+template<typename T>
+std::string toString(const T& value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+
 #endif	/* GFUNCTIONS_H */
 

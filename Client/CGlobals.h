@@ -21,8 +21,9 @@
 #include <SDL/SDL_gfxPrimitives.h>
 #include <SDL/SDL_rotozoom.h>
 #include <SDL/SDL_ttf.h>
-#include "SDL/SDL_opengl.h"
-#include "GL/gl.h"
+//include "SDL/SDL_opengl.h"
+#include <GL/glew.h>
+//#include "GL/gl.h"
 #include <pthread.h>
 #include <cstdlib>
 #include "../GShare/GFunctions.h"

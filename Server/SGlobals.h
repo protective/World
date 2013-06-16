@@ -16,6 +16,8 @@
 #include <SDL/SDL.h>
 #include <list>
 #include <map>
+
+#include "Powers/SEffectType.h"
 //#include "Sspacebjects/subsystems/SSubType.h"
 
 #define NRTHREADS 2
@@ -28,7 +30,8 @@
 using namespace std;
 class Client;
 class SWorld;
-
+class SPowerType;
+class SEffectType;
 extern SWorld* world;
 extern list<Client*> clients;
 extern pthread_mutex_t lockNetInput;
@@ -40,5 +43,7 @@ extern map<string,uint32_t> itemlistFileNames;
 extern map<uint32_t,uint8_t> teamlist;
 extern list<uint8_t> allteams;
 extern bool SPrintBuff;
+extern map<uint32_t, SPowerType*> GlobalPowerTypes;
+extern map<uint32_t, SEffectType*> GlobalEffetTypes;
 #endif	/* SGLOBALS_H */
 

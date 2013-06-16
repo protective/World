@@ -99,45 +99,24 @@ int main(int argc, char** argv){
 	
 	
 	//powerTypes
-	SPowerType* powert = new SPowerType(1,1);
-	powert->getSubComponents()[EResults::SHit].push_back(buff);
-	powert->getSubComponents()[EResults::SCrit].push_back(buff);
-	powert->getStats()[PowerTypeStats::CastTime] = 3000;
-	powert->getStats()[PowerTypeStats::ManaCost] = 0;
+	//SPowerType* powert = new SPowerType(1,1);
+	//powert->getSubComponents()[EResults::SHit].push_back(buff);
+	//powert->getSubComponents()[EResults::SCrit].push_back(buff);
+	//powert->getStats()[PowerTypeStats::CastTime] = 3000;
+	//powert->getStats()[PowerTypeStats::ManaCost] = 0;
 	
 	
-	SPowerType* powert2 = new SPowerType(2,2);
-	powert2->getSubComponents()[EResults::SHit].push_back(DD);
-	powert2->getSubComponents()[EResults::SCrit].push_back(DD);	
-	powert2->getStats()[PowerTypeStats::CastTime] = 1000;
-	powert2->getStats()[PowerTypeStats::ManaCost] = 50;
+	//SPowerType* powert2 = new SPowerType(2,2);
+	//powert2->getSubComponents()[EResults::SHit].push_back(DD);
+	//powert2->getSubComponents()[EResults::SCrit].push_back(DD);	
+	//powert2->getStats()[PowerTypeStats::CastTime] = 1000;
+	//powert2->getStats()[PowerTypeStats::ManaCost] = 50;
 	
 	//WORLD
 	SGrid* g = new SGrid(1);
 	world->addGrid(g);
-	SPos p1(10000,10000,0);
 	
-	SCreature* o = new SCreature(getFreeID(),p1,0,0);
-	o->getAttibute()[Attributes::Hp] = 1000;
-	o->getAttibute()[Attributes::HpMax] = 1000;
-	o->getAttibute()[Attributes::Mana] = 1000;
-	o->getAttibute()[Attributes::ManaMax] = 1000;
-	g->addObj(o);
-	SPower* po = new SPower(1,o,powert);
-	o->getCreature()->addPower(po);
-	po = new SPower(2,o,powert2);
-	o->getCreature()->addPower(po);
-//	o->getCreature()->addPower(pdd);
-	o->getAttibute()[Attributes::Spirit] = 10;
-	
-	
-	SPos p2(3500,7000,0);
-	SCreature* t = new SCreature(getFreeID(),p2,1,0);
-	t->getAttibute()[Attributes::Hp] = 1000;
-	t->getAttibute()[Attributes::HpMax] = 1000;
-	t->getAttibute()[Attributes::Mana] = 1000;
-	t->getAttibute()[Attributes::ManaMax] = 1000;
-	g->addObj(t);
+	data.LoadFromPostgres();
 	
 	
 	//for(int i = 1 ; i< 20 ; i++){

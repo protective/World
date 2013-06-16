@@ -1,0 +1,41 @@
+delete from Attributes;
+insert into Attributes values(1,'Level');
+insert into Attributes values(2,'Attack Power');
+insert into Attributes values(3,'Spell Power');
+insert into Attributes values(4,'Healing Power');
+insert into Attributes values(5,'Hit');
+insert into Attributes values(6,'Spell Hit');
+insert into Attributes values(7,'Parry');
+insert into Attributes values(8,'Dodge');
+insert into Attributes values(9,'Block');
+insert into Attributes values(10,'BlockS');
+insert into Attributes values(11,'Armor');
+insert into Attributes values(12,'Crit');
+insert into Attributes values(13,'Spell Crit');
+insert into Attributes values(14,'Resist Fire');
+insert into Attributes values(15,'Resist Frost');
+insert into Attributes values(16,'Resist Nature');
+insert into Attributes values(17,'Resist Shadow');
+insert into Attributes values(18,'Resist Arcane');
+insert into Attributes values(19,'Resist Force');
+insert into Attributes values(20,'Hp');
+insert into Attributes values(21,'Focus');
+insert into Attributes values(22,'Hp Max');
+insert into Attributes values(23,'Hp Max');
+insert into Attributes values(24,'Mana Max');
+insert into Attributes values(25,'Focus Max');
+insert into Attributes values(26,'Hp P');
+insert into Attributes values(27,'Mana P');
+insert into Attributes values(28,'Focus P');
+insert into Attributes values(29,'Spell Power Bonus');
+insert into Attributes values(30,'Spell Power Bonus Buff');
+insert into Attributes values(31,'Spirit');
+insert into Attributes values(32,'Strength');
+insert into Attributes values(33,'Dexterity');
+insert into Attributes values(34,'Constitution');
+insert into Attributes values(35,'Intelligence');
+insert into Attributes values(36,'RegenOFSRP');
+insert into Attributes values(37,'ManaPrF');
+
+
+

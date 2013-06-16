@@ -10,7 +10,7 @@
 #include "SObj.h"
 #include "../World/SWorld.h"
 #include "../Command/SC_MoveObj.h"
-SObj::SObj(uint32_t id, SPos pos, uint8_t team, uint32_t playerId) {
+SObj::SObj(uint32_t id, SPos pos, uint32_t team, uint32_t playerId) {
 	this->_id = id;
 
 	this->_team = team;

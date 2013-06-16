@@ -1,4 +1,4 @@
-if (str.find("Icons/Armor")!= string::npos)
+if (str.find("Icons/HeatSink")!= string::npos)
 return 1;
 else if (str.find("Icons/Mechanical")!= string::npos)
 return 2;

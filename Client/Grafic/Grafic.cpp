@@ -3,6 +3,7 @@
 
 #include "Grafic.h"
 #include "sys/stat.h"
+#include "Model.h"
 
 GLuint loadTexture(Textures::Enum texture){
 	cerr<<"tb_ "<<texture<<endl;
@@ -94,6 +95,18 @@ GLuint loadTexture(Textures::Enum texture){
 	printf("SDL could not load image.bmp: %s\n", SDL_GetError());
 	return 0;
 	}
+
+}
+
+ShaderProgram* initShaders(){
+	ShaderProgram* sp = new ShaderProgram();
+	cerr<<"INIT TEST MODEL"<<endl;
+	Model* md = new Model();
+	cerr<<"DONE INIT MODEL"<<endl;
+	return sp;
+}
+
+void draw(Model* Model){
 
 }
 

@@ -30,6 +30,7 @@ SGrid::SGrid(uint32_t id, uint32_t spaceWight, uint32_t spaceHight) {
 void SGrid::addObj(SObj* obj){
 	pthread_mutex_lock(&this->lockgrid);
 	this->objToAdd[obj->getId()] = obj;
+	world->getObjs()[obj->getId()] = obj;
 	pthread_mutex_unlock(&this->lockgrid);
 }
 

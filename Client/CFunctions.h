@@ -21,5 +21,7 @@ uint32_t Rangeobj(CPos& pos1, CPos& pos2);
 uint32_t Rangeobj(CPos& pos1, int32_t x2, int32_t y2);
 uint32_t Rangeobj(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
+
+
 #endif	/* CFUNCTIONS_H */
 

@@ -1,6 +1,6 @@
 import Image, ImageDraw, os
 
-effects =["Icons/Armor","Icons/Mechanical"]
+effects =["Icons/HeatSink","Icons/Mechanical"]
 
 f = open("../../../Server/database/itemtexname.txt", 'w')
 

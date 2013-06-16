@@ -8,7 +8,7 @@
 #include "UISocket.h"
 
 UISocket::UISocket(UIBaseFrame* parrent, uint32_t x, uint32_t y):
-UIBaseFrame(parrent,x,y,50,50){
+UIBaseFrame(parrent,x,y,40,40){
 }
 
 uint32_t UISocket::drop(UIAbilityBox* abilityBox){

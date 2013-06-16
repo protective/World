@@ -11,7 +11,7 @@
 #include "Buffs/SBuffStat.h"
 #include "../Client.h"
 
-SCreature::SCreature(uint32_t id, SPos pos, uint8_t team, uint32_t playerId):
+SCreature::SCreature(uint32_t id, SPos pos, uint32_t team, uint32_t playerId):
 SObj(id,pos,team,playerId){
 	
 	SC_ObjProcesTask::Enum task[4] = {SC_ObjProcesTask::Mana,SC_ObjProcesTask::Focus,SC_ObjProcesTask::ManaContinue,SC_ObjProcesTask::ManaPFS};

@@ -17,15 +17,15 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_gfxPrimitives.h>
 #include <SDL/SDL_ttf.h>
-#include "SDL/SDL_opengl.h"
-#include "GL/gl.h"
+
+//#include "GL/gl.h"
 #include <pthread.h>
 #include <cstdlib>
 #include "Grafic/Grafic.h"
 #include "UI/UIMainFrame.h"
 #include "CFunctions.h"
 #include "objects/CCreature.h"
-
+//#include "SDL/SDL_opengl.h"
 
 #define BPP 4
 #define DEPTH 32
@@ -54,6 +54,8 @@ void DrawScreen(SDL_Surface* screen)
 
  int main(int argc, char* argv[]){
 
+	
+	
 	ifstream ifile("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");
 	if (!ifile) {
 		cerr<<"ERROR mscorefonts arial.ttf not found"<<endl;
@@ -122,6 +124,41 @@ void DrawScreen(SDL_Surface* screen)
 		cerr<<"ERROR init SDL >"<<SDL_GetError()<<endl;
 		exit(1);
 	}
+	
+	
+	
+	
+			GLenum GlewInitResult;
+
+	
+	glewExperimental = GL_TRUE;
+	GlewInitResult = glewInit();
+
+	if (GLEW_OK != GlewInitResult) {
+		fprintf(
+			stderr,
+			"ERROR: %s\n",
+			glewGetErrorString(GlewInitResult)
+		);
+		exit(EXIT_FAILURE);
+	}
+	
+	fprintf(
+		stdout,
+		"INFO: OpenGL Version: %s\n",
+		glGetString(GL_VERSION)
+	);
+
+	glGetError();
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
 	glViewport(0, 0, Basewidth, Basehight);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClearDepth(1.0);
@@ -135,6 +172,12 @@ void DrawScreen(SDL_Surface* screen)
 	//gluPerspective( 0.45f,  (GLfloat)600/(GLfloat)300,  100.0f,  10000.0f);
 	glOrtho(0, Basewidth-1, Basehight-1, 0, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
+	*/
+	//BEGIN the hard stuff;
+	cerr<<"INIT Grafic"<<endl;
+	cerr<<"GL Version "<<glGetString(GL_VERSION)<<endl;
+	initShaders();
+	cerr<<"END INIT"<<endl;
 	
 	textures[Textures::Icons1] = loadTexture(Textures::Icons1);
 	

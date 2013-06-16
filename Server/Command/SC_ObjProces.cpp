@@ -15,8 +15,8 @@ SCommand(time,procesUnit){
 }
 
 uint32_t SC_ObjProces::execute(){
-	if(_procesUnit->getId() == 3)
-		cerr<<"proces "<<_task<<endl;
+	//if(_procesUnit->getId() == 3)
+		//cerr<<"proces "<<_task<<endl;
 	if(_task == SC_ObjProcesTask::Mana){
 		int32_t mana = _procesUnit->getCreature()->getAttibute()[Attributes::Mana];
 		int32_t maxmana = _procesUnit->getCreature()->getAttibute()[Attributes::ManaMax];

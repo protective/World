@@ -13,8 +13,16 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Grafic" projectFiles="true">
+        <itemPath>Grafic/CGraficObject.cpp</itemPath>
+        <itemPath>Grafic/CGraficObject.h</itemPath>
         <itemPath>Grafic/Grafic.cpp</itemPath>
         <itemPath>Grafic/Grafic.h</itemPath>
+        <itemPath>Grafic/Model.cpp</itemPath>
+        <itemPath>Grafic/Model.h</itemPath>
+        <itemPath>Grafic/Shader.cpp</itemPath>
+        <itemPath>Grafic/Shader.h</itemPath>
+        <itemPath>Grafic/ShaderProgram.cpp</itemPath>
+        <itemPath>Grafic/ShaderProgram.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Gshare" projectFiles="true">
         <itemPath>../GShare/Enums.h</itemPath>
@@ -66,6 +74,8 @@
       <itemPath>CGlobals.h</itemPath>
       <itemPath>CPlayerObjHandle.cpp</itemPath>
       <itemPath>CPlayerObjHandle.h</itemPath>
+      <itemPath>GLutil.cpp</itemPath>
+      <itemPath>GLutil.h</itemPath>
       <itemPath>mainClient.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -102,6 +112,8 @@
             <linkerLibLibItem>SDL_image</linkerLibLibItem>
             <linkerLibLibItem>GL</linkerLibLibItem>
             <linkerLibLibItem>ftgl</linkerLibLibItem>
+            <linkerLibLibItem>GLU</linkerLibLibItem>
+            <linkerLibLibItem>GLEW</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

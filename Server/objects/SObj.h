@@ -13,7 +13,7 @@
 class SCreature;
 class SObj {
 public:
-	SObj(uint32_t id, SPos pos, uint8_t team, uint32_t playerId);
+	SObj(uint32_t id, SPos pos, uint32_t team, uint32_t playerId);
 	uint32_t getId();
 	SPos& getPos();
 	SPos& getOldPos();

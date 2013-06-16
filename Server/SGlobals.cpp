@@ -20,3 +20,7 @@ pthread_barrier_t  procesBar;
 map<uint32_t,uint8_t> teamlist;
 list<uint8_t> allteams;
 bool SPrintBuff = false;
+map<uint32_t, SPowerType*> GlobalPowerTypes;
+map<uint32_t, SEffectType*> GlobalEffetTypes;
+
+
