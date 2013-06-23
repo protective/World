@@ -100,9 +100,7 @@ GLuint loadTexture(Textures::Enum texture){
 
 ShaderProgram* initShaders(){
 	ShaderProgram* sp = new ShaderProgram();
-	cerr<<"INIT TEST MODEL"<<endl;
-	Model* md = new Model();
-	cerr<<"DONE INIT MODEL"<<endl;
+
 	return sp;
 }
 
@@ -112,13 +110,14 @@ void draw(Model* Model){
 
 void Drawbox( float x, float y, float width, float hight, float r, float g, float b, float a )
 {
+	//cerr<<"ha"<<endl;
     glDisable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);
     glColor4f( r, g, b, a);
-    glVertex2f( x, y + hight);
-    glVertex2f( x+width, y + hight);
-	glVertex2f( x+width, y);
-	glVertex2f( x, y);
+    glVertex4f( x, y + hight,0,1);
+    glVertex4f( x+width, y + hight,0,1);
+	glVertex4f( x+width, y,0,1);
+	glVertex4f( x, y,0,1);
     glEnd();
 	glColor4f(1,1,1,1);
 	glEnable(GL_TEXTURE_2D);

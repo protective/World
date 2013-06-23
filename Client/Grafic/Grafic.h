@@ -14,8 +14,11 @@
 #include <SDL/SDL_image.h>
 #include "../CFunctions.h"
 //#include <FTGL/ftgl.h>
-#include "ShaderProgram.h"
+//#include "ShaderProgram.h"
+#define FREEGLUT_STATIC
+#include <GL/freeglut.h>
 
+class ShaderProgram;
 GLuint loadTexture(Textures::Enum texture);
 ShaderProgram* initShaders();
 void Drawbox( float x, float y, float width, float hight, float r, float g, float b, float a );

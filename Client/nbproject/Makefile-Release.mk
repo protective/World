@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/UI/UICastBar.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/objects/CPos.o \
+	${OBJECTDIR}/Grafic/screenControler.o \
 	${OBJECTDIR}/Grafic/Shader.o \
 	${OBJECTDIR}/GLutil.o \
 	${OBJECTDIR}/UI/UIAbilityBox.o \
@@ -104,6 +105,11 @@ ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CPos.o objects/CPos.cpp
+
+${OBJECTDIR}/Grafic/screenControler.o: Grafic/screenControler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/screenControler.o Grafic/screenControler.cpp
 
 ${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic

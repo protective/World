@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/UI/UICastBar.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/objects/CPos.o \
+	${OBJECTDIR}/Grafic/screenControler.o \
 	${OBJECTDIR}/Grafic/Shader.o \
 	${OBJECTDIR}/GLutil.o \
 	${OBJECTDIR}/UI/UIAbilityBox.o \
@@ -75,7 +76,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lpthread -lSDL -lSDLmain -lSDL_ttf -lSDL_image -lGL -lftgl -lGLU -lGLEW
+LDLIBSOPTIONS=-lpthread -lSDL -lSDLmain -lSDL_ttf -lSDL_image -lGL -lftgl -lGLU -lGLEW -lglut
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -104,6 +105,11 @@ ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CPos.o objects/CPos.cpp
+
+${OBJECTDIR}/Grafic/screenControler.o: Grafic/screenControler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/screenControler.o Grafic/screenControler.cpp
 
 ${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic

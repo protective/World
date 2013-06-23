@@ -35,6 +35,7 @@ class CObj;
 class UIMainFrame;
 class CPos;
 class CWorld;
+class screenControler;
 using namespace std;
 
 struct ConnectionStruct{
@@ -75,5 +76,6 @@ extern map<uint32_t, CPlayercolour> playercolour;
 extern UIMainFrame* mainFrame;
 extern map<SDLKey,bool> keydown;
 extern bool CPrintBuff;
+extern screenControler* masterScreen;
 #endif	/* CGLOBALS_H */
 

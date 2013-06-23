@@ -10,6 +10,7 @@
 #include "objects/CObj.h"
 #include "objects/CCreature.h"
 #include "Powers/CPower.h"
+#include "Grafic/screenControler.h"
 CPlayerObjHandle::CPlayerObjHandle() {
 	_moveCounter = 0;
 }
@@ -166,7 +167,8 @@ void CPlayerObjHandle::recCreature(SerialCreature* st){
 
 	if(handle == _objs.end()){
 		CPos temp(st->_x,st->_y,st->_z,st->_d);
-		creature = new CCreature(st->_unitId,0,temp);
+		
+		creature = new CCreature(st->_unitId,0,temp,masterScreen->getModels().front());
 		_objs[st->_unitId] = creature;
 	}else
 		creature = handle->second->getCreature();

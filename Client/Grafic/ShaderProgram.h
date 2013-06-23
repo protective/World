@@ -14,7 +14,7 @@ class ShaderProgram {
 public:
 	ShaderProgram();
 	map<int32_t,Shader*>& getShaders(){return _shaders;}
-	GLuint getId(){return _id;}
+	GLuint getProgramId(){return _id;}
 	void setId(GLuint id){_id = id;}
 	virtual ~ShaderProgram();
 private:

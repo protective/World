@@ -25,36 +25,19 @@
 #include "UI/UIMainFrame.h"
 #include "CFunctions.h"
 #include "objects/CCreature.h"
+#include "Grafic/screenControler.h"
 //#include "SDL/SDL_opengl.h"
 
 #define BPP 4
 #define DEPTH 32
 using namespace std;
 
-void DrawScreen(SDL_Surface* screen)
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glLoadIdentity();
-
-// draw quad in screen coodinates
-
-
-	mainFrame->updateUI();
-	mainFrame->draw();
-
-	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
-		it->second->Draw();
-	}
-
-	SDL_GL_SwapBuffers();
-
-}
 
 
  int main(int argc, char* argv[]){
 
-	
+	//glutInit(&argc, argv);
 	
 	ifstream ifile("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");
 	if (!ifile) {
@@ -110,53 +93,7 @@ void DrawScreen(SDL_Surface* screen)
 
     int keypress = 0;
     int h=0;
-	SDL_EnableUNICODE(1);
-	if ( SDL_Init(SDL_INIT_VIDEO) != 0 ) {
-	printf("Unable to initialize SDL: %s\n", SDL_GetError());
-	return 1;
-	}
-	
-	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ); // *new*
-	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 
-	SDL_Surface* screen = SDL_SetVideoMode(Basewidth, Basehight, 24, SDL_OPENGL | SDL_HWSURFACE); // *changed*
-	if(!screen){
-		cerr<<"ERROR init SDL >"<<SDL_GetError()<<endl;
-		exit(1);
-	}
-	
-	
-	
-	
-			GLenum GlewInitResult;
-
-	
-	glewExperimental = GL_TRUE;
-	GlewInitResult = glewInit();
-
-	if (GLEW_OK != GlewInitResult) {
-		fprintf(
-			stderr,
-			"ERROR: %s\n",
-			glewGetErrorString(GlewInitResult)
-		);
-		exit(EXIT_FAILURE);
-	}
-	
-	fprintf(
-		stdout,
-		"INFO: OpenGL Version: %s\n",
-		glGetString(GL_VERSION)
-	);
-
-	glGetError();
-	
-	
-	
-	
-	
-	
-	
 	
 	/*
 	glViewport(0, 0, Basewidth, Basehight);
@@ -174,14 +111,11 @@ void DrawScreen(SDL_Surface* screen)
 	glMatrixMode(GL_MODELVIEW);
 	*/
 	//BEGIN the hard stuff;
-	cerr<<"INIT Grafic"<<endl;
-	cerr<<"GL Version "<<glGetString(GL_VERSION)<<endl;
-	initShaders();
-	cerr<<"END INIT"<<endl;
-	
-	textures[Textures::Icons1] = loadTexture(Textures::Icons1);
 	
 	
+	
+	screenControler* screen = new screenControler();
+	masterScreen = screen;
 	Connect(argip,argteam, 42);
 	uint32_t deltaTime = 0;
 	uint32_t lastTime = 0;
@@ -200,7 +134,7 @@ void DrawScreen(SDL_Surface* screen)
 		lastTime = SDL_GetTicks();
 		pthread_mutex_lock(&lockInput);
 
-		DrawScreen(screen);
+		screen->drawScreen();
 		pthread_mutex_unlock(&lockInput);
 		playerObj->procesPlayerUnit(deltaTime);
 		for(map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it!= playerObj->getObjs().end(); it++ ){

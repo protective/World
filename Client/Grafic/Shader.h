@@ -10,9 +10,9 @@
 #include "../GLutil.h"
 #include "../CFunctions.h"
 enum shaderVars{
-	ModelMatrix,
-	ViewMatrix,
-	ProjectionMatrix
+	ShaderModelMatrix,
+	ShaderViewMatrix,
+	ShaderProjectionMatrix
 };
 class Shader {
 public:

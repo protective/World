@@ -27,7 +27,6 @@ public:
 	virtual uint8_t getTeam(){return _team;}
 	virtual uint32_t getPlayerId(){return _playerId;}
 	virtual CCreature* getCreature(){return NULL;}
-        virtual void Draw(){}
 	virtual ~CObj();
 protected:
 	uint32_t _id;

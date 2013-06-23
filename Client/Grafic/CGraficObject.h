@@ -13,7 +13,7 @@
 class CGraficObject {
 public:
 	CGraficObject(Model* model);
-	void draw();
+	virtual void draw();
 	virtual ~CGraficObject();
 private:
 	Model* _model;

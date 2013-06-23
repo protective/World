@@ -8,10 +8,11 @@
 #ifndef CCREATURE_H
 #define	CCREATURE_H
 #include "CObj.h"
+#include "../Grafic/CGraficObject.h"
 #include "../Powers/CPower.h"
-class CCreature : public CObj {
+class CCreature : public CObj , public CGraficObject {
 public:
-	CCreature(uint32_t id, uint32_t playerId, CPos pos);
+	CCreature(uint32_t id, uint32_t playerId, CPos pos, Model* model);
 	
 	uint32_t getCastTime(){return _castTime;}
 	void setCastTime(uint32_t time){_castTime = time;}
@@ -20,7 +21,6 @@ public:
 	virtual CCreature* getCreature(){return this;}
 	map<uint32_t,CPower*>& getPowers(){return this->_powerList;}
 	map<Attributes::Enum , int32_t>& getAttibute(){return _attribute;}
-	virtual void Draw();
 	virtual ~CCreature();
 protected:
 	map<uint32_t,CPower*> _powerList;

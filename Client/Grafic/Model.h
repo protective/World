@@ -9,14 +9,21 @@
 #define	MODEL_H
 #include "../GLutil.h"
 #include "../CFunctions.h"
+#include "ShaderProgram.h"
 class Model {
 public:
-	Model();
+	Model(ShaderProgram* shader);
+	ShaderProgram* getShader(){return _shader;}
+	GLuint get_vao(){return _vao;}
+	GLuint get_vbo(){return _vbo;}
+	GLuint* get_ibo(){return &_ibo;}
+	uint32_t getIndicesCount(){return _indicesCount;}
 	virtual ~Model();
 private:
+	ShaderProgram* _shader;
 	Vertex* _vertices;
 	uint32_t _vertixCount;
-	uint32_t* _indices;
+	GLuint* _indices;
 	uint32_t _indicesCount;
 	GLuint _vao; //vertex array hold array meta information
 	GLuint _vbo; //vertices handler

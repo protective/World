@@ -23,6 +23,8 @@
         <itemPath>Grafic/Shader.h</itemPath>
         <itemPath>Grafic/ShaderProgram.cpp</itemPath>
         <itemPath>Grafic/ShaderProgram.h</itemPath>
+        <itemPath>Grafic/screenControler.cpp</itemPath>
+        <itemPath>Grafic/screenControler.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Gshare" projectFiles="true">
         <itemPath>../GShare/Enums.h</itemPath>
@@ -114,6 +116,7 @@
             <linkerLibLibItem>ftgl</linkerLibLibItem>
             <linkerLibLibItem>GLU</linkerLibLibItem>
             <linkerLibLibItem>GLEW</linkerLibLibItem>
+            <linkerLibLibItem>glut</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
