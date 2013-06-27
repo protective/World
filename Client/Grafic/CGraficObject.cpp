@@ -38,15 +38,15 @@ Matrix ModelMatrix;
 	
 	ExitOnGLError("ERROR: Could not use the shader program");
 
-	//glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderModelMatrix], 1, GL_FALSE, ModelMatrix.m);
-	//glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderViewMatrix], 1, GL_FALSE, (*masterScreen->getViewMatrix()).m);
+	glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderModelMatrix], 1, GL_FALSE, ModelMatrix.m);
+	glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderViewMatrix], 1, GL_FALSE, (*masterScreen->getViewMatrix()).m);
 	ExitOnGLError("ERROR: Could not set the shader uniforms");
 
 	glBindVertexArray(_model->get_vao());
 	ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
 
-	//glDrawElements(GL_TRIANGLES, _model->getIndicesCount(), GL_UNSIGNED_INT, _model->get_ibo());
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glDrawElements(GL_TRIANGLES, _model->getIndicesCount(), GL_UNSIGNED_INT, (void*)0);
+	//glDrawArrays(GL_TRIANGLES, 0, 6);
 	ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
 	
 	ExitOnGLError("ERROR: Could not draw the cube");

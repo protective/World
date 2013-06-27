@@ -20,9 +20,9 @@ Model::Model(ShaderProgram* shader) {
 	
 	_vertices = new Vertex[_vertixCount];
 	
-	_vertices[0].Position[0] = -0.1f;
+	_vertices[0].Position[0] = 11.1f;
 	_vertices[0].Position[1] = 0.0f;
-	_vertices[0].Position[2] = 0.0f;
+	_vertices[0].Position[2] = 10.0f;
 	_vertices[0].Position[3] = 1.0f;	
 	_vertices[0].Color[0] = 1.0f;
 	_vertices[0].Color[1] = 0.0f;
@@ -39,8 +39,8 @@ Model::Model(ShaderProgram* shader) {
 	_vertices[1].Color[3] = 1.0f;
 	
 	_vertices[2].Position[0] = 0.0f;
-	_vertices[2].Position[1] = -0.1f;
-	_vertices[2].Position[2] = 0.0f;
+	_vertices[2].Position[1] = -10.1f;
+	_vertices[2].Position[2] = 10.0f;
 	_vertices[2].Position[3] = 1.0f;	
 	_vertices[2].Color[0] = 1.0f;
 	_vertices[2].Color[1] = 1.0f;
@@ -78,7 +78,7 @@ Model::Model(ShaderProgram* shader) {
 	glGenBuffers(1, &_ibo);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indicesCount, _indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indicesCount*sizeof(GLfloat), _indices, GL_STATIC_DRAW);
 	ExitOnGLError("ERROR: Could not bind the IBO to the VAO");
 
 	glBindVertexArray(0);

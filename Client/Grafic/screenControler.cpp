@@ -27,13 +27,7 @@ screenControler::screenControler() {
 		exit(1);
 	}
 	
-	
-	
-	
-	//glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA);
-	//glutInitWindowSize(600,600);
-	//glutCreateWindow("Triangle Test");
-	//glewInit();
+
 	
 	GLenum GlewInitResult;
 

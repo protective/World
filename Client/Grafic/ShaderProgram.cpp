@@ -33,7 +33,7 @@ ShaderProgram::ShaderProgram() {
 	
 	ExitOnGLError("ERROR: Could not get the shader uniform locations");
 
-	getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ViewMatrix");
+	getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ModelMatrix");
 	getShaders()[0]->bindvars(_id,ShaderViewMatrix,"ViewMatrix");
 	getShaders()[0]->bindvars(_id,ShaderProjectionMatrix,"ProjectionMatrix");
 }
