@@ -105,7 +105,7 @@ void SCreature::transmitAttribute(Attributes::Enum attri){
 	data->_attribute = attri;
 	data->_value = _attribute[attri];
 	
-	for(list<Client*>::iterator it = this->getSubscribers().begin(); it != this->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = this->getSubscribers()[0].begin(); it != this->getSubscribers()[0].end(); it++){
 		if ((*it)->getTeamId() == this->getTeam())
 			sendtoC(*it,message,sizeof(SerialAttribute));
 	}	
@@ -146,7 +146,7 @@ void SCreature::transmitAttribute(Attributes::Enum attri){
 		data2->_value = tempP;
 
 
-		for(list<Client*>::iterator it = this->getSubscribers().begin(); it != this->getSubscribers().end(); it++){
+		for(list<Client*>::iterator it = this->getSubscribers()[0].begin(); it != this->getSubscribers()[0].end(); it++){
 			if ((*it)->getTeamId() != this->getTeam())
 				sendtoC(*it,message,sizeof(SerialAttribute));
 		}
@@ -156,20 +156,26 @@ void SCreature::transmitAttribute(Attributes::Enum attri){
 void SCreature::addPower(SPower* power){
 	_powerList[power->getId()] = power;
 	
-	for(list<Client*>::iterator it = _subscribers.begin(); it != _subscribers.end(); it++){
+	for(list<Client*>::iterator it = _subscribers[0].begin(); it != _subscribers[0].end(); it++){
 		power->sendToClient(*it);
 	}
 }
-
-uint32_t SCreature::addBuff(SBuff* buff){
+uint32_t SCreature::addBuff(SBuff* buff, uint32_t time){
 	for(int i = 0; ;i++){
 		if(_bufflist.find(i) == _bufflist.end()){
 			_bufflist[i] = buff;
 			updateAttribute();
 			return i;
-		}
-			
-	}
+		}			
+	}	
+
+}
+
+
+
+
+uint32_t SCreature::addBuff(SBuff* buff){
+	this->addBuff(buff,0);
 }
 
 uint32_t SCreature::removeBuff(SBuff* buff){
@@ -187,7 +193,7 @@ void SCreature::updateAttribute(){
 	for (map<Attributes::Enum, int32_t>::iterator it = _BaseAttribute.begin(); it != _BaseAttribute.end();it++){
 		_attribute[it->first] = it->second;
 	}
-	
+	uint32_t speedMod = 100;
 	for(map<uint32_t,SBuff*>::iterator it = _bufflist.begin(); it != _bufflist.end(); it++){
 		for (list<SBuffBase*>::iterator it2 = it->second->getEffects().begin(); it2 != it->second->getEffects().end(); it2++){
 			if ((*it2)->getBuffStat()){
@@ -196,11 +202,16 @@ void SCreature::updateAttribute(){
 						_attribute[Attributes::SpellHit] += (*it2)->getBuffStat()->getValue();
 						break;
 					case StatsMods::SpellCrit:
-						_attribute[Attributes::SpellCrit] += (*it2)->getBuffStat()->getValue();
-						
+						_attribute[Attributes::SpellCrit] += (*it2)->getBuffStat()->getValue();	
 						break;
 					case StatsMods::SpellPower:
 						_attribute[Attributes::SpellPower] += (*it2)->getBuffStat()->getValue();
+						break;
+					case StatsMods::DeBuffSpeedMod:
+						_attribute[Attributes::Speed] += (*it2)->getBuffStat()->getValue();
+						break;
+					case StatsMods::DeBuffSpeedModP:
+						speedMod += (*it2)->getBuffStat()->getValue();
 						break;
 					default:
 						break;
@@ -208,6 +219,8 @@ void SCreature::updateAttribute(){
 			}
 		}
 	}
+	
+	_attribute[Attributes::Speed] = (_attribute[Attributes::Speed] * speedMod)/100;
 	
 	
 }

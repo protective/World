@@ -7,7 +7,7 @@
 
 #include "SBuff.h"
 
-SBuff::SBuff(SPowerType* type,uint32_t maxTick, uint32_t tickTime) {
+SBuff::SBuff(SPowerType* type, uint32_t maxTick, uint32_t tickTime) {
 	_maxtickCount = maxTick;
 	_tickCount = maxTick;
 	_tickTime = tickTime;

@@ -18,15 +18,16 @@ screenControler::screenControler() {
 	//return 1;
 	}
 	
-	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 ); // *new*
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1 ); // *new*
 	SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+	
 	SDL_Surface* screen = SDL_SetVideoMode(Basewidth, Basehight, 24, SDL_OPENGL | SDL_HWSURFACE); // *changed*
 	if(!screen){
 		cerr<<"ERROR init SDL >"<<SDL_GetError()<<endl;
 		exit(1);
 	}
-	
+	glEnable(GL_DEPTH_TEST );
 
 	
 	GLenum GlewInitResult;
@@ -64,7 +65,7 @@ screenControler::screenControler() {
 	);
 	
 	_viewMatrix = IDENTITY_MATRIX;
-	TranslateMatrix(&_viewMatrix, 0, 0, -20);
+	TranslateMatrix(&_viewMatrix, 0, 0, -80);
 
 	_shaderProgram = initShaders();
 	
@@ -75,11 +76,14 @@ screenControler::screenControler() {
 	
 	glUseProgram(_shaderProgram->getProgramId());
 	glUniformMatrix4fv(_shaderProgram->getShaders()[0]->getVars()[ShaderProjectionMatrix], 1, GL_FALSE, _projectionMatrix.m);
+
+	//textures[Textures::Icons1] = loadTexture(Textures::Icons1);
+
+	
 	glUseProgram(0);
 	
 	cerr<<"END INIT"<<endl;
 	
-	textures[Textures::Icons1] = loadTexture(Textures::Icons1);
 	
 }
 
@@ -97,7 +101,7 @@ void screenControler::drawScreen()
 
 	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 		if (it->second->getCreature())
-			it->second->getCreature()->draw();
+			it->second->getCreature()->draw(it->second->getCreature());
 	}
 
 	SDL_GL_SwapBuffers();

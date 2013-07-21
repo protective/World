@@ -45,6 +45,15 @@ namespace StatsMods{
 		SpellHit = 4,
 		SpellCrit = 5,
 		SpellPower = 6,
+		DeBuffSpeedMod = 7,
+		DeBuffSpeedModP = 8,
+	};
+}
+namespace BuffVisualEffects{
+	enum Enum{
+		Invalid = 0,
+		Stunned = 1,
+		Frozen = 2,
 	};
 }
 
@@ -100,7 +109,8 @@ namespace Attributes{
 		Constitution = 34,
 		Intelligence = 35,
 		RegenOFSRP = 36,
-		ManaPrF = 37,
+		ManaPrF = 37,	
+		Speed = 38,
 		
 	};
 }

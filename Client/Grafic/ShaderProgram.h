@@ -15,11 +15,13 @@ public:
 	ShaderProgram();
 	map<int32_t,Shader*>& getShaders(){return _shaders;}
 	GLuint getProgramId(){return _id;}
+	GLint& getTextureUniform(){return _textureUniform;}
 	void setId(GLuint id){_id = id;}
 	virtual ~ShaderProgram();
 private:
 	map<int32_t,Shader*> _shaders;
 	GLuint _id;
+	GLint _textureUniform;
 };
 
 #endif	/* SHADERPROGRAM_H */

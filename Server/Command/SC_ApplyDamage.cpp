@@ -36,7 +36,7 @@ uint32_t SC_ApplyDamage::execute(){
 	data->_casterId = _caster->getId();
 	data->_powerid = _power->getId();
 	data->_newvalue = _procesUnit->getCreature()->getAttibute()[Attributes::Hp];
-	for(list<Client*>::iterator it = _procesUnit->getSubscribers().begin(); it != _procesUnit->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
 		if ((*it)->getTeamId() == _procesUnit->getTeam()){
 			sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
 		}
@@ -47,7 +47,7 @@ uint32_t SC_ApplyDamage::execute(){
 		data->_flags |= SerialTakeDmgHealBitF::ValueP;
 	}
 	
-	for(list<Client*>::iterator it = _procesUnit->getSubscribers().begin(); it != _procesUnit->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
 		if ((*it)->getTeamId() != _procesUnit->getTeam())
 			sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
 	}	

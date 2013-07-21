@@ -42,7 +42,7 @@ uint32_t SPower::activate(uint32_t time, SObj* caster,SObj* target){
 	data->_powerid = this->getId();
 	data->_castTime = this->_powertype->getStats()[PowerTypeStats::CastTime];
 	
-	for(list<Client*>::iterator it = this->_owner->getSubscribers().begin(); it != this->_owner->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = this->_owner->getSubscribers()[0].begin(); it != this->_owner->getSubscribers()[0].end(); it++){
 		sendtoC(*it,message,sizeof(SerialBeginCast));
 	}
 	

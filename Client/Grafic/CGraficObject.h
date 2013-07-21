@@ -10,10 +10,11 @@
 #include "../GLutil.h"
 #include "../CFunctions.h"
 #include "Model.h"
+class CCreature;
 class CGraficObject {
 public:
 	CGraficObject(Model* model);
-	virtual void draw();
+	virtual void draw(CCreature* creature);
 	virtual ~CGraficObject();
 private:
 	Model* _model;

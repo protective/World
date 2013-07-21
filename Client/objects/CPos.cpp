@@ -44,12 +44,12 @@ void CPos::moveBw(uint32_t deltaTime){
 
 void CPos::TurnL(uint32_t deltaTime){
 	uint32_t turnspeed = 300;
-	turn(-((float)turnspeed*deltaTime)/10);
+	turn(((float)turnspeed*deltaTime)/10);
 
 }
 void CPos::TurnR(uint32_t deltaTime){
 	uint32_t turnspeed = 300;
-	turn(((float)turnspeed*deltaTime)/10);
+	turn(-((float)turnspeed*deltaTime)/10);
 }   
 
 

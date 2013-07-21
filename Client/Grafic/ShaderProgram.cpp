@@ -15,7 +15,7 @@ ShaderProgram::ShaderProgram() {
 	getShaders()[1] = new Shader("../../../Grafic/Shaders/ObjFragmentShader.glsl", GL_FRAGMENT_SHADER);
 	
 	glBindAttribLocation(_id,0, "in_Position");
-	glBindAttribLocation(_id,1, "in_Color");
+	glBindAttribLocation(_id,1, "in_Texcoord");
 	ExitOnGLError("ERROR: Could not bind attri");
 	
 	
@@ -36,6 +36,8 @@ ShaderProgram::ShaderProgram() {
 	getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ModelMatrix");
 	getShaders()[0]->bindvars(_id,ShaderViewMatrix,"ViewMatrix");
 	getShaders()[0]->bindvars(_id,ShaderProjectionMatrix,"ProjectionMatrix");
+
+	_textureUniform = glGetUniformLocation(_id,"mytexture");
 }
 
 ShaderProgram::~ShaderProgram() {

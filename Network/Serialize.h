@@ -33,6 +33,7 @@ namespace SerialType{
 				SerialStatsRel = 15,
 				SerialStatsFullAbs = 16,
 				SerialAttribute = 17,
+				SerialBuff = 18,
 			
 	};
 }
@@ -166,6 +167,20 @@ struct SerialAttribute : public SerialData{ //id = 15
 	uint32_t _unitId;
 	Attributes::Enum _attribute;
 	int32_t _value;
+};
+
+
+struct SerialBuffVisualEffect{
+	BuffVisualEffects::Enum _effect;
+	uint32_t _value;
+};
+
+struct SerialBuff : public SerialData{ //id = 18
+	uint32_t _unitId;
+	uint32_t _iconId;
+	uint32_t _duration;
+	uint32_t _maxDuration;
+	uint32_t _XVisualEffects;
 };
 
 #endif	/* SERIALIZE_H */

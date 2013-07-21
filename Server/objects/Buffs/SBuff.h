@@ -19,9 +19,12 @@ public:
 	uint32_t getTickCount(){return _tickCount;}
 	uint32_t getTickTime(){return _tickTime;}
 	SPowerType* getPowerType(){return _type;}
+	map<BuffVisualEffects::Enum, uint32_t>& getVIsualEffects(){return _visualEffects;}
+	void sendToClient(Client* cli);
 	virtual ~SBuff();
 private:
 	list<SBuffBase*> _effects;
+	map<BuffVisualEffects::Enum, uint32_t> _visualEffects;
 	uint32_t _tickCount;
 	uint32_t _maxtickCount;
 	uint32_t _tickTime;

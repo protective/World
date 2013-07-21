@@ -31,13 +31,16 @@ public:
 	
 	DamageTypes::Enum getDamageType(){return _damageType;}	
 	void setDamageType(DamageTypes::Enum type){_damageType = type;}
-		
+
+	map<BuffVisualEffects::Enum,uint32_t>& getVisualEffects(){return _visualEffects;}
+	
 	void setTickTime(uint32_t time){_tickTime = time;}
 	
 	virtual ~SEffectTypeAddBuff();
 private:
 
 	map< StatsMods::Enum, int32_t> _statsMods;
+	map<BuffVisualEffects::Enum,uint32_t> _visualEffects;
 	list<ticksEffects> _tickEffects;
 	uint32_t _tickTime;
 	uint32_t _totalDamage;

@@ -1,8 +1,9 @@
 #version 130
 
 in vec4 in_Position;
-//in vec4 in_Color;
-out vec4 ex_Color;
+in vec2 in_Texcoord;
+
+out vec2 ex_Texcoord;
 
 uniform mat4 ModelMatrix;
 uniform mat4 ViewMatrix;
@@ -12,7 +13,7 @@ void main(void)
 {
 	//
 	gl_Position =  (ProjectionMatrix * ViewMatrix * ModelMatrix) * in_Position;
-	ex_Color = vec4(1,0,0,1);
+	ex_Texcoord = in_Texcoord;
 	//in_Color;
 }
 

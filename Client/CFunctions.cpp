@@ -7,9 +7,6 @@
 
 #include "CFunctions.h"
 #include "objects/CObj.h"
-
-
-
 #include "CDatabase.h"
 
 #include "world/CWorld.h"
@@ -266,8 +263,23 @@ uint32_t Rangeobj(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 	return sqrt(((p1x - p2x)*(p1x - p2x)) + ((p1y - p2y)*(p1y - p2y)));
 }
 
+int strToInt(string str)
+ {
+	int intReturn;
 
+	intReturn = atoi(str.c_str());
 
+	return (intReturn);
+}
+
+float strToFloat(string str)
+ {
+	float fReturn;
+
+	fReturn = atof(str.c_str());
+
+	return (fReturn);
+}
 
 
 

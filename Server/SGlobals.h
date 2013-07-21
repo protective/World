@@ -17,7 +17,8 @@
 #include <list>
 #include <map>
 
-#include "Powers/SEffectType.h"
+//#include "Powers/SEffectType.h"
+//#include "Powers/SEffectTypeAddBuff.h"
 //#include "Sspacebjects/subsystems/SSubType.h"
 
 #define NRTHREADS 2
@@ -32,6 +33,7 @@ class Client;
 class SWorld;
 class SPowerType;
 class SEffectType;
+class SEffectTypeAddBuff;
 extern SWorld* world;
 extern list<Client*> clients;
 extern pthread_mutex_t lockNetInput;
@@ -45,5 +47,6 @@ extern list<uint8_t> allteams;
 extern bool SPrintBuff;
 extern map<uint32_t, SPowerType*> GlobalPowerTypes;
 extern map<uint32_t, SEffectType*> GlobalEffetTypes;
+extern map<uint32_t, SEffectTypeAddBuff*> GlobalAddBuffTypes;
 #endif	/* SGLOBALS_H */
 

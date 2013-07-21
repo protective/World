@@ -22,7 +22,7 @@ uint32_t SC_KillUnit::execute(){
 	data->_size = sizeof(SerialKillUnit);
 	data->_unitId = _procesUnit->getId();
 	
-	for(list<Client*>::iterator it = _procesUnit->getSubscribers().begin(); it != _procesUnit->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
 		sendtoC(*it,message,sizeof(SerialKillUnit));
 	}
 	return 0;

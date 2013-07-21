@@ -48,7 +48,7 @@ uint32_t SC_FirePower::execute(){
 	data->_unitId = this->_procesUnit->getId();
 	data->_powerid = this->_power->getId();
 	data->_targetId = _target->getId();
-	for(list<Client*>::iterator it = this->_procesUnit->getSubscribers().begin(); it != this->_procesUnit->getSubscribers().end(); it++){
+	for(list<Client*>::iterator it = this->_procesUnit->getSubscribers()[0].begin(); it != this->_procesUnit->getSubscribers()[0].end(); it++){
 		sendtoC(*it,message,sizeof(SerialCast));
 	}
 	

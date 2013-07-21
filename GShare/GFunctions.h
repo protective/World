@@ -21,6 +21,7 @@
 #include <SDL/SDL.h>
 #include <list>
 #include <map>
+#include <vector>
 #include <algorithm>
 #include "Enums.h"
 #include <math.h>
@@ -49,6 +50,7 @@ std::string toString(const T& value)
     oss << value;
     return oss.str();
 }
+
 
 #endif	/* GFUNCTIONS_H */
 

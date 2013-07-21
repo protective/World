@@ -10,6 +10,7 @@
 #include "../SFunctions.h"
 #include "../Command/SCommand.h"
 #include "SPos.h"
+#include "../Client.h"
 class SCreature;
 class SObj {
 public:
@@ -27,7 +28,8 @@ public:
 	virtual uint32_t getUpdateCounter(){return this->_updateCounter;}
 	virtual SCreature* getCreature(){return NULL;}
 	virtual bool readyCast(){return true;}
-	list<Client*>& getSubscribers(){return _subscribers;}
+	list<Client*>* getSubscribers(){return _subscribers;}
+	
 	uint32_t addCommand(SCommand* cmd);
 	uint32_t removeCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();
@@ -49,7 +51,7 @@ protected:
 	pthread_mutex_t _lockCommandAccess;
 	bool _commandAccessLocked;
 	list<SCommand*> _commands;
-	list<Client*> _subscribers;
+	list<Client*> _subscribers[3];
 };
 typedef map<uint32_t,SObj*>::iterator SObjI;
 #endif	/* SOBJ_H */

@@ -18,6 +18,10 @@ void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster
 	cerr<<"apply buff"<<endl;
 	SBuff* buffToAdd = new SBuff(type,_tickEffects.size(),_tickTime);
 	
+	for(map<BuffVisualEffects::Enum,uint32_t>::iterator it = _visualEffects.begin(); it != _visualEffects.end(); it++){
+		buffToAdd->getVIsualEffects()[it->first] = it->second;
+	
+	}
 	
 	if(_totalDamage > 0){
 		SBuffDot* buffsEffects = new SBuffDot(buffToAdd,target,this);
@@ -30,6 +34,28 @@ void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster
 	target->addBuff(buffToAdd);
 	SC_BuffProces* command = new SC_BuffProces(time,caster,target,buffToAdd);
 	target->addCommand(command);
+	
+	/*NETWORK ADD BUFF*/
+	uint32_t Xvisual = buffToAdd->getVIsualEffects().size();
+	uint32_t BSize = sizeof(SerialBuff)+(Xvisual*sizeof(SerialBuffVisualEffect));
+	char message[BSize];
+	memset(message,0,BSize);
+	SerialBuff* data = (SerialBuff*)(message);
+	data->_type = SerialType::SerialBuff;
+	data->_size = BSize;
+	data->_time = time;
+	data->_unitId = target->getId();
+	data->_duration = time;
+	data->_maxDuration = time + (buffToAdd->getTickCount() * buffToAdd->getTickTime());	//data->_playerId = this->_playerId;
+	data->_XVisualEffects = Xvisual;
+	data->_iconId = 1;
+	
+	for(list<Client*>::iterator it = target->getSubscribers()[0].begin(); it != target->getSubscribers()[0].end(); it++){
+
+		sendtoC(*it,message,BSize);
+	}
+	
+	
 }
 
 

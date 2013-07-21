@@ -23,6 +23,7 @@ public:
 	void transmitAttribute(Attributes::Enum attri);
 	map<uint32_t,SBuff*>& getBuffList(){return _bufflist;}
 	uint32_t addBuff(SBuff* buff);
+	uint32_t addBuff(SBuff* buff, uint32_t time);
 	uint32_t removeBuff(SBuff* buff);
 	virtual bool readyCast(){if (_casting) return false;return true;}
 	void setCasting(SPower* casting);

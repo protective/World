@@ -27,12 +27,12 @@ GLuint loadTexture(Textures::Enum texture){
       switch (texture)
       {
 
-         case Textures::Icons1:
-            path = "Textures/Icons/iconsheet.png";
-            break;
+         //case Textures::Icons1:
+            //path = "Textures/Icons/iconsheet.png";
+        //    break;
 
          default:
-            path = "k0001.bmp";
+            path = "Textures/Icons/Icons/Armor/itempic0001.png";
       }
 
 	std::stringstream ss;

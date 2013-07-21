@@ -15,7 +15,7 @@
 #include "sys/stat.h"
 
 #include "objects/SCreature.h"
-
+#include "Powers/SEffectTypeAddBuff.h"
 
 void SDatabase::LoadFromPostgres(){
 	pqxx::connection c("dbname= world user=karsten password=f1FF");
@@ -27,6 +27,7 @@ void SDatabase::LoadFromPostgres(){
 	loadPowersStats(w);
 	loadEffects(w);
 	loadBuffs(w);
+	loadBuffsStats(w);
 	creaturePowers(w);
 	
 }
@@ -123,8 +124,70 @@ void  SDatabase::loadEffects(pqxx::work& w){
 
 }
 void  SDatabase::loadBuffs(pqxx::work& w){
-
+	
+	try{
+		pqxx::result r = w.exec("select id, name from buff order by id;");
+		for(int i = 0; i< r.size(); i++){
+			uint32_t id = r[i][0].as<uint32_t>();
+			string name = r[i][1].as<string>();
+			SEffectTypeAddBuff* effect = new SEffectTypeAddBuff();
+			GlobalAddBuffTypes[id] = effect;
+		}	
+	}
+	catch (const std::exception &e){
+		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+	 	
 }
+
+void  SDatabase::loadBuffsStats(pqxx::work& w){
+
+	try{
+		pqxx::result r = w.exec("select id, stattype, value from buffstats order by id;");
+		for(int i = 0; i< r.size(); i++){
+			uint32_t id = r[i][0].as<uint32_t>();
+			int32_t stattype = r[i][1].as<int32_t>();
+			int32_t value = r[i][2].as<int32_t>();
+			
+			if(GlobalAddBuffTypes.find(id) != GlobalAddBuffTypes.end()){
+				if (stattype >= 0){
+					GlobalAddBuffTypes[id]->getStatsMods()[(StatsMods::Enum)stattype] = value;
+				}
+				
+			}
+		}	
+	}
+	catch (const std::exception &e){
+		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+	try{
+		pqxx::result r = w.exec("select id, effect, value from buffvisualEffects order by id;");
+		for(int i = 0; i< r.size(); i++){
+			uint32_t id = r[i][0].as<uint32_t>();
+			int32_t effect = r[i][1].as<uint32_t>();
+			int32_t value = r[i][2].as<uint32_t>();
+			
+			if(GlobalAddBuffTypes.find(id) != GlobalAddBuffTypes.end()){
+				GlobalAddBuffTypes[id]->getVisualEffects()[(BuffVisualEffects::Enum)effect] = value;
+				
+			}
+			
+		}	
+	}
+	catch (const std::exception &e){
+		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}	
+	
+	
+}
+
+
 void SDatabase::creaturePowers(pqxx::work& w){
 	try
 	{
@@ -235,14 +298,6 @@ int getparameter(string line, string key, uint32_t nparam, uint32_t n2param, uin
 
 
 
-
-int strToInt(string str) {
-	int intReturn;
-
-	intReturn = atoi(str.c_str());
-
-	return (intReturn);
-}
 
 
 void parseDataItemrefs(){

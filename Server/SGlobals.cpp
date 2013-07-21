@@ -22,5 +22,6 @@ list<uint8_t> allteams;
 bool SPrintBuff = false;
 map<uint32_t, SPowerType*> GlobalPowerTypes;
 map<uint32_t, SEffectType*> GlobalEffetTypes;
+map<uint32_t, SEffectTypeAddBuff*> GlobalAddBuffTypes;
 
 

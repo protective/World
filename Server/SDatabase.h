@@ -26,6 +26,7 @@ private:
 	void loadPowersStats(pqxx::work& w);
 	void loadEffects(pqxx::work& w);
 	void loadBuffs(pqxx::work& w);
+	void loadBuffsStats(pqxx::work& w);
 	void creaturePowers(pqxx::work& w);
 };
 
