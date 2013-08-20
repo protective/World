@@ -8,12 +8,17 @@
 #include "ShaderProgram.h"
 
 
-ShaderProgram::ShaderProgram() {
+ShaderProgram::ShaderProgram(uint32_t programType) {
 	_id = glCreateProgram();
 	ExitOnGLError("ERROR: Could not create the shader program");
-	getShaders()[0] = new Shader("../../../Grafic/Shaders/ObjVertexShader.glsl", GL_VERTEX_SHADER);
-	getShaders()[1] = new Shader("../../../Grafic/Shaders/ObjFragmentShader.glsl", GL_FRAGMENT_SHADER);
+	if(programType == 1){
+		getShaders()[0] = new Shader("../../../Grafic/Shaders/ObjVertexShader.glsl", GL_VERTEX_SHADER);
+		getShaders()[1] = new Shader("../../../Grafic/Shaders/ObjFragmentShader.glsl", GL_FRAGMENT_SHADER);
+	}else if(programType == 2){
+		getShaders()[0] = new Shader("../../../Grafic/Shaders/UIVertexShader.glsl", GL_VERTEX_SHADER);
+		getShaders()[1] = new Shader("../../../Grafic/Shaders/UIFragmentShader.glsl", GL_FRAGMENT_SHADER);
 	
+	}
 	glBindAttribLocation(_id,0, "in_Position");
 	glBindAttribLocation(_id,1, "in_Texcoord");
 	ExitOnGLError("ERROR: Could not bind attri");
@@ -33,10 +38,14 @@ ShaderProgram::ShaderProgram() {
 	
 	ExitOnGLError("ERROR: Could not get the shader uniform locations");
 
-	getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ModelMatrix");
-	getShaders()[0]->bindvars(_id,ShaderViewMatrix,"ViewMatrix");
-	getShaders()[0]->bindvars(_id,ShaderProjectionMatrix,"ProjectionMatrix");
-
+	if(programType == 1){
+		getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ModelMatrix");
+		getShaders()[0]->bindvars(_id,ShaderViewMatrix,"ViewMatrix");
+		getShaders()[0]->bindvars(_id,ShaderProjectionMatrix,"ProjectionMatrix");
+	}else if(programType == 2){
+		getShaders()[0]->bindvars(_id,ShaderModelMatrix,"ModelMatrix");
+		getShaders()[0]->bindvars(_id,ShaderProjectionMatrix,"ProjectionMatrix");
+	}
 	_textureUniform = glGetUniformLocation(_id,"mytexture");
 }
 

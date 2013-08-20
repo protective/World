@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.0//EN" "http://www.web3d.org/specifications/x3d-3.0.dtd">
+<X3D version="3.0" profile="Immersive" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="http://www.web3d.org/specifications/x3d-3.0.xsd">
+	<head>
+		<meta name="filename" content="plane.x3d" />
+		<meta name="generator" content="Blender 2.63 (sub 0)" />
+	</head>
+	<Scene>
+		<NavigationInfo headlight="false"
+		                visibilityLimit="0.0"
+		                type='"EXAMINE", "ANY"'
+		                avatarSize="0.25, 1.75, 0.75"
+		                />
+		<Background DEF="WO_World"
+		            groundColor="0.051 0.051 0.051"
+		            skyColor="0.051 0.051 0.051"
+		            />
+		<Transform DEF="Cube_TRANSFORM"
+		           translation="0.000000 0.000000 0.000000"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="0.000000 0.707107 0.707107 3.141593"
+		           >
+			<Transform DEF="Cube_ifs_TRANSFORM"
+			           translation="0.000000 0.000000 0.000000"
+			           scale="1.000000 1.000000 1.000000"
+			           rotation="1.000000 0.000000 0.000000 0.000000"
+			           >
+				<Group DEF="group_ME_Cube">
+					<Shape>
+						<Appearance>
+							<ImageTexture DEF="IM_itempic0001_png"
+							              url='"/home/karsten/World/Client/Textures/Icons/Icons/Armor/itempic0001.png" "itempic0001.png"' 							              />
+							<TextureTransform 
+							                  translation="0.000000 0.000000"
+							                  scale="1.000000 1.000000"
+							                  rotation="0.000000"
+							                  />
+							<Material DEF="MA_Material"
+							          diffuseColor="0.800 0.800 0.800"
+							          specularColor="0.401 0.401 0.401"
+							          emissiveColor="0.000 0.000 0.000"
+							          ambientIntensity="0.333"
+							          shininess="0.098"
+							          transparency="0.0"
+							          />
+						</Appearance>
+						<IndexedFaceSet solid="true"
+						                texCoordIndex="0 1 2 3 -1 4 5 6 7 -1 "
+						                coordIndex="2 5 4 3 -1 0 2 3 1 -1 "
+						                >
+							<Coordinate DEF="coords_ME_Cube"
+							            point="1.000000 1.000000 -1.000000 1.000000 -1.000000 -1.000000 1.000000 0.999999 1.000000 0.999999 -1.000001 1.000000 -1.000000 -1.000000 1.000000 -1.000000 1.000000 1.000000 "
+							            />
+							<TextureCoordinate point="0.3980 0.8927 0.8576 0.8933 0.8566 0.1476 0.4023 0.1328 -0.0058 0.9976 0.3980 0.8927 0.4023 0.1328 0.0030 0.0075 " />
+						</IndexedFaceSet>
+					</Shape>
+				</Group>
+			</Transform>
+		</Transform>
+		<Transform DEF="Lamp_TRANSFORM"
+		           translation="-5.032685 5.575611 1.005454"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.498084 -0.762016 -0.413815 1.513875"
+		           >
+			<PointLight DEF="LA_Lamp"
+			            ambientIntensity="0.0000"
+			            color="1.0000 1.0000 1.0000"
+			            intensity="0.5714"
+			            radius="30.0000" 
+			            location="-0.0000 -0.0000 0.0000"
+			            />
+		</Transform>
+		<Transform DEF="Camera_TRANSFORM"
+		           translation="-7.481132 5.343665 -6.507640"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.093039 -0.968741 -0.229967 2.347036"
+		           >
+			<Viewpoint DEF="CA_Camera"
+			           centerOfRotation="0 0 0"
+			           position="0.00 0.00 -0.00"
+			           orientation="-0.00 0.00 0.00 0.00"
+			           fieldOfView="0.858"
+			           />
+		</Transform>
+	</Scene>
+</X3D>

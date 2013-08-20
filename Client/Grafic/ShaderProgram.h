@@ -12,7 +12,7 @@
 #include "Shader.h"
 class ShaderProgram {
 public:
-	ShaderProgram();
+	ShaderProgram(uint32_t programType);
 	map<int32_t,Shader*>& getShaders(){return _shaders;}
 	GLuint getProgramId(){return _id;}
 	GLint& getTextureUniform(){return _textureUniform;}

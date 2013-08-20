@@ -13,6 +13,7 @@ UIBaseFrame(parrent,x,y,wight,height){
 }
 
 void UICastBar::draw(){
+	/*
 	glTranslated((GLfloat)(_x),(GLfloat)(_y),0);
 	glPushMatrix();
 
@@ -26,6 +27,7 @@ void UICastBar::draw(){
 	
 	glPopMatrix();
 	this->drawChilds();
+	*/
 }
 
 UICastBar::~UICastBar() {

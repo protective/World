@@ -50,6 +50,15 @@ void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster
 	data->_XVisualEffects = Xvisual;
 	data->_iconId = 1;
 	
+	uint32_t i = 0;
+	for(map<BuffVisualEffects::Enum,uint32_t>::iterator it = _visualEffects.begin(); it != _visualEffects.end(); it++){
+		SerialBuffVisualEffect* data2 = (SerialBuffVisualEffect*)(message+(sizeof(SerialBuff))+(sizeof(SerialBuffVisualEffect)*i));
+		data2->_effect = it->first;
+		data2->_value = it->second;
+		
+		i++;
+	}
+	
 	for(list<Client*>::iterator it = target->getSubscribers()[0].begin(); it != target->getSubscribers()[0].end(); it++){
 
 		sendtoC(*it,message,BSize);

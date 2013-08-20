@@ -17,7 +17,7 @@ Model::Model(ShaderProgram* shader) {
 	_shader = shader;
 	cerr<<"BEGIN CREATE MODEL"<<endl;
 	createFromFile("../../../Mesh/box.x3d");
-	_texture = loadTexture(Textures::Invalid);
+	_texture = textures[0];
 
 
 	glGenVertexArrays(1, &_vao);

@@ -15,6 +15,7 @@ UIBaseFrame(parrent,x,y,200,60) {
 
 
 void UIUnitBox::draw(){
+	/*
 	glTranslated((GLfloat)(_x),(GLfloat)(_y),0);
 	glPushMatrix();
 	
@@ -53,6 +54,7 @@ void UIUnitBox::draw(){
 	
 	glPopMatrix();
 	this->drawChilds();
+	*/
 }
 
 UIUnitBox::~UIUnitBox() {

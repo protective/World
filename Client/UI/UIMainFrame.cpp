@@ -27,7 +27,7 @@ void UIMainFrame::updateUI(){
 	if(playerObj->player()){
 		for (map<uint32_t, CPower*>::iterator it = playerObj->player()->getPowers().begin(); it != playerObj->player()->getPowers().end(); it++){
 			if (_sockets[it->first] == NULL){
-				_sockets[it->first] = new UISocket(this,40*it->first,40);
+				_sockets[it->first] = new UISocket(this,40*(it->first-3),40);
 				UIAbilityBox* abbox = new UIAbilityBox(_sockets[it->first],0,0,playerObj->player(),it->second);
 				_sockets[it->first]->drop(abbox);
 				_childs.push_back(_sockets[it->first]);

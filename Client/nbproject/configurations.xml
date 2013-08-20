@@ -49,6 +49,8 @@
         <itemPath>Powers/CPower.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f5" displayName="UI" projectFiles="true">
+        <itemPath>UI/TransformStack.cpp</itemPath>
+        <itemPath>UI/TransformStack.h</itemPath>
         <itemPath>UI/UIAbilityBox.cpp</itemPath>
         <itemPath>UI/UIAbilityBox.h</itemPath>
         <itemPath>UI/UIBaseFrame.cpp</itemPath>

@@ -113,9 +113,13 @@ using namespace std;
 	//BEGIN the hard stuff;
 	
 	
-	
+	cerr<<"create screen"<<endl;
+
 	screenControler* screen = new screenControler();
 	masterScreen = screen;
+
+	screen->initScreen();
+	cerr<<"done create screen"<<endl;
 	Connect(argip,argteam, 42);
 	uint32_t deltaTime = 0;
 	uint32_t lastTime = 0;
@@ -152,8 +156,9 @@ using namespace std;
 					keypress = 1;
 					break;
 				case SDL_MOUSEBUTTONDOWN:
-					if (mainFrame->click(event.button.x,event.button.y) == 0)
-						playerObj->selectObject(event.button.x,event.button.y);
+					masterScreen->clickScreen(event.button.x,event.button.y);
+					//if (mainFrame->click(event.button.x,event.button.y) == 0)
+					//	playerObj->selectObject(event.button.x,event.button.y);
 					break;
 				case SDL_KEYDOWN:
 					keydown[event.key.keysym.sym] = true;

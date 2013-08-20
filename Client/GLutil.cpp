@@ -33,6 +33,136 @@ Matrix MultiplyMatrices(const Matrix* m1, const Matrix* m2)
 	return out;
 }
 
+Matrix InverseMatrix(Matrix* m){
+
+    double inv[16], det;
+    int i;
+
+    inv[0] = m->m[5]  * m->m[10] * m->m[15] - 
+             m->m[5]  * m->m[11] * m->m[14] - 
+             m->m[9]  * m->m[6]  * m->m[15] + 
+             m->m[9]  * m->m[7]  * m->m[14] +
+             m->m[13] * m->m[6]  * m->m[11] - 
+             m->m[13] * m->m[7]  * m->m[10];
+
+    inv[4] = -m->m[4]  * m->m[10] * m->m[15] + 
+              m->m[4]  * m->m[11] * m->m[14] + 
+              m->m[8]  * m->m[6]  * m->m[15] - 
+              m->m[8]  * m->m[7]  * m->m[14] - 
+              m->m[12] * m->m[6]  * m->m[11] + 
+              m->m[12] * m->m[7]  * m->m[10];
+
+    inv[8] = m->m[4]  * m->m[9] * m->m[15] - 
+             m->m[4]  * m->m[11] * m->m[13] - 
+             m->m[8]  * m->m[5] * m->m[15] + 
+             m->m[8]  * m->m[7] * m->m[13] + 
+             m->m[12] * m->m[5] * m->m[11] - 
+             m->m[12] * m->m[7] * m->m[9];
+
+    inv[12] = -m->m[4]  * m->m[9] * m->m[14] + 
+               m->m[4]  * m->m[10] * m->m[13] +
+               m->m[8]  * m->m[5] * m->m[14] - 
+               m->m[8]  * m->m[6] * m->m[13] - 
+               m->m[12] * m->m[5] * m->m[10] + 
+               m->m[12] * m->m[6] * m->m[9];
+
+    inv[1] = -m->m[1]  * m->m[10] * m->m[15] + 
+              m->m[1]  * m->m[11] * m->m[14] + 
+              m->m[9]  * m->m[2] * m->m[15] - 
+              m->m[9]  * m->m[3] * m->m[14] - 
+              m->m[13] * m->m[2] * m->m[11] + 
+              m->m[13] * m->m[3] * m->m[10];
+
+    inv[5] = m->m[0]  * m->m[10] * m->m[15] - 
+             m->m[0]  * m->m[11] * m->m[14] - 
+             m->m[8]  * m->m[2] * m->m[15] + 
+             m->m[8]  * m->m[3] * m->m[14] + 
+             m->m[12] * m->m[2] * m->m[11] - 
+             m->m[12] * m->m[3] * m->m[10];
+
+    inv[9] = -m->m[0]  * m->m[9] * m->m[15] + 
+              m->m[0]  * m->m[11] * m->m[13] + 
+              m->m[8]  * m->m[1] * m->m[15] - 
+              m->m[8]  * m->m[3] * m->m[13] - 
+              m->m[12] * m->m[1] * m->m[11] + 
+              m->m[12] * m->m[3] * m->m[9];
+
+    inv[13] = m->m[0]  * m->m[9] * m->m[14] - 
+              m->m[0]  * m->m[10] * m->m[13] - 
+              m->m[8]  * m->m[1] * m->m[14] + 
+              m->m[8]  * m->m[2] * m->m[13] + 
+              m->m[12] * m->m[1] * m->m[10] - 
+              m->m[12] * m->m[2] * m->m[9];
+
+    inv[2] = m->m[1]  * m->m[6] * m->m[15] - 
+             m->m[1]  * m->m[7] * m->m[14] - 
+             m->m[5]  * m->m[2] * m->m[15] + 
+             m->m[5]  * m->m[3] * m->m[14] + 
+             m->m[13] * m->m[2] * m->m[7] - 
+             m->m[13] * m->m[3] * m->m[6];
+
+    inv[6] = -m->m[0]  * m->m[6] * m->m[15] + 
+              m->m[0]  * m->m[7] * m->m[14] + 
+              m->m[4]  * m->m[2] * m->m[15] - 
+              m->m[4]  * m->m[3] * m->m[14] - 
+              m->m[12] * m->m[2] * m->m[7] + 
+              m->m[12] * m->m[3] * m->m[6];
+
+    inv[10] = m->m[0]  * m->m[5] * m->m[15] - 
+              m->m[0]  * m->m[7] * m->m[13] - 
+              m->m[4]  * m->m[1] * m->m[15] + 
+              m->m[4]  * m->m[3] * m->m[13] + 
+              m->m[12] * m->m[1] * m->m[7] - 
+              m->m[12] * m->m[3] * m->m[5];
+
+    inv[14] = -m->m[0]  * m->m[5] * m->m[14] + 
+               m->m[0]  * m->m[6] * m->m[13] + 
+               m->m[4]  * m->m[1] * m->m[14] - 
+               m->m[4]  * m->m[2] * m->m[13] - 
+               m->m[12] * m->m[1] * m->m[6] + 
+               m->m[12] * m->m[2] * m->m[5];
+
+    inv[3] = -m->m[1] * m->m[6] * m->m[11] + 
+              m->m[1] * m->m[7] * m->m[10] + 
+              m->m[5] * m->m[2] * m->m[11] - 
+              m->m[5] * m->m[3] * m->m[10] - 
+              m->m[9] * m->m[2] * m->m[7] + 
+              m->m[9] * m->m[3] * m->m[6];
+
+    inv[7] = m->m[0] * m->m[6] * m->m[11] - 
+             m->m[0] * m->m[7] * m->m[10] - 
+             m->m[4] * m->m[2] * m->m[11] + 
+             m->m[4] * m->m[3] * m->m[10] + 
+             m->m[8] * m->m[2] * m->m[7] - 
+             m->m[8] * m->m[3] * m->m[6];
+
+    inv[11] = -m->m[0] * m->m[5] * m->m[11] + 
+               m->m[0] * m->m[7] * m->m[9] + 
+               m->m[4] * m->m[1] * m->m[11] - 
+               m->m[4] * m->m[3] * m->m[9] - 
+               m->m[8] * m->m[1] * m->m[7] + 
+               m->m[8] * m->m[3] * m->m[5];
+
+    inv[15] = m->m[0] * m->m[5] * m->m[10] - 
+              m->m[0] * m->m[6] * m->m[9] - 
+              m->m[4] * m->m[1] * m->m[10] + 
+              m->m[4] * m->m[2] * m->m[9] + 
+              m->m[8] * m->m[1] * m->m[6] - 
+              m->m[8] * m->m[2] * m->m[5];
+
+    det = m->m[0] * inv[0] + m->m[1] * inv[4] + m->m[2] * inv[8] + m->m[3] * inv[12];
+
+    if (det == 0)
+		cerr<<"MATRIX ERROR"<<endl;
+
+    det = 1.0 / det;
+	Matrix out;
+    for (i = 0; i < 16; i++)
+        out.m[i] = inv[i] * det;
+
+    return out;
+}
+
 void ScaleMatrix(Matrix* m, float x, float y, float z)
 {
 	Matrix scale = IDENTITY_MATRIX;
@@ -95,6 +225,24 @@ void RotateAboutZ(Matrix* m, float angle)
 	rotation.m[5] = cosine;
 
 	memcpy(m->m, MultiplyMatrices(m, &rotation).m, sizeof(m->m));
+}
+
+Matrix CreateOthoMatrix(float l, float r,float t,float b){
+	float n = 0;
+	float f = 1;
+	
+	Matrix out = { { 0 } };
+	
+	out.m[0] = 2 / (r - l);
+    out.m[5] = 2 / (t - b);
+    out.m[10] = -2 / (f - n);
+    out.m[12] = -(r + l) / (r - l);
+    out.m[13] = -(t + b) / (t - b);
+    out.m[14] = -(f + n) / (f - n);
+    out.m[15] = 1;
+	
+	return out;
+
 }
 
 Matrix CreateProjectionMatrix(

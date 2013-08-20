@@ -22,7 +22,7 @@ uint32_t playerId;
 map<uint32_t,uint8_t> teamlist;
 
 FTGLPixmapFont font("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");
-UIMainFrame* mainFrame = new UIMainFrame();
+UIMainFrame* mainFrame = NULL;
 
 CObj* playerSels = NULL;
 CObj* playerTarget = NULL;

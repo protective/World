@@ -161,7 +161,24 @@ void printBuffer(char* buffer, uint32_t len){
 						<<"\t\tfocusP "<<st->_focusP<<endl;
 						cerr<<"****************************"<<endl;
 						break;
-					}	
+					}
+					case SerialType::SerialBuff:{
+						SerialBuff* st = (SerialBuff*)(buffer+offset);
+						cerr<<"Recived SerialBuff*************"<<endl
+						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tpowerId "<<st->_iconId<<endl
+						<<"\tduration"<<st->_duration<<endl
+						<<"\tmaxDuration"<<st->_maxDuration<<endl
+						<<"\tXvisualEffects"<<st->_XVisualEffects<<endl;
+						for(uint32_t i = 0; i < st->_XVisualEffects;i++){
+							SerialBuffVisualEffect* st2 = (SerialBuffVisualEffect*)(buffer+offset+(sizeof(SerialBuff)+(sizeof(SerialBuffVisualEffect)*i)));
+							cerr<<"\t "<<st2->_effect<<endl
+							<<"\t "<<st2->_value<<endl;
+						}
+						
+						cerr<<"****************************"<<endl;
+						break;
+					}
 					default:{
 						cerr<<"error recived unknown packate in GLobal"<<endl;
 						offset = len;

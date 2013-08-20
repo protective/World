@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile="H3DAPI" version="1.4">
+	<head>
+		<meta name="filename" content="ani.x3d" />
+		<meta name="generator" content="Blender 2.63 (sub 0)" />
+	</head>
+	<Scene>
+		<TransformInfo DEF="TOP_LEVEL_TI" outputGLMatrices="true" />
+		<NavigationInfo headlight="false"
+		                visibilityLimit="0.0"
+		                type='"EXAMINE", "ANY"'
+		                avatarSize="0.25, 1.75, 0.75"
+		                />
+		<Background DEF="WO_World"
+		            groundColor="0.051 0.051 0.051"
+		            skyColor="0.051 0.051 0.051"
+		            />
+		<Transform DEF="Cube_TRANSFORM"
+		           translation="0.000000 0.000000 0.000000"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.227650 -0.688540 -0.688540 2.693922"
+		           >
+			<Transform DEF="Cube_ifs_TRANSFORM"
+			           translation="0.000000 0.000000 0.000000"
+			           scale="1.000000 1.000000 1.000000"
+			           rotation="1.000000 0.000000 0.000000 0.000000"
+			           >
+				<Group DEF="group_ME_Cube">
+					<Shape>
+						<Appearance>
+							<Material />
+							<ComposedShader DEF="MA_Material" language="GLSL" >
+								<field name="view_matrix" type="SFMatrix4f" accessType="inputOutput" /> <!--- H3D View Matrix Patch -->
+								<field name="unf8" type="SFVec3f" accessType="inputOutput" value="-4.076245 5.903862 1.005454" /> <!--- Lamp DynCo 'Lamp' -->
+								<field name="unf8_transform" type="SFMatrix4f" accessType="inputOutput" /> <!--- Lamp DynCo 'Lamp' (shader patch) -->
+								<field name="unf25" type="SFVec4f" accessType="inputOutput" value="1.000000 1.000000 1.000000 1.0" /> <!--- Lamp DynColor 'Lamp' -->
+								<field name="unf42" type="SFVec3f" accessType="inputOutput" value="1.000000 1.000000 1.000000" /> <!--- Lamp DynColor 'Lamp' -->
+								<ShaderPart type="FRAGMENT" url="shaders/ani_MA_Material.frag" />
+								<ShaderPart type="VERTEX" url="shaders/ani_MA_Material.vert" />
+							</ComposedShader>
+						</Appearance>
+						<IndexedFaceSet solid="true"
+						                normalPerVertex="true"
+						                coordIndex="0 3 2 1 -1 "
+						                >
+							<Coordinate DEF="coords_ME_Cube"
+							            point="1.000000 0.999999 0.000011 0.999999 -1.000001 0.000011 -1.000000 -1.000000 0.000011 -1.000000 1.000000 0.000011 "
+							            />
+							<Normal DEF="normals_ME_Cube"
+							        vector="0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 0.000000 0.000000 1.000000 "
+							        />
+						</IndexedFaceSet>
+					</Shape>
+				</Group>
+			</Transform>
+		</Transform>
+		<Transform DEF="Lamp_TRANSFORM"
+		           translation="-4.076245 5.903862 1.005454"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.498084 -0.762016 -0.413815 1.513875"
+		           >
+			<PointLight DEF="LA_Lamp"
+			            ambientIntensity="0.0000"
+			            color="1.0000 1.0000 1.0000"
+			            intensity="0.5714"
+			            radius="30.0000" 
+			            location="-0.0000 -0.0000 0.0000"
+			            />
+		</Transform>
+		<Transform DEF="Camera_TRANSFORM"
+		           translation="-7.481132 5.343665 -6.507640"
+		           scale="1.000000 1.000000 1.000000"
+		           rotation="-0.093039 -0.968741 -0.229967 2.347036"
+		           >
+			<Viewpoint DEF="CA_Camera"
+			           centerOfRotation="0 0 0"
+			           position="0.00 0.00 -0.00"
+			           orientation="-0.00 0.00 0.00 0.00"
+			           fieldOfView="0.858"
+			           />
+			<Transform DEF="CAMERA_FOLLOW_TRANSFORM">
+			</Transform>
+		</Transform>
+		<ROUTE fromNode="TOP_LEVEL_TI" fromField="glModelViewMatrix" toNode="MA_Material" toField="view_matrix" /> <!--- H3D View Matrix Patch -->
+		<ROUTE fromNode="Lamp_TRANSFORM" fromField="accumulatedForward" toNode="MA_Material" toField="unf8_transform" /> <!--- Lamp DynCo 'Lamp' (shader patch) -->
+		<ROUTE fromNode="LA_Lamp" fromField="location" toNode="MA_Material" toField="unf8" />  <!--- Lamp DynCo 'Lamp' (shader patch) -->
+		<ROUTE fromNode="CA_Camera" fromField="totalPosition" toNode="CAMERA_FOLLOW_TRANSFORM" toField="translation" />
+		<ROUTE fromNode="CA_Camera" fromField="totalOrientation" toNode="CAMERA_FOLLOW_TRANSFORM" toField="rotation" />
+	</Scene>
+</X3D>

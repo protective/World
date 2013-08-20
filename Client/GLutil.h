@@ -23,6 +23,8 @@
 #include <fstream>
 #include <cstdlib>
 #include <GL/glew.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 //#include <GL/freeglut.h>
 
 // #define  PI  3.14159265358979323846
@@ -60,13 +62,15 @@ void RotateAboutY(Matrix* m, float angle);
 void RotateAboutZ(Matrix* m, float angle);
 void ScaleMatrix(Matrix* m, float x, float y, float z);
 void TranslateMatrix(Matrix* m, float x, float y, float z);
-
+Matrix InverseMatrix(Matrix* m);
 Matrix CreateProjectionMatrix(
 	float fovy,
 	float aspect_ratio,
 	float near_plane,
 	float far_plane
 );
+
+Matrix CreateOthoMatrix(float l, float r,float t,float b);
 
 void ExitOnGLError(const char* error_message);
 GLuint LoadShader(const char* filename, GLenum shader_type);

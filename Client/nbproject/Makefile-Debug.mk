@@ -49,6 +49,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/CPlayerObjHandle.o \
 	${OBJECTDIR}/world/CWorld.o \
 	${OBJECTDIR}/UI/UIMainFrame.o \
+	${OBJECTDIR}/UI/TransformStack.o \
 	${OBJECTDIR}/CDatabase.o \
 	${OBJECTDIR}/Grafic/ShaderProgram.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
@@ -160,6 +161,11 @@ ${OBJECTDIR}/UI/UIMainFrame.o: UI/UIMainFrame.cpp
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIMainFrame.o UI/UIMainFrame.cpp
+
+${OBJECTDIR}/UI/TransformStack.o: UI/TransformStack.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/TransformStack.o UI/TransformStack.cpp
 
 ${OBJECTDIR}/CDatabase.o: CDatabase.cpp 
 	${MKDIR} -p ${OBJECTDIR}

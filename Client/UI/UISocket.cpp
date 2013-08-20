@@ -6,6 +6,7 @@
  */
 
 #include "UISocket.h"
+#include "../Grafic/screenControler.h"
 
 UISocket::UISocket(UIBaseFrame* parrent, uint32_t x, uint32_t y):
 UIBaseFrame(parrent,x,y,40,40){
@@ -22,12 +23,10 @@ uint32_t UISocket::click(uint32_t x, uint32_t y){
 }
 
 void UISocket::draw(){
+	TranslateMatrix(masterScreen->getUIStack()->top(),getX(),getY(),0);
+	masterScreen->getUIStack()->push();
 	
-	glTranslated((GLfloat)(_x),(GLfloat)(_y),0);
-	glPushMatrix();
-
-	
-	glPopMatrix();
+	masterScreen->getUIStack()->pop();
 	this->drawChilds();
 	
 }

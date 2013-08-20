@@ -32,7 +32,8 @@ GLuint loadTexture(Textures::Enum texture){
         //    break;
 
          default:
-            path = "Textures/Icons/Icons/Armor/itempic0001.png";
+            //path = "Textures/Icons/Icons/Armor/itempic0001.png";
+			 path = "Textures/test2.png";
       }
 
 	std::stringstream ss;
@@ -98,8 +99,13 @@ GLuint loadTexture(Textures::Enum texture){
 
 }
 
-ShaderProgram* initShaders(){
-	ShaderProgram* sp = new ShaderProgram();
+ShaderProgram* initObjShaders(){
+	ShaderProgram* sp = new ShaderProgram(1);
+
+	return sp;
+}
+ShaderProgram* initUIShaders(){
+	ShaderProgram* sp = new ShaderProgram(2);
 
 	return sp;
 }
