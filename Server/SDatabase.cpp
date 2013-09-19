@@ -38,7 +38,7 @@ void  SDatabase::loadCreatures(pqxx::work& w){
 		pqxx::result r = w.exec("select id, team from creature;");
 		SGrid* g = world->getGrids()[1];
 		for(int i = 0; i< r.size(); i++){
-			SPos p1(30000,10000*i,0);
+			SPos p1(30000,10000*i,30000*i,0);
 			int temp = r[i][0].as<uint32_t>();
 			SCreature* o = new SCreature(r[i][0].as<uint32_t>(),p1 ,r[i][1].as<uint32_t>() ,0);
 			g->addObj(o);

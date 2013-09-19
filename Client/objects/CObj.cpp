@@ -13,12 +13,8 @@ CObj::CObj(uint32_t id, uint32_t playerId, CPos pos) {
 	this->_id = id;
 	this->_team = teamlist[playerId];
 	this->_playerId = playerId;
-	this->_pos.x = pos.x;
-	this->_pos.y = pos.y;
-	this->_pos.d = pos.d;
-	this->_actualPos.x = pos.x;
-	this->_actualPos.y = pos.y;
-	this->_actualPos.d = pos.d;
+	this->_pos = pos;
+	this->_actualPos = pos;
 
 	this->_lastUpdate = getTime();
 	this->_procedTime = getTime();

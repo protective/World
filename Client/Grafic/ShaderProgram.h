@@ -13,14 +13,22 @@
 class ShaderProgram {
 public:
 	ShaderProgram(uint32_t programType);
-	map<int32_t,Shader*>& getShaders(){return _shaders;}
 	GLuint getProgramId(){return _id;}
 	GLint& getTextureUniform(){return _textureUniform;}
-	void setId(GLuint id){_id = id;}
+	virtual uint32_t init();
+	void enable();
+	uint32_t addShader(Shader* shader);
 	virtual ~ShaderProgram();
-private:
-	map<int32_t,Shader*> _shaders;
+protected:
+
+    uint32_t finalize();
+    GLint getUniformLocation(const char* pUniformName);
+    GLint getProgramParam(GLint param);
 	GLuint _id;
+	list<Shader*> _shaders;
+private:
+	
+	
 	GLint _textureUniform;
 };
 

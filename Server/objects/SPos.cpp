@@ -10,18 +10,19 @@
 SPos::SPos() {
 }
 
-SPos::SPos(int32_t x, int32_t y, int32_t d) {
+SPos::SPos(int32_t x, int32_t y, int32_t z, int32_t d) {
 	this->x = x;
 	this->y = y;
+	this->z = z;
 	this->d = d;
-	this->z = 0;
 	this->grid = NULL;
 }
-SPos::SPos(SGrid* grid, int32_t x, int32_t y, int32_t d) {
+SPos::SPos(SGrid* grid, int32_t x, int32_t y, int32_t z, int32_t d) {
 	this->x = x;
 	this->y = y;
+	this->z = z;
 	this->d = d;
-	this->z = 0;
+	
 	this->grid = grid;
 }
 

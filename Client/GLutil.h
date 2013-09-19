@@ -23,8 +23,12 @@
 #include <fstream>
 #include <cstdlib>
 #include <GL/glew.h>
+
+#define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 //#include <GL/freeglut.h>
 
 // #define  PI  3.14159265358979323846

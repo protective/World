@@ -1,7 +1,7 @@
 #version 130
 
-in vec4 in_Position;
-in vec2 in_Texcoord;
+layout (location = 0) in vec4 in_Position;
+layout (location = 1) in vec2 in_Texcoord;
 
 out vec2 ex_Texcoord;
 

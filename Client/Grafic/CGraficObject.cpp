@@ -49,7 +49,7 @@ Matrix ModelMatrix;
 	ExitOnGLError("ERROR: Could not set the shader texture uniforms");
 
 	glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderModelMatrix], 1, GL_FALSE, ModelMatrix.m);
-	glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderViewMatrix], 1, GL_FALSE, (*masterScreen->getViewMatrix()).m);
+	glUniformMatrix4fv(_model->getShader()->getShaders()[0]->getVars()[ShaderViewMatrix], 1, GL_FALSE, (glm::value_ptr(*masterScreen->getViewMatrix())));
 	ExitOnGLError("ERROR: Could not set the shader uniforms");
 
 	glBindVertexArray(_model->get_vao());
@@ -64,6 +64,75 @@ Matrix ModelMatrix;
 	glBindVertexArray(0);
 	glUseProgram(0);
 //	glEnable(GL_TEXTURE_2D);
+}
+
+
+void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
+
+	//CPos* pos = ;
+	
+	glm::vec3 pos(creature->getPos().x/1000, creature->getPos().y/1000, creature->getPos().z/1000);
+	
+	cerr<<"pos "<<pos.x<<endl;
+	cerr<<"pos "<<pos.y<<endl;
+	cerr<<"pos "<<pos.z<<endl;
+	
+	glm::vec3 center =  pos;
+	
+	cerr<<"posray "<<ray[0].x<<endl;
+	cerr<<"posray "<<ray[0].y<<endl;
+	cerr<<"posray "<<ray[0].z<<endl;
+	/*
+	float centerDirectionDot = glm::dot(ray[1],center);
+
+	
+	cerr<<"r "<<this->_radiusSquared<<endl;
+	//Compute determinat
+	float d = centerDirectionDot*centerDirectionDot - glm::sqrt(center.length()) + this->_radiusSquared;
+	cerr<<"d "<<d<<endl;
+	//Check for intersection
+	*/
+	this->_radiusSquared = 100;
+	
+	float squaredDist = glm::dot(ray[0]-center, ray[0]-center);
+
+	
+	cerr<<"disttance "<<squaredDist<<endl;
+	//If the distance is less than the squared radius of the sphere...
+	if(squaredDist <= this->_radiusSquared )
+	{
+		//Point is in sphere, consider as no intersection existing
+		//std::cout << "Point inside sphere..." << std::endl;
+		//return false;
+	}
+
+	//Will hold solution to quadratic equation
+	float t0, t1;
+
+	//Calculating the coefficients of the quadratic equation
+	float a = glm::dot(ray[1],ray[1]); // a = d*d
+	float b = 2.0f*glm::dot(ray[1],ray[0]-center); // b = 2d(o-C)
+	float c = glm::dot(ray[0]-center, ray[0]-center) - this->_radiusSquared ; // c = (o-C)^2-R^2
+
+	//Calculate discriminant
+	float d = (b*b)-(4.0f*a*c);
+	
+	
+	
+	
+	
+	cerr<<"d "<<d<<endl;
+	if(d >= 0){
+		cerr<<"HIT "<<endl;
+		/*
+		float distance = centerDirectionDot - sqrt(d);
+		if(0 < distance && distance < computation.distance){
+			computation.distance = distance;
+			computation.surface = this;
+		}
+		*/
+	}
+	
 }
 
 CGraficObject::~CGraficObject() {

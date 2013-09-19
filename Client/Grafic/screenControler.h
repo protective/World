@@ -18,7 +18,7 @@ public:
 	void drawScreen();
 	void clickScreen(uint32_t x, uint32_t y);
 	list<Model*>& getModels(){return _models;}
-	Matrix* getViewMatrix(){return &_viewMatrix;}
+	glm::mat4* getViewMatrix(){return &_viewMatrix;}
 	ShaderProgram* getUIShaderProgram(){return _UIShaderProgram;}
 	TransformStack* getUIStack(){return &_UIStack;}
 	virtual ~screenControler();
@@ -28,7 +28,7 @@ private:
 	ShaderProgram* _ObjShaderProgram;
 	ShaderProgram* _UIShaderProgram;
 	Matrix _projectionMatrix;
-	Matrix _viewMatrix;
+	glm::mat4 _viewMatrix;
 	TransformStack _UIStack;
 };
 

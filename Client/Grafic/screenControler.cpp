@@ -70,9 +70,11 @@ screenControler::screenControler() {
 	);
 	Matrix _UiprojectionMatrix = CreateOthoMatrix(0,Basewidth,0,Basehight);
 	
-	_viewMatrix = IDENTITY_MATRIX;
-	TranslateMatrix(&_viewMatrix, 0, 0, -80);
+	//_viewMatrix = IDENTITY_MATRIX;
+	//TranslateMatrix(&_viewMatrix, 20, 0, -80);
 
+	_viewMatrix = glm::lookAt(glm::vec3(-30,20,-60),glm::vec3(-30,20,0),glm::vec3(0,-1,0));
+	
 	_ObjShaderProgram = initObjShaders();
 	
 	textures[0] = loadTexture(Textures::Invalid);
@@ -106,21 +108,54 @@ void screenControler::initScreen(){
 void screenControler::clickScreen(uint32_t x, uint32_t y){
 	
 	
-	cerr<<"click X"<<x<<" Y "<<y<<endl;
+	cerr<<"click X "<<x<<" Y "<<y<<endl;
 	//float mouseclip[4] = {float(x) * 2 / float(Basewidth) - 1, 1 - float(y) * 2 / float(Basehight), 0, 1};
-	glm::vec4 mouseclip = glm::vec4(float((float(x) * 2 / float(Basewidth) - 1)), float(1 - float(y) * 2 / float(Basehight)), 0.0f, 1.0f);
-	glm::mat4 P = glm::make_mat4(_projectionMatrix.m);
-	glm::mat4 C = glm::make_mat4(_viewMatrix.m);
+	//glm::vec4 mouseclip = glm::vec4(float((float(x) * 2 / float(Basewidth) - 1)), float(1 - float(y) * 2 / float(Basehight)), 0.0f, 1.0f);
 	
-	glm::vec4 mouseWorld = glm::inverse(P) * glm::inverse(C) * mouseclip;
+	glm::vec4 lRayStart_NDC(
+    ((float)x/(float)Basewidth  - 0.5f) * 2.0f,
+    (((float)y/(float)Basehight - 0.5f) * -2.0f),
+    -1.0, // The near plane maps to Z=-1 in Normalized Device Coordinates
+    1.0f
+	);
+	glm::vec4 lRayEnd_NDC(
+    ((float)x/(float)Basewidth  - 0.5f) * 2.0f,
+    (((float)y/(float)Basehight - 0.5f) * -2.0f),
+    0.0,
+    1.0f
+	);
+	
+	glm::mat4 C = glm::inverse(_viewMatrix);
+	glm::mat4 InverseProjectionMatrix = glm::inverse(glm::make_mat4(_projectionMatrix.m));
+	glm::mat4 InverseViewMatrix = glm::inverse(_viewMatrix);
+
+	glm::vec4 lRayStart_camera = InverseProjectionMatrix * lRayStart_NDC;    lRayStart_camera/=lRayStart_camera.w;
+	glm::vec4 lRayStart_world  = InverseViewMatrix       * lRayStart_camera; lRayStart_world /=lRayStart_world.w;
+
+	glm::vec4 lRayEnd_camera   = InverseProjectionMatrix * lRayEnd_NDC;      lRayEnd_camera  /=lRayEnd_camera.w;
+	glm::vec4 lRayEnd_world    = InverseViewMatrix       * lRayEnd_camera;   lRayEnd_world   /=lRayEnd_world.w;
+ 
+	
+	glm::vec3 mouseWorld3(lRayEnd_world - lRayStart_world);
+	//mouseWorld3 = glm::normalize(mouseWorld3);
+
+	cerr<<"mouse "<<mouseWorld3.x<<endl;
+	cerr<<"mouse "<<mouseWorld3.y<<endl;
+	cerr<<"mouse "<<mouseWorld3.z<<endl;
+
+	cerr<<"cam "<<C[3][0]<<endl;
+	cerr<<"cam "<<C[3][1]<<endl;
+	cerr<<"cam "<<C[3][2]<<endl;
+	cerr<<"cam "<<C[3][3]<<endl;
+	
+	glm::mat2x3 ray = glm::mat2x3(C[3].xyz(),mouseWorld3);
 	
 	
-	glm::vec4 n = glm::normalize(mouseWorld - glm::inverse(C)[3]);
+	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
+		if (it->second->getCreature())
+			it->second->getCreature()->rayIntersect(it->second->getCreature(),ray);
+	}
 	
-	cerr<<n.x<<endl;
-	cerr<<n.y<<endl;
-	cerr<<n.z<<endl;
-	cerr<<n.w<<endl;
 }
 
 void screenControler::drawScreen()

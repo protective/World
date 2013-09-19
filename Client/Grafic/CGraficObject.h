@@ -15,11 +15,13 @@ class CGraficObject {
 public:
 	CGraficObject(Model* model);
 	virtual void draw(CCreature* creature);
+	virtual void rayIntersect(CCreature* creature, glm::mat2x3 ray);
 	virtual ~CGraficObject();
 private:
 	Model* _model;
 	GLuint _buffer;
 	float CubeRotation;
+	float _radiusSquared;
 };
 
 #endif	/* CGRAFICOBJECT_H */
