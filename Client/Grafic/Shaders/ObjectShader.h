@@ -13,7 +13,9 @@ class ObjectShader : public ShaderProgram {
 public:
 	ObjectShader();
 	uint32_t init();
-	void setModelMatrix()
+	void setModelMatrix(glm::mat4* modelMatrix);
+	void setViewMatrix(glm::mat4* viewMatrix);
+	void setProjectionMatrix(glm::mat4* projectionMatrix);
 	virtual ~ObjectShader();
 private:
 

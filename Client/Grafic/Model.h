@@ -9,11 +9,13 @@
 #define	MODEL_H
 #include "../GLutil.h"
 #include "../CFunctions.h"
-#include "ShaderProgram.h"
+#include "Shaders/ObjectShader.h"
 class Model {
 public:
-	Model(ShaderProgram* shader);
-	ShaderProgram* getShader(){return _shader;}
+	Model(ObjectShader* shader);
+	void bind();
+	void unbind();
+	ObjectShader* getShader(){return _shader;}
 	GLuint get_vao(){return _vao;}
 	GLuint get_vbo(){return _vbo;}
 	GLuint* get_ibo(){return &_ibo;}
@@ -22,7 +24,7 @@ public:
 	virtual ~Model();
 private:
 	void createFromFile(string filePath);
-	ShaderProgram* _shader;
+	ObjectShader* _shader;
 	Vertex* _vertices;
 	uint32_t _vertixCount;
 	GLuint* _indices;

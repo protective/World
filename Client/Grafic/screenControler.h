@@ -10,6 +10,7 @@
 #include "Grafic.h"
 #include "Model.h"
 #include "../UI/TransformStack.h"
+#include "Shaders/UIShader.h"
 
 class screenControler {
 public:
@@ -19,15 +20,15 @@ public:
 	void clickScreen(uint32_t x, uint32_t y);
 	list<Model*>& getModels(){return _models;}
 	glm::mat4* getViewMatrix(){return &_viewMatrix;}
-	ShaderProgram* getUIShaderProgram(){return _UIShaderProgram;}
+	UIShader* getUIShaderProgram(){return _UIShaderProgram;}
 	TransformStack* getUIStack(){return &_UIStack;}
 	virtual ~screenControler();
 private:
 	list<Model*> _models;
 	SDL_Surface* _screen;
-	ShaderProgram* _ObjShaderProgram;
-	ShaderProgram* _UIShaderProgram;
-	Matrix _projectionMatrix;
+	ObjectShader* _ObjShaderProgram;
+	UIShader* _UIShaderProgram;
+	glm::mat4 _projectionMatrix;
 	glm::mat4 _viewMatrix;
 	TransformStack _UIStack;
 };

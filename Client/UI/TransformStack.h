@@ -15,21 +15,21 @@ class TransformStack {
 public:
 	TransformStack();
 	void push(){
-		Matrix* p = top();
-		_stack.push_back(p?*p:IDENTITY_MATRIX);
+		glm::mat4* p = top();
+		_stack.push_back(p?*p:glm::mat4());
 	}
-	Matrix pop(){
-		Matrix* p = top();
+	glm::mat4 pop(){
+		glm::mat4* p = top();
 		_stack.pop_back();
 		return *p;
 	}
 	void loadIdentity(){
-		_stack.back() = IDENTITY_MATRIX;
+		_stack.back() = glm::mat4();
 	}
-	Matrix* top(){return _stack.size() ?  &_stack.back() :  NULL;}
+	glm::mat4* top(){return _stack.size() ?  &_stack.back() :  NULL;}
 private:
 
-	list<Matrix> _stack;
+	list<glm::mat4> _stack;
 };
 
 #endif	/* TRANSFORMSTACK_H */

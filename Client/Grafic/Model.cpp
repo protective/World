@@ -9,11 +9,13 @@
 
 #include "Model.h"
 #include "Grafic.h"
+#include "Shaders/ObjectShader.h"
 
 
-Model::Model(ShaderProgram* shader) {
+Model::Model(ObjectShader* shader) {
 
-	glUseProgram(shader->getProgramId());
+	//glUseProgram(shader->getProgramId());
+	shader->enable();
 	_shader = shader;
 	cerr<<"BEGIN CREATE MODEL"<<endl;
 	createFromFile("../../../Mesh/box.x3d");
@@ -46,13 +48,29 @@ Model::Model(ShaderProgram* shader) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ibo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _indicesCount * sizeof (GLfloat), _indices, GL_STATIC_DRAW);
 	ExitOnGLError("ERROR: Could not bind the IBO to the VAO");
-
 	glBindVertexArray(0);
 
 	glUseProgram(0);
 }
 
 
+void Model::bind(){
+	//Texture
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, this->get_texture());
+	glUniform1i(this->getShader()->getTextureUniform(), /*GL_TEXTURE*/0);
+	ExitOnGLError("ERROR: Could not set the model shader texture uniforms");
+
+	glBindVertexArray(this->get_vao());
+	ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
+
+}
+
+void Model::unbind(){
+
+	glBindVertexArray(0);
+	glUseProgram(0);
+}
 
 
 void getParams(string line, vector<int>& vec){

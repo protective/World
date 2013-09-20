@@ -19,10 +19,14 @@
         <itemPath>Grafic/Grafic.h</itemPath>
         <itemPath>Grafic/Model.cpp</itemPath>
         <itemPath>Grafic/Model.h</itemPath>
+        <itemPath>Grafic/Shaders/ObjectShader.cpp</itemPath>
+        <itemPath>Grafic/Shaders/ObjectShader.h</itemPath>
         <itemPath>Grafic/Shader.cpp</itemPath>
         <itemPath>Grafic/Shader.h</itemPath>
         <itemPath>Grafic/ShaderProgram.cpp</itemPath>
         <itemPath>Grafic/ShaderProgram.h</itemPath>
+        <itemPath>Grafic/Shaders/UIShader.cpp</itemPath>
+        <itemPath>Grafic/Shaders/UIShader.h</itemPath>
         <itemPath>Grafic/screenControler.cpp</itemPath>
         <itemPath>Grafic/screenControler.h</itemPath>
       </logicalFolder>

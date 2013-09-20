@@ -99,16 +99,6 @@ GLuint loadTexture(Textures::Enum texture){
 
 }
 
-ShaderProgram* initObjShaders(){
-	ShaderProgram* sp = new ShaderProgram(1);
-
-	return sp;
-}
-ShaderProgram* initUIShaders(){
-	ShaderProgram* sp = new ShaderProgram(2);
-
-	return sp;
-}
 
 void draw(Model* Model){
 

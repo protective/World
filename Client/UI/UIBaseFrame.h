@@ -29,6 +29,9 @@ public:
 	virtual uint32_t getY(){return _vertices[0].Position[1];}
 	virtual uint32_t getWight(){return _vertices[2].Position[0] - _vertices[0].Position[0] ;}
 	virtual uint32_t getHeight(){return _vertices[2].Position[1] - _vertices[0].Position[1];}
+	
+	virtual void bind();
+	virtual void unbind();
 	virtual ~UIBaseFrame();
 protected:
 	UIBaseFrame* _parrent;

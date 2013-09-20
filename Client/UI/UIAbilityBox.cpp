@@ -30,25 +30,17 @@ uint32_t UIAbilityBox::click(uint32_t x, uint32_t y){
 }
 
 void UIAbilityBox::draw(){
-	TranslateMatrix(masterScreen->getUIStack()->top(),getX(),getY(),0);
+	glm::translate(*masterScreen->getUIStack()->top(),glm::vec3(getX(),getY(),0));
 	if(this->_power){
 		masterScreen->getUIStack()->push();
-		glUseProgram(masterScreen->getUIShaderProgram()->getProgramId());
-		ExitOnGLError("ERROR: Could not use the shader program");
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture);
-		glUniform1i(masterScreen->getUIShaderProgram()->getTextureUniform(), /*GL_TEXTURE*/0);
-		ExitOnGLError("ERROR: Could not set the shader texture uniforms");
 		
-		glUniformMatrix4fv(masterScreen->getUIShaderProgram()->getShaders()[0]->getVars()[ShaderModelMatrix], 1, GL_FALSE, masterScreen->getUIStack()->top()->m);
-		//glUniformMatrix4fv(masterScreen->getUIShaderProgram()->getShaders()[0]->getVars()[ShaderModelMatrix], 1, GL_FALSE, IDENTITY_MATRIX.m);
-		ExitOnGLError("ERROR: Could not set the shader uniforms");
-		glBindVertexArray(_vao);
-		ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
+		masterScreen->getUIShaderProgram()->enable();
+		masterScreen->getUIShaderProgram()->setModelMatrix(masterScreen->getUIStack()->top());
+		this->bind();
 		glDrawArrays(GL_TRIANGLE_FAN,0,4);
 		ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
-		glBindVertexArray(0);
-		glUseProgram(0);
+		this->unbind();
+		
 		masterScreen->getUIStack()->pop();
 	}
 	this->drawChilds();

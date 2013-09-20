@@ -20,8 +20,6 @@
 
 class ShaderProgram;
 GLuint loadTexture(Textures::Enum texture);
-ShaderProgram* initObjShaders();
-ShaderProgram* initUIShaders();
 void Drawbox( float x, float y, float width, float hight, float r, float g, float b, float a );
 
 #endif	/* GRAFIC_H */

@@ -60,7 +60,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/UI/UIUnitBox.o \
 	${OBJECTDIR}/Grafic/Model.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
-	${OBJECTDIR}/UI/UISocket.o
+	${OBJECTDIR}/Grafic/Shaders/UIShader.o \
+	${OBJECTDIR}/UI/UISocket.o \
+	${OBJECTDIR}/Grafic/Shaders/ObjectShader.o
 
 
 # C Compiler Flags
@@ -217,10 +219,20 @@ ${OBJECTDIR}/_ext/2098112761/GFunctions.o: ../GShare/GFunctions.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GFunctions.o ../GShare/GFunctions.cpp
 
+${OBJECTDIR}/Grafic/Shaders/UIShader.o: Grafic/Shaders/UIShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/UIShader.o Grafic/Shaders/UIShader.cpp
+
 ${OBJECTDIR}/UI/UISocket.o: UI/UISocket.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UISocket.o UI/UISocket.cpp
+
+${OBJECTDIR}/Grafic/Shaders/ObjectShader.o: Grafic/Shaders/ObjectShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/ObjectShader.o Grafic/Shaders/ObjectShader.cpp
 
 # Subprojects
 .build-subprojects:

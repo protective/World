@@ -68,6 +68,16 @@ UIBaseFrame::UIBaseFrame(UIBaseFrame* parrent, uint32_t x, uint32_t y, uint32_t 
 	glUseProgram(0);	
 }
 
+void UIBaseFrame::bind(){
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, _texture);
+		glUniform1i(masterScreen->getUIShaderProgram()->getTextureUniform(), /*GL_TEXTURE*/0);
+ExitOnGLError("ERROR: Could not set the shader texture uniforms");
+}
+void UIBaseFrame::unbind(){
+
+}
+
 void UIBaseFrame::draw(){
 	this->drawChilds();
 }
