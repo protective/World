@@ -13,6 +13,8 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Grafic" projectFiles="true">
+        <itemPath>Grafic/Shaders/BillboardShader.cpp</itemPath>
+        <itemPath>Grafic/Shaders/BillboardShader.h</itemPath>
         <itemPath>Grafic/CGraficObject.cpp</itemPath>
         <itemPath>Grafic/CGraficObject.h</itemPath>
         <itemPath>Grafic/Grafic.cpp</itemPath>
