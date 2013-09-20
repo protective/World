@@ -160,12 +160,16 @@ void screenControler::drawScreen()
 // draw quad in screen coodinates
 
 	glUseProgram(0);
-	glDisable(GL_TEXTURE_2D);
-	glLoadIdentity();
+	//glDisable(GL_TEXTURE_2D);
+	//glLoadIdentity();
 	mainFrame->updateUI();
+
+
 	mainFrame->draw();
-	glEnable(GL_TEXTURE_2D);
+
+	//glEnable(GL_TEXTURE_2D);
 	//glUseProgram(_shaderProgram->getProgramId());
+
 	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 		if (it->second->getCreature())
 			it->second->getCreature()->draw(it->second->getCreature());

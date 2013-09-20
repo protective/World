@@ -23,10 +23,13 @@ uint32_t UISocket::click(uint32_t x, uint32_t y){
 }
 
 void UISocket::draw(){
-glm::translate(*masterScreen->getUIStack()->top(),glm::vec3(getX(),getY(),0));	masterScreen->getUIStack()->push();
-	
+	masterScreen->getUIStack()->translate(glm::vec3(getX(),getY(),0));
+
+	masterScreen->getUIStack()->push();
 	masterScreen->getUIStack()->pop();
+
 	this->drawChilds();
+
 	
 }
 UISocket::~UISocket() {

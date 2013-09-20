@@ -30,20 +30,24 @@ uint32_t UIAbilityBox::click(uint32_t x, uint32_t y){
 }
 
 void UIAbilityBox::draw(){
-	glm::translate(*masterScreen->getUIStack()->top(),glm::vec3(getX(),getY(),0));
+	masterScreen->getUIStack()->translate(glm::vec3(getX(),getY(),0));
+
 	if(this->_power){
 		masterScreen->getUIStack()->push();
 		
 		masterScreen->getUIShaderProgram()->enable();
 		masterScreen->getUIShaderProgram()->setModelMatrix(masterScreen->getUIStack()->top());
+
 		this->bind();
+		
 		glDrawArrays(GL_TRIANGLE_FAN,0,4);
 		ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
 		this->unbind();
-		
+
 		masterScreen->getUIStack()->pop();
 	}
 	this->drawChilds();
+
 }
 
 

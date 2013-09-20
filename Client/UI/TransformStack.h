@@ -27,6 +27,10 @@ public:
 		_stack.back() = glm::mat4();
 	}
 	glm::mat4* top(){return _stack.size() ?  &_stack.back() :  NULL;}
+
+	void translate(glm::vec3 vec){
+		*top() = glm::translate(*top(),vec);
+	}
 private:
 
 	list<glm::mat4> _stack;

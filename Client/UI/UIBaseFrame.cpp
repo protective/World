@@ -69,27 +69,33 @@ UIBaseFrame::UIBaseFrame(UIBaseFrame* parrent, uint32_t x, uint32_t y, uint32_t 
 }
 
 void UIBaseFrame::bind(){
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture);
-		glUniform1i(masterScreen->getUIShaderProgram()->getTextureUniform(), /*GL_TEXTURE*/0);
-ExitOnGLError("ERROR: Could not set the shader texture uniforms");
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _texture);
+	glUniform1i(masterScreen->getUIShaderProgram()->getTextureUniform(), /*GL_TEXTURE*/0);
+	ExitOnGLError("ERROR: Could not set the shader texture uniforms");
+	glBindVertexArray(this->_vao);
+	ExitOnGLError("ERROR: Could not bind the VAO for drawing purposes");
 }
 void UIBaseFrame::unbind(){
-
+	glBindVertexArray(0);
+	glUseProgram(0);
 }
 
 void UIBaseFrame::draw(){
 	this->drawChilds();
 }
 void UIBaseFrame::drawChilds(){
+
 	for(list<UIBaseFrame*>::iterator it = _childs.begin(); it != _childs.end();it++){
 		masterScreen->getUIStack()->push();
 		(*it)->draw();
 		masterScreen->getUIStack()->pop();
 	}
+
 }
 
 void UIBaseFrame::setIcon(uint32_t iconId){
+	
 	cerr<<"set icon"<<iconId<<endl;
 	switch(iconId){
 		case 1:{		
@@ -109,7 +115,7 @@ void UIBaseFrame::setIcon(uint32_t iconId){
 			break;
 		}
 	}
-	glUseProgram(masterScreen->getUIShaderProgram()->getProgramId());
+	masterScreen->getUIShaderProgram()->enable();
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 	ExitOnGLError("ERROR: Could not bind BUFFer");

@@ -24,11 +24,8 @@ uint32_t UIShader::init() {
 	
 	if(finalize())
 		return 4;
-	cerr<<"hest1"<<endl;
 	_ModelMatrix = getUniformLocation("ModelMatrix");
-	cerr<<"hest2"<<endl;
 	_ProjectionMatrix = getUniformLocation("ProjectionMatrix");	
-	cerr<<"hest3"<<endl;
 	return 0;
 }
 
