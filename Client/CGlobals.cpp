@@ -18,7 +18,7 @@ CPlayerObjHandle* playerObj = new CPlayerObjHandle();
 map<uint32_t,GLuint> textures;
 
 CWorld* world = new CWorld();
-uint32_t playerId;
+uint32_t GlobalPlayerId;
 map<uint32_t,uint8_t> teamlist;
 
 FTGLPixmapFont font("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");

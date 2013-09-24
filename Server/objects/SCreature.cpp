@@ -14,12 +14,25 @@
 SCreature::SCreature(uint32_t id, SPos pos, uint32_t team, uint32_t playerId):
 SObj(id,pos,team,playerId){
 	
-	SC_ObjProcesTask::Enum task[4] = {SC_ObjProcesTask::Mana,SC_ObjProcesTask::Focus,SC_ObjProcesTask::ManaContinue,SC_ObjProcesTask::ManaPFS};
+	SC_ObjProcesTask::Enum task[4] = {
+		SC_ObjProcesTask::Mana,
+		SC_ObjProcesTask::Focus,
+		SC_ObjProcesTask::ManaContinue,
+		SC_ObjProcesTask::ManaPFS
+	};
 	
 	for (uint32_t i = 0; i< 4; i++){
 		_procesTask[task[i]] = new SC_ObjProces(SDL_GetTicks(),this,task[i]);
 		this->addCommand(_procesTask[task[i]]);
 	}
+	
+	for(map<Attributes::Enum,int32_t>::iterator it = _attribute.begin(); it != _attribute.end();it++){
+		_attribute[it->first] = 0;
+	}
+	
+	_attribute[Attributes::Hp] = _attribute[Attributes::HpMax];
+	_attribute[Attributes::Mana] = _attribute[Attributes::ManaMax];
+	_attribute[Attributes::Focus] = _attribute[Attributes::FocusMax];
 	//_procesTask[SC_ObjProcesTask::ManaContinue] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::ManaContinue);
 	//_procesTask[SC_ObjProcesTask::Mana] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::Mana);
 	//_procesTask[SC_ObjProcesTask::Mana] = new SC_ObjProces(SDL_GetTicks(),this,SC_ObjProcesTask::Mana);
@@ -64,6 +77,8 @@ void SCreature::SetAttributes(Attributes::Enum attri,int32_t value){
 
 void SCreature::setCasting(SPower* casting){
 	_casting = casting;
+	
+	//reset the proces giving mana to the creature;
 	if (_procesTask[SC_ObjProcesTask::Mana]){
 		_procesTask[SC_ObjProcesTask::Mana]->resetTime(SDL_GetTicks()+5000);
 	}

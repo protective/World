@@ -16,7 +16,6 @@ uint32_t getTime(){
 }
 
 void* Connect(string ip, uint32_t playerid, uint32_t pass){
-
 	struct sockaddr_in stSockAddr;
 
     int Res;
@@ -65,7 +64,8 @@ void* Connect(string ip, uint32_t playerid, uint32_t pass){
 		data->_type = SerialType::SerialReqJoin;
 		data->_size = sizeof(SerialReqJoin);
 		data->_unitId = playerid; //TODO BIG TODO FIX THIS SOOON
-		playerId = playerid;
+		GlobalPlayerId = playerid;
+		cerr<<"IGEN "<<GlobalPlayerId<<endl;
 		data->_pass = pass;
 		send(connection.SocketFD,message,sizeof(SerialReqJoin),0);
 

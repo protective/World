@@ -62,7 +62,7 @@ uint32_t SObj::reqMove(SPos pos){
 }
 
 void SObj::MovePos(int32_t x, int32_t y){
-	cerr<<"x "<<x<<" y "<<y<<endl;
+	//cerr<<"x "<<x<<" y "<<y<<endl;
 	this->_pos.x+= x;
 	this->_pos.y+= y;
 }

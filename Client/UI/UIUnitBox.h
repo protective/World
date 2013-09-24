@@ -8,6 +8,7 @@
 #ifndef UIUNITBOX_H
 #define	UIUNITBOX_H
 #include "UIBaseFrame.h"
+#include "UIPrimitiveBox.h"
 class CCreature;
 class UIUnitBox : public UIBaseFrame  {
 public:
@@ -16,6 +17,10 @@ public:
 	virtual ~UIUnitBox();
 private:
 	CCreature* _creature;
+	UIPrimitiveBox* _hpBar;
+	UIPrimitiveBox* _manaBar;
+	UIPrimitiveBox* _EnergyBar;
+	UIPrimitiveBox* _Bagground;
 };
 
 #endif	/* UIUNITBOX_H */

@@ -48,5 +48,7 @@ extern bool SPrintBuff;
 extern map<uint32_t, SPowerType*> GlobalPowerTypes;
 extern map<uint32_t, SEffectType*> GlobalEffetTypes;
 extern map<uint32_t, SEffectTypeAddBuff*> GlobalAddBuffTypes;
+extern pthread_mutex_t lockServerTick;
+extern uint32_t serverTick;
 #endif	/* SGLOBALS_H */
 

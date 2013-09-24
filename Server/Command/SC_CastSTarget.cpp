@@ -27,7 +27,6 @@ uint32_t SC_CastSTarget::execute(){
 		if(p->getPowerType()->getStats()[PowerTypeStats::ManaCost] <= _procesUnit->getCreature()->getAttibute()[Attributes::Mana]){
 			if(_procesUnit->getCreature())
 				_procesUnit->getCreature()->setCasting(_power);
-			cerr<<"cast target"<<endl;
 			p->activate(_time, _procesUnit, _target);
 		}
 	}else{

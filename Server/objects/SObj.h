@@ -49,6 +49,7 @@ protected:
 	uint32_t _updateCounter;
 	pthread_mutex_t _lockCommands;
 	pthread_mutex_t _lockCommandAccess;
+	
 	bool _commandAccessLocked;
 	list<SCommand*> _commands;
 	list<Client*> _subscribers[3];

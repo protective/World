@@ -45,7 +45,8 @@ using namespace std;
 		exit(1);
 	}
 
-	int argteam = 0;
+	int argteam = 2;
+	
 	cerr<<"argc"<<argc<<endl;
 	string argip = "127.0.0.1";
 	
@@ -94,23 +95,6 @@ using namespace std;
     int keypress = 0;
     int h=0;
 
-	
-	/*
-	glViewport(0, 0, Basewidth, Basehight);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glClearDepth(1.0);
-	glDepthFunc(GL_LESS);
-	glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_LIGHTING);
-	//glEnable(GL_LIGHT0);
-	glShadeModel(GL_SMOOTH);
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	//gluPerspective( 0.45f,  (GLfloat)600/(GLfloat)300,  100.0f,  10000.0f);
-	glOrtho(0, Basewidth-1, Basehight-1, 0, -1, 1);
-	glMatrixMode(GL_MODELVIEW);
-	*/
-	//BEGIN the hard stuff;
 	
 	
 	cerr<<"create screen"<<endl;

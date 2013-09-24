@@ -11,6 +11,10 @@
 
 CCreature::CCreature(uint32_t id, uint32_t playerId, CPos pos, Model* model) :
 CObj(id,playerId,pos), CGraficObject(model){
+	
+	for(map<Attributes::Enum,int32_t>::iterator it = _attribute.begin(); it != _attribute.end();it++){
+		_attribute[it->first] = 0;
+	}
 }
 
 

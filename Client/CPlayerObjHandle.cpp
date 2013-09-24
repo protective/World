@@ -108,11 +108,13 @@ void CPlayerObjHandle::recTakeDmgHeal(SerialTakeDmgHeal* st){
 		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
 		return;}
 	
-	if(st->_flags & SerialTakeDmgHealBitF::ValueP)
+	if(st->_flags & SerialTakeDmgHealBitF::ValueP){
+		cerr<<"SET HPP"<<endl;
 		creature->getAttibute()[Attributes::HpP] = st->_newvalue;
-	else
+	}else{
+		cerr<<"SET HP"<<endl;
 		creature->getAttibute()[Attributes::Hp] = st->_newvalue;
-
+	}
 	
 }
 
@@ -178,7 +180,8 @@ void CPlayerObjHandle::recCreature(SerialCreature* st){
 		cerr<<"WARNING CPlayerObjHandle::recCreature not creature"<<endl;
 		return;}
 
-	if (st->_unitId== 2)
+	cerr<<"GLOBAL PLAYER ID"<<GlobalPlayerId<<" UNIT ID "<<st->_unitId<<endl;
+	if (st->_unitId== GlobalPlayerId)
 		_player = creature; 
 	//handle->second->getCreature()->getPowers()[st->_powerId] = power;
 }

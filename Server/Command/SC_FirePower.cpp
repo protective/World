@@ -17,7 +17,6 @@ SCommand(time,procesUnit){
 
 uint32_t SC_FirePower::execute(){
 //TODO projectile speed
-	cerr<<"fire power"<<endl;
 	uint32_t range = 10000;
 	
 	uint32_t spellDelay = 0;
@@ -26,8 +25,6 @@ uint32_t SC_FirePower::execute(){
 	
 	
 	int32_t a = _procesUnit->getCreature()->getAttibute()[Attributes::Mana];
-	
-	cerr<<"cost "<<_power->getPowerType()->getStats()[PowerTypeStats::ManaCost]<<endl;
 	
 	_procesUnit->getCreature()->SetAttributes(Attributes::Mana, a - _power->getPowerType()->getStats()[PowerTypeStats::ManaCost]);
 	//TODO check if more need to be send with projectile
@@ -56,6 +53,7 @@ uint32_t SC_FirePower::execute(){
 	
 	if (_procesUnit->getCreature())
 		_procesUnit->getCreature()->setCasting(NULL);
+
 	return 0;
 }
 

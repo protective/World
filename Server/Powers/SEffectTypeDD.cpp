@@ -12,7 +12,7 @@
 SEffectTypeDD::SEffectTypeDD() {
 }
 
-void SEffectTypeDD::apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values){
+void SEffectTypeDD::apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values, EResults::Enum result){
 	cerr<<"apply dd"<<endl;
 	
 	//
@@ -24,7 +24,8 @@ void SEffectTypeDD::apply(uint32_t time, SPowerType* type, SCreature* caster, SC
 	cerr<<"c "<<totalDamage<<endl; 
 	totalDamage = (totalDamage * values[PowerProjectileMods::SpowerBonusBuff])/100;
 	cerr<<"d "<<totalDamage<<endl; 
-	totalDamage = (totalDamage * _critMod) / 100;
+	if(result == EResults::SCrit)
+		totalDamage = (totalDamage * _critMod) / 100;
 	cerr<<"e "<<totalDamage<<endl; 		
 	SC_ApplyDamage* command = new SC_ApplyDamage(time,caster,target,totalDamage,_damageType,type);
 	target->addCommand(command);

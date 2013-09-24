@@ -66,7 +66,7 @@ extern CObj* playerSels;
 extern CObj* playerTarget;
 extern list<CObj*> playerMultiSels;
 
-extern uint32_t playerId;
+extern uint32_t GlobalPlayerId;
 extern map<uint32_t,uint8_t> teamlist;
 extern CPos* viewPos;
 extern double viewZoom;

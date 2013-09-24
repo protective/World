@@ -16,6 +16,7 @@
 
 #include "objects/SCreature.h"
 #include "Powers/SEffectTypeAddBuff.h"
+#include "Powers/SEffectTypeDD.h"
 
 void SDatabase::LoadFromPostgres(){
 	pqxx::connection c("dbname= world user=karsten password=f1FF");
@@ -26,8 +27,7 @@ void SDatabase::LoadFromPostgres(){
 	loadPowers(w);
 	loadPowersStats(w);
 	loadEffects(w);
-	loadBuffs(w);
-	loadBuffsStats(w);
+	loadPowersEffects(w);
 	creaturePowers(w);
 	
 }
@@ -38,7 +38,7 @@ void  SDatabase::loadCreatures(pqxx::work& w){
 		pqxx::result r = w.exec("select id, team from creature;");
 		SGrid* g = world->getGrids()[1];
 		for(int i = 0; i< r.size(); i++){
-			SPos p1(30000,10000*i,30000*i,0);
+			SPos p1(10000,10000*i,30000*i,0);
 			int temp = r[i][0].as<uint32_t>();
 			SCreature* o = new SCreature(r[i][0].as<uint32_t>(),p1 ,r[i][1].as<uint32_t>() ,0);
 			g->addObj(o);
@@ -120,72 +120,99 @@ void  SDatabase::loadPowersStats(pqxx::work& w){
 		return ;
 	}	
 }
-void  SDatabase::loadEffects(pqxx::work& w){
-
-}
-void  SDatabase::loadBuffs(pqxx::work& w){
-	
-	try{
-		pqxx::result r = w.exec("select id, name from buff order by id;");
+void  SDatabase::loadPowersEffects(pqxx::work& w){
+	try
+	{
+		pqxx::result r = w.exec("select id, eventresult, effectid from powertypeeffects order by id;");
 		for(int i = 0; i< r.size(); i++){
 			uint32_t id = r[i][0].as<uint32_t>();
-			string name = r[i][1].as<string>();
-			SEffectTypeAddBuff* effect = new SEffectTypeAddBuff();
-			GlobalAddBuffTypes[id] = effect;
+			uint32_t eventresult = r[i][1].as<uint32_t>();
+			uint32_t effectid = r[i][2].as<uint32_t>();
+			SPowerType* o = GlobalPowerTypes[id];
+			if(!o)
+				continue;
+			o->getSubComponents()[(EResults::Enum)eventresult].push_back(_effectypes[effectid]);
 		}	
 	}
-	catch (const std::exception &e){
-		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
-		std::cerr << e.what() << std::endl;
-		return ;
-	}
-	 	
-}
-
-void  SDatabase::loadBuffsStats(pqxx::work& w){
-
-	try{
-		pqxx::result r = w.exec("select id, stattype, value from buffstats order by id;");
-		for(int i = 0; i< r.size(); i++){
-			uint32_t id = r[i][0].as<uint32_t>();
-			int32_t stattype = r[i][1].as<int32_t>();
-			int32_t value = r[i][2].as<int32_t>();
-			
-			if(GlobalAddBuffTypes.find(id) != GlobalAddBuffTypes.end()){
-				if (stattype >= 0){
-					GlobalAddBuffTypes[id]->getStatsMods()[(StatsMods::Enum)stattype] = value;
-				}
-				
-			}
-		}	
-	}
-	catch (const std::exception &e){
-		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
-		std::cerr << e.what() << std::endl;
-		return ;
-	}
-	try{
-		pqxx::result r = w.exec("select id, effect, value from buffvisualEffects order by id;");
-		for(int i = 0; i< r.size(); i++){
-			uint32_t id = r[i][0].as<uint32_t>();
-			int32_t effect = r[i][1].as<uint32_t>();
-			int32_t value = r[i][2].as<uint32_t>();
-			
-			if(GlobalAddBuffTypes.find(id) != GlobalAddBuffTypes.end()){
-				GlobalAddBuffTypes[id]->getVisualEffects()[(BuffVisualEffects::Enum)effect] = value;
-				
-			}
-			
-		}	
-	}
-	catch (const std::exception &e){
-		cerr<<"ERROR SDatabase::loadBuffs"<<endl;
+	catch (const std::exception &e)
+	{
+		cerr<<"ERROR SDatabase::loadPowersEffects"<<endl;
 		std::cerr << e.what() << std::endl;
 		return ;
 	}	
-	
-	
 }
+
+void  SDatabase::loadEffects(pqxx::work& w){
+	try
+	{
+		pqxx::result r = w.exec("select eid, type from effecttype order by eid;");
+		SEffectType* effectsType = NULL;
+		for(int i = 0; i< r.size(); i++){
+			uint32_t id = r[i][0].as<uint32_t>();
+			uint32_t type = r[i][1].as<uint32_t>();
+			if (type == 1){
+				effectsType = new SEffectTypeDD();
+				_effectypes[id] = effectsType;
+				loadEffectsDD(w,id);
+			}else if (type == 2){
+				effectsType = new SEffectTypeAddBuff();
+				_effectypes[id] = effectsType;
+				loadEffectsBuffTick(w,id);
+				loadEffectsBuffDot(w,id);
+				loadEffectsBuffStatMod(w,id);
+			}	
+			
+		}	
+	}
+	catch (const std::exception &e)
+	{
+		cerr<<"ERROR SDatabase::loadEffects"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+}
+
+void  SDatabase::loadEffectsDD(pqxx::work& w, uint32_t id){
+	try
+	{
+		pqxx::result r = w.exec("select stattype, value from DD where eid = " + toString(id) + " ;");
+		SEffectTypeDD* effectsTypeDD = NULL;
+		effectsTypeDD = (SEffectTypeDD*)_effectypes[id];
+		for(int i = 0; i< r.size(); i++){
+			uint32_t stattype = r[i][0].as<uint32_t>();
+			uint32_t value = r[i][1].as<uint32_t>();
+			
+			switch(stattype){
+				case 1:{
+					effectsTypeDD->setDamageType((DamageTypes::Enum)value);
+				}
+				case 2:{
+					effectsTypeDD->setMinDamage(value);
+				}
+				case 3:{
+					effectsTypeDD->setMaxDamage(value);
+				}
+				case 4:{
+					effectsTypeDD->setCritMod(value);
+				}
+			}
+			
+		}	
+	}
+	catch (const std::exception &e)
+	{
+		cerr<<"ERROR SDatabase::loadEffectsDD"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+}
+
+void  SDatabase::loadEffectsBuffDot(pqxx::work& w, uint32_t id){}
+void  SDatabase::loadEffectsBuffStatMod(pqxx::work& w, uint32_t id){}
+
+void  SDatabase::loadEffectsBuffTick(pqxx::work& w, uint32_t id){}
+
+
 
 
 void SDatabase::creaturePowers(pqxx::work& w){

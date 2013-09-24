@@ -15,6 +15,8 @@ public:
 	uint32_t init();
 	void setModelMatrix(glm::mat4* modelMatrix);
 	void setProjectionMatrix(glm::mat4* projectionMatrix);
+
+		
 	virtual ~UIShader();
 private:
 	GLuint _ModelMatrix;

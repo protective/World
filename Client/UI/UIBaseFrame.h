@@ -14,7 +14,7 @@ class UIBaseFrame {
 public:
 	UIBaseFrame(UIBaseFrame* parrent, uint32_t x, uint32_t y, uint32_t wight, uint32_t height);
 	virtual void draw();
-	virtual void drawChilds();
+	
 	void addChild(UIBaseFrame* frame){
 		_childs.push_back(frame);
 	}
@@ -30,10 +30,12 @@ public:
 	virtual uint32_t getWight(){return _vertices[2].Position[0] - _vertices[0].Position[0] ;}
 	virtual uint32_t getHeight(){return _vertices[2].Position[1] - _vertices[0].Position[1];}
 	
-	virtual void bind();
-	virtual void unbind();
+	virtual void setWight(uint32_t wight);
+	
 	virtual ~UIBaseFrame();
 protected:
+
+	virtual void drawChilds();
 	UIBaseFrame* _parrent;
 	list<UIBaseFrame*> _childs;
 	

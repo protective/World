@@ -22,7 +22,7 @@ struct ticksEffects{
 class SEffectTypeAddBuff : public SEffectType {
 public:
 	SEffectTypeAddBuff();
-	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values);
+	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values, EResults::Enum result);
 	list<ticksEffects>& gettickEffects(){return _tickEffects;}
 	map< StatsMods::Enum, int32_t>& getStatsMods(){return _statsMods;}
 	

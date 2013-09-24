@@ -41,11 +41,12 @@ OBJECTFILES= \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/Grafic/screenControler.o \
 	${OBJECTDIR}/Grafic/Shader.o \
+	${OBJECTDIR}/Grafic/Shaders/UIPrimShader.o \
 	${OBJECTDIR}/GLutil.o \
 	${OBJECTDIR}/UI/UIAbilityBox.o \
 	${OBJECTDIR}/CGlobals.o \
-	${OBJECTDIR}/Grafic/CGraficObject.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
+	${OBJECTDIR}/Grafic/CGraficObject.o \
 	${OBJECTDIR}/Grafic/Grafic.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
 	${OBJECTDIR}/world/CWorld.o \
@@ -55,6 +56,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Grafic/ShaderProgram.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
+	${OBJECTDIR}/UI/UIPrimitiveBox.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/objects/CCreature.o \
@@ -125,6 +127,11 @@ ${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shader.o Grafic/Shader.cpp
 
+${OBJECTDIR}/Grafic/Shaders/UIPrimShader.o: Grafic/Shaders/UIPrimShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/UIPrimShader.o Grafic/Shaders/UIPrimShader.cpp
+
 ${OBJECTDIR}/GLutil.o: GLutil.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -140,15 +147,15 @@ ${OBJECTDIR}/CGlobals.o: CGlobals.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CGlobals.o CGlobals.cpp
 
-${OBJECTDIR}/Grafic/CGraficObject.o: Grafic/CGraficObject.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Grafic
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/CGraficObject.o Grafic/CGraficObject.cpp
-
 ${OBJECTDIR}/_ext/2098112761/GGlobals.o: ../GShare/GGlobals.cpp 
 	${MKDIR} -p ${OBJECTDIR}/_ext/2098112761
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/2098112761/GGlobals.o ../GShare/GGlobals.cpp
+
+${OBJECTDIR}/Grafic/CGraficObject.o: Grafic/CGraficObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/CGraficObject.o Grafic/CGraficObject.cpp
 
 ${OBJECTDIR}/Grafic/Grafic.o: Grafic/Grafic.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic
@@ -194,6 +201,11 @@ ${OBJECTDIR}/CFunctions.o: CFunctions.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
+
+${OBJECTDIR}/UI/UIPrimitiveBox.o: UI/UIPrimitiveBox.cpp 
+	${MKDIR} -p ${OBJECTDIR}/UI
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIPrimitiveBox.o UI/UIPrimitiveBox.cpp
 
 ${OBJECTDIR}/mainClient.o: mainClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}

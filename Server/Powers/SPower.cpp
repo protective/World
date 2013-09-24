@@ -29,8 +29,6 @@ void SPower::sendToClient(Client* cli){
 }
 
 uint32_t SPower::activate(uint32_t time, SObj* caster,SObj* target){
-	cerr<<"activate power "<<endl; //CHECK MANA ENERGY and regent costs
-	
 	
 	char message[sizeof(SerialBeginCast)];
 	memset(message,0,sizeof(SerialBeginCast));

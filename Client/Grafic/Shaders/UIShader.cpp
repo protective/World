@@ -26,6 +26,7 @@ uint32_t UIShader::init() {
 		return 4;
 	_ModelMatrix = getUniformLocation("ModelMatrix");
 	_ProjectionMatrix = getUniformLocation("ProjectionMatrix");	
+	
 	return 0;
 }
 

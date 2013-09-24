@@ -11,6 +11,7 @@
 #include "World/SWorld.h"
 #include "Command/SC_CastSTarget.h"
 #include "objects/SCreature.h"
+#include "Command/SC_RemoveSubscriber.h"
 void sendtoC(Client* cli, char* buffer, uint32_t len){
 	pthread_mutex_lock(&cli->networkSendLock);
 		if (cli->networkSendLockBool)
@@ -139,10 +140,26 @@ void* thread_Recive(Client* client){
 	close(client->getSocket());
 
 	clients.remove(client);
-	for(map<uint32_t, SGrid*>::iterator it = world->getGrids().begin(); it != world->getGrids().end();it++){
-		//it->second->UnSubscribe(client);
+	uint32_t oldservertick = 0;
+	pthread_mutex_lock(&lockServerTick);
+	oldservertick = serverTick;
+	pthread_mutex_unlock(&lockServerTick);
+	
+	for(map<uint32_t, SObj*>::iterator it = world->getObjs().begin(); it != world->getObjs().end();it++){
+		it->second->addCommand(new SC_RemoveSubscriber(0,it->second,client));
 	}
 	cerr<<"Delete"<<endl;
+	
+	while(true){
+		pthread_mutex_lock(&lockServerTick);
+		if (serverTick >= oldservertick+2);
+			break;
+		
+		pthread_mutex_unlock(&lockServerTick);
+		usleep(100);
+	}
+	pthread_mutex_unlock(&lockServerTick);
+	
 	delete client;
 	pthread_mutex_unlock(&lockClientList);
 	pthread_exit(0);

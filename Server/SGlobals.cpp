@@ -21,7 +21,7 @@ map<uint32_t,uint8_t> teamlist;
 list<uint8_t> allteams;
 bool SPrintBuff = false;
 map<uint32_t, SPowerType*> GlobalPowerTypes;
-map<uint32_t, SEffectType*> GlobalEffetTypes;
-map<uint32_t, SEffectTypeAddBuff*> GlobalAddBuffTypes;
 
+pthread_mutex_t lockServerTick = PTHREAD_MUTEX_INITIALIZER;
+uint32_t serverTick = 0;
 

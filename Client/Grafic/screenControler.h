@@ -11,6 +11,7 @@
 #include "Model.h"
 #include "../UI/TransformStack.h"
 #include "Shaders/UIShader.h"
+#include "Shaders/UIPrimShader.h"
 
 class screenControler {
 public:
@@ -21,6 +22,7 @@ public:
 	list<Model*>& getModels(){return _models;}
 	glm::mat4* getViewMatrix(){return &_viewMatrix;}
 	UIShader* getUIShaderProgram(){return _UIShaderProgram;}
+	UIPrimShader* getUIPrimShaderProgram(){return _UIPrimShader;}
 	TransformStack* getUIStack(){return &_UIStack;}
 	virtual ~screenControler();
 private:
@@ -28,6 +30,7 @@ private:
 	SDL_Surface* _screen;
 	ObjectShader* _ObjShaderProgram;
 	UIShader* _UIShaderProgram;
+	UIPrimShader* _UIPrimShader;
 	glm::mat4 _projectionMatrix;
 	glm::mat4 _viewMatrix;
 	TransformStack _UIStack;

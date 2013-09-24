@@ -66,6 +66,10 @@ screenControler::screenControler() {
 	_UIShaderProgram->enable();
 	_UIShaderProgram->setProjectionMatrix(&_UiprojectionMatrix);
 
+	_UIPrimShader = new UIPrimShader();
+	cerr<<(_UIPrimShader->init()?"UI Prim Shader Fail":"UI Prim Shader OK")<<endl;
+	_UIPrimShader->enable();
+	_UIPrimShader->setProjectionMatrix(&_UiprojectionMatrix);
 	
 	//INIT object shader
 	_projectionMatrix = glm::make_mat4(CreateProjectionMatrix(60,(float)Basewidth / Basehight,1.0f,100.0f).m);
@@ -100,10 +104,10 @@ void screenControler::initScreen(){
 
 void screenControler::clickScreen(uint32_t x, uint32_t y){
 	
-	
-	cerr<<"click X "<<x<<" Y "<<y<<endl;
-	//float mouseclip[4] = {float(x) * 2 / float(Basewidth) - 1, 1 - float(y) * 2 / float(Basehight), 0, 1};
-	//glm::vec4 mouseclip = glm::vec4(float((float(x) * 2 / float(Basewidth) - 1)), float(1 - float(y) * 2 / float(Basehight)), 0.0f, 1.0f);
+	if (mainFrame->click(x,y)){
+		cerr<<"UI click"<<endl;
+		return;
+	}
 	
 	glm::vec4 lRayStart_NDC(
     ((float)x/(float)Basewidth  - 0.5f) * 2.0f,
@@ -127,23 +131,11 @@ void screenControler::clickScreen(uint32_t x, uint32_t y){
 
 	glm::vec4 lRayEnd_camera   = InverseProjectionMatrix * lRayEnd_NDC;      lRayEnd_camera  /=lRayEnd_camera.w;
 	glm::vec4 lRayEnd_world    = InverseViewMatrix       * lRayEnd_camera;   lRayEnd_world   /=lRayEnd_world.w;
- 
 	
 	glm::vec3 mouseWorld3(lRayEnd_world - lRayStart_world);
-	//mouseWorld3 = glm::normalize(mouseWorld3);
 
-	cerr<<"mouse "<<mouseWorld3.x<<endl;
-	cerr<<"mouse "<<mouseWorld3.y<<endl;
-	cerr<<"mouse "<<mouseWorld3.z<<endl;
-
-	cerr<<"cam "<<C[3][0]<<endl;
-	cerr<<"cam "<<C[3][1]<<endl;
-	cerr<<"cam "<<C[3][2]<<endl;
-	cerr<<"cam "<<C[3][3]<<endl;
-	
 	glm::mat2x3 ray = glm::mat2x3(C[3].xyz(),mouseWorld3);
-	
-	
+
 	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 		if (it->second->getCreature())
 			it->second->getCreature()->rayIntersect(it->second->getCreature(),ray);
@@ -155,21 +147,12 @@ void screenControler::drawScreen()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
-	//glLoadIdentity();
-
-// draw quad in screen coodinates
-
 	glUseProgram(0);
-	//glDisable(GL_TEXTURE_2D);
-	//glLoadIdentity();
-	mainFrame->updateUI();
 
+	mainFrame->updateUI(); //update all ui objects
+	mainFrame->draw(); //draw all ui objects
 
-	mainFrame->draw();
-
-	//glEnable(GL_TEXTURE_2D);
-	//glUseProgram(_shaderProgram->getProgramId());
-
+	//draw 3d objecs on screen
 	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 		if (it->second->getCreature())
 			it->second->getCreature()->draw(it->second->getCreature());

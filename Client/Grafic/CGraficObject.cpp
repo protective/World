@@ -16,22 +16,14 @@ CGraficObject::CGraficObject(Model* model) {
 }
 
 void CGraficObject::draw(CCreature* creature){
-//glDisable(GL_TEXTURE_2D);
 
 	glm::mat4 modelMatrix = glm::mat4() ;
-
-	float CubeAngle;
-	clock_t Now = clock();
-
-	CubeRotation += 1;
-	CubeAngle = DegreesToRadians(CubeRotation);
-
 	CPos* pos = &creature->getPos();
 
-	//RotateAboutZ(&ModelMatrix, DegreesToRadians((360-pos->d)/100));
-	//TranslateMatrix(&ModelMatrix,(float)pos->x/1000,(float)pos->y/1000,(float)pos->z/1000);
+	//model translate and rotate
+	modelMatrix = glm::translate(modelMatrix, glm::vec3((float)pos->x/1000,(float)pos->y/1000,(float)pos->z/1000));
+	modelMatrix = glm::rotate(modelMatrix,((float)pos->d)/100,glm::vec3(0,0,1));
 	
-	//glUseProgram(_model->getShader()->getProgramId());
 	_model->getShader()->enable(); //enable object shader
 	_model->bind(); //bind this model for rendering
 
@@ -53,32 +45,13 @@ void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
 	//CPos* pos = ;
 	
 	glm::vec3 pos(creature->getPos().x/1000, creature->getPos().y/1000, creature->getPos().z/1000);
-	
-	cerr<<"pos "<<pos.x<<endl;
-	cerr<<"pos "<<pos.y<<endl;
-	cerr<<"pos "<<pos.z<<endl;
-	
-	glm::vec3 center =  pos;
-	
-	cerr<<"posray "<<ray[0].x<<endl;
-	cerr<<"posray "<<ray[0].y<<endl;
-	cerr<<"posray "<<ray[0].z<<endl;
-	/*
-	float centerDirectionDot = glm::dot(ray[1],center);
 
-	
-	cerr<<"r "<<this->_radiusSquared<<endl;
-	//Compute determinat
-	float d = centerDirectionDot*centerDirectionDot - glm::sqrt(center.length()) + this->_radiusSquared;
-	cerr<<"d "<<d<<endl;
-	//Check for intersection
-	*/
+	glm::vec3 center =  pos;
+
 	this->_radiusSquared = 100;
 	
 	float squaredDist = glm::dot(ray[0]-center, ray[0]-center);
 
-	
-	cerr<<"disttance "<<squaredDist<<endl;
 	//If the distance is less than the squared radius of the sphere...
 	if(squaredDist <= this->_radiusSquared )
 	{
@@ -99,12 +72,9 @@ void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
 	float d = (b*b)-(4.0f*a*c);
 	
 	
-	
-	
-	
-	cerr<<"d "<<d<<endl;
 	if(d >= 0){
-		cerr<<"HIT "<<endl;
+		cerr<<"Click "<<creature->getId()<<endl;
+		playerTarget = creature;
 		/*
 		float distance = centerDirectionDot - sqrt(d);
 		if(0 < distance && distance < computation.distance){

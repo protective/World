@@ -110,10 +110,10 @@ void printBuffer(char* buffer, uint32_t len){
 					}
 					case SerialType::SerialReqActivatePowerT:{
 						SerialReqActivatePowerT* st = (SerialReqActivatePowerT*)(buffer+offset);
-						cerr<<"Recived SerialPower*************"<<endl
+						cerr<<"Recived SerialReqActivatePowerT*************"<<endl
 						<<"\tunitId "<<st->_unitId<<endl
 						<<"\tpowerId "<<st->_powerId<<endl
-						<<"\ttargetId"<<st->_targetId<<endl;
+						<<"\ttargetId "<<st->_targetId<<endl;
 						cerr<<"****************************"<<endl;
 						break;
 					}

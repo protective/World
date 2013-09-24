@@ -14,7 +14,7 @@
 class SEffectTypeDD :public SEffectType {
 public:
 	SEffectTypeDD();
-	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values);
+	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values, EResults::Enum result);
 	
 	uint32_t getMinDamage(){return _minDamage;}
 	void setMinDamage(int32_t damage){_minDamage = damage;}

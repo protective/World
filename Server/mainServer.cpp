@@ -177,7 +177,11 @@ int main(int argc, char** argv){
 
 
 			threadsReady = 0;
-
+			
+			pthread_mutex_lock(&lockServerTick);
+			serverTick++;
+			pthread_mutex_unlock(&lockServerTick);
+			
 			world->setProcesTime(SDL_GetTicks());
 			//cerr<<"world time"<<SDL_GetTicks()<<endl;
 			//cerr<<"done"<<endl;

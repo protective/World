@@ -8,6 +8,7 @@
 #ifndef UIABILITYBOX_H
 #define	UIABILITYBOX_H
 #include "UIBaseFrame.h"
+#include "../Grafic/Shaders/UIShader.h"
 class CPower;
 class UIAbilityBox : public UIBaseFrame {
 public:
@@ -17,8 +18,11 @@ public:
     virtual uint32_t click(uint32_t x, uint32_t y);
     virtual ~UIAbilityBox();
 private:
-        CCreature* _creature;
-        CPower* _power;
+	virtual void bind();
+	virtual void unbind();
+	CCreature* _creature;
+	CPower* _power;
+	UIShader* _shader;
 };
 
 #endif	/* UIABILITYBOX_H */

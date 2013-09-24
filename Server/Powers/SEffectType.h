@@ -13,7 +13,7 @@ class SCreature;
 class SEffectType {
 public:
 	SEffectType();
-	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values){cerr<<"ERROR empty effectType"<<endl;}
+	virtual void apply(uint32_t time, SPowerType* type, SCreature* caster, SCreature* target, map<PowerProjectileMods::Enum, int32_t> values, EResults::Enum result){cerr<<"ERROR empty effectType"<<endl;}
 	virtual ~SEffectType();
 private:
 

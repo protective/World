@@ -27,6 +27,8 @@
         <itemPath>Grafic/Shader.h</itemPath>
         <itemPath>Grafic/ShaderProgram.cpp</itemPath>
         <itemPath>Grafic/ShaderProgram.h</itemPath>
+        <itemPath>Grafic/Shaders/UIPrimShader.cpp</itemPath>
+        <itemPath>Grafic/Shaders/UIPrimShader.h</itemPath>
         <itemPath>Grafic/Shaders/UIShader.cpp</itemPath>
         <itemPath>Grafic/Shaders/UIShader.h</itemPath>
         <itemPath>Grafic/screenControler.cpp</itemPath>
@@ -65,6 +67,8 @@
         <itemPath>UI/UICastBar.h</itemPath>
         <itemPath>UI/UIMainFrame.cpp</itemPath>
         <itemPath>UI/UIMainFrame.h</itemPath>
+        <itemPath>UI/UIPrimitiveBox.cpp</itemPath>
+        <itemPath>UI/UIPrimitiveBox.h</itemPath>
         <itemPath>UI/UISocket.cpp</itemPath>
         <itemPath>UI/UISocket.h</itemPath>
         <itemPath>UI/UIUnitBox.cpp</itemPath>

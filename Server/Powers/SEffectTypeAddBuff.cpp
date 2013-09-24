@@ -14,7 +14,7 @@ SEffectTypeAddBuff::SEffectTypeAddBuff() {
 	_totalDamage = 0;
 }
 
-void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values){
+void SEffectTypeAddBuff::apply(uint32_t time,SPowerType* type, SCreature* caster, SCreature* target,map<PowerProjectileMods::Enum, int32_t> values, EResults::Enum result){
 	cerr<<"apply buff"<<endl;
 	SBuff* buffToAdd = new SBuff(type,_tickEffects.size(),_tickTime);
 	

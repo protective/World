@@ -13,6 +13,8 @@
 UIMainFrame::UIMainFrame():
 UIBaseFrame(NULL,0,0,Basewidth,Basehight){
 	_castbar = NULL;
+	_playerBox = NULL;
+	_castbar = NULL;
 }
 
 void UIMainFrame::updateUI(){
@@ -21,6 +23,7 @@ void UIMainFrame::updateUI(){
 		_childs.push_back(_castbar);
 	}
 	if(!_playerBox && playerObj->player()){
+		cerr<<"create unit box"<<endl;
 		_playerBox = new UIUnitBox(this,playerObj->player(),20,Basehight-80);
 		_childs.push_back(_playerBox);
 	}

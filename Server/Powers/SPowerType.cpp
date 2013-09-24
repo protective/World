@@ -10,15 +10,11 @@
 SPowerType::SPowerType(uint32_t id, uint32_t iconId) {
 	_id = id;
 	_iconId = iconId;
-	_stats[PowerTypeStats::CD]  = 10000;
-	_stats[PowerTypeStats::CastTime] = 10000;
-	_stats[PowerTypeStats::EnergyCost] = 0;
-	_stats[PowerTypeStats::projectileSpeed] = 100000;
-	_stats[PowerTypeStats::SpellLevel] = 4;
-	_stats[PowerTypeStats::ResistDmgType] = 2;
-	_stats[PowerTypeStats::ManaCost] = 0;
-	_stats[PowerTypeStats::BonusHit] = 0;
-	_stats[PowerTypeStats::BonusCrit] = 0;
+	
+	for(map<PowerTypeStats::Enum,int32_t>::iterator it = _stats.begin(); it != _stats.end();it++){
+		_stats[it->first] = 0;
+	}
+	_stats[PowerTypeStats::SpellLevel] = 1;
 	
 }
 
@@ -48,14 +44,11 @@ uint32_t SPowerType::activate(uint32_t time, SObj* caster, SObj* target, map<Pow
 	
 	uint32_t miss = values[PowerProjectileMods::Shit] + min((uint32_t)99, (uint32_t)(PBaseSpellMiss + (pow(max((uint32_t)0,(uint32_t)1+defenderL-attackerL),2))));
 	miss *=100;
-
 	uint32_t resist = min((uint32_t)99,(uint32_t)(PBaseSpellResist + min((float)75,(float)floor(resistPoints/(_stats[PowerTypeStats::SpellLevel]*4)*100 ))));
 	resist *=100;
 	uint32_t crit = values[PowerProjectileMods::Scrit];
 	crit *= 100;
 	uint32_t hit = 10000;
-	
-	cerr<<"crit "<<crit<<endl;
 	
 	EResults::Enum hitResult;
 	
@@ -79,7 +72,7 @@ uint32_t SPowerType::activate(uint32_t time, SObj* caster, SObj* target, map<Pow
 
 	cerr<<"hitresult >>"<<hitResult<<endl;
 	for (list<SEffectType*>::iterator it = _subComponents[hitResult].begin(); it != _subComponents[hitResult].end();it++){
-		(*it)->apply(time,this,caster->getCreature(),target->getCreature(),values);
+		(*it)->apply(time,this,caster->getCreature(),target->getCreature(),values,hitResult);
 	}
 }
 

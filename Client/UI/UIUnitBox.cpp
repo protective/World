@@ -7,17 +7,24 @@
 
 #include "UIUnitBox.h"
 #include "../objects/CCreature.h"
+#include "../Grafic/screenControler.h"
 UIUnitBox::UIUnitBox(UIBaseFrame* parrent,CCreature* creature, uint32_t x, uint32_t y):
 UIBaseFrame(parrent,x,y,200,60) {
 	_creature = creature;
-			
+	_hpBar = new UIPrimitiveBox(this,0,0,0,10,glm::vec4(1,0,0,1));
+	_manaBar = new UIPrimitiveBox(this,0,12,0,10,glm::vec4(0,0,1,1));
+	_EnergyBar = new UIPrimitiveBox(this,0,24,0,10,glm::vec4(0,1,0,1));
+	_Bagground = new UIPrimitiveBox(this,0,00,200,60,glm::vec4(1,1,1,1));
+	
+	this->addChild(_EnergyBar);
+	this->addChild(_hpBar);
+	this->addChild(_manaBar);
+	this->addChild(_Bagground);
 }
 
 
 void UIUnitBox::draw(){
-	/*
-	glTranslated((GLfloat)(_x),(GLfloat)(_y),0);
-	glPushMatrix();
+	masterScreen->getUIStack()->translate(glm::vec3(getX(),getY(),0));
 	
 	float php = 0;
 	if(_creature->getAttibute()[Attributes::HpMax]){
@@ -27,9 +34,6 @@ void UIUnitBox::draw(){
 	}else{
 		php = (float)_creature->getAttibute()[Attributes::HpP]/100;
 	}
-	Drawbox(0,0,float(_wight) * (php),20 ,0,1,0,1);
-	
-	
 	float pmana = 0;
 	if(_creature->getAttibute()[Attributes::ManaMax]){
 		int32_t maxmana = _creature->getAttibute()[Attributes::ManaMax];
@@ -38,7 +42,6 @@ void UIUnitBox::draw(){
 	}else{
 		pmana = (float)_creature->getAttibute()[Attributes::ManaP]/100;
 	}
-	Drawbox(0,20,float(_wight) * (pmana),20 ,0,0,1,1);
 
 
 	float pfocus = 0;
@@ -49,12 +52,13 @@ void UIUnitBox::draw(){
 	}else{	
 		pfocus = (float)_creature->getAttibute()[Attributes::FocusP]/100;
 	}
-	Drawbox(0,40,float(_wight) * (pfocus),20 ,1,1,0,1);
-	Drawbox(0,0,_wight,_height ,0.9,0.9,0.9,1);	
 	
-	glPopMatrix();
-	this->drawChilds();
-	*/
+	_hpBar->setWight(float(getWight()) * (php));
+	_manaBar->setWight(float(getWight()) * (pmana));
+	_EnergyBar->setWight(float(getWight()) * (pfocus));
+
+	this->drawChilds();	
+
 }
 
 UIUnitBox::~UIUnitBox() {
