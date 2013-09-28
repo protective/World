@@ -14,6 +14,7 @@
 class SCreature;
 class SObj {
 public:
+	friend class SC_MoveObj;
 	SObj(uint32_t id, SPos pos, uint32_t team, uint32_t playerId);
 	uint32_t getId();
 	SPos& getPos();
@@ -34,13 +35,13 @@ public:
 	uint32_t removeCommand(SCommand* cmd);
 	SCommand* procesFirstReadyCommand();
         uint32_t setPos(SPos pos);
-        uint32_t reqMove(SPos);
         void lockProcesCommand();
 	void releaseProcesCommand();
+
 	virtual ~SObj();
 protected:
 	SPos _pos;
-        uint32_t _posUpdateTime;
+    uint32_t _posUpdateTime;
 	SPos _oldPos;
 	uint32_t _id;
 	uint32_t _size;

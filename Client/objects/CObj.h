@@ -16,6 +16,7 @@ public:
 	CObj(uint32_t id, uint32_t playerId, CPos pos);
 	virtual CPos& getPos();
 	virtual CPos& getActualPos(){return _actualPos;}
+	virtual void setPos(CPos pos){_pos = pos;}
 	void MovePos(int32_t x, int32_t y);
 	virtual void ResivePosUpdate(CPos& pos);
 	uint32_t getId(){return this->_id;}

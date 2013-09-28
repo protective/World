@@ -121,6 +121,7 @@ void printBuffer(char* buffer, uint32_t len){
 						SerialReqMove* st = (SerialReqMove*)(buffer+offset);
 						cerr<<"Recived SerialReqMove*************"<<endl
 						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tbTime "<<st->_btime<<endl		
 						<<"\t\tposX "<<st->_pos.x<<endl
 						<<"\t\tposY"<<st->_pos.y<<endl
 						<<"\t\tposZ"<<st->_pos.z<<endl
@@ -128,9 +129,9 @@ void printBuffer(char* buffer, uint32_t len){
 						cerr<<"****************************"<<endl;
 						break;
 					}
-					case SerialType::SerialConfMove:{
-						SerialConfMove* st = (SerialConfMove*)(buffer+offset);
-						cerr<<"Recived SerialConfMove*************"<<endl
+					case SerialType::SerialNotisMove:{
+						SerialNotisMove* st = (SerialNotisMove*)(buffer+offset);
+						cerr<<"Recived SerialNotisMove*************"<<endl
 						<<"\tunitId "<<st->_unitId<<endl
 						<<"\t\tposX "<<st->_pos.x<<endl
 						<<"\t\tposY"<<st->_pos.y<<endl

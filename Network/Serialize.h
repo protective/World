@@ -28,7 +28,7 @@ namespace SerialType{
 				SerialPlayerStats = 10,
 				SerialReqActivatePowerT = 11,
 				SerialReqMove = 12,
-				SerialConfMove = 13,
+				SerialNotisMove = 13,
 				SerialStatsAbs = 14,
 				SerialStatsRel = 15,
 				SerialStatsFullAbs = 16,
@@ -136,9 +136,10 @@ struct SerialReqActivatePowerT : public SerialData{ //id = 10
 
 struct SerialReqMove : public SerialData{ //id = 12
     uint32_t _unitId;
+	uint32_t _btime;
     SerialPos _pos;
 };
-struct SerialConfMove : public SerialData{ //id = 13
+struct SerialNotisMove : public SerialData{ //id = 13
     uint32_t _unitId;
     SerialPos _pos;
 };

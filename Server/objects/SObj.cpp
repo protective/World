@@ -37,34 +37,39 @@ uint32_t SObj::getId(){
 }
 
 uint32_t SObj::setPos(SPos pos){
-	uint32_t i = SDL_GetTicks();
 	_pos = pos;
-	_posUpdateTime = i;
-	return i;
-}
 
-uint32_t SObj::reqMove(SPos pos){
-	uint32_t delta = SDL_GetTicks() - _posUpdateTime;
-	bool found = false;
-	this->lockProcesCommand();
-	for (list<SCommand*>::iterator it =  _commands.begin(); it!= _commands.end();it++){
-		if((*it)->isMoveObj()){
-			(*it)->isMoveObj()->setPos(pos);
-			found = true;
-			break;
+	if (this->_id != 2){
+		char message[sizeof(SerialNotisMove)];
+		memset(message,0,sizeof(SerialNotisMove));
+		SerialNotisMove* data = (SerialNotisMove*)(message);
+		data->_type = SerialType::SerialNotisMove;
+		data->_size = sizeof(SerialNotisMove);
+		data->_unitId = this->_id;
+
+		data->_pos.x = this->_pos.x;
+		data->_pos.y = this->_pos.y;
+		data->_pos.z = this->_pos.z;
+		data->_pos.d = this->_pos.d;
+
+		for(list<Client*>::iterator it = this->getSubscribers()[0].begin(); it != this->getSubscribers()[0].end(); it++){
+			sendtoC(*it,message,sizeof(SerialNotisMove));
+			cerr<<"send <<"<<endl;
 		}
 	}
-	if(!found){
-		this->addCommand(new SC_MoveObj(SDL_GetTicks(),this,pos));
-	}
 	
-	this->releaseProcesCommand();
+	
+	
+	return 0;
 }
 
 void SObj::MovePos(int32_t x, int32_t y){
-	//cerr<<"x "<<x<<" y "<<y<<endl;
+	
 	this->_pos.x+= x;
 	this->_pos.y+= y;
+	//cerr<<"x "<<this->_pos.x<<" y "<<this->_pos.y<<endl;
+        
+	
 }
 
 

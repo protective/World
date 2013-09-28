@@ -118,7 +118,26 @@ void CPlayerObjHandle::recTakeDmgHeal(SerialTakeDmgHeal* st){
 	
 }
 
+void CPlayerObjHandle::recNotisMove(SerialNotisMove* st){
 
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recNotisMove not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recNotisMove not creature"<<endl;
+		return;}
+	
+	CPos pos(st->_pos.x,st->_pos.y,st->_pos.z,st->_pos.d);
+	
+	creature->setPos(pos);
+
+}
 
 void CPlayerObjHandle::recAttribute(SerialAttribute* st){
 	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
@@ -134,10 +153,8 @@ void CPlayerObjHandle::recAttribute(SerialAttribute* st){
 		cerr<<"WARNING CPlayerObjHandle::recStatsAbs not creature"<<endl;
 		return;}
 	
-
 	creature->getAttibute()[st->_attribute] = st->_value;
 
-	
 }
 
 
@@ -232,6 +249,7 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 	SerialReqMove* data = (SerialReqMove*)(message);
 	data->_type = SerialType::SerialReqMove;
 	data->_size = sizeof(SerialReqMove);
+	data->_btime = getTime() - 2000;
 	data->_time = getTime();
 	data->_unitId = obj->getId();
 	data->_pos.x = obj->getPos().x;
@@ -245,7 +263,7 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 void CPlayerObjHandle::procesPlayerUnit(uint32_t deltaTime){
 	
 	_moveCounter += deltaTime;
-	if (_moveCounter > 250){
+	if (_moveCounter > 2000){
 		_moveCounter = 0;
 		ServerReqMove(_player);
 	}

@@ -12,6 +12,7 @@
 #include "Command/SC_CastSTarget.h"
 #include "objects/SCreature.h"
 #include "Command/SC_RemoveSubscriber.h"
+#include "Command/SC_MoveObj.h"
 void sendtoC(Client* cli, char* buffer, uint32_t len){
 	pthread_mutex_lock(&cli->networkSendLock);
 		if (cli->networkSendLockBool)
@@ -242,8 +243,8 @@ uint32_t parseBuffer(Client* client, uint32_t len){
 					pos.y = st->_pos.y;
 					pos.z = st->_pos.z;
 					pos.d = st->_pos.d;
-					unit->second->reqMove(pos);
-					
+					//unit->second->reqMove(pos, st->_btime);
+					unit->second->addCommand(new SC_MoveObj(SDL_GetTicks(), unit->second, pos, st->_btime, st->_time));
 					break;
 				}
 				case SerialType::SerialReqActivatePowerT:{
