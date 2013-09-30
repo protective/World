@@ -133,6 +133,7 @@ void printBuffer(char* buffer, uint32_t len){
 						SerialNotisMove* st = (SerialNotisMove*)(buffer+offset);
 						cerr<<"Recived SerialNotisMove*************"<<endl
 						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tetime "<<st->_etime<<endl
 						<<"\t\tposX "<<st->_pos.x<<endl
 						<<"\t\tposY"<<st->_pos.y<<endl
 						<<"\t\tposZ"<<st->_pos.z<<endl

@@ -18,7 +18,7 @@ public:
 	virtual CPos& getActualPos(){return _actualPos;}
 	virtual void setPos(CPos pos){_pos = pos;}
 	void MovePos(int32_t x, int32_t y);
-	virtual void ResivePosUpdate(CPos& pos);
+	virtual void ResivePosUpdate(CPos& pos, uint32_t btime, uint32_t etime);
 	uint32_t getId(){return this->_id;}
 	virtual void Proces(uint32_t DTime);
 	virtual uint32_t getSize(){return 0;}
@@ -35,11 +35,12 @@ protected:
 	int32_t _team;
 	uint32_t _lastUpdate;
 	uint32_t _procedTime;
+	uint32_t _etime;
 	CPos _pos;
 	CPos _actualPos;
 	int16_t _fadetimer;
 	int16_t _maxfadetimer;
-
+	float _moveX , _moveY;
 };
 
 typedef map<uint32_t,CObj*>::iterator CobjI;

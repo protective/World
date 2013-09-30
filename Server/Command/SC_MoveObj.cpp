@@ -24,6 +24,11 @@ uint32_t SC_MoveObj::execute(){
 	//Obj is free to move or we are the active moving command
 	if(_time > _procesUnit->_posUpdateTime || _active){
 		
+		//we are now the active movecommand inform subscribers where we are going
+		if(!_active){
+			informOthers();
+		}
+		
 		//reserve the requested timeframe to execute move. We are now active
 		_procesUnit->_posUpdateTime = _initTime + (_etime - _btime);
 		_active = true;
@@ -43,11 +48,9 @@ uint32_t SC_MoveObj::execute(){
 			_procesUnit->MovePos((VektorUnitX(_procesUnit->getPos().d/100) * speed) ,-((VektorUnitY(_procesUnit->getPos().d/100)* speed)));
 			this->_time+=25;
 			_procesUnit->addCommand(this);
-			world->getObjs()[1]->setPos(_procesUnit->getPos());
 			return 1;
 		}else{
 			_procesUnit->setPos(_pos);
-			world->getObjs()[1]->setPos(_procesUnit->getPos());
 			return 0;
 		}
 	}else{
@@ -57,6 +60,25 @@ uint32_t SC_MoveObj::execute(){
 	}
 }
 
+void SC_MoveObj::informOthers(){
+	char message[sizeof(SerialNotisMove)];
+	memset(message,0,sizeof(SerialNotisMove));
+	SerialNotisMove* data = (SerialNotisMove*)(message);
+	data->_type = SerialType::SerialNotisMove;
+	data->_size = sizeof(SerialNotisMove);
+	data->_unitId = _procesUnit->_id;
+	data->_time = _btime;
+	data->_etime = _etime;
+	data->_pos.x = this->_pos.x;
+	data->_pos.y = this->_pos.y;
+	data->_pos.z = this->_pos.z;
+	data->_pos.d = this->_pos.d;
+
+	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
+		sendtoC(*it,message,sizeof(SerialNotisMove));
+		cerr<<"send <<"<<endl;
+	}
+}
 
 SC_MoveObj::~SC_MoveObj() {
 }

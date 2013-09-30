@@ -16,7 +16,10 @@ CObj::CObj(uint32_t id, uint32_t playerId, CPos pos) {
 	this->_pos = pos;
 	this->_actualPos = pos;
 
-	this->_lastUpdate = getTime();
+	
+
+	
+	this->_lastUpdate = 0 - 1;
 	this->_procedTime = getTime();
 
 }
@@ -25,29 +28,62 @@ CPos& CObj::getPos(){
 	return this->_pos;
 }
 
-void CObj::ResivePosUpdate(CPos& pos){
-	this->_pos.x = pos.x;
-	this->_pos.y = pos.y;
-	this->_pos.d = pos.d;
-	this->_lastUpdate = getTime();
+void CObj::ResivePosUpdate(CPos& pos, uint32_t btime,  uint32_t etime){
+	this->_actualPos.x = pos.x;
+	this->_actualPos.y = pos.y;
+	this->_actualPos.d = pos.d;
+	cerr<<"RESIVED BTIME "<<btime<<" ETIME "<<etime<<endl;
+	this->_lastUpdate = btime;
 	this->_procedTime = getTime();
+	this->_etime = etime;
+	
+	float x, y = 0;
+	
+	uint32_t remaningTime = _etime > _lastUpdate ? _etime - _lastUpdate: 0;
+
+	cerr<<"Time " <<remaningTime<<endl;
+	if (remaningTime){
+		cerr<<"actual x "<<_actualPos.x<<" y "<<_actualPos.y<<endl;
+		cerr<<"pos x "<<_pos.x<<" y "<<_pos.y<<endl;
+		
+		x = (_actualPos.x - _pos.x)/ (float)remaningTime; 
+		y = (_actualPos.y - _pos.y)/ (float)remaningTime; 
+	}
+	cerr<<"RECIVED mx "<<x<<" my "<<y<<endl;
+	_moveX = x;
+	_moveY = y;
+		
 }
 
 
 
 void CObj::Proces(uint32_t DTime){
-	/*
-	while(this->_procedTime<= getTime()){
-		this->_procedTime += 1000/25;
-		
-		this->_pos.turn(100);
-		//this->MovePos(VektorUnitX(this->_pos._d/100) * speed ,-(VektorUnitY(this->_pos._d/100)* speed));
+	
+	float speed = 0;
+	uint32_t remaningTime = _etime > _lastUpdate ? _etime - _lastUpdate: 0;
+	
+	cerr<<"move x "<<_moveX<<" y "<<_moveY<<endl;
+	MovePos(_moveX*DTime,_moveY*DTime);
+	
+	if (remaningTime){
+		uint32_t distance = Rangeobj(_actualPos,_pos);
 
+		//cerr<<"REM >"<<remaningTime<<endl;
+		//cerr<<"Dis >"<<distance<<endl;
+		
+		speed = ((float)distance / remaningTime)*1000;
+		//cerr<<"Speed "<<speed<<endl;
+		uint32_t d =  Direction(_pos,_actualPos);
+		//this->MovePos(VektorUnitX(d) * speed ,-(VektorUnitY(d) * speed));
+
+			
+		//while(this->_procedTime<= getTime()){
+		//	this->_procedTime += 1000/25;
+
+		//}
+
+		this->_lastUpdate += DTime;
 	}
-	//Move TDtime - procestime
-	this->Move(getTime() - this->_lastUpdate);
-	this->_lastUpdate = getTime();
-	 * */
 }
 
 

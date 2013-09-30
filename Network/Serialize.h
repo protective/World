@@ -141,6 +141,7 @@ struct SerialReqMove : public SerialData{ //id = 12
 };
 struct SerialNotisMove : public SerialData{ //id = 13
     uint32_t _unitId;
+	uint32_t _etime;
     SerialPos _pos;
 };
 

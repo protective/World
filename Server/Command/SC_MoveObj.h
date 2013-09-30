@@ -17,7 +17,7 @@ public:
     void setPos(SPos pos){_pos = pos;}
     virtual ~SC_MoveObj();
 private:
-	
+	void informOthers();
 	uint32_t _initTime;
 	uint32_t _etime;
 	uint32_t _btime;

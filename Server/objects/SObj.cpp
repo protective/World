@@ -38,28 +38,6 @@ uint32_t SObj::getId(){
 
 uint32_t SObj::setPos(SPos pos){
 	_pos = pos;
-
-	if (this->_id != 2){
-		char message[sizeof(SerialNotisMove)];
-		memset(message,0,sizeof(SerialNotisMove));
-		SerialNotisMove* data = (SerialNotisMove*)(message);
-		data->_type = SerialType::SerialNotisMove;
-		data->_size = sizeof(SerialNotisMove);
-		data->_unitId = this->_id;
-
-		data->_pos.x = this->_pos.x;
-		data->_pos.y = this->_pos.y;
-		data->_pos.z = this->_pos.z;
-		data->_pos.d = this->_pos.d;
-
-		for(list<Client*>::iterator it = this->getSubscribers()[0].begin(); it != this->getSubscribers()[0].end(); it++){
-			sendtoC(*it,message,sizeof(SerialNotisMove));
-			cerr<<"send <<"<<endl;
-		}
-	}
-	
-	
-	
 	return 0;
 }
 

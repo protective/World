@@ -268,6 +268,10 @@ uint32_t Rangeobj(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 	return sqrt(((p1x - p2x)*(p1x - p2x)) + ((p1y - p2y)*(p1y - p2y)));
 }
 
+int32_t Direction(CPos& pos1, CPos& pos2){
+	return Deg(pos2.x - pos1.x, pos2.y - pos1.y);
+}
+
 int strToInt(string str)
  {
 	int intReturn;
