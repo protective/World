@@ -29,13 +29,19 @@ void CGraficObject::draw(CCreature* creature){
 
 	//set object specific variables for drawing
 	_model->getShader()->setModelMatrix(&modelMatrix);
-	_model->getShader()->setViewMatrix(masterScreen->getViewMatrix());
+	_model->getShader()->setViewMatrix(masterScreen->getCamera()->getViewMatrix());
 	
 	//draw
 	glDrawElements(GL_TRIANGLES, _model->getIndicesCount(), GL_UNSIGNED_INT, (void*)0);
 	ExitOnGLError("ERROR: Could not draw the cube");
 
 	_model->unbind();
+	
+	
+	//draw all assosiated particalsystems
+	for(list<ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
+		(*it)->draw(masterScreen->getCamera());
+	}
 	
 }
 

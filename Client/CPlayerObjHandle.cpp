@@ -250,7 +250,7 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 	SerialReqMove* data = (SerialReqMove*)(message);
 	data->_type = SerialType::SerialReqMove;
 	data->_size = sizeof(SerialReqMove);
-	data->_btime = getTime() - 2000;
+	data->_btime = getTime() - 1000;
 	data->_time = getTime();
 	data->_unitId = obj->getId();
 	data->_pos.x = obj->getPos().x;
@@ -264,7 +264,7 @@ void CPlayerObjHandle::ServerReqMove(CObj* obj){
 void CPlayerObjHandle::procesPlayerUnit(uint32_t deltaTime){
 	
 	_moveCounter += deltaTime;
-	if (_moveCounter > 2000){
+	if (_moveCounter > 1000){
 		_moveCounter = 0;
 		ServerReqMove(_player);
 	}

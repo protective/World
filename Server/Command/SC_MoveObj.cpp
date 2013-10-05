@@ -76,7 +76,6 @@ void SC_MoveObj::informOthers(){
 
 	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
 		sendtoC(*it,message,sizeof(SerialNotisMove));
-		cerr<<"send <<"<<endl;
 	}
 }
 

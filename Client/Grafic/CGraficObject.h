@@ -10,6 +10,7 @@
 #include "../GLutil.h"
 #include "../CFunctions.h"
 #include "Model.h"
+#include "ParticalSystem.h"
 class CCreature;
 class CGraficObject {
 public:
@@ -17,11 +18,12 @@ public:
 	virtual void draw(CCreature* creature);
 	virtual void rayIntersect(CCreature* creature, glm::mat2x3 ray);
 	virtual ~CGraficObject();
-private:
+protected:
 	Model* _model;
 	GLuint _buffer;
 	float CubeRotation;
 	float _radiusSquared;
+	list<ParticalSystem*> _particalSystems;
 };
 
 #endif	/* CGRAFICOBJECT_H */

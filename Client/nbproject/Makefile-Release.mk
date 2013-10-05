@@ -36,10 +36,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/world/CGrid.o \
 	${OBJECTDIR}/UI/UICastBar.o \
+	${OBJECTDIR}/Grafic/Camera.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/Grafic/Shaders/BillboardShader.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/Grafic/screenControler.o \
+	${OBJECTDIR}/Grafic/ParticalSystem.o \
 	${OBJECTDIR}/Grafic/Shader.o \
 	${OBJECTDIR}/Grafic/Shaders/UIPrimShader.o \
 	${OBJECTDIR}/GLutil.o \
@@ -60,6 +62,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/objects/CCreature.o \
+	${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o \
 	${OBJECTDIR}/UI/UIUnitBox.o \
 	${OBJECTDIR}/Grafic/Model.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
@@ -102,6 +105,11 @@ ${OBJECTDIR}/UI/UICastBar.o: UI/UICastBar.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UICastBar.o UI/UICastBar.cpp
 
+${OBJECTDIR}/Grafic/Camera.o: Grafic/Camera.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Camera.o Grafic/Camera.cpp
+
 ${OBJECTDIR}/Powers/CPower.o: Powers/CPower.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -121,6 +129,11 @@ ${OBJECTDIR}/Grafic/screenControler.o: Grafic/screenControler.cpp
 	${MKDIR} -p ${OBJECTDIR}/Grafic
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/screenControler.o Grafic/screenControler.cpp
+
+${OBJECTDIR}/Grafic/ParticalSystem.o: Grafic/ParticalSystem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystem.o Grafic/ParticalSystem.cpp
 
 ${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic
@@ -221,6 +234,11 @@ ${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CCreature.o objects/CCreature.cpp
+
+${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o: Grafic/Shaders/ParticalUpShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o Grafic/Shaders/ParticalUpShader.cpp
 
 ${OBJECTDIR}/UI/UIUnitBox.o: UI/UIUnitBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI

@@ -12,7 +12,7 @@
 #include "../UI/TransformStack.h"
 #include "Shaders/UIShader.h"
 #include "Shaders/UIPrimShader.h"
-
+#include "Camera.h"
 class screenControler {
 public:
 	screenControler();
@@ -20,7 +20,7 @@ public:
 	void drawScreen();
 	void clickScreen(uint32_t x, uint32_t y);
 	list<Model*>& getModels(){return _models;}
-	glm::mat4* getViewMatrix(){return &_viewMatrix;}
+	Camera* getCamera(){return _camera;}
 	UIShader* getUIShaderProgram(){return _UIShaderProgram;}
 	UIPrimShader* getUIPrimShaderProgram(){return _UIPrimShader;}
 	TransformStack* getUIStack(){return &_UIStack;}
@@ -32,7 +32,7 @@ private:
 	UIShader* _UIShaderProgram;
 	UIPrimShader* _UIPrimShader;
 	glm::mat4 _projectionMatrix;
-	glm::mat4 _viewMatrix;
+	Camera*  _camera;
 	TransformStack _UIStack;
 };
 

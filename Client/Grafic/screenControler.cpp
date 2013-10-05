@@ -10,6 +10,7 @@
 #include "../objects/CCreature.h"
 #include "Grafic.h"
 #include "Shaders/UIShader.h"
+#include "Camera.h"
 
 
 screenControler::screenControler() {
@@ -59,6 +60,8 @@ screenControler::screenControler() {
 	cerr<<"INIT Grafic"<<endl;
 	cerr<<"GL Version "<<glGetString(GL_VERSION)<<endl;
 	
+	_camera = new Camera();
+	
 	//INIT UI shader
 	glm::mat4 _UiprojectionMatrix = glm::make_mat4(CreateOthoMatrix(0,Basewidth,0,Basehight).m);
 	_UIShaderProgram = new UIShader();
@@ -72,13 +75,16 @@ screenControler::screenControler() {
 	_UIPrimShader->setProjectionMatrix(&_UiprojectionMatrix);
 	
 	//INIT object shader
+	
+	_camera->setLookat(glm::vec3(-30,20,-60),glm::vec3(-30,20,0),glm::vec3(0,-1,0));
 	_projectionMatrix = glm::make_mat4(CreateProjectionMatrix(60,(float)Basewidth / Basehight,1.0f,100.0f).m);
-	_viewMatrix = glm::lookAt(glm::vec3(-30,20,-60),glm::vec3(-30,20,0),glm::vec3(0,-1,0));
+	
+	_camera->setProjectionMatrix(_projectionMatrix);
 	_ObjShaderProgram = new ObjectShader();
 	cerr<<(_ObjShaderProgram->init()?"Object Shader Fail":"Object Shader OK")<<endl;
 	_ObjShaderProgram->enable();
 	_ObjShaderProgram->setProjectionMatrix(&_projectionMatrix);
-	_ObjShaderProgram->setViewMatrix(&_viewMatrix);
+	_ObjShaderProgram->setViewMatrix(_camera->getViewMatrix());
 	textures[0] = loadTexture(Textures::Invalid);
 	textures[1] = loadTexture(Textures::Invalid);
 	
@@ -122,9 +128,9 @@ void screenControler::clickScreen(uint32_t x, uint32_t y){
     1.0f
 	);
 	
-	glm::mat4 C = glm::inverse(_viewMatrix);
+	glm::mat4 C = glm::inverse(*_camera->getViewMatrix());
 	glm::mat4 InverseProjectionMatrix = glm::inverse(_projectionMatrix);
-	glm::mat4 InverseViewMatrix = glm::inverse(_viewMatrix);
+	glm::mat4 InverseViewMatrix = glm::inverse(*_camera->getViewMatrix());
 
 	glm::vec4 lRayStart_camera = InverseProjectionMatrix * lRayStart_NDC;    lRayStart_camera/=lRayStart_camera.w;
 	glm::vec4 lRayStart_world  = InverseViewMatrix       * lRayStart_camera; lRayStart_world /=lRayStart_world.w;

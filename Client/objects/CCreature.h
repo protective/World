@@ -13,7 +13,7 @@
 class CCreature : public CObj , public CGraficObject {
 public:
 	CCreature(uint32_t id, uint32_t playerId, CPos pos, Model* model);
-	
+	virtual void Proces(uint32_t DTime);
 	uint32_t getCastTime(){return _castTime;}
 	void setCastTime(uint32_t time){_castTime = time;}
 	uint32_t getCastCompletionTime(){return _castCompletionTime;}

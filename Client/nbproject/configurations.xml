@@ -17,12 +17,18 @@
         <itemPath>Grafic/Shaders/BillboardShader.h</itemPath>
         <itemPath>Grafic/CGraficObject.cpp</itemPath>
         <itemPath>Grafic/CGraficObject.h</itemPath>
+        <itemPath>Grafic/Camera.cpp</itemPath>
+        <itemPath>Grafic/Camera.h</itemPath>
         <itemPath>Grafic/Grafic.cpp</itemPath>
         <itemPath>Grafic/Grafic.h</itemPath>
         <itemPath>Grafic/Model.cpp</itemPath>
         <itemPath>Grafic/Model.h</itemPath>
         <itemPath>Grafic/Shaders/ObjectShader.cpp</itemPath>
         <itemPath>Grafic/Shaders/ObjectShader.h</itemPath>
+        <itemPath>Grafic/ParticalSystem.cpp</itemPath>
+        <itemPath>Grafic/ParticalSystem.h</itemPath>
+        <itemPath>Grafic/Shaders/ParticalUpShader.cpp</itemPath>
+        <itemPath>Grafic/Shaders/ParticalUpShader.h</itemPath>
         <itemPath>Grafic/Shader.cpp</itemPath>
         <itemPath>Grafic/Shader.h</itemPath>
         <itemPath>Grafic/ShaderProgram.cpp</itemPath>

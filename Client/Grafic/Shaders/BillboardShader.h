@@ -12,10 +12,14 @@
 class BillboardShader : public ShaderProgram {
 public:
 	BillboardShader();
-
+	uint32_t init();
+	
+    void SetVP(glm::mat4* VP);
+    void SetCameraPosition(glm::vec3* Pos);
 	virtual ~BillboardShader();
 private:
-
+    GLuint _VPLocation;
+    GLuint _cameraPosLocation;
 };
 
 #endif	/* BILLBOARDSHADER_H */

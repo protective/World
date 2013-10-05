@@ -17,12 +17,13 @@ CObj(id,playerId,pos), CGraficObject(model){
 	}
 }
 
-
-//void CCreature::Draw(){
-//	glPushMatrix();
-//	Drawbox(_pos.x/100,_pos.y/100,10,10,0,0,1,1);
-//	glPopMatrix();
-//}
+void CCreature::Proces(uint32_t DTime){
+	CObj::Proces(DTime);
+	
+	for(list<ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
+		(*it)->Update(DTime);
+	}
+}
 
 CCreature::~CCreature() {
 }
