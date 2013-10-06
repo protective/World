@@ -8,8 +8,8 @@
 #ifndef PARTICALSYSTEM_H
 #define	PARTICALSYSTEM_H
 
-#include "Shaders/BillboardShader.h"
-#include "Shaders/ParticalUpShader.h"
+#include "../Shaders/BillboardShader.h"
+#include "../Shaders/ParticalUpShader.h"
 #include "Camera.h"
 
 struct Particle

@@ -10,7 +10,7 @@
 #include "../GLutil.h"
 #include "../CFunctions.h"
 #include "Model.h"
-#include "ParticalSystem.h"
+#include "ParticalSystems/ParticalSystem.h"
 class CCreature;
 class CGraficObject {
 public:
