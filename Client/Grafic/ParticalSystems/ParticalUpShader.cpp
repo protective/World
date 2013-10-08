@@ -8,6 +8,7 @@
 #include "ParticalUpShader.h"
 
 ParticalUpShader::ParticalUpShader() {
+	cerr<<"Create ParticalUpShader"<<endl;
 }
 
 
@@ -17,11 +18,21 @@ uint32_t ParticalUpShader::init(){
 	if(ShaderProgram::init())
 		return 1;
 	
-	if(addShader(new Shader("../../../Grafic/Shaders/ParticalUpVertexShader.glsl", GL_VERTEX_SHADER)))
+	if(addShader(new Shader("../../../Grafic/ParticalSystems/ParticalUpVertexShader.glsl", GL_VERTEX_SHADER)))
 		return 2;
 	
-	if(addShader(new Shader("../../../Grafic/Shaders/ParticalUpGeometryShader.glsl", GL_GEOMETRY_SHADER)))
+	if(addShader(new Shader("../../../Grafic/ParticalSystems/ParticalUpGeometryShader.glsl", GL_GEOMETRY_SHADER)))
 		return 3;
+	
+	const GLchar* Varyings[4];    
+    Varyings[0] = "Type1";
+    Varyings[1] = "Position1";
+    Varyings[2] = "Velocity1";    
+    Varyings[3] = "Age1";
+    
+    glTransformFeedbackVaryings(_id, 4, Varyings, GL_INTERLEAVED_ATTRIBS);
+
+	
 	
 	if(finalize())
 		return 5;
@@ -30,8 +41,12 @@ uint32_t ParticalUpShader::init(){
 	//TODO 
 	//Add locations to uniforms in the geometryshader
 	
-	//_VPMatrix = getUniformLocation("VPMatrix");
-	//_ProjectionMatrix = getUniformLocation("ProjectionMatrix");	
+	m_deltaTimeMillisLocation = getUniformLocation("gDeltaTimeMillis");
+	m_randomTextureLocation = getUniformLocation("gRandomTexture");
+	m_timeLocation = getUniformLocation("gTime");
+	m_launcherLifetimeLocation = getUniformLocation("gLauncherLifetime");
+	m_shellLifetimeLocation =  getUniformLocation("gShellLifetime");
+	
 	return 0;
 }
 
@@ -50,12 +65,12 @@ void ParticalUpShader::SetTime(int Time)
     glUniform1f(m_timeLocation, (float)Time);
 }
 
-/*
+
 void ParticalUpShader::SetRandomTextureUnit(unsigned int TextureUnit)
 {    
     glUniform1i(m_randomTextureLocation, TextureUnit);
 }
-*/
+
 
 void ParticalUpShader::SetLauncherLifetime(float Lifetime)
 {

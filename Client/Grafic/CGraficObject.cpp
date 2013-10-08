@@ -13,6 +13,9 @@
 CGraficObject::CGraficObject(Model* model) {
 	_model = model;
 	CubeRotation = 0;
+	
+
+
 }
 
 void CGraficObject::draw(CCreature* creature){
@@ -23,7 +26,6 @@ void CGraficObject::draw(CCreature* creature){
 	//model translate and rotate
 	modelMatrix = glm::translate(modelMatrix, glm::vec3((float)pos->x/1000,(float)pos->y/1000,(float)pos->z/1000));
 	modelMatrix = glm::rotate(modelMatrix,((float)pos->d)/100,glm::vec3(0,0,1));
-	
 	_model->getShader()->enable(); //enable object shader
 	_model->bind(); //bind this model for rendering
 
@@ -39,9 +41,13 @@ void CGraficObject::draw(CCreature* creature){
 	
 	
 	//draw all assosiated particalsystems
-	for(list<ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
-		(*it)->draw(masterScreen->getCamera());
+	for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
+		if(it->second)
+			it->second->draw(masterScreen->getCamera());
+	
 	}
+	
+
 	
 }
 

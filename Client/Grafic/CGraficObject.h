@@ -15,6 +15,7 @@ class CCreature;
 class CGraficObject {
 public:
 	CGraficObject(Model* model);
+	virtual void addParticalsystem(uint32_t index){_particalSystems[index]= NULL;}
 	virtual void draw(CCreature* creature);
 	virtual void rayIntersect(CCreature* creature, glm::mat2x3 ray);
 	virtual ~CGraficObject();
@@ -23,7 +24,7 @@ protected:
 	GLuint _buffer;
 	float CubeRotation;
 	float _radiusSquared;
-	list<ParticalSystem*> _particalSystems;
+	map<uint32_t, ParticalSystem*> _particalSystems;
 };
 
 #endif	/* CGRAFICOBJECT_H */

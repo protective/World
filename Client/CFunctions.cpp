@@ -52,7 +52,7 @@ void* Connect(string ip, uint32_t playerid, uint32_t pass){
 		exit(EXIT_FAILURE);
 	}
 	//while (true){
-	cerr<<"connected time "<<SDL_GetTicks()<<endl;
+	//cerr<<"connected time "<<SDL_GetTicks()<<endl;
 	connection.connected = true;
 
 
@@ -65,7 +65,7 @@ void* Connect(string ip, uint32_t playerid, uint32_t pass){
 		data->_size = sizeof(SerialReqJoin);
 		data->_unitId = playerid; //TODO BIG TODO FIX THIS SOOON
 		GlobalPlayerId = playerid;
-		cerr<<"IGEN "<<GlobalPlayerId<<endl;
+		//cerr<<"IGEN "<<GlobalPlayerId<<endl;
 		data->_pass = pass;
 		send(connection.SocketFD,message,sizeof(SerialReqJoin),0);
 
@@ -79,7 +79,7 @@ void* Connect(string ip, uint32_t playerid, uint32_t pass){
 			data2->_size = sizeof(SerialTime);
 			data2->_sendtime = 0;
 			data2->_local = SDL_GetTicks();
-			cerr<<"send Time req"<<data2->_local<<endl;
+			//cerr<<"send Time req"<<data2->_local<<endl;
 
 			send(connection.SocketFD,message2,sizeof(SerialTime),0);
 
@@ -93,7 +93,7 @@ void* thread_Recive(){
 
 		connection.messagebuffer = (char*)malloc(1024);
 		memset(connection.messagebuffer,0,1024);
-		printf ("recv test....\n");
+		//printf ("recv test....\n");
 		int recsize;
 
 		int recived = 0;
@@ -145,16 +145,16 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 			{
 				case SerialType::SerialTime:{
 					SerialTime* st = (SerialTime*)(buffer+offset);
-					cerr<<"recived time req"<<st->_sendtime<< " local "<<SDL_GetTicks()<<endl;
+					//cerr<<"recived time req"<<st->_sendtime<< " local "<<SDL_GetTicks()<<endl;
 					uint32_t tem = st->_sendtime + ((SDL_GetTicks()-st->_local)/2);
 
 					Gtime += tem -SDL_GetTicks();
 
 					tTime ++;
-					cerr<<"t"<<tTime<<endl;
+					//cerr<<"t"<<tTime<<endl;
 					if (tTime == 5){
 						Gtime = Gtime/5;
-						cerr<<"final Gtime "<<Gtime<<endl;
+						//cerr<<"final Gtime "<<Gtime<<endl;
 					}
 					break;
 

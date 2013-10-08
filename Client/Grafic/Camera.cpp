@@ -11,7 +11,7 @@ Camera::Camera() {
 }
 void Camera::setLookat(glm::vec3 eye,glm::vec3 center, glm::vec3 up){
 	_viewMatrix = glm::lookAt(eye,center,up);
-	_position = center;
+	_position = eye;
 			
 }
 

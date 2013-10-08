@@ -76,10 +76,11 @@ screenControler::screenControler() {
 	
 	//INIT object shader
 	
-	_camera->setLookat(glm::vec3(-30,20,-60),glm::vec3(-30,20,0),glm::vec3(0,-1,0));
+	_camera->setLookat(glm::vec3(0,0,-60),glm::vec3(0,0,0),glm::vec3(0,-1,0));
 	_projectionMatrix = glm::make_mat4(CreateProjectionMatrix(60,(float)Basewidth / Basehight,1.0f,100.0f).m);
 	
 	_camera->setProjectionMatrix(_projectionMatrix);
+	
 	_ObjShaderProgram = new ObjectShader();
 	cerr<<(_ObjShaderProgram->init()?"Object Shader Fail":"Object Shader OK")<<endl;
 	_ObjShaderProgram->enable();
@@ -87,6 +88,11 @@ screenControler::screenControler() {
 	_ObjShaderProgram->setViewMatrix(_camera->getViewMatrix());
 	textures[0] = loadTexture(Textures::Invalid);
 	textures[1] = loadTexture(Textures::Invalid);
+	
+	
+	cerr<<"INIT Partical Engine"<<endl;
+	_particalEngine = new ParticalEngine();
+	_particalEngine->InitParticleEngine();
 	
 	cerr<<"INIT TEST MODEL"<<endl;
 	Model* md = new Model(_ObjShaderProgram);

@@ -51,6 +51,7 @@ Model::Model(ObjectShader* shader) {
 	glBindVertexArray(0);
 
 	glUseProgram(0);
+	
 }
 
 

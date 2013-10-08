@@ -19,7 +19,7 @@ public:
     void SetTime(int Time);
     void SetLauncherLifetime(float Lifetime);
     void SetShellLifetime(float Lifetime);
-	
+	void SetRandomTextureUnit(unsigned int TextureUnit);
 	virtual ~ParticalUpShader();
 private:
 	GLuint m_deltaTimeMillisLocation;

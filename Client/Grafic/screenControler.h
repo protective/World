@@ -13,6 +13,7 @@
 #include "Shaders/UIShader.h"
 #include "Shaders/UIPrimShader.h"
 #include "Camera.h"
+#include "ParticalSystems/ParticalEngine.h"
 class screenControler {
 public:
 	screenControler();
@@ -24,6 +25,7 @@ public:
 	UIShader* getUIShaderProgram(){return _UIShaderProgram;}
 	UIPrimShader* getUIPrimShaderProgram(){return _UIPrimShader;}
 	TransformStack* getUIStack(){return &_UIStack;}
+	ParticalEngine* _getParticalEngines(){return _particalEngine;};
 	virtual ~screenControler();
 private:
 	list<Model*> _models;
@@ -34,6 +36,7 @@ private:
 	glm::mat4 _projectionMatrix;
 	Camera*  _camera;
 	TransformStack _UIStack;
+	ParticalEngine* _particalEngine;
 };
 
 #endif	/* SCREENCONTROLER_H */

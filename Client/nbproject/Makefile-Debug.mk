@@ -35,13 +35,15 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/world/CGrid.o \
+	${OBJECTDIR}/Grafic/GraficUtils/RandomVec3Texture.o \
 	${OBJECTDIR}/UI/UICastBar.o \
-	${OBJECTDIR}/Grafic/Camera.o \
 	${OBJECTDIR}/Powers/CPower.o \
+	${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o \
+	${OBJECTDIR}/Grafic/Camera.o \
+	${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o \
 	${OBJECTDIR}/Grafic/Shaders/BillboardShader.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/Grafic/screenControler.o \
-	${OBJECTDIR}/Grafic/ParticalSystem.o \
 	${OBJECTDIR}/Grafic/Shader.o \
 	${OBJECTDIR}/Grafic/Shaders/UIPrimShader.o \
 	${OBJECTDIR}/GLutil.o \
@@ -58,11 +60,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Grafic/ShaderProgram.o \
 	${OBJECTDIR}/UI/UIBaseFrame.o \
 	${OBJECTDIR}/CFunctions.o \
+	${OBJECTDIR}/Grafic/ParticalSystems/ParticalSystem.o \
 	${OBJECTDIR}/UI/UIPrimitiveBox.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/objects/CCreature.o \
-	${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o \
 	${OBJECTDIR}/UI/UIUnitBox.o \
 	${OBJECTDIR}/Grafic/Model.o \
 	${OBJECTDIR}/_ext/2098112761/GFunctions.o \
@@ -100,20 +102,35 @@ ${OBJECTDIR}/world/CGrid.o: world/CGrid.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/world/CGrid.o world/CGrid.cpp
 
+${OBJECTDIR}/Grafic/GraficUtils/RandomVec3Texture.o: Grafic/GraficUtils/RandomVec3Texture.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/GraficUtils
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/GraficUtils/RandomVec3Texture.o Grafic/GraficUtils/RandomVec3Texture.cpp
+
 ${OBJECTDIR}/UI/UICastBar.o: UI/UICastBar.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UICastBar.o UI/UICastBar.cpp
+
+${OBJECTDIR}/Powers/CPower.o: Powers/CPower.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Powers
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/CPower.o Powers/CPower.cpp
+
+${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o: Grafic/ParticalSystems/ParticalEngine.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/ParticalSystems
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o Grafic/ParticalSystems/ParticalEngine.cpp
 
 ${OBJECTDIR}/Grafic/Camera.o: Grafic/Camera.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Camera.o Grafic/Camera.cpp
 
-${OBJECTDIR}/Powers/CPower.o: Powers/CPower.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Powers
+${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o: Grafic/ParticalSystems/ParticalUpShader.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/ParticalSystems
 	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Powers/CPower.o Powers/CPower.cpp
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o Grafic/ParticalSystems/ParticalUpShader.cpp
 
 ${OBJECTDIR}/Grafic/Shaders/BillboardShader.o: Grafic/Shaders/BillboardShader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
@@ -129,11 +146,6 @@ ${OBJECTDIR}/Grafic/screenControler.o: Grafic/screenControler.cpp
 	${MKDIR} -p ${OBJECTDIR}/Grafic
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/screenControler.o Grafic/screenControler.cpp
-
-${OBJECTDIR}/Grafic/ParticalSystem.o: Grafic/ParticalSystem.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Grafic
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystem.o Grafic/ParticalSystem.cpp
 
 ${OBJECTDIR}/Grafic/Shader.o: Grafic/Shader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic
@@ -215,6 +227,11 @@ ${OBJECTDIR}/CFunctions.o: CFunctions.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/CFunctions.o CFunctions.cpp
 
+${OBJECTDIR}/Grafic/ParticalSystems/ParticalSystem.o: Grafic/ParticalSystems/ParticalSystem.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic/ParticalSystems
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystems/ParticalSystem.o Grafic/ParticalSystems/ParticalSystem.cpp
+
 ${OBJECTDIR}/UI/UIPrimitiveBox.o: UI/UIPrimitiveBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
@@ -234,11 +251,6 @@ ${OBJECTDIR}/objects/CCreature.o: objects/CCreature.cpp
 	${MKDIR} -p ${OBJECTDIR}/objects
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/CCreature.o objects/CCreature.cpp
-
-${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o: Grafic/Shaders/ParticalUpShader.cpp 
-	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
-	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/ParticalUpShader.o Grafic/Shaders/ParticalUpShader.cpp
 
 ${OBJECTDIR}/UI/UIUnitBox.o: UI/UIUnitBox.cpp 
 	${MKDIR} -p ${OBJECTDIR}/UI

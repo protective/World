@@ -8,6 +8,7 @@
 #include "BillboardShader.h"
 
 BillboardShader::BillboardShader() {
+	cerr<<"Create BillboardShader"<<endl;
 }
 
 uint32_t BillboardShader::init(){
@@ -28,7 +29,11 @@ uint32_t BillboardShader::init(){
 		return 5;
 	
 	_VPLocation = getUniformLocation("gVP");
-	_cameraPosLocation = getUniformLocation("gCameraPos");	
+	_cameraPosLocation = getUniformLocation("gCameraPos");
+    _colorMapLocation = getUniformLocation("gColorMap");
+    _billboardSizeLocation = getUniformLocation("gBillboardSize");	
+	
+	cerr<<"DONE INIT Billborad Shader"<<endl;
 	return 0;
 }
 
@@ -38,6 +43,17 @@ void BillboardShader::SetVP(glm::mat4* VP){
 void BillboardShader::SetCameraPosition(glm::vec3* pos){
 
 	glUniform3f(_cameraPosLocation, pos->x, pos->y, pos->z);
+}
+
+void BillboardShader::SetColorTextureUnit(unsigned int TextureUnit)
+{
+    glUniform1i(_colorMapLocation, TextureUnit);
+}
+
+
+void BillboardShader::SetBillboardSize(float BillboardSize)
+{
+    glUniform1f(_billboardSizeLocation, BillboardSize);
 }
 
 BillboardShader::~BillboardShader() {

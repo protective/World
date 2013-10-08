@@ -9,9 +9,10 @@
 #define	PARTICALSYSTEM_H
 
 #include "../Shaders/BillboardShader.h"
-#include "../Shaders/ParticalUpShader.h"
-#include "Camera.h"
-
+#include "ParticalUpShader.h"
+#include "../Camera.h"
+#include "../GraficUtils/RandomVec3Texture.h"
+#include "ParticalEngine.h"
 struct Particle
 {
     float Type;    
@@ -29,25 +30,21 @@ struct Particle
 
 class ParticalSystem {
 public:
-	ParticalSystem();
+	ParticalSystem(ParticalEngine* engine);
 	bool InitParticleSystem(const glm::vec3& Pos);
     
 	virtual void draw(Camera* camera);
 	virtual void Update(int DeltaTimeMillis);
 	virtual ~ParticalSystem();
 private:
-    void UpdateParticles(int DeltaT);
-    void RenderParticles(const glm::mat4& VP, const glm::vec3& projection);
-    
+	
     bool m_isFirst;
     unsigned int m_currVB;
     unsigned int m_currTFB;
     GLuint m_particleBuffer[2];
     GLuint m_transformFeedback[2];
-    ParticalUpShader m_updateTechnique;
-    BillboardShader m_billboardTechnique;
-    //RandomTexture m_randomTexture;
-    //Texture* m_pTexture;
+	ParticalEngine* _engine;
+    GLuint m_pTexture;
     int m_time;
 };
 
