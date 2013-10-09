@@ -21,7 +21,7 @@ struct Particle
     float LifetimeMillis;    
 };
 
-#define MAX_PARTICLES 1000
+#define MAX_PARTICLES 500
 #define PARTICLE_LIFETIME 10.0f
 
 #define PARTICLE_TYPE_LAUNCHER 0.0f

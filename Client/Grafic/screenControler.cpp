@@ -77,7 +77,7 @@ screenControler::screenControler() {
 	//INIT object shader
 	
 	_camera->setLookat(glm::vec3(0,0,-60),glm::vec3(0,0,0),glm::vec3(0,-1,0));
-	_projectionMatrix = glm::make_mat4(CreateProjectionMatrix(60,(float)Basewidth / Basehight,1.0f,100.0f).m);
+	_projectionMatrix = glm::make_mat4(CreateProjectionMatrix(30,(float)Basewidth / Basehight,1.0f,1000.0f).m);
 	
 	_camera->setProjectionMatrix(_projectionMatrix);
 	

@@ -25,7 +25,7 @@ void CCreature::Proces(uint32_t DTime){
 	for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
 		if(it->second == NULL){
 			it->second =  new ParticalSystem(masterScreen->_getParticalEngines());
-			it->second->InitParticleSystem(glm::vec3(_pos.x/1000,_pos.y/1000,_pos.z/1000));
+			it->second->InitParticleSystem(glm::vec3(_pos.x/1000,(_pos.y/1000)-3,(_pos.z/1000)-5));
 		}
 		it->second->Update(DTime);
 	}

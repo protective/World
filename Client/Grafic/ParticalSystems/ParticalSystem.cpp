@@ -44,7 +44,6 @@ bool ParticalSystem::InitParticleSystem(const glm::vec3& Pos){
     _engine->getUpShader()->SetRandomTextureUnit(3);
     _engine->getUpShader()->SetLauncherLifetime(100.0f);
     _engine->getUpShader()->SetShellLifetime(10000.0f);
-	
     ExitOnGLError("ERROR: Setuniforms ");
 
     

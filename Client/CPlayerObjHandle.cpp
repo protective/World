@@ -134,7 +134,7 @@ void CPlayerObjHandle::recNotisMove(SerialNotisMove* st){
 		return;}
 	
 	CPos pos(st->_pos.x, st->_pos.y, st->_pos.z, st->_pos.d);
-	
+	//cerr<<st->_pos.x<<" " <<st->_pos.y<<" "<<st->_pos.z<<endl;
 	if(st->_unitId != player()->getId())
 		creature->ResivePosUpdate(pos,st->_time, st->_etime);
 
