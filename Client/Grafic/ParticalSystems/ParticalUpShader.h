@@ -20,6 +20,7 @@ public:
     void SetLauncherLifetime(float Lifetime);
     void SetShellLifetime(float Lifetime);
 	void SetRandomTextureUnit(unsigned int TextureUnit);
+	void SetEmitterPos(glm::vec3 pos);
 	virtual ~ParticalUpShader();
 private:
 	GLuint m_deltaTimeMillisLocation;
@@ -27,6 +28,7 @@ private:
 	GLuint m_timeLocation;
 	GLuint m_launcherLifetimeLocation;
 	GLuint m_shellLifetimeLocation;
+	GLuint m_EmitterPos;
 };
 
 #endif	/* PARTICALUPSHADER_H */

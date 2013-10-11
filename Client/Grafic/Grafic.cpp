@@ -78,7 +78,6 @@ GLuint loadTexture(Textures::Enum texture){
 
 		// Have OpenGL generate a texture object handle for us
 		glGenTextures( 1, &rettexture );
-		cerr<<"tc_ "<<rettexture<<endl;
 		// Bind the texture object
 		glBindTexture( GL_TEXTURE_2D, rettexture );
 
@@ -90,7 +89,6 @@ GLuint loadTexture(Textures::Enum texture){
 		glTexImage2D( GL_TEXTURE_2D, 0, nOfColors, surface->w, surface->h, 0,
 						  texture_format, GL_UNSIGNED_BYTE, surface->pixels );
 
-		cerr<<"td_ "<<rettexture<<endl;
 		return rettexture;
 	}else {
 	printf("SDL could not load image.bmp: %s\n", SDL_GetError());

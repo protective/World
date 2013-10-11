@@ -28,6 +28,10 @@ CPos& CObj::getPos(){
 	return this->_pos;
 }
 
+glm::vec3 CObj::getGraficPos(){
+	return glm::vec3(_pos.x/1000,(_pos.y/1000),(_pos.z/1000));
+}
+
 void CObj::ResivePosUpdate(CPos& pos, uint32_t btime,  uint32_t etime){
 	this->_actualPos.x = pos.x;
 	this->_actualPos.y = pos.y;

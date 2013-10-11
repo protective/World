@@ -18,6 +18,7 @@ public:
 	virtual void addParticalsystem(uint32_t index){_particalSystems[index]= NULL;}
 	virtual void draw(CCreature* creature);
 	virtual void rayIntersect(CCreature* creature, glm::mat2x3 ray);
+	Model* getModel(){return _model;}
 	virtual ~CGraficObject();
 protected:
 	Model* _model;

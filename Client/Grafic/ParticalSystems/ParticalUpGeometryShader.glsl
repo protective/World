@@ -20,6 +20,7 @@ uniform sampler1D gRandomTexture;
 uniform float gLauncherLifetime;
 uniform float gShellLifetime;
 uniform float gSecondaryShellLifetime;
+uniform vec3 gEmitterPos;
 
 #define PARTICLE_TYPE_LAUNCHER 0.0f
 #define PARTICLE_TYPE_SHELL 1.0f
@@ -40,9 +41,9 @@ void main()
         if (Age >= gLauncherLifetime) {
             Type1 = PARTICLE_TYPE_SHELL;
             Position1 = Position0[0] + (GetRandomDir((gTime+1)/1000.0)*20);
-            vec3 Dir = GetRandomDir(gTime/1000.0);
-            Dir.y = max(Dir.y, 0.5);
-            Velocity1 = normalize(Dir) ;
+            //vec3 Dir = GetRandomDir(gTime/1000.0);
+           // Dir.y = max(Dir.y, 0.5);
+            Velocity1 = vec3(1.0, -1.0, 0.0) ;
             Age1 = 0.0;
             EmitVertex();
             EndPrimitive();
@@ -50,7 +51,7 @@ void main()
         }
 
         Type1 = PARTICLE_TYPE_LAUNCHER;
-        Position1 = Position0[0];
+        Position1 = gEmitterPos;
         Velocity1 = Velocity0[0];
         Age1 = Age;
         EmitVertex();
@@ -61,7 +62,7 @@ void main()
         float t1 = Age0[0] / 1000.0;
         float t2 = Age / 1000.0;
         vec3 DeltaP = DeltaTimeSecs * Velocity0[0];
-        vec3 DeltaV = vec3(DeltaTimeSecs) * (0.0, -9.81, 0.0);
+        vec3 DeltaV = vec3(DeltaTimeSecs) * vec3(0.0, 0.0, -9.81);
 
         if (Type0[0] == PARTICLE_TYPE_SHELL) {
             if (Age < gShellLifetime) {

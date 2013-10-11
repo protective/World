@@ -13,6 +13,7 @@
 #include "../Camera.h"
 #include "../GraficUtils/RandomVec3Texture.h"
 #include "ParticalEngine.h"
+#include "../Model.h"
 struct Particle
 {
     float Type;    
@@ -31,7 +32,7 @@ struct Particle
 class ParticalSystem {
 public:
 	ParticalSystem(ParticalEngine* engine);
-	bool InitParticleSystem(const glm::vec3& Pos);
+	bool InitParticleSystem(CCreature* object, HardPoints::Enum hp);
     
 	virtual void draw(Camera* camera);
 	virtual void Update(int DeltaTimeMillis);
@@ -46,6 +47,8 @@ private:
 	ParticalEngine* _engine;
     GLuint m_pTexture;
     int m_time;
+	CCreature* _creature;
+	HardPoints::Enum _hp;
 };
 
 #endif	/* PARTICALSYSTEM_H */

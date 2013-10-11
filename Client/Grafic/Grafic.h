@@ -8,11 +8,11 @@
 #ifndef GRAFIC_H
 #define	GRAFIC_H
 
-//#define Basewidth 400
-//#define Basehight 300
+#define Basewidth 400
+#define Basehight 300
 
-#define Basewidth 1200
-#define Basehight 700
+//#define Basewidth 1200
+//#define Basehight 700
 //#include <GL/gl.h>
 #include <SDL/SDL_image.h>
 #include "../CFunctions.h"

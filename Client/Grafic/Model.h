@@ -10,12 +10,23 @@
 #include "../GLutil.h"
 #include "../CFunctions.h"
 #include "Shaders/ObjectShader.h"
+
+namespace HardPoints{
+	enum Enum{
+		AboveHead,
+		Head,
+		Center,
+		Ground
+	};
+}
+
 class Model {
 public:
 	Model(ObjectShader* shader);
 	void bind();
 	void unbind();
 	ObjectShader* getShader(){return _shader;}
+	glm::vec3 getHardPoint(HardPoints::Enum hp){if(_hardPoints.find(hp) != _hardPoints.end())return _hardPoints[hp];else return glm::vec3(0,0,0) ;}
 	GLuint get_vao(){return _vao;}
 	GLuint get_vbo(){return _vbo;}
 	GLuint* get_ibo(){return &_ibo;}
@@ -33,6 +44,7 @@ private:
 	GLuint _vbo; //vertices handler
 	GLuint _ibo; //indices handler
 	GLuint _texture;
+	map<HardPoints::Enum, glm::vec3> _hardPoints;
 };
 
 #endif	/* MODEL_H */

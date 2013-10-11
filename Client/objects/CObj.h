@@ -9,12 +9,13 @@
 #define	COBJ_H
 #include "../CFunctions.h"
 #include "CPos.h"
-
+#include "../GLutil.h"
 class CCreature;
 class CObj {
 public:
 	CObj(uint32_t id, uint32_t playerId, CPos pos);
 	virtual CPos& getPos();
+	virtual glm::vec3 getGraficPos();
 	virtual CPos& getActualPos(){return _actualPos;}
 	virtual void setPos(CPos pos){_pos = pos;}
 	void MovePos(int32_t x, int32_t y);

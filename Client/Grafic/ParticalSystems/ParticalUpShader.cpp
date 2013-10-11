@@ -46,7 +46,7 @@ uint32_t ParticalUpShader::init(){
 	m_timeLocation = getUniformLocation("gTime");
 	m_launcherLifetimeLocation = getUniformLocation("gLauncherLifetime");
 	m_shellLifetimeLocation =  getUniformLocation("gShellLifetime");
-	
+	m_EmitterPos =  getUniformLocation("gEmitterPos");
 	return 0;
 }
 
@@ -81,4 +81,9 @@ void ParticalUpShader::SetLauncherLifetime(float Lifetime)
 void ParticalUpShader::SetShellLifetime(float Lifetime)
 {
     glUniform1f(m_shellLifetimeLocation, Lifetime);
+}
+
+
+void ParticalUpShader::SetEmitterPos(glm::vec3 pos){
+	glUniform3f(m_EmitterPos, pos.x, pos.y, pos.z);
 }

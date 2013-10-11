@@ -6,7 +6,7 @@
  */
 
 #include "ParticalSystem.h"
-
+#include "../../objects/CCreature.h"
 ParticalSystem::ParticalSystem(ParticalEngine* engine) {
 	cerr<<"Create particle system"<<endl;
 	_engine = engine;
@@ -17,13 +17,16 @@ ParticalSystem::ParticalSystem(ParticalEngine* engine) {
 }
 
 
-bool ParticalSystem::InitParticleSystem(const glm::vec3& Pos){
+bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
 	cerr<<"INIT particle system"<<endl;
+	
+	_creature = object;
+	_hp = hp;
+	
     Particle Particles[MAX_PARTICLES];
 	memset(&Particles,0,sizeof(Particle)*MAX_PARTICLES);
-	
     Particles[0].Type = PARTICLE_TYPE_LAUNCHER;
-    Particles[0].Pos = Pos;
+    Particles[0].Pos = object->getGraficPos() + object->getModel()->getHardPoint(hp);
     Particles[0].Vel = glm::vec3(0.0f, 0.0001f, 0.0f);
     Particles[0].LifetimeMillis = 0.0f;
 	
@@ -44,6 +47,7 @@ bool ParticalSystem::InitParticleSystem(const glm::vec3& Pos){
     _engine->getUpShader()->SetRandomTextureUnit(3);
     _engine->getUpShader()->SetLauncherLifetime(100.0f);
     _engine->getUpShader()->SetShellLifetime(10000.0f);
+	
     ExitOnGLError("ERROR: Setuniforms ");
 
     
@@ -75,6 +79,9 @@ void ParticalSystem::Update(int DeltaTimeMillis)
     _engine->getUpShader()->SetTime(m_time);
     _engine->getUpShader()->SetDeltaTimeMillis(DeltaTimeMillis);
    
+	_engine->getUpShader()->SetEmitterPos(_creature->getGraficPos() + _creature->getModel()->getHardPoint(_hp));
+	
+	
 	_engine->getRandomVec3Tex()->Bind(GL_TEXTURE3);
     glEnable(GL_RASTERIZER_DISCARD);
     
