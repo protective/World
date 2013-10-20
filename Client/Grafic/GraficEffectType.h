@@ -7,14 +7,17 @@
 
 #ifndef GRAFICEFFECTTYPE_H
 #define	GRAFICEFFECTTYPE_H
+#include "../CFunctions.h"
+#include "GraficEffectDataBlock.h"
 
 class GraficEffectType {
 public:
 	GraficEffectType();
-	GraficEffectType(const GraficEffectType& orig);
+	map<uint32_t, GraficEffectDataBlock*>& getData(){return _particalSystemsData;}
+	
 	virtual ~GraficEffectType();
 private:
-
+	map<uint32_t, GraficEffectDataBlock*> _particalSystemsData;
 };
 
 #endif	/* GRAFICEFFECTTYPE_H */

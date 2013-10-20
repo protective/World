@@ -10,8 +10,6 @@
 GraficEffectType::GraficEffectType() {
 }
 
-GraficEffectType::GraficEffectType(const GraficEffectType& orig) {
-}
 
 GraficEffectType::~GraficEffectType() {
 }

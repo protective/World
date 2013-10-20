@@ -10,6 +10,8 @@
 #include "CObj.h"
 #include "../Grafic/CGraficObject.h"
 #include "../Powers/CPower.h"
+#include "Buffs/CBuff.h"
+
 class CCreature : public CObj , public CGraficObject {
 public:
 	CCreature(uint32_t id, uint32_t playerId, CPos pos, Model* model);
@@ -19,12 +21,14 @@ public:
 	uint32_t getCastCompletionTime(){return _castCompletionTime;}
 	void setCastCompletionTime(uint32_t time){_castCompletionTime = time;}
 	virtual CCreature* getCreature(){return this;}
+	uint32_t addBuff(CBuff* buff);
 	map<uint32_t,CPower*>& getPowers(){return this->_powerList;}
 	map<Attributes::Enum , int32_t>& getAttibute(){return _attribute;}
 	virtual ~CCreature();
 protected:
 	map<uint32_t,CPower*> _powerList;
 	map<Attributes::Enum , int32_t> _attribute;
+	map<uint32_t,CBuff*> _bufflist;
 	uint32_t _castTime;
 	uint32_t _castCompletionTime;
 };

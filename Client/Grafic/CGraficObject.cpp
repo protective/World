@@ -10,9 +10,10 @@
 #include "Shader.h"
 #include "screenControler.h"
 #include "../objects/CCreature.h"
-CGraficObject::CGraficObject(Model* model) {
+CGraficObject::CGraficObject(CObj* obj,Model* model) {
 	_model = model;
 	CubeRotation = 0;
+	_obj = obj;
 	
 
 
@@ -41,10 +42,9 @@ void CGraficObject::draw(CCreature* creature){
 	
 	
 	//draw all assosiated particalsystems
-	for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
-		if(it->second)
-			it->second->draw(masterScreen->getCamera());
-	
+	for(map<uint32_t, GraficEffectPlayer*>::iterator it = _effects.begin(); it != _effects.end(); it++){
+		it->second->draw(masterScreen->getCamera());
+
 	}
 	
 
@@ -96,6 +96,42 @@ void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
 		*/
 	}
 	
+}
+
+
+void CGraficObject::Proces(uint32_t DTime){
+	
+	if (_effects.find(1) == _effects.end()){
+		AddEffectPlayer(1);
+		_effects[1]->signal(1); //SIGNAL 1 = begin
+	}
+	//update all partical systems
+	//for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
+	//	if(it->second == NULL){
+	//		it->second =  new ParticalSystem(masterScreen->_getParticalEngines());
+	//		it->second->InitParticleSystem(this,HardPoints::AboveHead);
+	//	}
+	//	it->second->Update(DTime);
+	//}
+
+}
+
+void CGraficObject::AddEffectPlayer(uint32_t id){
+	GraficEffectType* effectdata = masterScreen->getEffectData(id);
+	if (!effectdata)
+		return;
+	
+	GraficEffectPlayer* eplayer = new GraficEffectPlayer(_obj->getCreature(),effectdata);
+	
+	_effects[id] = eplayer; 
+	
+}
+void CGraficObject::RemoveEffectPlayer(uint32_t id){
+	GraficEffectPlayer* eplayer = _effects.find(id) != _effects.end() ? _effects[id] : NULL;
+	if(eplayer)
+		delete eplayer;
+	
+	_effects.erase(id);
 }
 
 CGraficObject::~CGraficObject() {

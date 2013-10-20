@@ -10,11 +10,11 @@
 
 class CBuff {
 public:
-	CBuff();
-	CBuff(const CBuff& orig);
+	CBuff(uint32_t id);
+	uint32_t getId(){return _id;}
 	virtual ~CBuff();
 private:
-
+	uint32_t _id;
 };
 
 #endif	/* CBUFF_H */

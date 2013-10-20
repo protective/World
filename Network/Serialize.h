@@ -179,6 +179,7 @@ struct SerialBuffVisualEffect{
 
 struct SerialBuff : public SerialData{ //id = 18
 	uint32_t _unitId;
+	uint32_t _buffId;
 	uint32_t _iconId;
 	uint32_t _duration;
 	uint32_t _maxDuration;

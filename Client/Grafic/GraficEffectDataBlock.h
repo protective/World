@@ -7,14 +7,14 @@
 
 #ifndef GRAFICEFFECTDATABLOCK_H
 #define	GRAFICEFFECTDATABLOCK_H
-
+#include "../GLutil.h"
 class GraficEffectDataBlock {
 public:
 	GraficEffectDataBlock();
-	GraficEffectDataBlock(const GraficEffectDataBlock& orig);
 	virtual ~GraficEffectDataBlock();
 private:
-
+	glm::vec3 _deltaV;
+	
 };
 
 #endif	/* GRAFICEFFECTDATABLOCK_H */

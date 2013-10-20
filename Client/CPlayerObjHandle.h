@@ -24,6 +24,7 @@ public:
 	void recStatsAbs(SerialStatsAbs* st);
 	void recStatsRel(SerialStatsRel* st);
 	void recTakeDmgHeal(SerialTakeDmgHeal* st);
+	void recBuff(SerialBuff* st);
 	void recAttribute(SerialAttribute* st);
 	void recCast(SerialCast* st);
 	void ServerReqActivatePower(CPower* power, CObj* target);

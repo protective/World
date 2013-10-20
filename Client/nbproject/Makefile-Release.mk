@@ -37,11 +37,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/world/CGrid.o \
 	${OBJECTDIR}/Grafic/GraficUtils/RandomVec3Texture.o \
 	${OBJECTDIR}/UI/UICastBar.o \
+	${OBJECTDIR}/Grafic/GraficEffectPlayer.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o \
 	${OBJECTDIR}/Grafic/Camera.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o \
 	${OBJECTDIR}/Grafic/Shaders/BillboardShader.o \
+	${OBJECTDIR}/Grafic/GraficEffectDataBlock.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/Grafic/screenControler.o \
 	${OBJECTDIR}/Grafic/Shader.o \
@@ -51,6 +53,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/CGlobals.o \
 	${OBJECTDIR}/_ext/2098112761/GGlobals.o \
 	${OBJECTDIR}/Grafic/CGraficObject.o \
+	${OBJECTDIR}/objects/Buffs/CBuff.o \
 	${OBJECTDIR}/Grafic/Grafic.o \
 	${OBJECTDIR}/CPlayerObjHandle.o \
 	${OBJECTDIR}/world/CWorld.o \
@@ -62,6 +65,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/CFunctions.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalSystem.o \
 	${OBJECTDIR}/UI/UIPrimitiveBox.o \
+	${OBJECTDIR}/Grafic/GraficEffectType.o \
 	${OBJECTDIR}/mainClient.o \
 	${OBJECTDIR}/objects/CObj.o \
 	${OBJECTDIR}/objects/CCreature.o \
@@ -112,6 +116,11 @@ ${OBJECTDIR}/UI/UICastBar.o: UI/UICastBar.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UICastBar.o UI/UICastBar.cpp
 
+${OBJECTDIR}/Grafic/GraficEffectPlayer.o: Grafic/GraficEffectPlayer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/GraficEffectPlayer.o Grafic/GraficEffectPlayer.cpp
+
 ${OBJECTDIR}/Powers/CPower.o: Powers/CPower.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Powers
 	${RM} $@.d
@@ -136,6 +145,11 @@ ${OBJECTDIR}/Grafic/Shaders/BillboardShader.o: Grafic/Shaders/BillboardShader.cp
 	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/BillboardShader.o Grafic/Shaders/BillboardShader.cpp
+
+${OBJECTDIR}/Grafic/GraficEffectDataBlock.o: Grafic/GraficEffectDataBlock.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/GraficEffectDataBlock.o Grafic/GraficEffectDataBlock.cpp
 
 ${OBJECTDIR}/objects/CPos.o: objects/CPos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/objects
@@ -181,6 +195,11 @@ ${OBJECTDIR}/Grafic/CGraficObject.o: Grafic/CGraficObject.cpp
 	${MKDIR} -p ${OBJECTDIR}/Grafic
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/CGraficObject.o Grafic/CGraficObject.cpp
+
+${OBJECTDIR}/objects/Buffs/CBuff.o: objects/Buffs/CBuff.cpp 
+	${MKDIR} -p ${OBJECTDIR}/objects/Buffs
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/objects/Buffs/CBuff.o objects/Buffs/CBuff.cpp
 
 ${OBJECTDIR}/Grafic/Grafic.o: Grafic/Grafic.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic
@@ -236,6 +255,11 @@ ${OBJECTDIR}/UI/UIPrimitiveBox.o: UI/UIPrimitiveBox.cpp
 	${MKDIR} -p ${OBJECTDIR}/UI
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/UI/UIPrimitiveBox.o UI/UIPrimitiveBox.cpp
+
+${OBJECTDIR}/Grafic/GraficEffectType.o: Grafic/GraficEffectType.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/GraficEffectType.o Grafic/GraficEffectType.cpp
 
 ${OBJECTDIR}/mainClient.o: mainClient.cpp 
 	${MKDIR} -p ${OBJECTDIR}

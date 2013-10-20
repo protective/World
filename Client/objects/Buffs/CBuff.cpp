@@ -5,12 +5,13 @@
  * Created on 20. oktober 2013, 16:18
  */
 
+#include <stdio.h>
+#include <stdint.h>
+
 #include "CBuff.h"
 
-CBuff::CBuff() {
-}
-
-CBuff::CBuff(const CBuff& orig) {
+CBuff::CBuff(uint32_t id) {
+	_id = id;
 }
 
 CBuff::~CBuff() {

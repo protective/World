@@ -41,6 +41,12 @@
         <itemPath>Grafic/Camera.h</itemPath>
         <itemPath>Grafic/Grafic.cpp</itemPath>
         <itemPath>Grafic/Grafic.h</itemPath>
+        <itemPath>Grafic/GraficEffectDataBlock.cpp</itemPath>
+        <itemPath>Grafic/GraficEffectDataBlock.h</itemPath>
+        <itemPath>Grafic/GraficEffectPlayer.cpp</itemPath>
+        <itemPath>Grafic/GraficEffectPlayer.h</itemPath>
+        <itemPath>Grafic/GraficEffectType.cpp</itemPath>
+        <itemPath>Grafic/GraficEffectType.h</itemPath>
         <itemPath>Grafic/Model.cpp</itemPath>
         <itemPath>Grafic/Model.h</itemPath>
         <itemPath>Grafic/Shader.cpp</itemPath>
@@ -61,6 +67,10 @@
         <itemPath>../Network/Serialize.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f4" displayName="objects" projectFiles="true">
+        <logicalFolder name="f1" displayName="Buffs" projectFiles="true">
+          <itemPath>objects/Buffs/CBuff.cpp</itemPath>
+          <itemPath>objects/Buffs/CBuff.h</itemPath>
+        </logicalFolder>
         <itemPath>objects/CCreature.cpp</itemPath>
         <itemPath>objects/CCreature.h</itemPath>
         <itemPath>objects/CObj.cpp</itemPath>

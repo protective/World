@@ -11,6 +11,7 @@
 #include "objects/CCreature.h"
 #include "Powers/CPower.h"
 #include "Grafic/screenControler.h"
+#include "objects/Buffs/CBuff.h"
 CPlayerObjHandle::CPlayerObjHandle() {
 	_moveCounter = 0;
 }
@@ -117,6 +118,23 @@ void CPlayerObjHandle::recTakeDmgHeal(SerialTakeDmgHeal* st){
 	}
 	
 }
+void CPlayerObjHandle::recBuff(SerialBuff* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recBuff not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recBuff not creature"<<endl;
+		return;}
+	creature->addBuff(new CBuff(st->_buffId));
+
+}
+
 
 void CPlayerObjHandle::recNotisMove(SerialNotisMove* st){
 

@@ -14,6 +14,7 @@
 #include "Shaders/UIPrimShader.h"
 #include "Camera.h"
 #include "ParticalSystems/ParticalEngine.h"
+#include "GraficEffectType.h"
 class screenControler {
 public:
 	screenControler();
@@ -26,6 +27,8 @@ public:
 	UIPrimShader* getUIPrimShaderProgram(){return _UIPrimShader;}
 	TransformStack* getUIStack(){return &_UIStack;}
 	ParticalEngine* _getParticalEngines(){return _particalEngine;};
+	GraficEffectType* getEffectData(uint32_t id){return _effetsData.find(id) != _effetsData.end() ? _effetsData[id] : NULL;}
+	
 	virtual ~screenControler();
 private:
 	list<Model*> _models;
@@ -37,6 +40,7 @@ private:
 	Camera*  _camera;
 	TransformStack _UIStack;
 	ParticalEngine* _particalEngine;
+	map<uint32_t, GraficEffectType*> _effetsData;
 };
 
 #endif	/* SCREENCONTROLER_H */

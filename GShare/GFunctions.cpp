@@ -168,6 +168,7 @@ void printBuffer(char* buffer, uint32_t len){
 						SerialBuff* st = (SerialBuff*)(buffer+offset);
 						cerr<<"Recived SerialBuff*************"<<endl
 						<<"\tunitId "<<st->_unitId<<endl
+						<<"\tbuffId "<<st->_buffId<<endl
 						<<"\tpowerId "<<st->_iconId<<endl
 						<<"\tduration"<<st->_duration<<endl
 						<<"\tmaxDuration"<<st->_maxDuration<<endl

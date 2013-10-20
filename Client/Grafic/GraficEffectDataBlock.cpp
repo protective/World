@@ -10,8 +10,6 @@
 GraficEffectDataBlock::GraficEffectDataBlock() {
 }
 
-GraficEffectDataBlock::GraficEffectDataBlock(const GraficEffectDataBlock& orig) {
-}
 
 GraficEffectDataBlock::~GraficEffectDataBlock() {
 }
