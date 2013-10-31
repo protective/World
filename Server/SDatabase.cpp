@@ -207,10 +207,58 @@ void  SDatabase::loadEffectsDD(pqxx::work& w, uint32_t id){
 	}
 }
 
-void  SDatabase::loadEffectsBuffDot(pqxx::work& w, uint32_t id){}
+void  SDatabase::loadEffectsBuffDot(pqxx::work& w, uint32_t id){
+	try
+	{
+		pqxx::result r = w.exec("select stattype, value from buffdot where eid = " + toString(id) + " ;");
+		SEffectTypeAddBuff* effectsTypeAddBuff = NULL;
+		effectsTypeAddBuff = (SEffectTypeAddBuff*)_effectypes[id];
+		for(int i = 0; i< r.size(); i++){
+			uint32_t stattype = r[i][0].as<uint32_t>();
+			uint32_t value = r[i][1].as<uint32_t>();
+			
+			switch(stattype){
+				case 1:{
+					effectsTypeAddBuff->setDamageType((DamageTypes::Enum)value);
+				}
+				case 2:{
+					effectsTypeAddBuff->setTotalDamage(value);
+				}
+				case 3:{
+					effectsTypeAddBuff->setTickTime(value);
+				}
+			}
+		}
+	}
+	catch (const std::exception &e)
+	{
+		cerr<<"ERROR SDatabase::loadEffectsBuffDot"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+}
+
+
 void  SDatabase::loadEffectsBuffStatMod(pqxx::work& w, uint32_t id){}
 
-void  SDatabase::loadEffectsBuffTick(pqxx::work& w, uint32_t id){}
+void  SDatabase::loadEffectsBuffTick(pqxx::work& w, uint32_t id){
+	try
+	{
+		pqxx::result r = w.exec("select value from buffticks where eid = " + toString(id) + " order by time;");
+		SEffectTypeAddBuff* effectsTypeAddBuff = NULL;
+		effectsTypeAddBuff = (SEffectTypeAddBuff*)_effectypes[id];
+		for(int i = 0; i< r.size(); i++){
+			uint32_t value = r[i][0].as<uint32_t>();
+			effectsTypeAddBuff->gettickEffects().push_back(ticksEffects(value));
+		}
+	}
+	catch (const std::exception &e)
+	{
+		cerr<<"ERROR SDatabase::loadEffectsBuffTick"<<endl;
+		std::cerr << e.what() << std::endl;
+		return ;
+	}
+}
 
 
 

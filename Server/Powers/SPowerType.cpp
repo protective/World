@@ -19,7 +19,10 @@ SPowerType::SPowerType(uint32_t id, uint32_t iconId) {
 }
 
 uint32_t SPowerType::activate(uint32_t time, SObj* caster, SObj* target, map<PowerProjectileMods::Enum,int32_t> values){
-//TODO implement hit rolls here
+	//only target is legal to use as procesunit 
+	
+	
+	//TODO implement hit rolls here
 
 	uint32_t attackerL =values[PowerProjectileMods::ALevel];
 	uint32_t defenderL = target->getCreature()->getAttibute()[Attributes::Level];

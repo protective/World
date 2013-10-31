@@ -110,10 +110,10 @@ void CPlayerObjHandle::recTakeDmgHeal(SerialTakeDmgHeal* st){
 		return;}
 	
 	if(st->_flags & SerialTakeDmgHealBitF::ValueP){
-		cerr<<"SET HPP"<<endl;
+		//cerr<<"SET HPP"<<endl;
 		creature->getAttibute()[Attributes::HpP] = st->_newvalue;
 	}else{
-		cerr<<"SET HP"<<endl;
+		//cerr<<"SET HP"<<endl;
 		creature->getAttibute()[Attributes::Hp] = st->_newvalue;
 	}
 	
@@ -131,7 +131,35 @@ void CPlayerObjHandle::recBuff(SerialBuff* st){
 	if(!creature){
 		cerr<<"WARNING CPlayerObjHandle::recBuff not creature"<<endl;
 		return;}
-	creature->addBuff(new CBuff(st->_buffId));
+	
+	CBuff* buff = new CBuff(st->_buffId);
+	buff->getEffects().push_back(masterScreen->getEffectData(1));
+	for(uint32_t i = 0; i < st->_XVisualEffects;i++){
+		SerialBuffVisualEffect* ve = (SerialBuffVisualEffect*)(st + sizeof(SerialBuff) + (i * sizeof(SerialBuffVisualEffect)));
+		uint32_t effectId = (uint32_t)ve->_effect;
+		buff->getEffects().push_back(masterScreen->getEffectData(effectId));
+	}
+	creature->addBuff(buff);
+
+}
+
+void CPlayerObjHandle::recBuff(SerialRMBuff* st){
+	map<uint32_t,CObj*>::iterator handle = _objs.find(st->_unitId);
+	CCreature* creature;
+
+	if(handle == _objs.end()){
+		cerr<<"WARNING CPlayerObjHandle::recBuff not creature"<<endl;
+		return;
+	}else
+		creature = handle->second->getCreature();
+
+	if(!creature){
+		cerr<<"WARNING CPlayerObjHandle::recBuff not creature"<<endl;
+		return;}
+	
+	CBuff* buff = creature->getBuffs().find(st->_buffId) != creature->getBuffs().end() ? creature->getBuffs()[st->_buffId] : NULL;
+	if(buff)
+		creature->removeBuff(buff);
 
 }
 
@@ -208,6 +236,7 @@ void CPlayerObjHandle::recCreature(SerialCreature* st){
 		
 		creature = new CCreature(st->_unitId,0,temp,masterScreen->getModels().front());
 		_objs[st->_unitId] = creature;
+		
 	}else
 		creature = handle->second->getCreature();
 

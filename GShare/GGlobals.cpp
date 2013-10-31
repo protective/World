@@ -9,6 +9,7 @@
 
 bool printbufferbool = true;
 bool printposbufferbool = true;
+map<SerialType::Enum,bool> printbufferSerial;
 uint32_t Gtime = 0;
 double MySin[360];
 double MyCos[360];

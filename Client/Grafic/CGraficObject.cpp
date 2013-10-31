@@ -14,13 +14,14 @@ CGraficObject::CGraficObject(CObj* obj,Model* model) {
 	_model = model;
 	CubeRotation = 0;
 	_obj = obj;
+	_effects[1] = NULL;
 	
+	//cerr<<"ADD EFP"<<endl;
 
-
+		
 }
 
 void CGraficObject::draw(CCreature* creature){
-
 	glm::mat4 modelMatrix = glm::mat4() ;
 	CPos* pos = &creature->getPos();
 
@@ -43,7 +44,8 @@ void CGraficObject::draw(CCreature* creature){
 	
 	//draw all assosiated particalsystems
 	for(map<uint32_t, GraficEffectPlayer*>::iterator it = _effects.begin(); it != _effects.end(); it++){
-		it->second->draw(masterScreen->getCamera());
+		if(it->second)
+			it->second->draw(masterScreen->getCamera());
 
 	}
 	
@@ -99,39 +101,46 @@ void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
 }
 
 
-void CGraficObject::Proces(uint32_t DTime){
-	
-	if (_effects.find(1) == _effects.end()){
-		AddEffectPlayer(1);
-		_effects[1]->signal(1); //SIGNAL 1 = begin
-	}
+void CGraficObject::ProcesGrafic(uint32_t DTime){
+
 	//update all partical systems
-	//for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
-	//	if(it->second == NULL){
-	//		it->second =  new ParticalSystem(masterScreen->_getParticalEngines());
-	//		it->second->InitParticleSystem(this,HardPoints::AboveHead);
-	//	}
-	//	it->second->Update(DTime);
-	//}
+	for(map<uint32_t, GraficEffectPlayer*>::iterator it = _effects.begin(); it != _effects.end(); it++){
+		if(it->second)
+			it->second->Proces(DTime);
+	}
 
 }
 
 void CGraficObject::AddEffectPlayer(uint32_t id){
+	cerr<<"begin add EP"<<endl;
 	GraficEffectType* effectdata = masterScreen->getEffectData(id);
-	if (!effectdata)
+	if (!effectdata){
+		cerr<<"ERROR CGraficObject::AddEffectPlayer no effect data"<<endl;
 		return;
+	}
+	cerr<<"new GEP"<<endl;
+	if(_effects.find(id) == _effects.end() || _effects[id] == NULL)
+		_effects[id] = new GraficEffectPlayer(_obj->getCreature(),effectdata);
+	_effects[id]->incRef();
 	
-	GraficEffectPlayer* eplayer = new GraficEffectPlayer(_obj->getCreature(),effectdata);
-	
-	_effects[id] = eplayer; 
+	cerr<<"done add EP"<<endl;
 	
 }
 void CGraficObject::RemoveEffectPlayer(uint32_t id){
-	GraficEffectPlayer* eplayer = _effects.find(id) != _effects.end() ? _effects[id] : NULL;
-	if(eplayer)
-		delete eplayer;
 	
-	_effects.erase(id);
+	GraficEffectPlayer* eplayer = _effects.find(id) != _effects.end() ? _effects[id] : NULL;
+	cerr<<"RM EP"<<eplayer<<" unitid "<<_obj->getId()<<endl;
+	if(eplayer){
+		eplayer->decRef();
+		if(eplayer->refZero()){
+			eplayer->signal(GEP::Term);
+
+		}
+		if(eplayer->canBeRemoved()){
+			delete eplayer;
+			_effects.erase(id);
+		}
+	}
 }
 
 CGraficObject::~CGraficObject() {

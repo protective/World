@@ -17,178 +17,188 @@ void printBuffer(char* buffer, uint32_t len){
 			//cerr<<"offset "<<offset<<endl;
 			SerialData* temp = (SerialData*)(buffer + offset);
 			if (len - offset >= sizeof(uint32_t)*2 && temp->_size <= len - offset){
-				cerr<<"parse len "<< temp->_size<<endl;
+				//cerr<<"parse len "<< temp->_size<<endl;
 				SerialData* st = (SerialData*)(buffer+offset);
-				cerr<<"Recived ********************"<<endl
-						<<"\ttype "<<st->_type <<endl
-						<<"\tsize "<<st->_size<<endl
-						<<"\ttime "<<st->_time<<endl;	
-				switch(temp->_type)
-				{
-					case SerialType::SerialTime:{
-						SerialTime* st = (SerialTime*)(buffer+offset);
-						cerr<<"Recived RegTime*************"<<endl
-						<<"\tTime "<<st->_sendtime<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialReqJoin:{
-						SerialReqJoin* st = (SerialReqJoin*)(buffer+offset);
-						cerr<<"Recived RegJoin*************"<<endl
-						<<"\tid "<<st->_unitId<<endl
-						<<"\tpass "<<st->_pass<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialBeginCast:{
-						SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
-						cerr<<"Recived SerialBeginCast*************"<<endl
-						<<"\tpowerid "<<st->_powerid<<endl
-						<<"\tunitid "<<st->_unitId<<endl
-						<<"\tcastTime "<<st->_castTime<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialCast:{
-						SerialCast* st = (SerialCast*)(buffer+offset);
-						cerr<<"Recived SerialCast*************"<<endl
-						<<"\tpowerid "<<st->_powerid<<endl
-						<<"\tunitid "<<st->_unitId<<endl
-						<<"\ttargetid "<<st->_targetId<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialTakeDmgHeal:{
-						SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
-						cerr<<"Recived SerialTakeDmgHeal*************"<<endl
-						<<"\tpowerid "<<st->_powerid<<endl
-						<<"\tunitid "<<st->_unitId<<endl
-						<<"\tcasterid "<<st->_casterId<<endl
-						<<"\tflags "<<st->_flags<<endl
-						<<"\tvalue "<<st->_value<<endl
-						<<"\tnewvalue "<<st->_newvalue<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialAttribute:{
-						SerialAttribute* st = (SerialAttribute*)(buffer+offset);
-						cerr<<"Recived SerialAttribute*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tattribute "<<st->_attribute<<endl
-						<<"\tvalue "<<st->_value<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialCreature:{
-						SerialCreature* st = (SerialCreature*)(buffer+offset);
-						cerr<<"Recived SerialCreature*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tplayerId "<<st->_playerId<<endl
-						<<"\thpp "<<st->_hpp<<endl
-						<<"\tmpp "<<st->_mpp<<endl
-						<<"\tepp "<<st->_epp<<endl
-						<<"\tx "<<st->_x<<endl
-						<<"\ty "<<st->_y<<endl
-						<<"\tz "<<st->_z<<endl
-						<<"\td "<<st->_d<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialPower:{
-						SerialPower* st = (SerialPower*)(buffer+offset);
-						cerr<<"Recived SerialPower*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tpowerId "<<st->_powerId<<endl
-						<<"\ticonId "<<st->_iconId<<endl
-						<<"\tcd "<<st->_cd<<endl
-						<<"\tcastTime "<<st->_castTime<<endl
-						<<"\thpCost "<<st->_hpCost<<endl
-						<<"\tmanaCost "<<st->_manaCost<<endl
-						<<"\tenergyCost"<<st->_energyCost<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialReqActivatePowerT:{
-						SerialReqActivatePowerT* st = (SerialReqActivatePowerT*)(buffer+offset);
-						cerr<<"Recived SerialReqActivatePowerT*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tpowerId "<<st->_powerId<<endl
-						<<"\ttargetId "<<st->_targetId<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialReqMove:{
-						SerialReqMove* st = (SerialReqMove*)(buffer+offset);
-						cerr<<"Recived SerialReqMove*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tbTime "<<st->_btime<<endl		
-						<<"\t\tposX "<<st->_pos.x<<endl
-						<<"\t\tposY"<<st->_pos.y<<endl
-						<<"\t\tposZ"<<st->_pos.z<<endl
-						<<"\t\tposD"<<st->_pos.d<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialNotisMove:{
-						SerialNotisMove* st = (SerialNotisMove*)(buffer+offset);
-						cerr<<"Recived SerialNotisMove*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tetime "<<st->_etime<<endl
-						<<"\t\tposX "<<st->_pos.x<<endl
-						<<"\t\tposY"<<st->_pos.y<<endl
-						<<"\t\tposZ"<<st->_pos.z<<endl
-						<<"\t\tposD"<<st->_pos.d<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialStatsAbs:{
-						SerialStatsAbs* st = (SerialStatsAbs*)(buffer+offset);
-						cerr<<"Recived SerialStatsAbs*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\t\thp "<<st->_hp<<endl
-						<<"\t\tmana "<<st->_mana<<endl
-						<<"\t\tfocus "<<st->_focus<<endl
-						<<"\t\tmaxhp "<<st->_maxhp<<endl
-						<<"\t\tmaxmana "<<st->_maxmana<<endl
-						<<"\t\tmaxfocus "<<st->_maxfocus<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialStatsRel:{
-						SerialStatsRel* st = (SerialStatsRel*)(buffer+offset);
-						cerr<<"Recived SerialStatsRel*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\t\thpP "<<st->_hpP<<endl
-						<<"\t\tmanaP "<<st->_manaP<<endl
-						<<"\t\tfocusP "<<st->_focusP<<endl;
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					case SerialType::SerialBuff:{
-						SerialBuff* st = (SerialBuff*)(buffer+offset);
-						cerr<<"Recived SerialBuff*************"<<endl
-						<<"\tunitId "<<st->_unitId<<endl
-						<<"\tbuffId "<<st->_buffId<<endl
-						<<"\tpowerId "<<st->_iconId<<endl
-						<<"\tduration"<<st->_duration<<endl
-						<<"\tmaxDuration"<<st->_maxDuration<<endl
-						<<"\tXvisualEffects"<<st->_XVisualEffects<<endl;
-						for(uint32_t i = 0; i < st->_XVisualEffects;i++){
-							SerialBuffVisualEffect* st2 = (SerialBuffVisualEffect*)(buffer+offset+(sizeof(SerialBuff)+(sizeof(SerialBuffVisualEffect)*i)));
-							cerr<<"\t "<<st2->_effect<<endl
-							<<"\t "<<st2->_value<<endl;
+				if(printbufferSerial[st->_type]){
+					cerr<<"Recived ********************"<<endl
+							<<"\ttype "<<st->_type <<endl
+							<<"\tsize "<<st->_size<<endl
+							<<"\ttime "<<st->_time<<endl;	
+					switch(temp->_type)
+					{
+						case SerialType::SerialTime:{
+							SerialTime* st = (SerialTime*)(buffer+offset);
+							cerr<<"Recived RegTime*************"<<endl
+							<<"\tTime "<<st->_sendtime<<endl;
+							cerr<<"****************************"<<endl;
+							break;
 						}
-						
-						cerr<<"****************************"<<endl;
-						break;
-					}
-					default:{
-						cerr<<"error recived unknown packate in GLobal"<<endl;
-						offset = len;
-						break;
+						case SerialType::SerialReqJoin:{
+							SerialReqJoin* st = (SerialReqJoin*)(buffer+offset);
+							cerr<<"Recived RegJoin*************"<<endl
+							<<"\tid "<<st->_unitId<<endl
+							<<"\tpass "<<st->_pass<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialBeginCast:{
+							SerialBeginCast* st = (SerialBeginCast*)(buffer+offset);
+							cerr<<"Recived SerialBeginCast*************"<<endl
+							<<"\tpowerid "<<st->_powerid<<endl
+							<<"\tunitid "<<st->_unitId<<endl
+							<<"\tcastTime "<<st->_castTime<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialCast:{
+							SerialCast* st = (SerialCast*)(buffer+offset);
+							cerr<<"Recived SerialCast*************"<<endl
+							<<"\tpowerid "<<st->_powerid<<endl
+							<<"\tunitid "<<st->_unitId<<endl
+							<<"\ttargetid "<<st->_targetId<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialTakeDmgHeal:{
+							SerialTakeDmgHeal* st = (SerialTakeDmgHeal*)(buffer+offset);
+							cerr<<"Recived SerialTakeDmgHeal*************"<<endl
+							<<"\tpowerid "<<st->_powerid<<endl
+							<<"\tunitid "<<st->_unitId<<endl
+							<<"\tcasterid "<<st->_casterId<<endl
+							<<"\tflags "<<st->_flags<<endl
+							<<"\tvalue "<<st->_value<<endl
+							<<"\tnewvalue "<<st->_newvalue<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialAttribute:{
+							SerialAttribute* st = (SerialAttribute*)(buffer+offset);
+							cerr<<"Recived SerialAttribute*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tattribute "<<st->_attribute<<endl
+							<<"\tvalue "<<st->_value<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialCreature:{
+							SerialCreature* st = (SerialCreature*)(buffer+offset);
+							cerr<<"Recived SerialCreature*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tplayerId "<<st->_playerId<<endl
+							<<"\thpp "<<st->_hpp<<endl
+							<<"\tmpp "<<st->_mpp<<endl
+							<<"\tepp "<<st->_epp<<endl
+							<<"\tx "<<st->_x<<endl
+							<<"\ty "<<st->_y<<endl
+							<<"\tz "<<st->_z<<endl
+							<<"\td "<<st->_d<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialPower:{
+							SerialPower* st = (SerialPower*)(buffer+offset);
+							cerr<<"Recived SerialPower*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tpowerId "<<st->_powerId<<endl
+							<<"\ticonId "<<st->_iconId<<endl
+							<<"\tcd "<<st->_cd<<endl
+							<<"\tcastTime "<<st->_castTime<<endl
+							<<"\thpCost "<<st->_hpCost<<endl
+							<<"\tmanaCost "<<st->_manaCost<<endl
+							<<"\tenergyCost"<<st->_energyCost<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialReqActivatePowerT:{
+							SerialReqActivatePowerT* st = (SerialReqActivatePowerT*)(buffer+offset);
+							cerr<<"Recived SerialReqActivatePowerT*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tpowerId "<<st->_powerId<<endl
+							<<"\ttargetId "<<st->_targetId<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialReqMove:{
+							SerialReqMove* st = (SerialReqMove*)(buffer+offset);
+							cerr<<"Recived SerialReqMove*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tbTime "<<st->_btime<<endl		
+							<<"\t\tposX "<<st->_pos.x<<endl
+							<<"\t\tposY"<<st->_pos.y<<endl
+							<<"\t\tposZ"<<st->_pos.z<<endl
+							<<"\t\tposD"<<st->_pos.d<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialNotisMove:{
+							SerialNotisMove* st = (SerialNotisMove*)(buffer+offset);
+							cerr<<"Recived SerialNotisMove*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tetime "<<st->_etime<<endl
+							<<"\t\tposX "<<st->_pos.x<<endl
+							<<"\t\tposY"<<st->_pos.y<<endl
+							<<"\t\tposZ"<<st->_pos.z<<endl
+							<<"\t\tposD"<<st->_pos.d<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialStatsAbs:{
+							SerialStatsAbs* st = (SerialStatsAbs*)(buffer+offset);
+							cerr<<"Recived SerialStatsAbs*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\t\thp "<<st->_hp<<endl
+							<<"\t\tmana "<<st->_mana<<endl
+							<<"\t\tfocus "<<st->_focus<<endl
+							<<"\t\tmaxhp "<<st->_maxhp<<endl
+							<<"\t\tmaxmana "<<st->_maxmana<<endl
+							<<"\t\tmaxfocus "<<st->_maxfocus<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialStatsRel:{
+							SerialStatsRel* st = (SerialStatsRel*)(buffer+offset);
+							cerr<<"Recived SerialStatsRel*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\t\thpP "<<st->_hpP<<endl
+							<<"\t\tmanaP "<<st->_manaP<<endl
+							<<"\t\tfocusP "<<st->_focusP<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialBuff:{
+							SerialBuff* st = (SerialBuff*)(buffer+offset);
+							cerr<<"Recived SerialBuff*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tbuffId "<<st->_buffId<<endl
+							<<"\tpowerId "<<st->_iconId<<endl
+							<<"\tduration"<<st->_duration<<endl
+							<<"\tmaxDuration"<<st->_maxDuration<<endl
+							<<"\tXvisualEffects"<<st->_XVisualEffects<<endl;
+							for(uint32_t i = 0; i < st->_XVisualEffects;i++){
+								SerialBuffVisualEffect* st2 = (SerialBuffVisualEffect*)(buffer+offset+(sizeof(SerialBuff)+(sizeof(SerialBuffVisualEffect)*i)));
+								cerr<<"\t "<<st2->_effect<<endl
+								<<"\t "<<st2->_value<<endl;
+							}
+
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						case SerialType::SerialRMBuff:{
+							SerialRMBuff* st = (SerialRMBuff*)(buffer+offset);
+							cerr<<"Recived SerialRMBuff*************"<<endl
+							<<"\tunitId "<<st->_unitId<<endl
+							<<"\tbuffId "<<st->_buffId<<endl;
+							cerr<<"****************************"<<endl;
+							break;
+						}
+						default:{
+							cerr<<"error recived unknown packate in GLobal"<<endl;
+							offset = len;
+							break;
+						}
 					}
 				}
-				cerr<<"offset += "<<temp->_size<<endl;
+				//cerr<<"offset += "<<temp->_size<<endl;
 		
 				offset += temp->_size;
 

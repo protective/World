@@ -7,7 +7,8 @@
 
 #include "GraficEffectType.h"
 
-GraficEffectType::GraficEffectType() {
+GraficEffectType::GraficEffectType(uint32_t id) {
+	_id = id;
 }
 
 

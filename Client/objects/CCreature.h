@@ -14,6 +14,7 @@
 
 class CCreature : public CObj , public CGraficObject {
 public:
+	friend class CGraficObject;
 	CCreature(uint32_t id, uint32_t playerId, CPos pos, Model* model);
 	virtual void Proces(uint32_t DTime);
 	uint32_t getCastTime(){return _castTime;}
@@ -22,6 +23,8 @@ public:
 	void setCastCompletionTime(uint32_t time){_castCompletionTime = time;}
 	virtual CCreature* getCreature(){return this;}
 	uint32_t addBuff(CBuff* buff);
+	uint32_t removeBuff(CBuff* buff);
+	map<uint32_t,CBuff*>& getBuffs(){return _bufflist;}
 	map<uint32_t,CPower*>& getPowers(){return this->_powerList;}
 	map<Attributes::Enum , int32_t>& getAttibute(){return _attribute;}
 	virtual ~CCreature();

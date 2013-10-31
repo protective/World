@@ -12,11 +12,13 @@
 
 class GraficEffectType {
 public:
-	GraficEffectType();
+	GraficEffectType(uint32_t id);
+	uint32_t getId(){return _id;}
 	map<uint32_t, GraficEffectDataBlock*>& getData(){return _particalSystemsData;}
 	
 	virtual ~GraficEffectType();
 private:
+	uint32_t _id;
 	map<uint32_t, GraficEffectDataBlock*> _particalSystemsData;
 };
 

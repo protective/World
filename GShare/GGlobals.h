@@ -13,10 +13,14 @@
 #include <iostream>
 #include <fstream>
 #include <stdint.h>
+#include <map>
+#include "Enums.h"
+#include "../Network/Serialize.h"
 #define PI 3.14159265358979323846
-
+using namespace std;
 extern bool printbufferbool;
 extern bool printposbufferbool;
+extern map<SerialType::Enum, bool> printbufferSerial;
 extern uint32_t Gtime;
 extern double MySin[360];
 extern double MyCos[360];

@@ -6,6 +6,7 @@
  */
 
 #include "screenControler.h"
+#include "GraficEffectDataBlock.h"
 #include "../UI/UIMainFrame.h"
 #include "../objects/CCreature.h"
 #include "Grafic.h"
@@ -94,6 +95,19 @@ screenControler::screenControler() {
 	_particalEngine = new ParticalEngine();
 	_particalEngine->InitParticleEngine();
 	
+	cerr<<"LOAD EFFECT DATA TODO FIX ALL THIS"<<endl;
+	GraficEffectDataBlockState* GEDBS_RUN = new GraficEffectDataBlockState();
+	GEDBS_RUN->_emitterSpwanRate = 100;
+	GraficEffectDataBlockState* GEDBS_TERM = new GraficEffectDataBlockState();
+	GEDBS_TERM->_emitterSpwanRate = 10000;
+	GraficEffectDataBlock* GEDB = new GraficEffectDataBlock();
+	GEDB->_engine = _particalEngine;
+	GEDB->SetDataBlockState(PSStates::Init,GEDBS_RUN);
+	GEDB->SetDataBlockState(PSStates::Run,GEDBS_RUN);
+	GEDB->SetDataBlockState(PSStates::Term,GEDBS_TERM);
+	_effetsData[1] = new GraficEffectType(1);
+	_effetsData[1]->getData()[0] = GEDB;		
+			
 	cerr<<"INIT TEST MODEL"<<endl;
 	Model* md = new Model(_ObjShaderProgram);
 	_models.push_back(md);
@@ -163,7 +177,6 @@ void screenControler::drawScreen()
 
 	mainFrame->updateUI(); //update all ui objects
 	mainFrame->draw(); //draw all ui objects
-
 	//draw 3d objecs on screen
 	for (map<uint32_t,CObj*>::iterator it = playerObj->getObjs().begin(); it != playerObj->getObjs().end();it++){
 		if (it->second->getCreature())

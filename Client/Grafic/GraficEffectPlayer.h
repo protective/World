@@ -10,21 +10,32 @@
 
 #include "GraficEffectType.h"
 #include "ParticalSystems/ParticalSystem.h"
-
-
+namespace GEP {
+	enum Options {
+	  Init    = 0x01,
+	  Term    = 0x02
+	  
+	};
+}
 class GraficEffectPlayer {
 public:
 	GraficEffectPlayer(CCreature* obj, GraficEffectType* typeData);
+	~GraficEffectPlayer();
+	void incRef(){_refs++;}
+	void decRef(){_refs--;}
+	void checkDeleteAllParticalSystems(bool force);
+	bool refZero(){return _refs == 0;}
 	virtual void draw(Camera* camera);
 	virtual void Proces(uint32_t DTime);
 	virtual uint32_t signal(uint32_t signal);
-	
-	virtual ~GraficEffectPlayer();
+	bool canBeRemoved();
 private:
 	uint32_t _EffectId;
 	CCreature* _obj;
 	GraficEffectType* _typeData;
 	map<uint32_t, ParticalSystem*> _particalS;
+	uint32_t _signal;
+	uint32_t _refs;
 	
 };
 

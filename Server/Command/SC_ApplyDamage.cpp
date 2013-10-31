@@ -20,7 +20,7 @@ SCommand(time,procesUnit){
 uint32_t SC_ApplyDamage::execute(){
 
 	_procesUnit->getCreature()->getAttibute()[Attributes::Hp] -= _damage;
-	cerr<<"damge "<<_damage<<" type "<<_dmgType<<endl;
+	//cerr<<"damge "<<_damage<<" type "<<_dmgType<<endl;
 	
 	char message[sizeof(SerialTakeDmgHeal)];
 	memset(message,0,sizeof(SerialTakeDmgHeal));
@@ -30,15 +30,15 @@ uint32_t SC_ApplyDamage::execute(){
 	data->_time = _time;
 	data->_value = 0 - _damage;
 	data->_flags = 0;
-	cerr<<"id "<<_procesUnit->getCreature()->getId()<<endl;
-	cerr<<"maxhp "<<_procesUnit->getCreature()->getAttibute()[Attributes::HpMax]<<endl;
+	//cerr<<"id "<<_procesUnit->getCreature()->getId()<<endl;
+	//cerr<<"maxhp "<<_procesUnit->getCreature()->getAttibute()[Attributes::HpMax]<<endl;
 	data->_unitId = _procesUnit->getId();
 	data->_casterId = _caster->getId();
 	data->_powerid = _power->getId();
 	data->_newvalue = max(0,_procesUnit->getCreature()->getAttibute()[Attributes::Hp]);
-	cerr<<"new "<<data->_newvalue<<endl;
+	//cerr<<"new "<<data->_newvalue<<endl;
 	for(list<Client*>::iterator it = _procesUnit->getSubscribers()[0].begin(); it != _procesUnit->getSubscribers()[0].end(); it++){
-		cerr<<"subsciber id "<<(*it)->getPlayerId()<<" unit "<<_procesUnit->getId() <<endl;
+		//cerr<<"subsciber id "<<(*it)->getPlayerId()<<" unit "<<_procesUnit->getId() <<endl;
 		if ((*it)->getPlayerId() == _procesUnit->getId()){
 			sendtoC(*it,message,sizeof(SerialTakeDmgHeal));
 		}

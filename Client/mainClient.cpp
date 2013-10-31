@@ -36,7 +36,9 @@ using namespace std;
 
 
  int main(int argc, char* argv[]){
-
+	for(int j = 0; j < 100;j++){
+		printbufferSerial[(SerialType::Enum)j] = false;
+	}
 	//glutInit(&argc, argv);
 	
 	ifstream ifile("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf");
@@ -53,8 +55,18 @@ using namespace std;
 	for(int i = 0; i < argc;i++){
 		if ((string)argv[i]=="-p"){
 			i++;
+			for(int j = 0; j < 100;j++){
+				printbufferSerial[(SerialType::Enum)j] = true;
+			}
 			CPrintBuff = true;
 			cerr<<"print "<<endl;
+		}else if ((string)argv[i]=="-pB"){
+			i++;
+			CPrintBuff = true;
+			printbufferSerial[SerialType::SerialBuff] = true;
+			printbufferSerial[SerialType::SerialRMBuff] = true;
+			cerr<<"print buffer Buff"<<endl;
+			
 		}else if((string)argv[i]=="-t"){
 			i++;
 			argteam = atoi(argv[i]);
@@ -121,7 +133,6 @@ using namespace std;
 		//cerr<<deltaTime<<endl;
 		lastTime = SDL_GetTicks();
 		pthread_mutex_lock(&lockInput);
-
 		screen->drawScreen();
 		pthread_mutex_unlock(&lockInput);
 		playerObj->procesPlayerUnit(deltaTime);

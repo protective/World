@@ -49,13 +49,14 @@ void main()
             EndPrimitive();
             Age = 0.0;
         }
-
-        Type1 = PARTICLE_TYPE_LAUNCHER;
-        Position1 = gEmitterPos;
-        Velocity1 = Velocity0[0];
-        Age1 = Age;
-        EmitVertex();
-        EndPrimitive();
+		if (gLauncherLifetime < 10000){
+		    Type1 = PARTICLE_TYPE_LAUNCHER;
+		    Position1 = gEmitterPos;
+		    Velocity1 = Velocity0[0];
+		    Age1 = Age;
+		    EmitVertex();
+		    EndPrimitive();
+		}
     }
     else {
         float DeltaTimeSecs = gDeltaTimeMillis / 1000.0f;

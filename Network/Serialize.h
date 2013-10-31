@@ -34,6 +34,7 @@ namespace SerialType{
 				SerialStatsFullAbs = 16,
 				SerialAttribute = 17,
 				SerialBuff = 18,
+				SerialRMBuff = 19,
 			
 	};
 }
@@ -184,6 +185,11 @@ struct SerialBuff : public SerialData{ //id = 18
 	uint32_t _duration;
 	uint32_t _maxDuration;
 	uint32_t _XVisualEffects;
+};
+
+struct SerialRMBuff : public SerialData{ //id = 19
+	uint32_t _unitId;
+	uint32_t _buffId;
 };
 
 #endif	/* SERIALIZE_H */

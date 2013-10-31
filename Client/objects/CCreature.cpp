@@ -19,22 +19,35 @@ CObj(id,playerId,pos), CGraficObject(this,model){
 }
 
 void CCreature::Proces(uint32_t DTime){
-	CObj::Proces(DTime);
-	CGraficObject:Proces(DTime);
-	//
-	//for(map<uint32_t, ParticalSystem*>::iterator it = _particalSystems.begin(); it != _particalSystems.end(); it++){
-	//	if(it->second == NULL){
-	//		it->second =  new ParticalSystem(masterScreen->_getParticalEngines());
-	//		it->second->InitParticleSystem(this,HardPoints::AboveHead);
-	//	}
-	//	it->second->Update(DTime);
-	//}
+
+	CObj::Proces(DTime); //Basic movement
+	ProcesGrafic(DTime); //do the grafic
+
 }
 
 uint32_t CCreature::addBuff(CBuff* buff){
+	cerr<<"ADD Buff"<<endl;
 	_bufflist[buff->getId()] = buff;
+	for(list<GraficEffectType*>::iterator it2 = buff->getEffects().begin(); it2 != buff->getEffects().end(); it2++){
+		if((*it2)){
+			AddEffectPlayer((*it2)->getId());
+			_effects[(*it2)->getId()]->signal(GEP::Init);
+		}
+		cerr<<"DONE ADD EP"<<endl;
+	}
 	
-	//create the effecplayer;
+	cerr<<"DONE ADD Buff"<<endl;
+}
+uint32_t CCreature::removeBuff(CBuff* buff){
+	_bufflist.erase(buff->getId());
+	for(list<GraficEffectType*>::iterator it2 = buff->getEffects().begin(); it2 != buff->getEffects().end(); it2++){
+		if((*it2)){
+			RemoveEffectPlayer((*it2)->getId());
+		}
+		cerr<<"DONE ADD EP"<<endl;
+	}
+	
+	//TODO delete buff??
 }
 
 

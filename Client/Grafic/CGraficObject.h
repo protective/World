@@ -20,7 +20,7 @@ public:
 	//virtual void addParticalsystem(uint32_t index){_particalSystems[index]= NULL;}
 	virtual void draw(CCreature* creature);
 	
-	virtual	void Proces(uint32_t DTime);
+	void ProcesGrafic(uint32_t DTime);
 	virtual void rayIntersect(CCreature* creature, glm::mat2x3 ray);
 	Model* getModel(){return _model;}
 	virtual ~CGraficObject();

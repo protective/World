@@ -28,7 +28,7 @@ uint32_t SC_FirePower::execute(){
 	
 	_procesUnit->getCreature()->SetAttributes(Attributes::Mana, a - _power->getPowerType()->getStats()[PowerTypeStats::ManaCost]);
 	//TODO check if more need to be send with projectile
-	SC_HitPower* hit = new SC_HitPower(_time + spellDelay, _procesUnit,_target,_power);
+	SC_HitPower* hit = new SC_HitPower(_time + spellDelay,_target ,_procesUnit,_power);
 	hit->getValues()[PowerProjectileMods::Shit] = _procesUnit->getCreature()->getAttibute()[Attributes::SpellHit] + _power->getPowerType()->getStats()[PowerTypeStats::BonusHit];
 	hit->getValues()[PowerProjectileMods::Scrit] = _procesUnit->getCreature()->getAttibute()[Attributes::SpellCrit] + _power->getPowerType()->getStats()[PowerTypeStats::BonusCrit];
 	hit->getValues()[PowerProjectileMods::Spower] = _procesUnit->getCreature()->getAttibute()[Attributes::SpellPower];

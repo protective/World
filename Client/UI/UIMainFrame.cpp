@@ -18,12 +18,12 @@ UIBaseFrame(NULL,0,0,Basewidth,Basehight){
 }
 
 void UIMainFrame::updateUI(){
+	
 	if(!_castbar && playerObj->player()){
 		_castbar = new UICastBar(this,20,20,100,20,playerObj->player());
 		_childs.push_back(_castbar);
 	}
 	if(!_playerBox && playerObj->player()){
-		cerr<<"create unit box"<<endl;
 		_playerBox = new UIUnitBox(this,playerObj->player(),20,Basehight-80);
 		_childs.push_back(_playerBox);
 	}
@@ -34,7 +34,6 @@ void UIMainFrame::updateUI(){
 				UIAbilityBox* abbox = new UIAbilityBox(_sockets[it->first],0,0,playerObj->player(),it->second);
 				_sockets[it->first]->drop(abbox);
 				_childs.push_back(_sockets[it->first]);
-				cerr<<"create sockets"<<endl;
 				
 			}
 		}

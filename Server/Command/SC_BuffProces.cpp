@@ -18,15 +18,15 @@ SCommand(time,procesUnit){
 uint32_t SC_BuffProces::execute(){
 	
 	_buff->procesTick(this);
+	cerr<<"sizebuff "<<_procesUnit->getCreature()->getBuffList().size()<<endl;
 	if(_buff->getTickCount()> 0){
 		_time += _buff->getTickTime();
 		_procesUnit->addCommand(this);
 		return 1;
 	}else{
 		if(_procesUnit->getCreature())
-			_procesUnit->getCreature()->removeBuff(_buff);
+			cerr<<"remove res>"<<_procesUnit->getCreature()->removeBuff(_buff)<<endl;
 		delete _buff;
-		cerr<<"delete buff"<<endl;
 		return 0;
 	}
 }

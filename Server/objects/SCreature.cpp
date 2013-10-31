@@ -177,30 +177,81 @@ void SCreature::addPower(SPower* power){
 }
 uint32_t SCreature::addBuff(SBuff* buff, uint32_t time){
 	for(int i = 0; ;i++){
+		//find location for buff
 		if(_bufflist.find(i) == _bufflist.end()){
 			_bufflist[i] = buff;
+			//added now update creature
 			updateAttribute();
+			
+			//network AddBuff
+			uint32_t Xvisual = buff->getVIsualEffects().size();
+			uint32_t BSize = sizeof(SerialBuff)+(Xvisual*sizeof(SerialBuffVisualEffect));
+			char message[BSize];
+			memset(message,0,BSize);
+			SerialBuff* data = (SerialBuff*)(message);
+			data->_type = SerialType::SerialBuff;
+			data->_size = BSize;
+			data->_time = time;
+			data->_unitId = this->getId();
+			data->_buffId = i;
+			data->_duration = time;
+			data->_maxDuration = time + (buff->getTickCount() * buff->getTickTime());
+			data->_XVisualEffects = Xvisual;
+			data->_iconId = 1;
+
+			//append visualEffectsData
+			uint32_t j = 0;
+			for(map<BuffVisualEffects::Enum,uint32_t>::iterator it = buff->getVIsualEffects().begin(); it != buff->getVIsualEffects().end(); it++){
+				SerialBuffVisualEffect* data2 = (SerialBuffVisualEffect*)(message+(sizeof(SerialBuff))+(sizeof(SerialBuffVisualEffect)*j));
+				data2->_effect = it->first;
+				data2->_value = it->second;
+				j++;
+			}
+			//send add buff to all subscribers
+			for(list<Client*>::iterator it = this->getSubscribers()[0].begin(); it != this->getSubscribers()[0].end(); it++){
+				sendtoC(*it,message,BSize);
+			}
+		
+			//return index of buff
 			return i;
 		}			
 	}	
-
 }
-
-
-
-
 uint32_t SCreature::addBuff(SBuff* buff){
 	this->addBuff(buff,0);
 }
 
-uint32_t SCreature::removeBuff(SBuff* buff){
+int32_t SCreature::removeBuff(SBuff* buff){
+	
 	for(map<uint32_t,SBuff*>::iterator it = _bufflist.begin(); it != _bufflist.end();it++){
+		//find buff
 		if(it->second == buff){
+			//remove it
 			_bufflist.erase(it);
-			updateAttribute();
+			//update creature
+			updateAttribute();	
+			
+			//network remove buff
+			char message[sizeof(SerialRMBuff)];
+			memset(message,0,sizeof(SerialRMBuff));
+			SerialRMBuff* data = (SerialRMBuff*)(message);
+			data->_type = SerialType::SerialRMBuff;
+			data->_size = sizeof(SerialRMBuff);
+			data->_time = 0;
+			data->_unitId = this->getId();
+			data->_buffId = it->first;
+
+			//send add buff to all subscribers
+			for(list<Client*>::iterator it2 = this->getSubscribers()[0].begin(); it2 != this->getSubscribers()[0].end(); it2++){
+				sendtoC(*it2,message,sizeof(SerialRMBuff));
+			}
+			
+			cerr<<"done remove"<<endl;
+			//return index of buff removed
 			return it->first;
 		}
 	}
+	return -1;
 }
 
 void SCreature::updateAttribute(){

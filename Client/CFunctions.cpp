@@ -209,6 +209,16 @@ uint32_t parseBuffer(char* buffer, uint32_t len){
 					playerObj->recNotisMove(st);
 					break;
 				}
+				case SerialType::SerialBuff:{
+					SerialBuff* st = (SerialBuff*)(buffer+offset);
+					playerObj->recBuff(st);
+					break;
+				}
+				case SerialType::SerialRMBuff:{
+					SerialRMBuff* st = (SerialRMBuff*)(buffer+offset);
+					playerObj->recBuff(st);
+					break;
+				}
 				default:{
 					cerr<<"ERROR PARSING debug recived = "<<(uint32_t) *(buffer+offset)<<endl;
 

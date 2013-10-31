@@ -40,6 +40,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Grafic/GraficEffectPlayer.o \
 	${OBJECTDIR}/Powers/CPower.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o \
+	${OBJECTDIR}/Grafic/GraficEffectDataBlockState.o \
 	${OBJECTDIR}/Grafic/Camera.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o \
 	${OBJECTDIR}/Grafic/Shaders/BillboardShader.o \
@@ -130,6 +131,11 @@ ${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o: Grafic/ParticalSystems/Par
 	${MKDIR} -p ${OBJECTDIR}/Grafic/ParticalSystems
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/ParticalSystems/ParticalEngine.o Grafic/ParticalSystems/ParticalEngine.cpp
+
+${OBJECTDIR}/Grafic/GraficEffectDataBlockState.o: Grafic/GraficEffectDataBlockState.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/GraficEffectDataBlockState.o Grafic/GraficEffectDataBlockState.cpp
 
 ${OBJECTDIR}/Grafic/Camera.o: Grafic/Camera.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic

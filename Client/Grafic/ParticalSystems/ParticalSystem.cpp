@@ -7,22 +7,31 @@
 
 #include "ParticalSystem.h"
 #include "../../objects/CCreature.h"
-ParticalSystem::ParticalSystem(ParticalEngine* engine) {
-	cerr<<"Create particle system"<<endl;
-	_engine = engine;
+ParticalSystem::ParticalSystem(GraficEffectDataBlock* data) {
+	_engine = data->_engine;
+	_data = data;
 	m_isFirst = true;
 	m_currVB = 0;
     m_currTFB = 1;
 	m_time = 0;
+	_expireTime = 0;
+	changeStateUpdate(PSStates::Init);
 }
 
+ParticalSystem::~ParticalSystem(){
+    if (m_transformFeedback[0] != 0) {
+        glDeleteTransformFeedbacks(2, m_transformFeedback);
+    }
+    
+    if (m_particleBuffer[0] != 0) {
+        glDeleteBuffers(2, m_particleBuffer);
+    }
+}
 
 bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
-	cerr<<"INIT particle system"<<endl;
 	
 	_creature = object;
 	_hp = hp;
-	
     Particle Particles[MAX_PARTICLES];
 	memset(&Particles,0,sizeof(Particle)*MAX_PARTICLES);
     Particles[0].Type = PARTICLE_TYPE_LAUNCHER;
@@ -30,7 +39,6 @@ bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
     Particles[0].Vel = glm::vec3(0.0f, 0.0001f, 0.0f);
     Particles[0].LifetimeMillis = 0.0f;
 	
- 
 	glGenTransformFeedbacks(2, m_transformFeedback);
 	ExitOnGLError("ERROR: glGenTransformFeedbacks ");
     glGenBuffers(2, m_particleBuffer);
@@ -42,21 +50,17 @@ bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
         glBufferData(GL_ARRAY_BUFFER, sizeof(Particles), Particles, GL_DYNAMIC_DRAW);
         glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, m_particleBuffer[i]);        
     }
-	
     _engine->getUpShader()->enable();
     _engine->getUpShader()->SetRandomTextureUnit(3);
-    _engine->getUpShader()->SetLauncherLifetime(100.0f);
+    _engine->getUpShader()->SetLauncherLifetime((float)_data->getEmitterSpwanRate(_state));
     _engine->getUpShader()->SetShellLifetime(10000.0f);
 	
     ExitOnGLError("ERROR: Setuniforms ");
 
-    
     _engine->getRandomVec3Tex()->Bind(GL_TEXTURE3);
 	ExitOnGLError("ERROR: getRandomVec3Tex()->Bind ");
 
-
     _engine->getBillboardShader()->enable();
-
 	
     _engine->getBillboardShader()->SetColorTextureUnit(0);
 
@@ -64,21 +68,27 @@ bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
     
 	//TODO load correct texture
     m_pTexture = textures[1];
-
+	changeStateUpdate(PSStates::Init);
     return 0;
 }
 
+bool ParticalSystem::TermParticleSystem(){
+	_expireTime = m_time+_data->getTermTime();
+	changeStateUpdate(PSStates::Term);
+}
 
-
+void ParticalSystem::changeStateUpdate(PSStates::Enum state){
+	_state = state;
+	
+}
 
 void ParticalSystem::Update(int DeltaTimeMillis)
 {
-	
 	m_time += DeltaTimeMillis;
     _engine->getUpShader()->enable();
     _engine->getUpShader()->SetTime(m_time);
     _engine->getUpShader()->SetDeltaTimeMillis(DeltaTimeMillis);
-   
+	_engine->getUpShader()->SetLauncherLifetime((float)_data->getEmitterSpwanRate(_state));
 	_engine->getUpShader()->SetEmitterPos(_creature->getGraficPos() + _creature->getModel()->getHardPoint(_hp));
 	
 	
@@ -122,7 +132,6 @@ void ParticalSystem::Update(int DeltaTimeMillis)
 
 void ParticalSystem::draw(Camera* camera){
 
-	
     _engine->getBillboardShader()->enable();
 	//cerr<<"cam x "<<camera->getPosition()->x<<" y "<<camera->getPosition()->y<<" z "<<camera->getPosition()->z<<endl;
     _engine->getBillboardShader()->SetCameraPosition(camera->getPosition());
@@ -134,9 +143,6 @@ void ParticalSystem::draw(Camera* camera){
 	//VP = glm::mat4();
     _engine->getBillboardShader()->SetVP(&(PV)) ;
 	ExitOnGLError("ERROR: ParticalSystem::draw set uniforms");
-	
-    //m_pTexture->Bind(GL_TEXTURE0);
-    
 	
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_pTexture);
@@ -158,9 +164,10 @@ void ParticalSystem::draw(Camera* camera){
 	//flip buffer
 	m_currVB = m_currTFB;
     m_currTFB = (m_currTFB + 1) & 0x1;
+	if(_state == PSStates::Init){
+		
+		changeStateUpdate(_state);
+	}
 }
 
-
-ParticalSystem::~ParticalSystem() {
-}
 

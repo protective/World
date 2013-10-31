@@ -19,6 +19,15 @@ namespace SerialTakeDmgHealBitF
   const uint32_t SOME_VALUE3 = 0x08;
 }
 
+namespace PSStates{
+	enum Enum{
+		Default,
+		Init,
+		Run,
+		Term
+	};
+}
+
 namespace Textures{
 	enum Enum{
 		Invalid = 0,
@@ -142,37 +151,7 @@ namespace PowerTypeStats{
 		BonusCrit = 9,
 	};
 }
-namespace ParticalTex{
-	enum Enum{
-		Invalid = 0,
-        test = 1,
-		eks1 = 2,
-		eks2 = 3,
-		eks3 = 4,
-		eks4 = 5,
-		eks5 = 6,
-		eks6 = 7,
-		eks4l = 8,
-		eks5l = 9,
-		eks6l = 10,
-		eks7l = 11,
-		eksshc1 = 12,
-		eksshc2 = 13,
-		eksshc3 = 14,
-		eksshc4 = 15,
-		eksshc5 = 16,
-		eksshc6 = 17,
-		eksshc7 = 18,
-		eksshc4l = 19,
-		eksshc5l = 20,
-		eksshc6l = 21,
-		eksshc7l = 22,
-		LaserTail1 = 23,
-		MissileTail1 = 24,
-		eksship1 = 25,
-		plasma1 = 26,
-	};
-}
+
 
 #endif	/* ENUMS_H */
 

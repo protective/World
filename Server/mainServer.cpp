@@ -42,13 +42,23 @@ using namespace std;
 void* procesworldThread(uint32_t id);
 
 int main(int argc, char** argv){
-
+	for(int j = 0; j < 100;j++){
+		printbufferSerial[(SerialType::Enum)j] = false;
+	}
 	for(int i = 0; i < argc;i++){
 		if ((string)argv[i]=="-p"){
 			i++;
 			SPrintBuff = true;
+			for(int j = 0; j < 100;j++){
+				printbufferSerial[(SerialType::Enum)j] = true;
+			}
 			cerr<<"print "<<endl;
-		}
+		}else if ((string)argv[i]=="-pB"){
+			i++;
+			SPrintBuff = true;
+			printbufferSerial[SerialType::SerialBuff] = true;
+			cerr<<"print buffer Buff"<<endl;
+		}	
 	}
 	for(int i = 0 ; i< 360; i++){
 		double vector = (i*PI)/180;
@@ -82,20 +92,20 @@ int main(int argc, char** argv){
 	
 	
 	//EFFECTS
-	SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
-	buff->setTotalDamage(100);
-	buff->setDamageType(DamageTypes::arcane);
-	buff->setTickTime(2000);
-	buff->gettickEffects().push_back(ticksEffects(25));
-	buff->gettickEffects().push_back(ticksEffects(50));
-	buff->gettickEffects().push_back(ticksEffects(100));
-	buff->getStatsMods()[StatsMods::SpellCrit] = 100;
+	//SEffectTypeAddBuff* buff = new SEffectTypeAddBuff();
+	//buff->setTotalDamage(100);
+	//buff->setDamageType(DamageTypes::arcane);
+	//buff->setTickTime(2000);
+	//buff->gettickEffects().push_back(ticksEffects(25));
+	//buff->gettickEffects().push_back(ticksEffects(50));
+	//buff->gettickEffects().push_back(ticksEffects(100));
+	//buff->getStatsMods()[StatsMods::SpellCrit] = 100;
 	
-	SEffectTypeDD* DD = new SEffectTypeDD();
-	DD->setCritMod(150);
-	DD->setMinDamage(50);
-	DD->setMaxDamage(60);
-	DD->setDamageType(DamageTypes::Fire);
+	//SEffectTypeDD* DD = new SEffectTypeDD();
+	//DD->setCritMod(150);
+	//DD->setMinDamage(50);
+	//DD->setMaxDamage(60);
+	//DD->setDamageType(DamageTypes::Fire);
 	
 	
 	//powerTypes

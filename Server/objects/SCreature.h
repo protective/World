@@ -13,6 +13,7 @@
 #include "../Command/SC_ObjProces.h"
 class SCreature : public SObj {
 public:
+	friend class SC_BuffProces;
 	SCreature(uint32_t id, SPos pos, uint32_t team, uint32_t playerId);
 	virtual ~SCreature();
 	virtual SCreature* getCreature(){return this;}
@@ -22,16 +23,23 @@ public:
 	void SetAttributes(Attributes::Enum attri,int32_t value);
 	void transmitAttribute(Attributes::Enum attri);
 	map<uint32_t,SBuff*>& getBuffList(){return _bufflist;}
-	uint32_t addBuff(SBuff* buff);
-	uint32_t addBuff(SBuff* buff, uint32_t time);
-	uint32_t removeBuff(SBuff* buff);
+
 	virtual bool readyCast(){if (_casting) return false;return true;}
 	void setCasting(SPower* casting);
 	void sendToClient(Client* cli);
 	int32_t modMana(int32_t mana);
 	int32_t modFocus(int32_t focus);
+	
+	uint32_t addBuff(SBuff* buff);
+	uint32_t addBuff(SBuff* buff, uint32_t time);
+	
 	void updateAttribute();
 private:
+	
+	//only acces from commands via friend
+	int32_t removeBuff(SBuff* buff);
+	//***********************************
+	
 	map<uint32_t,SPower*> _powerList;
 	map<Attributes::Enum , int32_t> _attribute;
 	map<Attributes::Enum , int32_t> _BaseAttribute;

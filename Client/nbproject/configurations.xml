@@ -43,6 +43,8 @@
         <itemPath>Grafic/Grafic.h</itemPath>
         <itemPath>Grafic/GraficEffectDataBlock.cpp</itemPath>
         <itemPath>Grafic/GraficEffectDataBlock.h</itemPath>
+        <itemPath>Grafic/GraficEffectDataBlockState.cpp</itemPath>
+        <itemPath>Grafic/GraficEffectDataBlockState.h</itemPath>
         <itemPath>Grafic/GraficEffectPlayer.cpp</itemPath>
         <itemPath>Grafic/GraficEffectPlayer.h</itemPath>
         <itemPath>Grafic/GraficEffectType.cpp</itemPath>
