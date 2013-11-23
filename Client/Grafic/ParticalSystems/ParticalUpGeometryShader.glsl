@@ -43,7 +43,7 @@ void main()
             Position1 = Position0[0] + (GetRandomDir((gTime+1)/1000.0)*20);
             //vec3 Dir = GetRandomDir(gTime/1000.0);
            // Dir.y = max(Dir.y, 0.5);
-            Velocity1 = vec3(1.0, -1.0, 0.0) ;
+            Velocity1 = vec3(0.0, 0.0, 0.0) ;
             Age1 = 0.0;
             EmitVertex();
             EndPrimitive();

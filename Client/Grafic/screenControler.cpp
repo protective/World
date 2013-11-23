@@ -89,7 +89,7 @@ screenControler::screenControler() {
 	_ObjShaderProgram->setViewMatrix(_camera->getViewMatrix());
 	textures[0] = loadTexture(Textures::Invalid);
 	textures[1] = loadTexture(Textures::Invalid);
-	
+	textures[2] = loadTexture(Textures::Fire1);
 	
 	cerr<<"INIT Partical Engine"<<endl;
 	_particalEngine = new ParticalEngine();
@@ -97,7 +97,7 @@ screenControler::screenControler() {
 	
 	cerr<<"LOAD EFFECT DATA TODO FIX ALL THIS"<<endl;
 	GraficEffectDataBlockState* GEDBS_RUN = new GraficEffectDataBlockState();
-	GEDBS_RUN->_emitterSpwanRate = 100;
+	GEDBS_RUN->_emitterSpwanRate = 10;
 	GraficEffectDataBlockState* GEDBS_TERM = new GraficEffectDataBlockState();
 	GEDBS_TERM->_emitterSpwanRate = 10000;
 	GraficEffectDataBlock* GEDB = new GraficEffectDataBlock();

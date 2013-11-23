@@ -23,6 +23,7 @@
 
 class ShaderProgram;
 GLuint loadTexture(Textures::Enum texture);
+GLuint load3DTexture(list<string> files, string filepath);
 void Drawbox( float x, float y, float width, float hight, float r, float g, float b, float a );
 
 #endif	/* GRAFIC_H */

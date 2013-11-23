@@ -53,7 +53,7 @@ bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
     _engine->getUpShader()->enable();
     _engine->getUpShader()->SetRandomTextureUnit(3);
     _engine->getUpShader()->SetLauncherLifetime((float)_data->getEmitterSpwanRate(_state));
-    _engine->getUpShader()->SetShellLifetime(10000.0f);
+    _engine->getUpShader()->SetShellLifetime(3000.0f);
 	
     ExitOnGLError("ERROR: Setuniforms ");
 
@@ -67,7 +67,7 @@ bool ParticalSystem::InitParticleSystem(CCreature* object, HardPoints::Enum hp){
     _engine->getBillboardShader()->SetBillboardSize(0.01f);
     
 	//TODO load correct texture
-    m_pTexture = textures[1];
+    m_pTexture = textures[2];
 	changeStateUpdate(PSStates::Init);
     return 0;
 }
@@ -131,7 +131,9 @@ void ParticalSystem::Update(int DeltaTimeMillis)
 
 
 void ParticalSystem::draw(Camera* camera){
-
+	glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable (GL_BLEND);
+	glDepthMask (GL_FALSE);
     _engine->getBillboardShader()->enable();
 	//cerr<<"cam x "<<camera->getPosition()->x<<" y "<<camera->getPosition()->y<<" z "<<camera->getPosition()->z<<endl;
     _engine->getBillboardShader()->SetCameraPosition(camera->getPosition());
@@ -145,22 +147,24 @@ void ParticalSystem::draw(Camera* camera){
 	ExitOnGLError("ERROR: ParticalSystem::draw set uniforms");
 	
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_pTexture);
+	glBindTexture(GL_TEXTURE_3D, m_pTexture);
 	ExitOnGLError("ERROR: ParticalSystem::draw glBindtexture");
 	//ExitOnGLError("ERROR: Could not set the model shader texture uniforms");
 
     glBindBuffer(GL_ARRAY_BUFFER, m_particleBuffer[m_currTFB]);    
 	ExitOnGLError("ERROR: ParticalSystem::draw glBindBuffer");
     glEnableVertexAttribArray(0);
-
+	glEnableVertexAttribArray(1);
+	
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Particle), (const GLvoid*)4);  // position
+	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, sizeof(Particle), (const GLvoid*)28);  // LifetimeMillis
 	ExitOnGLError("ERROR: ParticalSystem::draw set attri");
 	
 	//glDrawArrays(GL_POINTS, 0,1);
     glDrawTransformFeedback(GL_POINTS, m_transformFeedback[m_currTFB]);
 	ExitOnGLError("ERROR: ParticalSystem::draw glDrawTransformFeedback");
     glDisableVertexAttribArray(0);
-
+	glDisableVertexAttribArray(1);
 	//flip buffer
 	m_currVB = m_currTFB;
     m_currTFB = (m_currTFB + 1) & 0x1;
@@ -168,6 +172,8 @@ void ParticalSystem::draw(Camera* camera){
 		
 		changeStateUpdate(_state);
 	}
+	glDepthMask (GL_TRUE);
+	glDisable (GL_BLEND);
 }
 
 

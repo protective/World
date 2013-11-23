@@ -10,7 +10,6 @@ GLuint loadTexture(Textures::Enum texture){
 	struct stat st;
 	//DIR *dp;
 	string prepatch= "../../../";
-
 	if(stat("Textures",&st) == 0){
 		prepatch= "";
 		//dp = opendir(datapath.c_str());
@@ -22,15 +21,24 @@ GLuint loadTexture(Textures::Enum texture){
 	
 	//string prepatch = "";
 	string path;
+	list<string> files;
 	GLuint rettexture;
 
       switch (texture)
       {
 
-         //case Textures::Icons1:
-            //path = "Textures/Icons/iconsheet.png";
-        //    break;
-
+		  case Textures::Fire1:{
+		    path = "Textures/Effects/Fire/";
+			files.push_back("0010.png");
+			files.push_back("0020.png");
+			files.push_back("0060.png");
+			//files.push_back("0100.png");
+			files.push_back("0110.png");
+			files.push_back("0120.png");
+			//files.push_back("0130.png");
+			files.push_back("0140.png");
+            break;
+		  }
          default:
             //path = "Textures/Icons/Icons/Armor/itempic0001.png";
 			 path = "Textures/test2.png";
@@ -40,6 +48,9 @@ GLuint loadTexture(Textures::Enum texture){
 	ss <<  prepatch<< path;
 	std::string s = ss.str();
 
+	if(files.size()> 1)
+		return load3DTexture(files, prepatch + path);
+	
 	SDL_Surface *surface;
 	if ( (surface = IMG_Load(s.c_str())) ) {
 
@@ -95,6 +106,66 @@ GLuint loadTexture(Textures::Enum texture){
 	return 0;
 	}
 
+}
+
+GLuint load3DTexture(list<string> files, string filepath){
+	SDL_Surface *surface;
+	GLuint rettexture;
+	string file = "";
+	uint8_t* datablock = NULL;
+	uint8_t* datapointer = NULL; 
+	int bytePrPng = 0;
+	int z = files.size();
+	GLenum texture_format;
+	GLint  nOfColors;
+			
+	while (files.size()){
+		file = files.front();
+		string s = ""; s.append(filepath); s.append(file);
+		if (!(surface = IMG_Load(s.c_str()))) {
+			cerr<<"ERROR loading 3d texture file"<<endl;
+			return 0;
+		}
+		if(!datablock){
+			// get the number of channels in the SDL surface
+			nOfColors = surface->format->BytesPerPixel;
+			if (nOfColors == 4){
+				texture_format = surface->format->Rmask == 0x000000ff ? GL_RGBA: GL_BGRA;
+			} else if (nOfColors == 3){
+				texture_format = surface->format->Rmask == 0x000000ff ? GL_RGB : GL_BGR;
+			} else {
+				printf("warning: the image is not truecolor..  this will probably break\n");
+			}
+			
+			bytePrPng = surface->w * surface->h * surface->format->BytesPerPixel;
+			int datasize = (bytePrPng * files.size());
+			datablock = new uint8_t[datasize];
+			datapointer = datablock;
+		}
+		memcpy(datapointer, surface->pixels, bytePrPng);
+		datapointer += bytePrPng; 
+		files.pop_front();
+	}
+	
+	//Begin generating texture;
+	
+	
+	// Have OpenGL generate a texture object handle for us
+	glGenTextures( 1, &rettexture);
+	// Bind the texture object
+	glBindTexture( GL_TEXTURE_3D, rettexture );
+
+	// Set the texture's stretching properties
+	glTexParameteri( GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+	glTexParameteri( GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+	// Edit the texture object's image data using the information SDL_Surface gives us
+	glTexImage3D( GL_TEXTURE_3D, 0, nOfColors, surface->w, surface->h, z, 0,
+					  texture_format, GL_UNSIGNED_BYTE, (void*)datablock );
+
+	cerr<<rettexture<<endl;
+	return rettexture;
+	
 }
 
 

@@ -54,6 +54,19 @@ uint32_t ShaderProgram::finalize(){
 	glLinkProgram(_id);
 	GLint result;
 	glGetProgramiv(_id,GL_LINK_STATUS,&result);
+	GLint link_ok = GL_FALSE;
+	char logBuf[1024];
+	int len;
+	glGetProgramiv(_id, GL_LINK_STATUS, &link_ok);
+	if (!link_ok) {
+		glGetProgramInfoLog(_id, sizeof(logBuf), &len, logBuf);
+		cerr<<"Could not link basic shaders!>>>"<<endl<<logBuf<<endl;
+		cerr<<"********************************"<<endl;
+		return false;
+	}
+	
+	
+	ExitOnGLError("ERROR: Could not link the shader program");
 	if (result){
 		cerr<<"SHADER LINKING OK"<<endl;
 		
@@ -62,7 +75,7 @@ uint32_t ShaderProgram::finalize(){
 		return 0;
 	}else
 		cerr<<"SHADER LINKING ERROR"<<endl;
-	ExitOnGLError("ERROR: Could not link the shader program");
+	
 	
 	
 	return 1;

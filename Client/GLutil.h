@@ -23,7 +23,6 @@
 #include <fstream>
 #include <cstdlib>
 #include <GL/glew.h>
-
 #define GLM_SWIZZLE
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

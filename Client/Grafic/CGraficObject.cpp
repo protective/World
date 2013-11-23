@@ -62,7 +62,7 @@ void CGraficObject::rayIntersect(CCreature* creature, glm::mat2x3 ray){
 
 	glm::vec3 center =  pos;
 
-	this->_radiusSquared = 100;
+	this->_radiusSquared = 16;
 	
 	float squaredDist = glm::dot(ray[0]-center, ray[0]-center);
 

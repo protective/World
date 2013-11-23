@@ -32,6 +32,7 @@ namespace Textures{
 	enum Enum{
 		Invalid = 0,
 		Icons1 = 1,
+                Fire1 = 2,
 	};
 }
 

@@ -1,15 +1,15 @@
 #version 330
 
-uniform sampler2D gColorMap;
+uniform sampler3D gColorMap;
 
-in vec2 TexCoord;
+in vec3 TexCoord;
 out vec4 FragColor;
 
 void main()
 {
-	FragColor = texture2D(gColorMap, TexCoord);
+	FragColor = texture(gColorMap, TexCoord);
 
-	//if (FragColor.r == 0 && FragColor.g == 0 && FragColor.b == 0) {
+	//if (FragColor.a < 0.5 ) {
 	//	discard;
 	//}
 }
