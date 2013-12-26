@@ -15,13 +15,15 @@ public:
 	uint32_t init();
 	
     void SetVP(glm::mat4* VP);
+    void SetRight(glm::vec3* right);
     void SetCameraPosition(glm::vec3* Pos);
 	void SetColorTextureUnit(unsigned int TextureUnit);
     void SetBillboardSize(float BillboardSize);
 	virtual ~BillboardShader();
 private:
-    GLuint _VPLocation;
-    GLuint _cameraPosLocation;
+	GLuint _VPLocation;
+	GLuint _rightLocation;
+	GLuint _cameraPosLocation;
 	GLuint _colorMapLocation;
 	GLuint _billboardSizeLocation;
 };

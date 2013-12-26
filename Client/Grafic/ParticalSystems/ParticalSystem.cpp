@@ -91,6 +91,12 @@ void ParticalSystem::Update(int DeltaTimeMillis)
 	_engine->getUpShader()->SetLauncherLifetime((float)_data->getEmitterSpwanRate(_state));
 	_engine->getUpShader()->SetEmitterPos(_creature->getGraficPos() + _creature->getModel()->getHardPoint(_hp));
 	
+	_engine->getUpShader()->SetCrikInitVel(0);
+	_engine->getUpShader()->SetGlobeInitVel(1);
+	_engine->getUpShader()->SetGravity(0);
+	
+	_engine->getUpShader()->setInitVel(glm::vec3(0,0,0));
+	
 	
 	_engine->getRandomVec3Tex()->Bind(GL_TEXTURE3);
     glEnable(GL_RASTERIZER_DISCARD);
@@ -144,6 +150,7 @@ void ParticalSystem::draw(Camera* camera){
 	glm::mat4 PV = P * V;
 	//VP = glm::mat4();
     _engine->getBillboardShader()->SetVP(&(PV)) ;
+	_engine->getBillboardShader()->SetRight(camera->getRight());
 	ExitOnGLError("ERROR: ParticalSystem::draw set uniforms");
 	
 	glActiveTexture(GL_TEXTURE0);

@@ -128,8 +128,46 @@ void screenControler::initScreen(){
 	mainFrame = new UIMainFrame();
 }
 
-void screenControler::clickScreen(uint32_t x, uint32_t y){
+void screenControler::keydown(SDLKey key){
 	
+	glm::mat4 rotationM = glm::mat4();
+	//switch(key){
+	//	case SDLK_LEFT:  { rotationM= glm::rotate(rotationM, 0.5f,glm::vec3(1,0,0)); break;}
+	//	case SDLK_RIGHT: { rotationM= glm::rotate(rotationM,-0.5f,glm::vec3(1,0,0)); break;}
+	//}
+	//cerr<<rotationM[0].x<<" "<<rotationM[0].y<<" "<<rotationM[0].z<<" "<<rotationM[0].w<<" "<<endl;
+	//cerr<<rotationM[1].x<<" "<<rotationM[1].y<<" "<<rotationM[1].z<<" "<<rotationM[1].w<<" "<<endl;
+	//cerr<<rotationM[2].x<<" "<<rotationM[2].y<<" "<<rotationM[2].z<<" "<<rotationM[2].w<<" "<<endl;
+	//cerr<<rotationM[3].x<<" "<<rotationM[3].y<<" "<<rotationM[3].z<<" "<<rotationM[3].w<<" "<<endl;
+	//_camera->setRelVec(glm::vec3(glm::vec4(*_camera->getRelVec(),1)*rotationM));
+
+	//cerr<<_camera->getRelVec()->x<<" "<<_camera->getRelVec()->z<<" "<<_camera->getRelVec()->z<<endl;
+
+}
+void screenControler::mouseMove(int32_t x, int32_t y){
+	if(!_mouseDown)
+		return;
+	//cerr<<x<<" "<<y<<endl;
+	glm::mat4 trans = glm::translate(glm::mat4(1),glm::vec3(0,0,0.0f));
+	_camera->_cx += -1.8f * x;
+	_camera->_cy += -1.8f * y;
+	
+	//glm::mat4 rotMatrix = glm::rotate(glm::rotate(glm::mat4(1), -0.2f * _camera->_cx,glm::vec3(0,1,0)), -0.2f * _camera->_cy,*_camera->getRight());
+	
+	//_camera->setRelVec(trans * rotMatrix);
+	_camera->setRelVec(glm::rotate(*_camera->getRelVec(), -1.4f * y,*_camera->getRight()));
+	_camera->setRelVec(glm::rotate(*_camera->getRelVec(), -1.4f * x,glm::vec3(0,1,0)));
+	
+
+	//_camera->setRelVec();
+}
+
+void screenControler::mouseUp(uint32_t x, uint32_t y){
+	_mouseDown = false;
+}
+
+void screenControler::clickScreen(uint32_t x, uint32_t y){
+	_mouseDown = true;
 	if (mainFrame->click(x,y)){
 		cerr<<"UI click"<<endl;
 		return;
@@ -171,6 +209,7 @@ void screenControler::clickScreen(uint32_t x, uint32_t y){
 
 void screenControler::drawScreen()
 {
+	_camera->updateCamera();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	glUseProgram(0);

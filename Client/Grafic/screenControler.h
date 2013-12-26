@@ -21,7 +21,11 @@ public:
 	void initScreen();
 	void drawScreen();
 	void clickScreen(uint32_t x, uint32_t y);
-	list<Model*>& getModels(){return _models;}
+        void keydown(SDLKey key);
+        void mouseDown();
+        void mouseMove(int32_t x, int32_t y);
+        void mouseUp(uint32_t x, uint32_t y);
+        list<Model*>& getModels(){return _models;}
 	Camera* getCamera(){return _camera;}
 	UIShader* getUIShaderProgram(){return _UIShaderProgram;}
 	UIPrimShader* getUIPrimShaderProgram(){return _UIPrimShader;}
@@ -31,6 +35,7 @@ public:
 	
 	virtual ~screenControler();
 private:
+        bool _mouseDown;
 	list<Model*> _models;
 	SDL_Surface* _screen;
 	ObjectShader* _ObjShaderProgram;

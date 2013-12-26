@@ -29,6 +29,7 @@ uint32_t BillboardShader::init(){
 		return 5;
 	
 	_VPLocation = getUniformLocation("gVP");
+	_rightLocation = getUniformLocation("gRight");
 	_cameraPosLocation = getUniformLocation("gCameraPos");
     _colorMapLocation = getUniformLocation("gColorMap");
     _billboardSizeLocation = getUniformLocation("gBillboardSize");	
@@ -40,6 +41,12 @@ uint32_t BillboardShader::init(){
 void BillboardShader::SetVP(glm::mat4* VP){
 	glUniformMatrix4fv(_VPLocation, 1, GL_FALSE, (glm::value_ptr(*VP)));
 }
+
+void BillboardShader::SetRight(glm::vec3* right){
+	glUniform3f(_rightLocation, right->x, right->y, right->z);
+}
+
+
 void BillboardShader::SetCameraPosition(glm::vec3* pos){
 
 	glUniform3f(_cameraPosLocation, pos->x, pos->y, pos->z);

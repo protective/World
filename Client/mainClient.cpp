@@ -155,9 +155,15 @@ using namespace std;
 					//if (mainFrame->click(event.button.x,event.button.y) == 0)
 					//	playerObj->selectObject(event.button.x,event.button.y);
 					break;
+				case SDL_MOUSEBUTTONUP:
+					masterScreen->mouseUp(event.button.x,event.button.y);
+					break;
+				case SDL_MOUSEMOTION:
+					masterScreen->mouseMove(event.motion.xrel,event.motion.yrel);
+					break;
 				case SDL_KEYDOWN:
 					keydown[event.key.keysym.sym] = true;
-					
+					masterScreen->keydown(event.key.keysym.sym);
 					break;
 				case SDL_KEYUP:
 					keydown[event.key.keysym.sym] = false;

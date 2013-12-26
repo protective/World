@@ -21,6 +21,12 @@ public:
     void SetShellLifetime(float Lifetime);
 	void SetRandomTextureUnit(unsigned int TextureUnit);
 	void SetEmitterPos(glm::vec3 pos);
+	
+	void SetGlobeInitVel(float vel);
+	void SetCrikInitVel(float vel);
+	void SetGravity(float gravity);
+	void setInitVel(glm::vec3 initVel);
+	
 	virtual ~ParticalUpShader();
 private:
 	GLuint m_deltaTimeMillisLocation;
@@ -29,6 +35,12 @@ private:
 	GLuint m_launcherLifetimeLocation;
 	GLuint m_shellLifetimeLocation;
 	GLuint m_EmitterPos;
+	
+	GLuint M_GlobeInitVel;
+	GLuint M_CirkInitVel;
+	GLuint M_Gravity;
+	GLuint M_initialVel;
+
 };
 
 #endif	/* PARTICALUPSHADER_H */

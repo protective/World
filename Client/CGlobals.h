@@ -61,6 +61,7 @@ extern ConnectionStruct connection;
 extern uint32_t tTime;
 extern CPlayerObjHandle* playerObj;
 extern map<uint32_t,GLuint> textures;
+extern map<uint32_t, GLuint> iconTextures;
 extern CWorld* world;
 extern CObj* playerSels;
 extern CObj* playerTarget;

@@ -47,6 +47,12 @@ uint32_t ParticalUpShader::init(){
 	m_launcherLifetimeLocation = getUniformLocation("gLauncherLifetime");
 	m_shellLifetimeLocation =  getUniformLocation("gShellLifetime");
 	m_EmitterPos =  getUniformLocation("gEmitterPos");
+
+	M_GlobeInitVel =  getUniformLocation("M_GlobeInitVel");
+	M_CirkInitVel =  getUniformLocation("M_CirkInitVel");
+	M_Gravity =  getUniformLocation("M_Gravity");
+	M_initialVel =  getUniformLocation("M_initialVel");
+	
 	return 0;
 }
 
@@ -77,6 +83,24 @@ void ParticalUpShader::SetLauncherLifetime(float Lifetime)
     glUniform1f(m_launcherLifetimeLocation, Lifetime);
 }
 
+void ParticalUpShader::SetGlobeInitVel(float vel)
+{
+    glUniform1f(M_GlobeInitVel, vel);
+}
+
+void ParticalUpShader::SetCrikInitVel(float vel)
+{
+    glUniform1f(M_CirkInitVel, vel);
+}
+
+void ParticalUpShader::SetGravity(float gravity)
+{
+    glUniform1f(M_Gravity, gravity);
+}
+
+void ParticalUpShader::setInitVel(glm::vec3 initVel){
+	glUniform3f(M_initialVel, initVel.x, initVel.y, initVel.z);
+}
 
 void ParticalUpShader::SetShellLifetime(float Lifetime)
 {

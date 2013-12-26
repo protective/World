@@ -15,7 +15,10 @@ ConnectionStruct connection;
 uint32_t tTime = 0;
 pthread_mutex_t lockInput= PTHREAD_MUTEX_INITIALIZER;
 CPlayerObjHandle* playerObj = new CPlayerObjHandle();
+
 map<uint32_t,GLuint> textures;
+map<uint32_t, GLuint> iconTextures;
+
 
 CWorld* world = new CWorld();
 uint32_t GlobalPlayerId;
