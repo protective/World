@@ -27,16 +27,16 @@ GLuint loadTexture(Textures::Enum texture){
       switch (texture)
       {
 
-		  case Textures::Fire1:{
+		  case Textures::Partical:{
 		    path = "Textures/Effects/Fire/";
 			files.push_back("0010.png");
 			files.push_back("0020.png");
 			files.push_back("0060.png");
-			//files.push_back("0100.png");
+			files.push_back("0080.png");
 			files.push_back("0110.png");
-			files.push_back("0120.png");
-			//files.push_back("0130.png");
+			files.push_back("0130.png");
 			files.push_back("0140.png");
+			files.push_back("0150.png");
             break;
 		  }
          default:

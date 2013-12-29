@@ -49,25 +49,13 @@ void UIBaseFrame::drawChilds(){
 
 void UIBaseFrame::setIcon(uint32_t iconId){
 	
-	cerr<<"set icon"<<iconId<<endl;
-	switch(iconId){
-		case 1:{		
-			_vertices[0].Tex[0] = 0; _vertices[0].Tex[1] = 0;
-			_vertices[1].Tex[0] = 1; _vertices[1].Tex[1] = 0;
-			_vertices[2].Tex[0] = 1; _vertices[2].Tex[1] = 1;
-			_vertices[3].Tex[0] = 0; _vertices[3].Tex[1] = 1;
-			_texture = textures[0];
-			break;
-		}
-		default:{
-		_vertices[0].Tex[0] = 0; _vertices[0].Tex[1] = 0;
-		_vertices[1].Tex[0] = 100; _vertices[1].Tex[1] = 0;
-		_vertices[2].Tex[0] = 100; _vertices[2].Tex[1] = 100;
-		_vertices[3].Tex[0] = 0; _vertices[3].Tex[1] = 100;
-		_texture = textures[0];
-			break;
-		}
-	}
+	_vertices[0].Tex[0] = 0; _vertices[0].Tex[1] = 0;
+	_vertices[1].Tex[0] = 1; _vertices[1].Tex[1] = 0;
+	_vertices[2].Tex[0] = 1; _vertices[2].Tex[1] = 1;
+	_vertices[3].Tex[0] = 0; _vertices[3].Tex[1] = 1;
+	_texture = masterScreen->getIconTextures()->getTexture(iconId);
+
+	
 	masterScreen->getUIShaderProgram()->enable();
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);

@@ -31,8 +31,9 @@ namespace PSStates{
 namespace Textures{
 	enum Enum{
 		Invalid = 0,
-		Icons1 = 1,
-                Fire1 = 2,
+		Icons = 1,
+		Partical = 2,
+		Objects = 3,
 	};
 }
 

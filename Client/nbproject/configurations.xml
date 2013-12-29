@@ -55,6 +55,8 @@
         <itemPath>Grafic/Shader.h</itemPath>
         <itemPath>Grafic/ShaderProgram.cpp</itemPath>
         <itemPath>Grafic/ShaderProgram.h</itemPath>
+        <itemPath>Grafic/TextureControler.cpp</itemPath>
+        <itemPath>Grafic/TextureControler.h</itemPath>
         <itemPath>Grafic/screenControler.cpp</itemPath>
         <itemPath>Grafic/screenControler.h</itemPath>
       </logicalFolder>

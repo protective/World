@@ -44,6 +44,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Grafic/Camera.o \
 	${OBJECTDIR}/Grafic/ParticalSystems/ParticalUpShader.o \
 	${OBJECTDIR}/Grafic/Shaders/BillboardShader.o \
+	${OBJECTDIR}/Grafic/TextureControler.o \
 	${OBJECTDIR}/Grafic/GraficEffectDataBlock.o \
 	${OBJECTDIR}/objects/CPos.o \
 	${OBJECTDIR}/Grafic/screenControler.o \
@@ -151,6 +152,11 @@ ${OBJECTDIR}/Grafic/Shaders/BillboardShader.o: Grafic/Shaders/BillboardShader.cp
 	${MKDIR} -p ${OBJECTDIR}/Grafic/Shaders
 	${RM} $@.d
 	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/Shaders/BillboardShader.o Grafic/Shaders/BillboardShader.cpp
+
+${OBJECTDIR}/Grafic/TextureControler.o: Grafic/TextureControler.cpp 
+	${MKDIR} -p ${OBJECTDIR}/Grafic
+	${RM} $@.d
+	$(COMPILE.cc) -g -I/usr/include/freetype2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Grafic/TextureControler.o Grafic/TextureControler.cpp
 
 ${OBJECTDIR}/Grafic/GraficEffectDataBlock.o: Grafic/GraficEffectDataBlock.cpp 
 	${MKDIR} -p ${OBJECTDIR}/Grafic

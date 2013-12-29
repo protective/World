@@ -15,6 +15,7 @@
 #include "Camera.h"
 #include "ParticalSystems/ParticalEngine.h"
 #include "GraficEffectType.h"
+#include "TextureControler.h"
 class screenControler {
 public:
 	screenControler();
@@ -32,7 +33,7 @@ public:
 	TransformStack* getUIStack(){return &_UIStack;}
 	ParticalEngine* _getParticalEngines(){return _particalEngine;};
 	GraficEffectType* getEffectData(uint32_t id){return _effetsData.find(id) != _effetsData.end() ? _effetsData[id] : NULL;}
-	
+	TextureControler* getIconTextures(){return _iconTextures;}
 	virtual ~screenControler();
 private:
         bool _mouseDown;
@@ -46,6 +47,7 @@ private:
 	TransformStack _UIStack;
 	ParticalEngine* _particalEngine;
 	map<uint32_t, GraficEffectType*> _effetsData;
+	TextureControler* _iconTextures;
 };
 
 #endif	/* SCREENCONTROLER_H */

@@ -89,7 +89,11 @@ screenControler::screenControler() {
 	_ObjShaderProgram->setViewMatrix(_camera->getViewMatrix());
 	textures[0] = loadTexture(Textures::Invalid);
 	textures[1] = loadTexture(Textures::Invalid);
-	textures[2] = loadTexture(Textures::Fire1);
+	textures[2] = loadTexture(Textures::Partical);
+	cerr<<"INIT Texture controles "<<endl;
+	_iconTextures = new TextureControler(Textures::Icons);
+	
+	
 	
 	cerr<<"INIT Partical Engine"<<endl;
 	_particalEngine = new ParticalEngine();

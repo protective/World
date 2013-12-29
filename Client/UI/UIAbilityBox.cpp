@@ -18,8 +18,8 @@ UIBaseFrame(parrent,x,y,parrent->getWight(),parrent->getHeight()){
 	_shader = masterScreen->getUIShaderProgram();
 	
 	_shader->enable();
-	
-	_texture = textures[0];
+	cerr<<"load texture "<<power->getIconId()<<endl;;
+	_texture = masterScreen->getIconTextures()->getTexture(_power->getIconId());
 
 	glGenVertexArrays(1, &_vao);
 	ExitOnGLError("ERROR: Could not generate the VAO");
